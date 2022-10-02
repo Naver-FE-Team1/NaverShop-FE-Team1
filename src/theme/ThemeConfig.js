@@ -1,9 +1,12 @@
-import { createTheme } from '@mui/material'
+import { createTheme } from "@mui/material";
 
 export const ThemeConfig = createTheme({
-    typography: {
-        fontFamily: [
-            "Satoshi", '"Clash Display"', "sans-serif"
-        ].join(",")
+  palette: {
+    black: {
+      main: "#000000",
     },
-})
+  },
+  typography: {
+    fontFamily: ["Satoshi", '"Clash Display"', "sans-serif"].join(","),
+  },
+});

@@ -1,0 +1,11 @@
+@import "../../../utils//variables";
+
+.productDetail__dimension-sizes {
+  max-width: 72px;
+  width: 100%;
+  padding: 8px 0;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  color: $color-secondary;
+  text-align: center;
+}

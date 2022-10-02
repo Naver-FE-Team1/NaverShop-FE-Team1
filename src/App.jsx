@@ -1,13 +1,12 @@
-import './App.scss'
-import { Button } from '@mui/material'
+import "./App.scss";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
 
 function App() {
   return (
     <div className="App">
-      <Button variant='contained'>Hello world</Button>
-      <span>hello world</span>
+      <ProductDetail></ProductDetail>{" "}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

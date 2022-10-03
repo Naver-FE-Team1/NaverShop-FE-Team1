@@ -1,5 +1,20 @@
-@import "../../utils/variables";
+@import "./variables.scss";
 //--------------------------------------------
+.container {
+  background-color: #f9f9f9;
+
+  @include Responsive(LG) {
+    padding: 50px 80px;
+  }
+}
+
+.grid {
+  @include Responsive(LG) {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .productDetail {
   &-img {
     width: 100%;
@@ -9,6 +24,7 @@
     object-fit: cover;
   }
   &__topContent {
+    color: $color-primary;
     @include Responsive(XS) {
       margin-bottom: 28px;
     }
@@ -28,6 +44,7 @@
     }
   }
   &__description {
+    color: $color-primary;
     margin-bottom: 50px;
     max-width: 498px;
     width: 100%;
@@ -41,6 +58,8 @@
     }
   }
   &__dimension {
+    color: $color-primary;
+
     &-title {
       margin-bottom: 16px;
     }
@@ -49,5 +68,10 @@
       gap: 10px;
       flex-wrap: wrap;
     }
+  }
+  &__quantity {
+    color: $color-primary;
+
+    margin-top: 10px;
   }
 }

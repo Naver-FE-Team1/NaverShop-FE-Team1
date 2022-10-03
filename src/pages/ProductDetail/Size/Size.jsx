@@ -1,10 +1,13 @@
 import { Button } from "@mui/material";
 import React from "react";
-// import "./sizeStyles.scss";
 
 const Size = ({ size }) => {
   return (
-    <Button color="black" variant="outlined">
+    <Button
+      style={{ color: "#2A254B", border: "1px solid #2A254B" }}
+      color="black"
+      variant="outlined"
+    >
       <p>{size}</p>
     </Button>
   );

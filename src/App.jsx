@@ -1,5 +1,5 @@
 import "./App.scss";
-import ProductDetail from "./components/ProductDetail/ProductDetail";
+import ProductDetail from "./pages/ProductDetail/ProductDetail";
 
 function App() {
   return (

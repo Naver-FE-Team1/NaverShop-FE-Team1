@@ -1,11 +1,11 @@
 import './App.scss'
-import { Button } from '@mui/material'
+import ShoppingList from './components/pages/ShoppingList'
 
 function App() {
+
   return (
     <div className="App">
-      <Button variant='contained'>Hello world</Button>
-      <span>hello world</span>
+      <ShoppingList />
     </div>
   )
 }

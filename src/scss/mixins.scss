@@ -1,0 +1,25 @@
+/*
+ * mixins for project
+ * file: mixins.scss
+ */
+
+//Mobile breakpoint
+@mixin mobile {
+    @media only screen and (min-width: $mobile-width) {
+        @content;
+    }
+}
+
+//tablet breakpoint
+@mixin tablet {
+    @media only screen and (min-width: $tablet-width) {
+        @content;
+    }
+}
+
+//desktop breakpoint
+@mixin desktop {
+    @media only screen and (min-width: $desktop-width) {
+        @content;
+    }
+}

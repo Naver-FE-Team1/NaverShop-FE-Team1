@@ -1,65 +1,68 @@
 import { ImageList, ImageListItem, ImageListItemBar, useMediaQuery } from '@mui/material';
 import React from 'react'
 
-const ProductList = () => {
-    const mdMatches = useMediaQuery('(min-width:600px)')
-    const lgMatches = useMediaQuery("(min-width:1200px)")
+const ProductList = (props) => {
+    //USEMEDIAQUERY to check true or false of the current width screen
+    const smMatches = useMediaQuery('(min-width:600px)')
+    const mdMatches = useMediaQuery('(min-width:900px)')
+    const lgMatches = useMediaQuery("(min-width:1024px)")
 
 
     //TODO: NEED TO WORK ON CASE WHERE TITLES CAN BE TOO LONG
     return (
         <div id='product-list'>
             <ImageList
-                cols={mdMatches ? 3 : 2}
+                cols={smMatches ? 3 : 2}
                 sx={{
-                    width: "100%",
-                    paddingLeft: "10px",
-                    paddingRight: "10px"
+                    marginTop: "0px",
                 }}
             >
                 {itemData.map((item, index) => (
-                    <ImageListItem
-                        key={index}
-                    >
-                        <img
-                            style={{
-                                height: lgMatches ? "420px" : "220px"
-                            }}
-                            src={`${item.img}`}
-                            alt={item.title}
-                            loading="lazy"
-                        />
-                        <ImageListItemBar
-                            sx={{
-                                marginLeft: "2px",
-                                marginBottom: "5px",
-                            }}
-                            title={
-                                <span
-                                    style={{
-                                        color: "#2a254b",
-                                        fontFamily: ["Clash Display", 'sans-serif'],
-                                        display: "block",
-                                        fontSize: "18px",
-                                        marginTop: "5px",
-                                        marginBottom: "5px"
-                                    }}
-                                >{item.title}
-                                </span>
-                            }
-                            subtitle={
-                                <span
-                                    style={{
-                                        color: "#2a254b",
-                                        fontFamily: ["Clash Display", 'sans-serif'],
-                                        fontSize: "14px",
-                                    }}
-                                >by: {item.author}
-                                </span>
-                            }
-                            position="below"
-                        />
-                    </ImageListItem>
+                    //GOT TO CHANGE THIS WITH LINK (REACT ROUTER)
+                    <a href='#'>
+                        <ImageListItem
+                            key={index}
+                        >
+                            <img
+                                style={{
+                                    maxWidth: "280px",
+                                    height: lgMatches ? "400px" : "220px",
+                                }}
+                                src={`${item.img}`}
+                                alt={item.title}
+                                // loading="lazy"
+                            />
+                            <ImageListItemBar
+                                sx={{
+                                    marginBottom: "5px",
+                                }}
+                                title={
+                                    <span
+                                        style={{
+                                            color: "#2a254b",
+                                            fontFamily: ["Clash Display", 'sans-serif'],
+                                            display: "block",
+                                            fontSize: "18px",
+                                            marginTop: "5px",
+                                            marginBottom: "5px"
+                                        }}
+                                    >{item.title}
+                                    </span>
+                                }
+                                subtitle={
+                                    <span
+                                        style={{
+                                            color: "#2a254b",
+                                            fontFamily: ["Clash Display", 'sans-serif'],
+                                            fontSize: "14px",
+                                        }}
+                                    >by: {item.author}
+                                    </span>
+                                }
+                                position="below"
+                            />
+                        </ImageListItem>
+                    </a>
                 ))}
             </ImageList>
         </div>
@@ -79,7 +82,7 @@ const itemData = [
     {
         img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
         title: 'Burger',
-        author: '@rollelflex_graphy726',
+        author: '@rollelflex',
     },
     {
         img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
@@ -129,6 +132,6 @@ const itemData = [
     {
         img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
         title: 'Bike',
-        author: '@southside_customs',
+        author: '@southside',
     },
 ];

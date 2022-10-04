@@ -1,22 +1,50 @@
-import { CheckBox } from '@mui/icons-material'
-import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, Slider, Typography } from '@mui/material'
-import { Stack } from '@mui/system'
+import {
+    Box,
+    Divider,
+    Drawer,
+    Grid,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemText,
+    Typography
+} from '@mui/material'
+import { CloseOutlined } from '@mui/icons-material'
 import React, { useState } from 'react'
 import TitleBanner from '../atoms/TitleBanner'
 import DropdownButton from '../molecules/DropdownButton/DropdownButton'
-import StyledMenu from '../molecules/StyledMenu/StyledMenu'
 import Banner from '../organisms/Banner/Banner'
+import FiltersBox from '../organisms/Filters/FiltersBox'
 import ProductList from '../organisms/ProductList/ProductList'
 
+const navItems = ['Home', 'About', 'Contact'];
+
 const ShoppingList = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    const [openDrawer, setOpenDrawer] = useState(false)
+
+    const handleDrawerToggle = () => {
+        setOpenDrawer(!openDrawer)
+    }
+
+    const drawer = (
+        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+            <Typography variant="h6" sx={{ my: 2 }}>
+                MUI
+            </Typography>
+            <List>
+                {navItems.map((item) => (
+                    <ListItem key={item} disablePadding>
+                        <ListItemButton sx={{ textAlign: 'center' }}>
+                            <ListItemText primary={item} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+        </Box>
+    );
+
+
+    const container = window !== undefined ? () => window.document.body : undefined;
 
     return (
         <div>
@@ -35,108 +63,79 @@ const ShoppingList = () => {
                 </TitleBanner>
             </Banner>
 
-            <DropdownButton onClick={handleClick}>
-                Filtering
-            </DropdownButton>
-            <DropdownButton>
-                Sorting
-            </DropdownButton>
-
-
-            <Stack spacing={3}>
-                <FormControl>
-                    <Typography
-                        sx={{
-                            fontFamily: ["Clash Display", "sans-serif"],
-                            color: "#2a254b"
-                        }}
-                    >
-                        Product type
-                    </Typography>
-                    {productTypeList.map((item) => (
-                        <FormControlLabel
-                            control={<Checkbox />}
-                            label={
-                                <span
-                                    style={{
-                                        fontFamily: ["Clash Display", "sans-serif"],
-                                        color: "#2a254b"
-                                    }}
-                                >
-                                    {item}
-                                </span>}
-                        />
-                    ))}
-                </FormControl>
-
-                <FormControl>
-                    <Typography
-                        sx={{
-                            fontFamily: ["Clash Display", "sans-serif"],
-                            color: "#2a254b"
-                        }}
-                    >
-                        Price
-                    </Typography>
-                    <Slider defaultValue={50}/>
-                </FormControl>
-
-                <FormControl>
-                    <Typography
-                        sx={{
-                            fontFamily: ["Clash Display", "sans-serif"],
-                            color: "#2a254b"
-                        }}
-                    >
-                        Brand
-                    </Typography>
-                    {brandList.map((item) => (
-                        <FormControlLabel
-                            control={<Checkbox />}
-                            label={
-                                <span
-                                    style={{
-                                        fontFamily: ["Clash Display", "sans-serif"],
-                                        color: "#2a254b"
-                                    }}
-                                >
-                                    {item}
-                                </span>}
-                        />
-                    ))}
-                </FormControl>
-            </Stack>
-            {/* <StyledMenu
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
+            <Grid
+                container
+                direction={{ xs: "column", md: "row" }}
+                alignItems={"flex-start"}
+                justifyContent={"center"}
             >
-                <MenuItem onClick={handleClose} disableRipple>
-                    Edit
-                </MenuItem>
+                <Grid item xs={2} md={3}>
+                    <Box
+                        sx={{
+                            display: { xs: "block", md: "none" }
+                        }}
+                    >
+                        <DropdownButton onClick={handleDrawerToggle}>
+                            Filtering
+                        </DropdownButton>
+                        <DropdownButton >
+                            Sorting
+                        </DropdownButton>
 
-            </StyledMenu> */}
+                        <Box component={"aside"}>
+                            <Drawer
+                                container={container}
+                                open={openDrawer}
+                                onClose={handleDrawerToggle}
+                                sx={{
+                                    display: { xs: 'block', md: 'none' },
+                                    '& .MuiDrawer-paper': {
+                                        boxSizing: 'border-box',
+                                        width: "90%"
+                                    },
+                                }}
+                                ModalProps={{
+                                    keepMounted: true, // Better open performance on mobile.
+                                }}
+                                variant="temporary"
+                            >
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "row-reverse",
+                                        padding: "10px"
+                                    }}
+                                >
+                                    <CloseOutlined
+                                        onClick={handleDrawerToggle}
+                                    />
+                                </div>
+                                <Divider />
+                                <FiltersBox
 
+                                />
+                            </Drawer>
+                        </Box>
+                    </Box>
 
-            <ProductList />
+                    <Box
+                        sx={{
+                            display: { xs: "none", md: "block" },
+                            width: "fit-content"
+                        }}
+                    >
+                        <FiltersBox />
+                    </Box>
+                </Grid>
+
+                <Grid item xs={10} md={9}>
+                    <ProductList
+
+                    />
+                </Grid>
+            </Grid>
         </div>
     )
 }
 
 export default ShoppingList
-
-
-const productTypeList = [
-    "Furniture",
-    "Homeware",
-    "Sofas",
-    "Light fittings",
-    "Accessories"
-]
-
-const brandList = [
-    "Robert Smith",
-    "Liam Gallagher",
-    "Robert Smith",
-    "Liam Gallagher",
-]

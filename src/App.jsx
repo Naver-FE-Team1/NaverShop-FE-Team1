@@ -1,5 +1,5 @@
 import "./App.scss";
-import ProductDetail from "./pages/ProductDetail/ProductDetail";
+import ProductDetail from "./components/organisms/ProductDetail";
 
 function App() {
   return (

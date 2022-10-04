@@ -13,6 +13,11 @@
     display: flex;
     align-items: center;
   }
+  @include Responsive(XS) {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+  }
 }
 
 .productDetail {

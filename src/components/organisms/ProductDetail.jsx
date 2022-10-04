@@ -1,10 +1,11 @@
 import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
-import Buttons from "../../components/Button/Buttons";
+import Buttons from "../atoms/Button/Buttons";
 import "../../styles/productDetailStyles.scss";
-import Quantity from "./Quantity/Quantity";
-import Size from "./Size/Size";
+import Quantity from "../molecules/Quantity/Quantity";
+import Size from "../molecules/Size/Size";
+import SubImage from "../atoms/SubImage/SubImage";
 const ProductDetail = () => {
   const sizes = [
     { id: 1, size: "S" },
@@ -13,24 +14,35 @@ const ProductDetail = () => {
     { id: 4, size: "XL" },
     { id: 5, size: "XXL" },
   ];
+  const subImg = [{ id: 1 }, { id: 2 }, { id: 3 }];
+  //Number
+  var price = 25000000;
   return (
     <div className="container">
       <Container maxWidth="xl" style={{ padding: 0 }}>
         <Grid className="grid" container>
-          <Grid item xs={12} lg={6}>
-            <img
-              src="https://source.unsplash.com/random"
-              className="productDetail-img"
-              alt=""
-            />
+          <Grid container>
+            <Grid item xs={12} lg={6}>
+              <img
+                src="https://source.unsplash.com/random"
+                className="productDetail-img"
+                alt=""
+              />
+            </Grid>
           </Grid>
+
           <Grid item xs={12} lg={6}>
             <Container maxWidth="sm" style={{ padding: "28px" }}>
               <div className="productDetail__topContent">
                 <h3 className="productDetail__topContent-name">
                   The Dandy Chair
                 </h3>
-                <p className="productDetail__topContent-price">£250</p>
+                <p className="productDetail__topContent-price">
+                  {price.toLocaleString("vi-VN", {
+                    style: "currency",
+                    currency: "VND",
+                  })}
+                </p>
               </div>
               <div className="productDetail__description">
                 <h5 className="productDetail__description-title">

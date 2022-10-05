@@ -1,0 +1,39 @@
+@include mobile {
+    .MoreInfo {
+        background-color: $WhiteColor;
+        display: flex;
+        flex-direction: column;
+        padding: 10% 8%;
+        margin-bottom: 5%;
+    }
+    .MoreInfo h4 {
+        max-width: 70%;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 500;
+        font-family: 'Clash Display', sans-serif;
+        line-height: 140%;
+    }
+    
+}
+
+@include tablet {
+    .MoreInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+    }
+    .MoreInfo div {
+        display: flex;
+        flex-direction: row;
+        width: inherit;
+        height: auto;
+        align-self: center;
+    }
+    .MoreInfo h4 {
+        align-self: center;
+        margin-bottom: 2em;
+    }
+    
+}

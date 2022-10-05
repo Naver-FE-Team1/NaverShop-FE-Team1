@@ -7,3 +7,19 @@
 @import "./mixins.scss";
 
 //Import your scss files here
+
+/*Shopping basket*/
+//Shopping basket
+@import "../components/pages/ShoppingBasket/ShoppingBasket.scss";
+//ProductBar
+@import "../components/atoms/ProductBar/ProductBar.scss";
+//Button
+@import "../components/atoms/Button/Button.scss";
+//HeadTitle
+@import "../components/atoms/HeadTitle/HeadTitle.scss";
+//QuantitiesBar
+@import "../components/atoms/QuantitesBar/Quantities.scss";
+//ProductItem
+@import "../components/molecules/ProductItem/ProductItem.scss";
+//FootBasket
+@import '../components/molecules/FootBasket/FootBasket.scss';

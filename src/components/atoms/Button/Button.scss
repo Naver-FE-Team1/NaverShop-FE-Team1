@@ -1,0 +1,30 @@
+/*
+ * scss for Button component
+ * file: Button.scss
+ */
+ 
+@include mobile {
+  .btn {
+    width: 100%;
+    border: none;
+    padding: 16px 32px;
+    background-color: $main;
+    font-family: "Satoshi";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #ffffff;
+    cursor: pointer;
+  }
+}
+@include tablet {
+  .btn {
+    width: fit-content;
+  }
+}
+@include desktop {
+  .btn {
+    width: fit-content;
+  }
+}

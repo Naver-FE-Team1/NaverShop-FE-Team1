@@ -63,8 +63,9 @@ const FiltersBox = (props) => {
                     >
                         Product type
                     </h3>
-                    {productTypeList.map((item) => (
+                    {productTypeList.map((item, index) => (
                         <FormControlLabel
+                            key={index}
                             control={<ThemedCheckbox />}
                             sx={{
                                 marginLeft: "2px"
@@ -115,8 +116,9 @@ const FiltersBox = (props) => {
                     >
                         Brand
                     </h3>
-                    {brandList.map((item) => (
+                    {brandList.map((item, index) => (
                         <FormControlLabel
+                            key={index}
                             control={<ThemedCheckbox />}
                             sx={{
                                 marginLeft: "2px"

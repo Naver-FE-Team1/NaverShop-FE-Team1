@@ -26,31 +26,48 @@ const brandList = [
     "Liam Gallagher",
 ]
 
+const ThemedCheckbox = () => {
+    return (
+        <Checkbox
+            sx={{
+                color: "#2a254b",
+                "&.Mui-checked": {
+                    color: "#2a254b"
+                }
+            }}
+        />
+    )
+}
+
 const FiltersBox = (props) => {
+    const styleH3 = {
+        fontFamily: ["Clash Display", "sans-serif"],
+        color: "#2a254b",
+        fontWeight: "400",
+        fontSize: "20px",
+        marginTop: "0",
+        marginBottom: "5px"
+    }
 
     return (
         <Box
-            sx={{ maxWidth: "200px" }}
+            sx={{
+                maxWidth: "250px",
+                ...props.sx
+            }}
         >
             <Stack
-                spacing={2}
-                sx={{
-                    paddingX: "20px",
-                    paddingY: "15px",
-                }}
+                spacing={props.gap ? props.gap : 2}
             >
                 <FormControl>
-                    <Typography
-                        sx={{
-                            fontFamily: ["Clash Display", "sans-serif"],
-                            color: "#2a254b"
-                        }}
+                    <h3
+                        style={styleH3}
                     >
                         Product type
-                    </Typography>
+                    </h3>
                     {productTypeList.map((item) => (
                         <FormControlLabel
-                            control={<Checkbox />}
+                            control={<ThemedCheckbox />}
                             label={
                                 <span
                                     style={{
@@ -65,36 +82,43 @@ const FiltersBox = (props) => {
                 </FormControl>
 
                 <FormControl>
-                    <Typography
-                        sx={{
-                            fontFamily: ["Clash Display", "sans-serif"],
-                            color: "#2a254b"
-                        }}
+                    <h3
+                        style={styleH3}
                     >
                         Price
-                    </Typography>
-                    <Slider
-                        valueLabelDisplay='auto'
-                        defaultValue={[0, 100]}
-                    />
+                    </h3>
+                    <Box
+                        sx={{
+                            paddingX: "5px"
+                        }}
+                    >
+                        <Slider
+                            sx={{
+                                color: "#2a254b",
+                                "&.MuiSlider-root": {
+                                    paddingY: "10px"
+                                }
+                            }}
+                            size='small'
+                            valueLabelDisplay='auto'
+                            defaultValue={[0, 100]}
+                        />
+                    </Box>
                 </FormControl>
 
                 <FormControl>
-                    <Typography
-                        sx={{
-                            fontFamily: ["Clash Display", "sans-serif"],
-                            color: "#2a254b"
-                        }}
+                    <h3
+                        style={styleH3}
                     >
                         Brand
-                    </Typography>
+                    </h3>
                     {brandList.map((item) => (
                         <FormControlLabel
-                            control={<Checkbox />}
+                            control={<ThemedCheckbox />}
                             label={
                                 <span
                                     style={{
-                                        fontFamily: ["Clash Display", "sans-serif"],
+                                        fontFamily: ["Satoshi", "sans-serif"],
                                         color: "#2a254b"
                                     }}
                                 >

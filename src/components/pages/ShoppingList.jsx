@@ -7,6 +7,8 @@ import {
     ListItem,
     ListItemButton,
     ListItemText,
+    MenuItem,
+    Select,
     Typography
 } from '@mui/material'
 import { CloseOutlined } from '@mui/icons-material'
@@ -63,26 +65,43 @@ const ShoppingList = () => {
                 </TitleBanner>
             </Banner>
 
-            <Grid
-                container
-                direction={{ xs: "column", md: "row" }}
-                alignItems={"flex-start"}
-                justifyContent={"center"}
+            <Box
+                sx={{
+                    paddingY: { xs: "20px", md: "50px" },
+                    paddingX: "auto",
+                    flex: "1",
+                    display: "flex",
+                    flexDirection: { xs: "column", md: "row" },
+                    justifyContent: "space-evenly",
+                    gap: { xs: "20px", md: "0" }
+                }}
             >
-                <Grid item xs={2} md={3}>
+                {/* Filter and Sort section */}
+                <div>
                     <Box
                         sx={{
-                            display: { xs: "block", md: "none" }
+                            display: { xs: "flex", md: "none" },
+                            justifyContent: "space-evenly",
+                            paddingX: { xs: "20px", sm: "50px" },
+                            gap: "20px"
                         }}
                     >
-                        <DropdownButton onClick={handleDrawerToggle}>
+                        <DropdownButton
+                            style={{ flex: 1 }}
+                            onClick={handleDrawerToggle}
+                        >
                             Filtering
                         </DropdownButton>
-                        <DropdownButton >
-                            Sorting
+                        <DropdownButton variant='select'>
+
                         </DropdownButton>
 
-                        <Box component={"aside"}>
+                        <Box
+                            sx={{
+                                display: { xs: "none", md: "block" }
+                            }}
+                            component={"aside"}
+                        >
                             <Drawer
                                 container={container}
                                 open={openDrawer}
@@ -91,7 +110,8 @@ const ShoppingList = () => {
                                     display: { xs: 'block', md: 'none' },
                                     '& .MuiDrawer-paper': {
                                         boxSizing: 'border-box',
-                                        width: "90%"
+                                        // width: {xs: "85%", md: "60%" },
+                                        width: "fit-content"
                                     },
                                 }}
                                 ModalProps={{
@@ -112,7 +132,11 @@ const ShoppingList = () => {
                                 </div>
                                 <Divider />
                                 <FiltersBox
-
+                                    gap={3}
+                                    sx={{
+                                        margin: "15px 50px",
+                                        marginLeft: "25px"
+                                    }}
                                 />
                             </Drawer>
                         </Box>
@@ -120,20 +144,31 @@ const ShoppingList = () => {
 
                     <Box
                         sx={{
-                            display: { xs: "none", md: "block" },
-                            width: "fit-content"
+                            display: { xs: "none", md: "flex" },
+                            flexDirection: "column",
+                            gap: 3,
+                            width: "fit-content",
                         }}
                     >
-                        <FiltersBox />
+                        <FiltersBox
+                            gap={5}
+                        />
+                        <DropdownButton variant='select'></DropdownButton>
                     </Box>
-                </Grid>
+                </div>
 
-                <Grid item xs={10} md={9}>
+                {/* Product List section */}
+                <Box
+                    sx={{
+                        maxWidth: { xs: "850px", md: "700px", lg: "850px"},
+                        paddingX: { xs: "10px", sm: "25px", md: "25px" }
+                    }}
+                >
                     <ProductList
 
                     />
-                </Grid>
-            </Grid>
+                </Box>
+            </Box>
         </div>
     )
 }

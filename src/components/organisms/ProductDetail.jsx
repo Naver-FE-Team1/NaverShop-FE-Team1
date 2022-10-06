@@ -5,7 +5,12 @@ import Buttons from "../atoms/Button/Buttons";
 import "../../styles/productDetailStyles.scss";
 import Quantity from "../molecules/Quantity/Quantity";
 import Size from "../molecules/Size/Size";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import SubImage from "../atoms/SubImage/SubImage";
+import PrevArrowSlider from "../atoms/PrevArrowSlider/PrevArrowSlider";
+import NextArrowSlider from "../atoms/NextArrowSlider/NextArrowSlider";
 const ProductDetail = () => {
   const sizes = [
     { id: 1, size: "S" },
@@ -14,20 +19,41 @@ const ProductDetail = () => {
     { id: 4, size: "XL" },
     { id: 5, size: "XXL" },
   ];
-  const subImg = [{ id: 1 }, { id: 2 }, { id: 3 }];
   //Number
   var price = 25000000;
+  //Slider setting
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    nextArrow: <NextArrowSlider />,
+    prevArrow: <PrevArrowSlider />,
+  };
   return (
     <div className="container">
       <Container maxWidth="xl" style={{ padding: 0 }}>
         <Grid className="grid" container>
-          <Grid container>
-            <Grid item xs={12} lg={6}>
+          <Grid item xs={12} lg={6}>
+            <Grid>
               <img
                 src="https://source.unsplash.com/random"
                 className="productDetail-img"
                 alt=""
               />
+            </Grid>
+            <Grid item>
+              <Slider {...settings}>
+                <SubImage src="https://images.unsplash.com/photo-1664833027898-540676803f80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"></SubImage>
+                <SubImage src="https://images.unsplash.com/photo-1664832813737-7f736aa265ed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"></SubImage>
+                <SubImage src="https://images.unsplash.com/photo-1664855775450-32eb789a084c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"></SubImage>
+                <SubImage></SubImage>
+                <SubImage></SubImage>
+                <SubImage></SubImage>
+                <SubImage></SubImage>
+                <SubImage></SubImage>
+              </Slider>
             </Grid>
           </Grid>
 

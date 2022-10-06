@@ -1,6 +1,6 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-const Buttons = ({ minWidth, bgColor, color, text }) => {
+const Buttons = ({ bgColor, color, text }) => {
   return (
     <Button
       style={{

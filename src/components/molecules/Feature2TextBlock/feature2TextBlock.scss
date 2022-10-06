@@ -1,0 +1,49 @@
+@import "../../../scss/index.scss";
+
+.feature-text-block {
+  width: 100%;
+  background-color: $main;
+  margin-bottom: 24px;
+  padding: 36px 32px 30px 32px;
+  p {
+    color: #fff;
+    &:nth-child(1) {
+      font-weight: 400;
+      font-family: "Clash Display";
+      font-size: 20px;
+      line-height: 140%;
+      margin: 0;
+    }
+    &:nth-child(2) {
+      font-family: "Satoshi";
+      font-size: 14px;
+      font-weight: 100;
+      line-height: 150%;
+      font-style: normal;
+      margin: 12px 0 56px 0;
+    }
+  }
+}
+
+@include tablet {
+  .feature-text-block {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 !important;
+    padding: 64px 72px 54px 64px;
+    .inner-feature {
+      p {
+        &:nth-child(1) {
+          font-size: 32px;
+          line-height: 39px;
+        }
+        &:nth-child(2) {
+          font-weight: 100;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+}

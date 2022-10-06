@@ -1,0 +1,12 @@
+@import "../../../scss/index.scss";
+
+@include tablet {
+  .feature-2 {
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    img {
+      width: 50%;
+    }
+  }
+}

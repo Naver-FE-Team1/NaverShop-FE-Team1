@@ -1,0 +1,23 @@
+@import "../../../scss/index.scss";
+
+.subscribe-form {
+  width: 100%;
+  margin-top: 28px;
+  input {
+    flex: 1;
+    padding: 20px;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: $main;
+      opacity: 0.2;
+    }
+  }
+}
+@include tablet {
+  .subscribe-form {
+    width: 40%;
+  }
+}

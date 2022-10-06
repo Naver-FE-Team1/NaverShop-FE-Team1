@@ -1,1 +1,20 @@
-#root {}
+.App {
+  width: 100%;
+}
+
+html {
+  scroll-behavior: smooth !important;
+
+  &::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #0e1624;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #b5b5b5;
+    border-radius: 0.5rem;
+  }
+}

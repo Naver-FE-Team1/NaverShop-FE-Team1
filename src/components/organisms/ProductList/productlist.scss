@@ -1,7 +1,12 @@
 @import "../../../scss/index.scss";
 
+#product-list {
+}
+
 @include tablet {
   #product-list {
+    // padding: 28px 80px;
+    // padding: 0 !important;
     .product-list-btn {
       width: 20%;
       margin: 0 auto;

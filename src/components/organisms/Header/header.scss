@@ -1,6 +1,6 @@
 @import "../../../scss/index.scss";
 
-.header {
+.landingpage-header {
   width: 100%;
   padding: 20px 26px 0px 26px;
 
@@ -125,7 +125,7 @@
 }
 
 @include tablet {
-  .header {
+  .landingpage-header {
     .upper-nav {
       .logo {
         font-size: 30px;
@@ -146,7 +146,7 @@
   }
 }
 @include desktop {
-  .header {
+  .landingpage-header {
     position: relative;
     .upper-nav {
       .logo {

@@ -1,142 +1,33 @@
-import { CheckBox } from '@mui/icons-material'
-import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, Slider, Typography } from '@mui/material'
-import { Stack } from '@mui/system'
-import React, { useState } from 'react'
-import TitleBanner from '../atoms/TitleBanner'
-import DropdownButton from '../molecules/DropdownButton/DropdownButton'
-import StyledMenu from '../molecules/StyledMenu/StyledMenu'
-import Banner from '../organisms/Banner/Banner'
-import ProductList from '../organisms/ProductList/ProductList'
+import { Box, Divider, Drawer, MenuItem } from "@mui/material";
+import { CloseOutlined } from "@mui/icons-material";
+import { useState } from "react";
+import TitleBanner from "../atoms/TitleBanner";
+import DropdownButton from "../molecules/DropdownButton/DropdownButton";
+import Banner from "../organisms/Banner/Banner";
+import FiltersBox from "../organisms/Filters/FiltersBox";
+import ProductList from "../organisms/ProductList/ProductList";
+import Footer from "../molecules/Footer/Footer";
+import "./shoppingList.scss";
+// const container = window !== undefined ? () => window.document.body : undefined;
 
 const ShoppingList = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+  /*     To open filter drawer (only available for mobile size) */
+  //   const [openDrawer, setOpenDrawer] = useState(false);
 
-    return (
-        <div>
-            <Banner>
-                <TitleBanner
-                    style={{
-                        margin: 0,
-                        fontFamily: ["Clash Display", "sans-serif"],
-                        fontWeight: "400",
-                        color: "#fff",
-                        fontSize: "28px",
-                        textAlign: "center"
-                    }}
-                >
-                    All products
-                </TitleBanner>
-            </Banner>
+  const handleDrawerToggle = () => {
+    // setOpenDrawer(!openDrawer);
+  };
 
-            <DropdownButton onClick={handleClick}>
-                Filtering
-            </DropdownButton>
-            <DropdownButton>
-                Sorting
-            </DropdownButton>
+  return (
+    <div
+      className="shopping-list"
+      //   style={{ width: "100%", backgroundColor: "black" }}
+    >
+      {/* Top Banner for Shopping List */}
 
+      <Footer />
+    </div>
+  );
+};
 
-            <Stack spacing={3}>
-                <FormControl>
-                    <Typography
-                        sx={{
-                            fontFamily: ["Clash Display", "sans-serif"],
-                            color: "#2a254b"
-                        }}
-                    >
-                        Product type
-                    </Typography>
-                    {productTypeList.map((item) => (
-                        <FormControlLabel
-                            control={<Checkbox />}
-                            label={
-                                <span
-                                    style={{
-                                        fontFamily: ["Clash Display", "sans-serif"],
-                                        color: "#2a254b"
-                                    }}
-                                >
-                                    {item}
-                                </span>}
-                        />
-                    ))}
-                </FormControl>
-
-                <FormControl>
-                    <Typography
-                        sx={{
-                            fontFamily: ["Clash Display", "sans-serif"],
-                            color: "#2a254b"
-                        }}
-                    >
-                        Price
-                    </Typography>
-                    <Slider defaultValue={50}/>
-                </FormControl>
-
-                <FormControl>
-                    <Typography
-                        sx={{
-                            fontFamily: ["Clash Display", "sans-serif"],
-                            color: "#2a254b"
-                        }}
-                    >
-                        Brand
-                    </Typography>
-                    {brandList.map((item) => (
-                        <FormControlLabel
-                            control={<Checkbox />}
-                            label={
-                                <span
-                                    style={{
-                                        fontFamily: ["Clash Display", "sans-serif"],
-                                        color: "#2a254b"
-                                    }}
-                                >
-                                    {item}
-                                </span>}
-                        />
-                    ))}
-                </FormControl>
-            </Stack>
-            {/* <StyledMenu
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-            >
-                <MenuItem onClick={handleClose} disableRipple>
-                    Edit
-                </MenuItem>
-
-            </StyledMenu> */}
-
-
-            <ProductList />
-        </div>
-    )
-}
-
-export default ShoppingList
-
-
-const productTypeList = [
-    "Furniture",
-    "Homeware",
-    "Sofas",
-    "Light fittings",
-    "Accessories"
-]
-
-const brandList = [
-    "Robert Smith",
-    "Liam Gallagher",
-    "Robert Smith",
-    "Liam Gallagher",
-]
+export default ShoppingList;

@@ -1,0 +1,90 @@
+@include mobile {
+    .assignFooter{
+        display: flex;
+        flex-direction: column;
+        padding: 5% 8%;
+        justify-content: space-evenly;
+
+    }
+    .emailInputField {
+        width: 80%;
+        border-radius: 0;
+        font-size: 20px;
+        input: {
+            color: #2A254B;
+            font-size: 20px;
+        }
+    }
+    .assignFooter h4 {
+        font-size: 24px;
+        line-height: 140%;
+        color: #2A254B;
+        font-family: 'Clash Display', sans-serif;
+        font-weight: 400;
+        margin-bottom: 5%;
+    }
+    .assignFooter p {
+        font-size: 14px;
+        font-weight: 400;
+        color: #2A254B;
+        font-family: 'Satoshi', sans-serif;
+        line-height: 150%;
+        margin-bottom: 10%;
+    }
+    .containerInputEmail{
+        display: flex;
+        max-width: 100%;
+        flex-direction: row;
+        align-items: center;
+    }
+    .btnSignUp{
+        align-self: center;
+    }
+    
+
+}
+
+
+@include tablet {
+    .assignFooter {
+        display: flex;
+        background-color: $LightGreyColor;
+        padding: 2em;
+    }
+    .assignFooter div {
+        display: inherit;
+        width: 100%;
+        height: auto;
+        align-self: center;
+        flex-direction: column;
+        background-color: $WhiteColor;
+        
+    }
+    .assignFooter div>h4 {
+        align-self: center;
+        margin-top: 5%;
+        margin-bottom: 1em;
+        letter-spacing: 1px;
+    }
+    .assignFooter div>p {
+        align-self: center;
+        width: inherit;
+        max-width: 25%;
+        text-align-last: center;
+        font-size: 13px;
+        margin-bottom: 5%;
+    }
+    .containerInputEmail {
+        width: inherit;
+        max-width: 50%;
+        align-self: center;
+        display: flex;
+        flex-direction: row !important;
+        justify-content: center;
+        margin-bottom: 2em;
+    }
+    .emailInputField {
+        width: inherit;
+        max-width: 50%;
+    }
+}

@@ -1,7 +1,6 @@
-import "./subscribe.scss";
 import { ReactComponent as Checkmark } from "../../../assets/Checkmark--filled.svg";
 import SubscribeForm from "../../molecules/SubscribeForm";
-import bgImg from "../../../assets/Image.png";
+import "./subscribe.scss";
 
 const items = [
   { icon: <Checkmark />, content: "Exclusive offers" },
@@ -19,7 +18,7 @@ const Subcribe = () => {
       </p>
       <ul>
         {items.map((item, idx) => (
-          <li className="d-flex align-items-center">
+          <li className="d-flex align-items-center" key={idx}>
             {item.icon}
             <p>{item.content}</p>
           </li>

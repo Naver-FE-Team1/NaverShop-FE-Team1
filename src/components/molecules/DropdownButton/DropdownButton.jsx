@@ -1,10 +1,16 @@
 import { ArrowDropDown } from '@mui/icons-material';
-import { Button, Menu, MenuItem } from '@mui/material'
-import React, { useState } from 'react'
+import { Button, Select } from '@mui/material'
+import React from 'react'
 
-const DropdownButton = ({ children, title, onClick, style }) => {
-    
-    return (
+const DropdownButton = ({ children, title, onClick, style, variant = "button" }) => {
+
+
+
+    /* 
+        There are 2 variants: button and select
+        Default is button
+     */
+    if (variant === "button") return (
         <Button
             sx={{
                 padding: "16px 24px",
@@ -12,7 +18,9 @@ const DropdownButton = ({ children, title, onClick, style }) => {
                 textTransform: "capitalize",
                 fontWeight: "400",
                 backgroundColor: "#f6f6f6",
-                width: "140px",
+                "&.MuiButton-root": {
+                    justifyContent: "space-between"  
+                },
                 ...style
             }}
             title={title}
@@ -21,6 +29,33 @@ const DropdownButton = ({ children, title, onClick, style }) => {
         >
             {children}
         </Button>
+    )
+    else if (variant === "select") return (
+        <Select
+            variant='outlined'
+            displayEmpty
+            inputProps={{ 'aria-label': 'Without label' }}
+            style={{ ...style }}
+            sx={{
+                maxWidth: "100%",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                textTransform: "capitalize",
+                ".MuiSelect-outlined": {
+                    backgroundColor: "#f6f6f6",
+                    padding: "16px 24px",
+                    paddingRight: "60px!important",
+                    borderRadius: "0",
+                    borderColor: "none",
+                },
+                ".MuiOutlinedInput-notchedOutline": {
+                    borderWidth: "0!important"
+                }
+            }}
+        >
+            {children}
+        </Select>
     )
 }
 

@@ -30,7 +30,7 @@ const navItems = [
 
 const Header = () => {
   return (
-    <header className="header d-flex flex-column justify-content-between align-items-center">
+    <header className="landingpage-header d-flex flex-column justify-content-between align-items-center">
       <div className="upper-nav d-flex justify-content-between align-items-center">
         <p className="logo">Avion</p>
         <nav className="nav-bar d-flex align-items-center justify-content-between">

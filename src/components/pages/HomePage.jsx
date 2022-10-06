@@ -1,3 +1,4 @@
+import Footer from "../molecules/Footer/Footer";
 import Feature2 from "../organisms/Features2";
 import FeaturesBlock from "../organisms/FeaturesBlock";
 import Header from "../organisms/Header";
@@ -11,9 +12,12 @@ const HomePage = () => {
       <Header />
       <HeroBlock />
       <FeaturesBlock />
-      <ProductList />
+      <div style={{ padding: "28px 80px", width: "100%" }}>
+        <ProductList />
+      </div>
       <Feature2 />
       <Subscibe />
+      <Footer />
     </section>
   );
 };

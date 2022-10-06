@@ -2,11 +2,7 @@ import {
     Box,
     Divider,
     Drawer,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemText,
-    Typography
+    MenuItem,
 } from '@mui/material'
 import { CloseOutlined } from '@mui/icons-material'
 import React, { useState } from 'react'
@@ -47,7 +43,7 @@ const ShoppingList = () => {
             {/* Box containing FilterBox and ProductList */}
             <Box
                 sx={{
-                    paddingY: { xs: "20px", md: "50px" },
+                    paddingY: { xs: "20px", md: "60px" },
                     paddingX: "auto",
                     flex: "1",
                     display: "flex",
@@ -61,20 +57,32 @@ const ShoppingList = () => {
                     {/* FilterBox and Sorting for mobile size */}
                     <Box
                         sx={{
-                            display: { xs: "flex", md: "none" },
-                            justifyContent: "space-evenly",
-                            paddingX: { xs: "20px", sm: "50px" },
+                            display: { xs: "grid", md: "none" },
+                            gridTemplateColumns: "1fr 1fr",
+                            // justifyContent: "space-evenly",
+                            paddingX: { xs: "15px", sm: "50px" },
                             gap: "20px"
                         }}
                     >
                         <DropdownButton
-                            style={{ flex: 1 }}
+                            style={{
+                                fontSize: "14px",
+                                fontWeight: "500"
+                            }}
                             onClick={handleDrawerToggle}
                         >
                             Filtering
                         </DropdownButton>
-                        <DropdownButton variant='select'>
-
+                        <DropdownButton
+                            variant='select'
+                            style={{
+                                fontSize: "14px",
+                                fontWeight: "500"
+                            }}
+                        >
+                            <MenuItem>Sorting</MenuItem>
+                            <MenuItem>Date added (Ascending)</MenuItem>
+                            <MenuItem>Date added (Descending)</MenuItem>
                         </DropdownButton>
 
                         <Box
@@ -91,13 +99,12 @@ const ShoppingList = () => {
                                     display: { xs: 'block', md: 'none' },
                                     '& .MuiDrawer-paper': {
                                         boxSizing: 'border-box',
-                                        // width: {xs: "85%", md: "60%" },
+                                        // width: {xs: "75%", md: "60%" },
                                         width: "fit-content"
                                     },
                                 }}
-                                ModalProps={{
-                                    keepMounted: true, // Better open performance on mobile.
-                                }}
+                                // Better open performance on mobile.
+                                ModalProps={{ keepMounted: true }}
                                 variant="temporary"
                             >
                                 <div
@@ -135,15 +142,24 @@ const ShoppingList = () => {
                         <FiltersBox
                             gap={5}
                         />
-                        <DropdownButton variant='select'></DropdownButton>
+                        <DropdownButton
+                            variant='select'
+                            style={{
+                                maxWidth: "180px"
+                            }}
+                        >
+                            <MenuItem>Sorting</MenuItem>
+                            <MenuItem>Date added (Ascending)</MenuItem>
+                            <MenuItem>Date added (Descending)</MenuItem>
+                        </DropdownButton>
                     </Box>
                 </div>
 
                 {/* Product List section */}
                 <Box
                     sx={{
-                        maxWidth: { xs: "850px", md: "700px", lg: "850px"},
-                        paddingX: { xs: "10px", sm: "25px", md: "25px" }
+                        maxWidth: { xs: "850px", md: "700px", lg: "850px" },
+                        paddingX: { xs: "10px", sm: "25px", md: "25px" },
                     }}
                 >
                     <ProductList

@@ -43,7 +43,7 @@ const FiltersBox = (props) => {
         fontWeight: "400",
         fontSize: "20px",
         marginTop: "0",
-        marginBottom: "5px"
+        marginBottom: "10px"
     }
 
     return (
@@ -66,6 +66,9 @@ const FiltersBox = (props) => {
                     {productTypeList.map((item) => (
                         <FormControlLabel
                             control={<ThemedCheckbox />}
+                            sx={{
+                                marginLeft: "2px"
+                            }}
                             label={
                                 <span
                                     style={{
@@ -88,7 +91,7 @@ const FiltersBox = (props) => {
                     </h3>
                     <Box
                         sx={{
-                            paddingX: "5px"
+                            paddingX: "10px"
                         }}
                     >
                         <Slider
@@ -115,6 +118,9 @@ const FiltersBox = (props) => {
                     {brandList.map((item) => (
                         <FormControlLabel
                             control={<ThemedCheckbox />}
+                            sx={{
+                                marginLeft: "2px"
+                            }}
                             label={
                                 <span
                                     style={{

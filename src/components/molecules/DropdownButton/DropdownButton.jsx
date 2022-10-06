@@ -4,6 +4,8 @@ import React from 'react'
 
 const DropdownButton = ({ children, title, onClick, style, variant = "button" }) => {
 
+
+
     /* 
         There are 2 variants: button and select
         Default is button
@@ -16,6 +18,9 @@ const DropdownButton = ({ children, title, onClick, style, variant = "button" })
                 textTransform: "capitalize",
                 fontWeight: "400",
                 backgroundColor: "#f6f6f6",
+                "&.MuiButton-root": {
+                    justifyContent: "space-between"  
+                },
                 ...style
             }}
             title={title}
@@ -30,18 +35,20 @@ const DropdownButton = ({ children, title, onClick, style, variant = "button" })
             variant='outlined'
             displayEmpty
             inputProps={{ 'aria-label': 'Without label' }}
-            style= {{ ...style }}
+            style={{ ...style }}
             sx={{
+                maxWidth: "100%",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
                 textTransform: "capitalize",
-                fontSize: "15px",
-                flex: "1 1 0",
                 ".MuiSelect-outlined": {
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
+                    // display: "flex",
+                    // flexDirection: "row",
+                    // justifyContent: "space-between",
                     backgroundColor: "#f6f6f6",
-                    padding: "16px 32px",
-                    paddingRight: "45px!important",
+                    padding: "16px 24px",
+                    paddingRight: "60px!important",
                     borderRadius: "0",
                     borderColor: "none",
                 },
@@ -50,7 +57,6 @@ const DropdownButton = ({ children, title, onClick, style, variant = "button" })
                 }
             }}
         >
-            <MenuItem>Sorting</MenuItem>
             {children}
         </Select>
     )

@@ -6,11 +6,11 @@ import "../../styles/productDetailStyles.scss";
 import Quantity from "../molecules/Quantity/Quantity";
 import Size from "../molecules/Size/Size";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import SubImage from "../atoms/SubImage/SubImage";
 import PrevArrowSlider from "../atoms/PrevArrowSlider/PrevArrowSlider";
 import NextArrowSlider from "../atoms/NextArrowSlider/NextArrowSlider";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 const ProductDetail = () => {
   const sizes = [
     { id: 1, size: "S" },
@@ -47,7 +47,7 @@ const ProductDetail = () => {
               <Slider {...settings}>
                 <SubImage src="https://images.unsplash.com/photo-1664833027898-540676803f80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"></SubImage>
                 <SubImage src="https://images.unsplash.com/photo-1664832813737-7f736aa265ed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"></SubImage>
-                <SubImage src="https://images.unsplash.com/photo-1664855775450-32eb789a084c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"></SubImage>
+                <SubImage src=""></SubImage>
                 <SubImage></SubImage>
                 <SubImage></SubImage>
                 <SubImage></SubImage>

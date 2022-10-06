@@ -59,7 +59,6 @@ const ShoppingList = () => {
                         sx={{
                             display: { xs: "grid", md: "none" },
                             gridTemplateColumns: "1fr 1fr",
-                            // justifyContent: "space-evenly",
                             paddingX: { xs: "15px", sm: "50px" },
                             gap: "20px"
                         }}

@@ -31,7 +31,6 @@ const ProductList = (props) => {
                                 }}
                                 src={`${item.img}`}
                                 alt={item.title}
-                            // loading="lazy"
                             />
                         </a>
                         <ImageListItemBar

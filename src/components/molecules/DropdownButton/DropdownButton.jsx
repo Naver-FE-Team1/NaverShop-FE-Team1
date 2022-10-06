@@ -1,5 +1,5 @@
 import { ArrowDropDown } from '@mui/icons-material';
-import { Button, MenuItem, Select } from '@mui/material'
+import { Button, Select } from '@mui/material'
 import React from 'react'
 
 const DropdownButton = ({ children, title, onClick, style, variant = "button" }) => {
@@ -43,9 +43,6 @@ const DropdownButton = ({ children, title, onClick, style, variant = "button" })
                 textOverflow: "ellipsis",
                 textTransform: "capitalize",
                 ".MuiSelect-outlined": {
-                    // display: "flex",
-                    // flexDirection: "row",
-                    // justifyContent: "space-between",
                     backgroundColor: "#f6f6f6",
                     padding: "16px 24px",
                     paddingRight: "60px!important",

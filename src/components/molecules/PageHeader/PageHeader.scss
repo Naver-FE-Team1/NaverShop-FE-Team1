@@ -1,0 +1,62 @@
+@include mobile {
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2em 5%;
+        width: 100%;
+        background-color: transparent;
+        margin-top: 10%;
+    }
+
+    .header h2 {
+        font-size: 3em;
+        align-self: center;
+        line-height: 120%;
+        font-weight: 400;
+        font-family: 'Clash Display', sans-serif;
+        color: $DarkPrimaryColor;
+        margin-bottom: 1em;
+        letter-spacing: 0.8px;
+        max-width: 100%;
+    }
+    .btnViewOurProducts {
+        width: 100%;
+    }
+    .header div {
+        width: 100%;
+        align-self: center;
+    }
+    
+
+}
+
+@include tablet {
+    .header {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 3em 7em 3em 7em;
+        margin-top: 7%;
+        
+    }
+    .header h2 {
+        display: inline-block;
+        text-align: left;
+        padding-right: 15%;
+        width: 80%;
+        max-width: 70%;
+        margin-right: 0;
+        align-self: center;
+        margin-top: 5%;
+    }
+    .header div {
+        height: inherit;
+        display: flex;
+        align-items: center;
+        margin-top: 6%;
+        width: 20%;
+    }
+
+}

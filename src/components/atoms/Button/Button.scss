@@ -1,0 +1,35 @@
+.btn {
+    display: flex;
+    font-family: 'Satoshi' ,sans-serif;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
+    font-size: 1em;
+    line-height: 150%;
+    font-weight: 400;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.07);
+        transition: all ease-in .2s;
+    }
+    
+}
+
+@include mobile {
+    .btn {
+        line-height: 150%;
+        margin: 5px 5px;
+        width: 100%;
+        height: 3.5em;
+        padding: 1em 2em;
+    }
+    
+}
+
+@include tablet {
+    .btn {
+        width: 13em;
+        height: 3.5em;
+        font-size: 0.5em;
+    }
+}

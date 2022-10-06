@@ -11,6 +11,7 @@ import PrevArrowSlider from "../atoms/PrevArrowSlider/PrevArrowSlider";
 import NextArrowSlider from "../atoms/NextArrowSlider/NextArrowSlider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import SliderSlick from "../molecules/SliderSlick/SliderSlick";
 const ProductDetail = () => {
   const sizes = [
     { id: 1, size: "S" },
@@ -44,7 +45,7 @@ const ProductDetail = () => {
               />
             </Grid>
             <Grid item>
-              <Slider {...settings}>
+              <SliderSlick>
                 <SubImage src="https://images.unsplash.com/photo-1664833027898-540676803f80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"></SubImage>
                 <SubImage src="https://images.unsplash.com/photo-1664832813737-7f736aa265ed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"></SubImage>
                 <SubImage src=""></SubImage>
@@ -53,7 +54,7 @@ const ProductDetail = () => {
                 <SubImage></SubImage>
                 <SubImage></SubImage>
                 <SubImage></SubImage>
-              </Slider>
+              </SliderSlick>
             </Grid>
           </Grid>
 

@@ -2,9 +2,14 @@ import React from "react";
 
 const SubImage = ({ src }) => {
   return (
-    <div className="p-4">
+    <div style={{ padding: "15px" }}>
       <img
-        style={{ objectFit: "cover" }}
+        style={{
+          height: "160px",
+          maxWidth: "200px",
+          width: "100%",
+          objectFit: "cover",
+        }}
         src={src ? `${src}` : "https://source.unsplash.com/random"}
         alt=""
       />

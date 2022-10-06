@@ -3,7 +3,9 @@
  * file: FootBasket.jsx
  */
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "../../atoms/Button/Button";
+
 const FootBasket = ({ total, handleClick }) => {
   return (
     <div className="foot-basket">
@@ -15,10 +17,23 @@ const FootBasket = ({ total, handleClick }) => {
         Taxes and shipping are calculated at checkout
       </div>
       <div className="foot-basket__btn">
-        <Button content={"Go to checkout"} handleClick={handleClick} />
+        <Button
+          content={"Go to checkout"}
+          handleClick={handleClick}
+          color={"white"}
+          backgroundColor="#2A254B"
+          borderColor={"transparent"}
+        />
       </div>
     </div>
   );
 };
-
+FootBasket.propTypes = {
+  total: PropTypes.number,
+  handleClick: PropTypes.func,
+};
+FootBasket.defaultProps = {
+  total: 0,
+  handleClick: () => {},
+};
 export default FootBasket;

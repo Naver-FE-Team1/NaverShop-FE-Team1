@@ -3,8 +3,17 @@
  * file: ProductItem.jsx
  */
 import React from "react";
+import PropTypes from "prop-types";
 import QuantitiesBar from "../../atoms/QuantitesBar/QuantitiesBar";
-const ProductItem = ({ imgScr, name, description,color, size, price, quantity }) => {
+const ProductItem = ({
+  imgScr,
+  name,
+  description,
+  color,
+  size,
+  price,
+  quantity,
+}) => {
   return (
     <div className="pro-item">
       <div className="pro-item__container">
@@ -17,7 +26,9 @@ const ProductItem = ({ imgScr, name, description,color, size, price, quantity })
               <span className="pro-item__group-text__name">{name}</span>
               <div className="pro-item__group-text__des">{description}</div>
             </div>
-            <span className="pro-item__price">{color}, {size}</span>
+            <span className="pro-item__price">
+              {color}, {size}
+            </span>
             <span className="pro-item__price">£{price}</span>
             <div className="pro-item__quan-bar--mobile">
               <QuantitiesBar quantity={quantity} />
@@ -32,5 +43,22 @@ const ProductItem = ({ imgScr, name, description,color, size, price, quantity })
     </div>
   );
 };
-
+ProductItem.propTypes = {
+  imgScr: PropTypes.string,
+  name: PropTypes.string,
+  description: PropTypes.string,
+  color: PropTypes.string,
+  size: PropTypes.string,
+  price: PropTypes.number,
+  quantity: PropTypes.number,
+};
+ProductItem.defaultProps = {
+  imgScr: "",
+  name: "",
+  description: "",
+  color: "",
+  size: "",
+  price: 0,
+  quantity: 0,
+};
 export default ProductItem;

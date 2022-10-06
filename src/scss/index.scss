@@ -8,13 +8,25 @@
 
 //Import your scss files here
 
+// ------------ Import your scss files here ---------------
+
+// Import Atoms Components
+@import "../Components/atoms/Button/Button.scss";
+@import "../Components/atoms/FeatureCard/FeatureCard.scss";
+
+
+// Import Molecules Components
+@import "../Components/molecules/Feature/Feature.scss";
+@import "../Components/molecules/Footer/Footer.scss";
+@import "../Components/molecules/MoreInfo/MoreInfo.scss";
+@import "../Components/molecules/PageHeader/PageHeader.scss";
+@import "../Components/molecules/AssignFooter/AssignFooter.scss";
+
 /*Shopping basket*/
 //Shopping basket
 @import "../components/pages/ShoppingBasket/ShoppingBasket.scss";
 //ProductBar
 @import "../components/atoms/ProductBar/ProductBar.scss";
-//Button
-@import "../components/atoms/Button/Button.scss";
 //HeadTitle
 @import "../components/atoms/HeadTitle/HeadTitle.scss";
 //QuantitiesBar
@@ -23,3 +35,4 @@
 @import "../components/molecules/ProductItem/ProductItem.scss";
 //FootBasket
 @import '../components/molecules/FootBasket/FootBasket.scss';
+

@@ -3,6 +3,7 @@
  * file: QuantitiesBar.jsx
  */
 import React from "react";
+import PropTypes from "prop-types";
 
 const QuantitiesBar = ({ quantity, handleIncrease, handleDecrease }) => {
   return (
@@ -17,5 +18,14 @@ const QuantitiesBar = ({ quantity, handleIncrease, handleDecrease }) => {
     </div>
   );
 };
-
+QuantitiesBar.propTypes = {
+  quantity: PropTypes.number,
+  handleDecrease: PropTypes.func,
+  handleIncrease: PropTypes.func,
+};
+QuantitiesBar.defaultProps = {
+  quantity: 0,
+  handleDecrease: () => {},
+  handleIncrease: () => {},
+};
 export default QuantitiesBar;

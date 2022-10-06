@@ -1,14 +1,11 @@
 import {
     Box,
     Checkbox,
-    Divider,
     FormControl,
     FormControlLabel,
     Slider,
     Stack,
-    Typography
 } from '@mui/material'
-import { CloseOutlined } from '@mui/icons-material'
 import React from 'react'
 
 const productTypeList = [
@@ -59,6 +56,7 @@ const FiltersBox = (props) => {
             <Stack
                 spacing={props.gap ? props.gap : 2}
             >
+                {/* Product type filter */}
                 <FormControl>
                     <h3
                         style={styleH3}
@@ -81,6 +79,7 @@ const FiltersBox = (props) => {
                     ))}
                 </FormControl>
 
+                {/* Price range filter */}
                 <FormControl>
                     <h3
                         style={styleH3}
@@ -106,6 +105,7 @@ const FiltersBox = (props) => {
                     </Box>
                 </FormControl>
 
+                {/* Brand filter */}
                 <FormControl>
                     <h3
                         style={styleH3}

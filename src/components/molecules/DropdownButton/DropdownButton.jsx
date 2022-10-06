@@ -1,9 +1,13 @@
 import { ArrowDropDown } from '@mui/icons-material';
 import { Button, MenuItem, Select } from '@mui/material'
-import React, { useState } from 'react'
+import React from 'react'
 
 const DropdownButton = ({ children, title, onClick, style, variant = "button" }) => {
 
+    /* 
+        There are 2 variants: button and select
+        Default is button
+     */
     if (variant === "button") return (
         <Button
             sx={{
@@ -49,24 +53,6 @@ const DropdownButton = ({ children, title, onClick, style, variant = "button" })
             <MenuItem>Sorting</MenuItem>
             {children}
         </Select>
-    )
-
-    return (
-        <Button
-            sx={{
-                padding: "16px 24px",
-                color: "#2a254b",
-                textTransform: "capitalize",
-                fontWeight: "400",
-                backgroundColor: "#f6f6f6",
-                ...style
-            }}
-            title={title}
-            onClick={onClick}
-            endIcon={<ArrowDropDown />}
-        >
-            {children}
-        </Button>
     )
 }
 

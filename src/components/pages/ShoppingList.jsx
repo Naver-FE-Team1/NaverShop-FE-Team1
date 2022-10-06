@@ -2,13 +2,10 @@ import {
     Box,
     Divider,
     Drawer,
-    Grid,
     List,
     ListItem,
     ListItemButton,
     ListItemText,
-    MenuItem,
-    Select,
     Typography
 } from '@mui/material'
 import { CloseOutlined } from '@mui/icons-material'
@@ -19,37 +16,17 @@ import Banner from '../organisms/Banner/Banner'
 import FiltersBox from '../organisms/Filters/FiltersBox'
 import ProductList from '../organisms/ProductList/ProductList'
 
-const navItems = ['Home', 'About', 'Contact'];
-
 const ShoppingList = () => {
+    /*     To open filter drawer (only available for mobile size) */
     const [openDrawer, setOpenDrawer] = useState(false)
 
     const handleDrawerToggle = () => {
         setOpenDrawer(!openDrawer)
     }
 
-    const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ my: 2 }}>
-                MUI
-            </Typography>
-            <List>
-                {navItems.map((item) => (
-                    <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
-                            <ListItemText primary={item} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
-        </Box>
-    );
-
-
-    const container = window !== undefined ? () => window.document.body : undefined;
-
     return (
         <div>
+            {/* Top Banner for Shopping List */}
             <Banner>
                 <TitleBanner
                     style={{
@@ -65,6 +42,7 @@ const ShoppingList = () => {
                 </TitleBanner>
             </Banner>
 
+            {/* Box containing FilterBox and ProductList */}
             <Box
                 sx={{
                     paddingY: { xs: "20px", md: "50px" },
@@ -78,6 +56,7 @@ const ShoppingList = () => {
             >
                 {/* Filter and Sort section */}
                 <div>
+                    {/* FilterBox and Sorting for mobile size */}
                     <Box
                         sx={{
                             display: { xs: "flex", md: "none" },
@@ -142,6 +121,7 @@ const ShoppingList = () => {
                         </Box>
                     </Box>
 
+                    {/* FilterBox and Sorting for laptop and above */}
                     <Box
                         sx={{
                             display: { xs: "none", md: "flex" },

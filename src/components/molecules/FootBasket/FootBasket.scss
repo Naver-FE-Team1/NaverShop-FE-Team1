@@ -1,0 +1,54 @@
+/*
+ * scss for footer in shopping basket
+ * file: FootBasket.scss
+ */
+@include mobile {
+  .foot-basket {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    &__group-text {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 16px;
+      &__sub {
+        font-family: "Clash Display";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 140%;
+        color: $text-primary;
+        display: flex;
+        align-items: center;
+      }
+      &__price {
+        font-family: "Clash Display";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 140%;
+        color: $main;
+        vertical-align: middle;
+      }
+    }
+    &__tax {
+      font-family: "Satoshi";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 150%;
+      color: $text-primary;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 29px;
+    }
+    &__btn {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

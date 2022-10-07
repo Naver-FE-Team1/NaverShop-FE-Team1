@@ -1,0 +1,35 @@
+/*
+ * css for the bar use to inscrease/ decrease the amount of product
+ * file: QuantitiesBar.scss
+ */
+@include mobile{
+    .quan-bar{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        width: 100%;
+        max-width: 122px;
+        padding: 12px 16px;
+        &__text{
+            font-family: 'Satoshi';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+            color: $main;
+        }
+        &__btn{
+            cursor: pointer;
+            font-family: 'Satoshi';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+            color: black;
+            opacity: .5;
+            &:hover{
+                opacity: 1;
+            }
+        }
+    }
+}

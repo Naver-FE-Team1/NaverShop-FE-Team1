@@ -1,0 +1,38 @@
+/*
+ *  scss for bar above list of product in checkout
+ * file: ProductBar.scss
+ */
+@include mobile {
+  .prod-bar {
+    display: none;
+  }
+}
+
+@include tablet {
+  .prod-bar {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid $border-grey;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    &__text {
+      font-family: "Clash Display";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 140%;
+      color: $main;
+      &--first {
+        flex: 0.6;
+      }
+      &--second {
+        flex: 0.2;
+      }
+      &--last {
+        flex: 0.2;
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+}

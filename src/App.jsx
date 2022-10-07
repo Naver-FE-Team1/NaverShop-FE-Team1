@@ -1,16 +1,22 @@
-import './App.scss'
-import ShoppingList from './components/pages/ShoppingList'
-import AboutPage from './components/pages/AboutPage'
-import ShoppingBasket from './components/pages/ShoppingBasket/ShoppingBasket'
-function App() {
+import { Route, Routes } from "react-router-dom";
+import "./App.scss";
+import AboutPage from "./components/pages/AboutPage";
+import HomePage from "./components/pages/HomePage";
+import ShoppingList from "./components/pages/ShoppingList";
 
+import "./App.scss";
+import ShoppingBasket from "./components/pages/ShoppingBasket/ShoppingBasket";
+function App() {
   return (
     <div className="App">
-      <AboutPage/>
-      <ShoppingList />
-      <ShoppingBasket/>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="shopping-list" element={<ShoppingList />} />
+        <Route path="shopping-basket" element={<ShoppingBasket />} />
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

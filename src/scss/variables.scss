@@ -27,12 +27,12 @@ $WhiteColor: #ffffff;
 $BorderDarkColor: #cac6da;
 
 // Font import
-@import url('http://fonts.cdnfonts.com/css/clash-display');
-@import url('http://fonts.cdnfonts.com/css/satoshi');
+@import url("http://fonts.cdnfonts.com/css/clash-display");
+@import url("http://fonts.cdnfonts.com/css/satoshi");
 
 /*
  * sizes
  */
 $mobile-width: 320px;
-$tablet-width: 1024px;
-$desktop-width: 1980px;
+$tablet-width: 900px;
+$desktop-width: 1200px;

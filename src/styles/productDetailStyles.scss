@@ -49,6 +49,7 @@
     margin-bottom: 50px;
     max-width: 498px;
     width: 100%;
+
     &-title {
       margin-bottom: 16px;
     }
@@ -56,6 +57,8 @@
       margin-bottom: 16px;
     }
     &-fabric {
+      padding-left: 15px;
+      list-style: none;
     }
   }
   &__dimension {

@@ -5,12 +5,8 @@ import Buttons from "../atoms/Button/Buttons";
 import "../../styles/productDetailStyles.scss";
 import Quantity from "../molecules/Quantity/Quantity";
 import Size from "../molecules/Size/Size";
-import Slider from "react-slick";
 import SubImage from "../atoms/SubImage/SubImage";
-import PrevArrowSlider from "../atoms/PrevArrowSlider/PrevArrowSlider";
-import NextArrowSlider from "../atoms/NextArrowSlider/NextArrowSlider";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import SliderSlick from "../molecules/SliderSlick/SliderSlick";
 const ProductDetail = () => {
   const sizes = [
@@ -22,16 +18,8 @@ const ProductDetail = () => {
   ];
   //Number
   var price = 25000000;
-  //Slider setting
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    nextArrow: <NextArrowSlider />,
-    prevArrow: <PrevArrowSlider />,
-  };
+  //subImages
+  const subImages = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
   return (
     <div className="container">
       <Container maxWidth="xl" style={{ padding: 0 }}>
@@ -46,14 +34,12 @@ const ProductDetail = () => {
             </Grid>
             <Grid item>
               <SliderSlick>
-                <SubImage src="https://images.unsplash.com/photo-1664833027898-540676803f80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"></SubImage>
-                <SubImage src="https://images.unsplash.com/photo-1664832813737-7f736aa265ed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"></SubImage>
-                <SubImage src=""></SubImage>
-                <SubImage></SubImage>
-                <SubImage></SubImage>
-                <SubImage></SubImage>
-                <SubImage></SubImage>
-                <SubImage></SubImage>
+                {subImages.map((item, index) => (
+                  <SubImage
+                    key={index}
+                    src="https://images.unsplash.com/photo-1664833027898-540676803f80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+                  ></SubImage>
+                ))}
               </SliderSlick>
             </Grid>
           </Grid>

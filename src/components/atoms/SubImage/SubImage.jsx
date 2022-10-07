@@ -1,10 +1,11 @@
 import React from "react";
-
+import "../SubImage/subImage.scss";
 const SubImage = ({ src }) => {
   return (
-    <div style={{ padding: "15px" }}>
+    <div className="subImage" style={{ padding: "15px" }}>
       <img
         style={{
+          cursor: "pointer",
           height: "160px",
           maxWidth: "200px",
           width: "100%",

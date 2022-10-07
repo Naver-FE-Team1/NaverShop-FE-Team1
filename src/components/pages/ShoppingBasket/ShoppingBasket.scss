@@ -1,0 +1,22 @@
+/*
+ * scss for shopping basket page
+ * file: ShoppingBasket.scss
+ */
+@include mobile {
+  .shopping-basket {
+    padding: 36px 24px 55px 24px;
+    box-sizing: border-box;
+  }
+}
+
+@include tablet {
+  .shopping-basket {
+    padding: 64px 158px 48px 158px;
+  }
+}
+
+@include desktop {
+  .shopping-basket {
+    padding: 64px 188px 48px 188px;
+  }
+}

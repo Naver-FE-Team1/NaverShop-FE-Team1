@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
 import Buttons from "../../atoms/Button/Buttons";
-import "../../styles/productDetailStyles.scss";
+import "../../../styles/productDetailStyles.scss";
 import Quantity from "../../molecules/Quantity/Quantity";
 import Size from "../../molecules/Size/Size";
 import SubImage from "../../atoms/SubImage/SubImage";

@@ -21,7 +21,7 @@ const ProductDetailContent = () => {
   const subImages = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
   return (
     <div className="container">
-      <Container maxWidth="xl" style={{ padding: 0 }}>
+      <Container style={{ padding: 0 }}>
         <Grid className="grid" container>
           <Grid item xs={12} lg={6}>
             <Grid>

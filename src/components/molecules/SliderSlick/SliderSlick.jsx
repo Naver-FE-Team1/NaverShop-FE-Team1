@@ -1,6 +1,7 @@
 import React from "react";
 import PrevArrowSlider from "../../atoms/PrevArrowSlider/PrevArrowSlider";
 import NextArrowSlider from "../../atoms/NextArrowSlider/NextArrowSlider";
+import "./SliderSlick.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

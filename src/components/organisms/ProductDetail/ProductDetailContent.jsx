@@ -1,14 +1,13 @@
-import { Grid } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import { Container } from "@mui/system";
 import React from "react";
-import Buttons from "../../atoms/Button/Buttons";
-import "../../../styles/productDetailStyles.scss";
+import "../../../scss/ProductDetail/ProductDetailContent.scss";
+import Button from "../../atoms/Button/Button";
 import Quantity from "../../molecules/Quantity/Quantity";
-import Size from "../../molecules/Size/Size";
+import Size from "../../atoms/Size/Size";
 import SubImage from "../../atoms/SubImage/SubImage";
-
 import SliderSlick from "../../molecules/SliderSlick/SliderSlick";
-const ProductDetail = () => {
+const ProductDetailContent = () => {
   const sizes = [
     { id: 1, size: "S" },
     { id: 2, size: "M" },
@@ -36,7 +35,7 @@ const ProductDetail = () => {
               <SliderSlick>
                 {subImages.map((item, index) => (
                   <SubImage
-                    key={index}
+                    key={item.id}
                     src="https://images.unsplash.com/photo-1664833027898-540676803f80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
                   ></SubImage>
                 ))}
@@ -99,18 +98,18 @@ const ProductDetail = () => {
               <div className="productDetail__action">
                 <Grid container spacing={3}>
                   <Grid item xs={12} md={4}>
-                    <Buttons
-                      bgColor="#2A254B"
+                    <Button
+                      backgroundColor="#2A254B"
                       color="#fff"
-                      text="Add to cart"
-                    ></Buttons>
+                      content="Add to cart"
+                    ></Button>
                   </Grid>
                   <Grid item xs={12} md={4}>
-                    <Buttons
+                    <Button
                       color="#000"
                       bgColor="#fff"
                       text="Add to cart"
-                    ></Buttons>
+                    ></Button>
                   </Grid>
                 </Grid>
               </div>
@@ -122,4 +121,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductDetailContent;

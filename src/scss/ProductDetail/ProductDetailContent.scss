@@ -1,18 +1,17 @@
-@import "./variables.scss";
+@import "../index.scss";
+
 //--------------------------------------------
 .container {
   background-color: #f9f9f9;
 
-  @include Responsive(LG) {
+  @include desktop {
     padding: 50px 80px;
   }
 }
 
 .grid {
-  @include Responsive(LG) {
+  @include mobile {
     align-items: center;
-  }
-  @include Responsive(XS) {
   }
 }
 
@@ -25,19 +24,19 @@
     object-fit: cover;
   }
   &__topContent {
-    color: $color-primary;
-    @include Responsive(XS) {
+    color: $main;
+    @include mobile {
       margin-bottom: 28px;
     }
-    @include Responsive(LG) {
+    @include desktop {
       margin-bottom: 54px;
     }
     &-name {
-      color: $color-primary;
-      @include Responsive(XS) {
+      color: $main;
+      @include mobile {
         @include font-size(36px);
       }
-      @include Responsive(LG) {
+      @include desktop {
         @include font-size(24px);
       }
     }
@@ -45,7 +44,7 @@
     }
   }
   &__description {
-    color: $color-primary;
+    color: $main;
     margin-bottom: 50px;
     max-width: 498px;
     width: 100%;
@@ -62,7 +61,7 @@
     }
   }
   &__dimension {
-    color: $color-primary;
+    color: $main;
 
     &-title {
       margin-bottom: 16px;
@@ -74,8 +73,7 @@
     }
   }
   &__quantity {
-    color: $color-primary;
-
+    color: $main;
     margin-top: 10px;
   }
 }

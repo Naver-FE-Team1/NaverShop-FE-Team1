@@ -2,24 +2,29 @@
  * mixins for project
  * file: mixins.scss
  */
+//Responsive things
+@mixin font-size($size) {
+  font-size: $size;
+  line-height: $size * 1.225;
+}
 
 //Mobile breakpoint
 @mixin mobile {
-    @media only screen and (min-width: $mobile-width) {
-        @content;
-    }
+  @media only screen and (min-width: $mobile-width) {
+    @content;
+  }
 }
 
 //tablet breakpoint
 @mixin tablet {
-    @media only screen and (min-width: $tablet-width) {
-        @content;
-    }
+  @media only screen and (min-width: $tablet-width) {
+    @content;
+  }
 }
 
 //desktop breakpoint
 @mixin desktop {
-    @media only screen and (min-width: $desktop-width) {
-        @content;
-    }
+  @media only screen and (min-width: $desktop-width) {
+    @content;
+  }
 }

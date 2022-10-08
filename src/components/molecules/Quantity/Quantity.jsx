@@ -1,5 +1,4 @@
 import React from "react";
-import "../../../styles/quantityStyles.scss";
 const Quantity = () => {
   return (
     <div className="productDetail__quantity-number">

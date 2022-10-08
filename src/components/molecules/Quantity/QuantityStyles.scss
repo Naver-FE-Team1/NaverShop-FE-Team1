@@ -1,12 +1,10 @@
-@import "./variables";
 .productDetail__quantity-number {
   margin: 10px 0 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  @include Responsive(XS) {
-  }
-  @include Responsive(LG) {
+
+  @include desktop {
     max-width: 123px;
   }
   width: 100%;

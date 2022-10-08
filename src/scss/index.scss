@@ -20,9 +20,8 @@
 @import "../Components/molecules/MoreInfo/MoreInfo.scss";
 @import "../Components/molecules/PageHeader/PageHeader.scss";
 @import "../Components/molecules/AssignFooter/AssignFooter.scss";
-
-/*Shopping basket*/
-//Shopping basket
+@import "../components/molecules/Quantity/quantityStyles.scss";
+/*Shopping basket*/ //Shopping basket
 @import "../components/pages/ShoppingBasket/ShoppingBasket.scss";
 //ProductBar
 @import "../components/atoms/ProductBar/ProductBar.scss";

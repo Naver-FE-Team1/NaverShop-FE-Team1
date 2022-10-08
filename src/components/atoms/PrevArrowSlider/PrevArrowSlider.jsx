@@ -1,5 +1,5 @@
 import React from "react";
-import "../PrevArrowSlider/prevArrowSliderStyle.scss";
+import "../PrevArrowSlider/PrevArrowSliderStyle.scss";
 const PrevArrowSlider = (props) => {
   const { className, style, onClick } = props;
 

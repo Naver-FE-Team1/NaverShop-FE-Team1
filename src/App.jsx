@@ -6,7 +6,7 @@ import ShoppingList from "./components/pages/ShoppingList";
 
 import "./App.scss";
 import ShoppingBasket from "./components/pages/ShoppingBasket/ShoppingBasket";
-import ProductDetail from "./components/organisms/ProductDetail/ProductDetail";
+import ProductDetail from "./components/pages/ProductDetail/ProductDetail";
 function App() {
   return (
     <div className="App">

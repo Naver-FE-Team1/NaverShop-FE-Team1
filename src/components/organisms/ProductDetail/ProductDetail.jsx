@@ -1,13 +1,13 @@
 import { Grid } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
-import Buttons from "../atoms/Button/Buttons";
+import Buttons from "../../atoms/Button/Buttons";
 import "../../styles/productDetailStyles.scss";
-import Quantity from "../molecules/Quantity/Quantity";
-import Size from "../molecules/Size/Size";
-import SubImage from "../atoms/SubImage/SubImage";
+import Quantity from "../../molecules/Quantity/Quantity";
+import Size from "../../molecules/Size/Size";
+import SubImage from "../../atoms/SubImage/SubImage";
 
-import SliderSlick from "../molecules/SliderSlick/SliderSlick";
+import SliderSlick from "../../molecules/SliderSlick/SliderSlick";
 const ProductDetail = () => {
   const sizes = [
     { id: 1, size: "S" },

@@ -1,0 +1,196 @@
+@import "../../../scss/index.scss";
+
+.landingpage-header {
+  width: 100%;
+  padding: 20px 26px 0px 26px;
+
+  .upper-nav {
+    width: 100%;
+    padding-bottom: 30px;
+    .logo {
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 30px;
+      color: #22202e;
+      margin: 0;
+    }
+    .nav-bar {
+      width: 13%;
+
+      .cart,
+      .user {
+        display: none;
+      }
+      .bm-burger-button {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 16px;
+        height: 16px;
+      }
+      .menu-item {
+        display: flex !important;
+        align-items: center;
+        svg {
+          width: 20px;
+          // aspect-ratio: 1/1;
+          margin-right: 20px;
+          path {
+            fill: #fff;
+          }
+        }
+        p {
+          width: fit-content;
+          margin: 0;
+        }
+      }
+
+      /* Color/shape of burger icon bars */
+      .bm-burger-bars {
+        background: #373a47;
+      }
+
+      /* Color/shape of burger icon bars on hover*/
+      .bm-burger-bars-hover {
+        background: #a90000;
+      }
+
+      /* Position and sizing of clickable cross button */
+      .bm-cross-button {
+        height: 24px;
+        width: 24px;
+      }
+
+      /* Color/shape of close button cross */
+      .bm-cross {
+        background: #bdc3c7;
+      }
+
+      .bm-menu-wrap {
+        position: fixed;
+        height: 100%;
+        // width: 110% !important;
+        top: 0%;
+        left: 0%;
+
+        /* General sidebar styles */
+        .bm-menu {
+          background: #373a47;
+          padding: 2.5em 1.5em 0;
+          font-size: 1.15em;
+
+          .bm-item-list {
+            color: #b8b7ad;
+            padding: 0.8em;
+            text-align: center;
+          }
+
+          /* Individual item */
+          .bm-item {
+            display: inline-block;
+            color: #fff;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 30px;
+            text-decoration: none;
+            padding: 20px 0 20px 0;
+          }
+        }
+      }
+
+      /* Morph shape necessary with bubble or elastic */
+      .bm-morph-shape {
+        fill: #373a47;
+      }
+
+      .bm-overlay {
+        background: rgba(0, 0, 0, 0.3);
+        top: 0%;
+        left: 0%;
+      }
+    }
+  }
+  .bottom-nav {
+    display: none;
+    ul {
+      li {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        color: #726e8d;
+      }
+    }
+  }
+}
+
+@include tablet {
+  .landingpage-header {
+    .upper-nav {
+      .logo {
+        font-size: 30px;
+      }
+
+      .nav-bar {
+        width: 8%;
+        .bm-burger-button {
+          width: 25px;
+          height: 25px;
+        }
+        .search {
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
+  }
+}
+@include desktop {
+  .landingpage-header {
+    position: relative;
+    .upper-nav {
+      .logo {
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .nav-bar {
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .inner-nav {
+          width: 5%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .burger {
+            display: none;
+          }
+          .cart,
+          .user {
+            display: inline-block;
+            width: 25px;
+            aspect-ratio: 1/1;
+          }
+        }
+      }
+    }
+    .bottom-nav {
+      width: 100%;
+      display: flex;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      ul {
+        padding: 10px 0;
+        width: 30%;
+        list-style: none;
+        // margin: 0;
+        li {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

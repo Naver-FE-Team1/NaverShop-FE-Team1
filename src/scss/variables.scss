@@ -1,0 +1,38 @@
+/*
+ * variables for scss
+ * file: variables.scss
+ */
+
+/*
+ * colors
+ */
+ $main: #2A254B;
+ $text-main: #22202E;
+ $text-primary: #4E4D93;
+ $text-purple: #726E8D;
+ $text-normal: #737373;
+ $border-grey: #EBE8F4;
+ 
+$main: #2a254b;
+$text-main: #22202e;
+$text-primary: #5b5676;
+$text-purple: #726e8d;
+$text-normal: #737373;
+
+// Figma variables colors
+$DarkPrimaryColor: #2a254b;
+$PrimaryColor: #4e4d93;
+$LightGreyColor: #f9f9f9;
+$WhiteColor: #ffffff;
+$BorderDarkColor: #cac6da;
+
+// Font import
+@import url("http://fonts.cdnfonts.com/css/clash-display");
+@import url("http://fonts.cdnfonts.com/css/satoshi");
+
+/*
+ * sizes
+ */
+$mobile-width: 320px;
+$tablet-width: 900px;
+$desktop-width: 1200px;

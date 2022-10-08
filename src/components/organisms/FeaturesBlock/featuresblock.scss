@@ -1,0 +1,29 @@
+@import "../../../scss/index.scss";
+
+.features-block {
+  width: 100%;
+  padding: 48px 24px;
+  p {
+    font-weight: 400;
+    margin: 0;
+  }
+  .first-level-title {
+    margin: 0 0 36px 0;
+    font-size: 20px;
+    line-height: 140%;
+  }
+}
+
+@include desktop {
+  .features-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 48px 80px;
+    p {
+      font-size: 24px;
+      line-height: 140%;
+    }
+  }
+}

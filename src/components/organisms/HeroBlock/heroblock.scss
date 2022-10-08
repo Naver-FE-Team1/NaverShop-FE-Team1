@@ -1,0 +1,64 @@
+@import "../../../scss/index.scss";
+
+.hero-block {
+  width: 100%;
+  .inner-block {
+    width: 100%;
+    padding: 47px 25px 24px;
+    p {
+      color: #2a254b;
+      font-weight: 400;
+      &:nth-child(1) {
+        font-size: 24px;
+        line-height: 30px;
+        margin: 0 0 12px 0;
+      }
+      &:nth-child(2) {
+        font-size: 16px;
+        line-height: 22px;
+        margin: 0 0 32px 0;
+      }
+    }
+    .button-section {
+      width: 100%;
+    }
+  }
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+@include tablet {
+  .hero-block {
+    position: relative;
+    .inner-block {
+      width: 50% !important;
+      position: absolute;
+      top: 10%;
+      right: 5%;
+      width: fit-content;
+      padding: 48px 61px 46px 56px;
+      background-color: #fff;
+
+      p {
+        &:nth-child(1) {
+          font-size: 32px;
+          line-height: 140%;
+        }
+        &:nth-child(2) {
+          font-size: 18px;
+          line-height: 150%;
+          color: #5b5676;
+          margin: 0 0 158px 0;
+        }
+      }
+      .button-section {
+        width: 40%;
+        button {
+          padding: 16px 0 !important;
+        }
+      }
+    }
+  }
+}

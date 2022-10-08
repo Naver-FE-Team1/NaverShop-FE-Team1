@@ -1,0 +1,28 @@
+@import "./variables";
+.productDetail__quantity-number {
+  margin: 10px 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include Responsive(XS) {
+  }
+  @include Responsive(LG) {
+    max-width: 123px;
+  }
+  width: 100%;
+  padding: 12px 16px;
+  background-color: white;
+  & > p {
+  }
+}
+
+.icon {
+  width: 12px;
+  height: 12px;
+  color: #ccc;
+  cursor: pointer;
+}
+
+span {
+  display: inline-block;
+}

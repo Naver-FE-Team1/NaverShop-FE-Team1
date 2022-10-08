@@ -1,3 +1,4 @@
+import ProductDetail from "./components/organisms/ProductDetail";
 import { Route, Routes } from "react-router-dom";
 import "./App.scss";
 import AboutPage from "./components/pages/AboutPage";
@@ -12,6 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="/" element={<ProductDetail />} />
+
         <Route path="shopping-list" element={<ShoppingList />} />
         <Route path="shopping-basket" element={<ShoppingBasket />} />
       </Routes>

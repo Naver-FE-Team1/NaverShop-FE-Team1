@@ -1,0 +1,81 @@
+@import "./variables.scss";
+//--------------------------------------------
+.container {
+  background-color: #f9f9f9;
+
+  @include Responsive(LG) {
+    padding: 50px 80px;
+  }
+}
+
+.grid {
+  @include Responsive(LG) {
+    align-items: center;
+  }
+  @include Responsive(XS) {
+  }
+}
+
+.productDetail {
+  &-img {
+    width: 100%;
+    max-width: 720px;
+    max-height: 720px;
+    height: 100%;
+    object-fit: cover;
+  }
+  &__topContent {
+    color: $color-primary;
+    @include Responsive(XS) {
+      margin-bottom: 28px;
+    }
+    @include Responsive(LG) {
+      margin-bottom: 54px;
+    }
+    &-name {
+      color: $color-primary;
+      @include Responsive(XS) {
+        @include font-size(36px);
+      }
+      @include Responsive(LG) {
+        @include font-size(24px);
+      }
+    }
+    &-price {
+    }
+  }
+  &__description {
+    color: $color-primary;
+    margin-bottom: 50px;
+    max-width: 498px;
+    width: 100%;
+
+    &-title {
+      margin-bottom: 16px;
+    }
+    &-content {
+      margin-bottom: 16px;
+    }
+    &-fabric {
+      padding-left: 15px;
+      list-style: none;
+    }
+  }
+  &__dimension {
+    color: $color-primary;
+
+    &-title {
+      margin-bottom: 16px;
+    }
+    &-sizes {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+  }
+  &__quantity {
+    color: $color-primary;
+
+    margin-top: 10px;
+  }
+}

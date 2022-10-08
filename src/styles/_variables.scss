@@ -1,0 +1,23 @@
+//Variables
+$XS: 350px;
+$LG: 1200px;
+$color-primary: #2a254b;
+$color-secondary: #505977;
+$color-grey-light: #f9f9f9;
+//-------------------------------------------
+//Responsive
+@mixin font-size($size) {
+  font-size: $size;
+  line-height: $size * 1.225;
+}
+@mixin Responsive($canvas) {
+  @if $canvas == LG {
+    @media (min-width: $LG) {
+      @content;
+    }
+  } @else if $canvas == XS {
+    @media (min-width: $XS) {
+      @content;
+    }
+  }
+}

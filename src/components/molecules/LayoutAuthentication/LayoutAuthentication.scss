@@ -44,3 +44,46 @@
     }
   }
 }
+
+@include tablet {
+  body {
+    display: block !important;
+  }
+  .layout {
+    padding: 24px;
+    &__container {
+      max-width: 550px;
+      width: 100%;
+      background-color: #fff;
+      padding: 30px 63px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      border-radius: 10px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    &__content {
+      margin-bottom: 25px;
+    }
+    &__title {
+      font-weight: 600;
+      @include font-size(18px);
+      margin-bottom: 6px;
+    }
+    &__text {
+      color: $text-light;
+    }
+    &__access {
+      margin-left: 5px;
+      display: inline-block;
+      color: $text-primary;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    &__forget {
+      @include font-size(13px);
+      &:hover {
+        color: #1a17a2;
+      }
+    }
+  }
+}

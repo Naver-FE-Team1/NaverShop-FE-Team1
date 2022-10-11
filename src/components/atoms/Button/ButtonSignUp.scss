@@ -4,7 +4,8 @@
  */
 .button {
   &__signUp {
-    max-width: 271px;
+    min-width: 251px;
+    width: 100%;
     padding: 6px 0;
     border-radius: 5px;
     border: 1px solid $border-grey;

@@ -13,7 +13,8 @@
 // Import Atoms Components
 @import "../Components/atoms/Button/Button.scss";
 @import "../Components/atoms/FeatureCard/FeatureCard.scss";
-
+@import "../Components/atoms/Button/ButtonGoogle.scss";
+@import "../components/atoms/Input/InputAuthenticationUser.scss";
 // Import Molecules Components
 @import "../Components/molecules/Feature/Feature.scss";
 @import "../Components/molecules/Footer/Footer.scss";
@@ -21,6 +22,7 @@
 @import "../Components/molecules/PageHeader/PageHeader.scss";
 @import "../Components/molecules/AssignFooter/AssignFooter.scss";
 @import "../components/molecules/Quantity/quantityStyles.scss";
+@import "../components/molecules/LayoutAuthentication/LayoutAuthentication.scss";
 /*Shopping basket*/ //Shopping basket
 @import "../components/pages/ShoppingBasket/ShoppingBasket.scss";
 //ProductBar

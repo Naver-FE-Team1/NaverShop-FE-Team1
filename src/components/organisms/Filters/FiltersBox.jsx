@@ -46,10 +46,16 @@ const FiltersBox = (props) => {
         marginBottom: "10px"
     }
 
+    const styleCheckboxLabel = {
+        fontFamily: ["Satoshi", "sans-serif"],
+        color: "#2a254b",
+        fontSize: "16px"
+    }
+
     return (
         <Box
             sx={{
-                maxWidth: "250px",
+                maxWidth: "270px",
                 ...props.sx
             }}
         >
@@ -67,15 +73,9 @@ const FiltersBox = (props) => {
                         <FormControlLabel
                             key={index}
                             control={<ThemedCheckbox />}
-                            sx={{
-                                marginLeft: "2px"
-                            }}
                             label={
                                 <span
-                                    style={{
-                                        fontFamily: ["Satoshi", "sans-serif"],
-                                        color: "#2a254b"
-                                    }}
+                                    style={styleCheckboxLabel}
                                 >
                                     {item}
                                 </span>}
@@ -120,15 +120,9 @@ const FiltersBox = (props) => {
                         <FormControlLabel
                             key={index}
                             control={<ThemedCheckbox />}
-                            sx={{
-                                marginLeft: "2px"
-                            }}
                             label={
                                 <span
-                                    style={{
-                                        fontFamily: ["Satoshi", "sans-serif"],
-                                        color: "#2a254b"
-                                    }}
+                                    style={styleCheckboxLabel}
                                 >
                                     {item}
                                 </span>}

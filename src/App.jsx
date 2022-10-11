@@ -7,6 +7,7 @@ import ShoppingList from "./components/pages/ShoppingList";
 import "./App.scss";
 import ShoppingBasket from "./components/pages/ShoppingBasket/ShoppingBasket";
 import ProductDetail from "./components/pages/ProductDetail/ProductDetail";
+import User from "./components/pages/User/User";
 function App() {
   return (
     <div className="App">
@@ -16,6 +17,7 @@ function App() {
         <Route path="/shopping-detail" element={<ProductDetail />} />
         <Route path="shopping-list" element={<ShoppingList />} />
         <Route path="shopping-basket" element={<ShoppingBasket />} />
+        <Route path="/user" element={<User />} />
       </Routes>
     </div>
   );

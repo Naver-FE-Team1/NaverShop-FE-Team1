@@ -4,6 +4,7 @@ import {
   ImageListItemBar,
   useMediaQuery,
 } from "@mui/material";
+import { ThemeConfig } from "../../../theme/ThemeConfig";
 import Button from "../../atoms/Button";
 import "./productlist.scss";
 

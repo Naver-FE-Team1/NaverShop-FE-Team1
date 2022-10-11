@@ -1,5 +1,5 @@
 import React from "react";
-import SignUpForm from "../../organisms/SignUp/SignUpForm";
+import SignUpForm from "./SignUp/SignUpForm";
 
 const AuthenticationUserPage = () => {
   return (

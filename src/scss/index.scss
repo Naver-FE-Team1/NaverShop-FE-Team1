@@ -11,11 +11,12 @@
 // ------------ Import your scss files here ---------------
 
 // Import Atoms Components
+@import "../components/atoms/Checkbox/Checkbox.scss";
 @import "../Components/atoms/Button/Button.scss";
 @import "../Components/atoms/FeatureCard/FeatureCard.scss";
-@import "../Components/atoms/Button/ButtonGoogle.scss";
-@import "../components/atoms/Input/InputAuthenticationUser.scss";
-// Import Molecules Components
+@import "../Components/atoms/Button/ButtonSignUp.scss";
+@import "../components/atoms/Input/InputUser.scss";
+@import "../components/atoms/Label/Label.scss"; // Import Molecules Components
 @import "../Components/molecules/Feature/Feature.scss";
 @import "../Components/molecules/Footer/Footer.scss";
 @import "../Components/molecules/MoreInfo/MoreInfo.scss";
@@ -23,7 +24,9 @@
 @import "../Components/molecules/AssignFooter/AssignFooter.scss";
 @import "../components/molecules/Quantity/quantityStyles.scss";
 @import "../components/molecules/LayoutAuthentication/LayoutAuthentication.scss";
-/*Shopping basket*/ //Shopping basket
+@import "../components/molecules/FieldForm/FieldForm.scss";
+/*Shopping basket*/
+//Shopping basket
 @import "../components/pages/ShoppingBasket/ShoppingBasket.scss";
 //ProductBar
 @import "../components/atoms/ProductBar/ProductBar.scss";

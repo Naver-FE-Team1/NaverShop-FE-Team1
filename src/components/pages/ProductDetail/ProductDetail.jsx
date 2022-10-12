@@ -12,7 +12,7 @@ const ProductDetail = () => {
       <ProductDetailContent />
       <ProductDetailJoin />
       <ProductReview />
-      <ProductDetailList />
+      {/* <ProductDetailList /> */}
     </>
   );
 };

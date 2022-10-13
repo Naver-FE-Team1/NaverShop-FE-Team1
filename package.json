@@ -20,13 +20,15 @@
     "formik": "^2.2.9",
     "formik-mui": "^5.0.0-alpha.0",
     "moment": "^2.29.4",
+    "@reduxjs/toolkit": "^1.8.6",
     "react": "^18.2.0",
     "react-burger-menu": "^3.0.8",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.1",
     "sass": "^1.55.0",
     "slick-carousel": "^1.8.1",
-    "vite-plugin-svgr": "^2.2.1"
+    "vite-plugin-svgr": "^2.2.1",
+    "react-redux": "^8.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",

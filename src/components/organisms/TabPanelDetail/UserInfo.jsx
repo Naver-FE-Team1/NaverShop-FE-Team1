@@ -15,7 +15,7 @@ const UserInfo = () => {
             <Box
                 component="form"
                 sx={{
-                    padding: "15px 0"
+                    margin: "15px 0"
                 }}
             >
                 <FormGroup

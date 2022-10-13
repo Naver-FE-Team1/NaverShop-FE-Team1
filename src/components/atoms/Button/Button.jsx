@@ -10,6 +10,7 @@ const Button = ({
   backgroundColor,
   width,
   height,
+  type = "submit",
 }) => {
   return (
     <button
@@ -23,6 +24,7 @@ const Button = ({
         height: height,
       }}
       className="btn"
+      type={type}
     >
       {content}
     </button>

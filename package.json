@@ -13,6 +13,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@hookform/resolvers": "^2.9.8",
     "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.8",
     "firebase": "^9.10.0",
@@ -23,7 +24,8 @@
     "react-router-dom": "^6.4.1",
     "sass": "^1.55.0",
     "slick-carousel": "^1.8.1",
-    "vite-plugin-svgr": "^2.2.1"
+    "vite-plugin-svgr": "^2.2.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",

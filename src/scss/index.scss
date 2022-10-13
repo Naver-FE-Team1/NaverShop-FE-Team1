@@ -15,8 +15,8 @@
 @import "../Components/atoms/Button/Button.scss";
 @import "../Components/atoms/FeatureCard/FeatureCard.scss";
 @import "../Components/atoms/Button/ButtonSignUp.scss";
-@import "../components/atoms/Input/InputUser.scss";
-@import "../components/atoms/Label/Label.scss"; // Import Molecules Components
+@import "../components/atoms/Label/Label.scss";
+// Import Molecules Components
 @import "../Components/molecules/Feature/Feature.scss";
 @import "../Components/molecules/Footer/Footer.scss";
 @import "../Components/molecules/MoreInfo/MoreInfo.scss";
@@ -24,7 +24,7 @@
 @import "../Components/molecules/AssignFooter/AssignFooter.scss";
 @import "../components/molecules/Quantity/quantityStyles.scss";
 @import "../components/molecules/LayoutAuthentication/LayoutAuthentication.scss";
-@import "../components/molecules/FieldForm/FieldForm.scss";
+@import "../components/molecules/Input/InputUser.scss";
 /*Shopping basket*/
 //Shopping basket
 @import "../components/pages/ShoppingBasket/ShoppingBasket.scss";

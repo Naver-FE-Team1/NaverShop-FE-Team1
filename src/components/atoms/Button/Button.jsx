@@ -1,47 +1,56 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-
-const Button = ({ content, radius, color, fontSize, borderColor, backgroundColor, width, height }) => {
-    return (
-        <button
-            style={{
-                fontSize: `${fontSize}px`,
-                borderRadius: `${radius}px`,
-                color: color,
-                border: `1px solid ${borderColor}`,
-                backgroundColor: backgroundColor,
-                width: width,
-                height: height,
-            }}
-            className= 'btn'
-        >
-            {content}
-        </button>
-    );
-}
+const Button = ({
+  handleClick,
+  content,
+  radius,
+  color,
+  fontSize,
+  borderColor,
+  backgroundColor,
+  width,
+  height,
+}) => {
+  return (
+    <button
+      style={{
+        fontSize: `${fontSize}px`,
+        borderRadius: `${radius}px`,
+        color: color,
+        border: `1px solid ${borderColor}`,
+        backgroundColor: backgroundColor,
+        width: width,
+        height: height,
+      }}
+      className="btn"
+      onClick={handleClick}
+    >
+      {content}
+    </button>
+  );
+};
 
 Button.propTypes = {
-    content: PropTypes.string,
-    radius: PropTypes.number,
-    color: PropTypes.string,
-    fontSize: PropTypes.number,
-    borderColor: PropTypes.string,
-    backgroundColor: PropTypes.string,
-    width: PropTypes.number,
-    height: PropTypes.number,
-}
+  content: PropTypes.string,
+  radius: PropTypes.number,
+  color: PropTypes.string,
+  fontSize: PropTypes.number,
+  borderColor: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  width: PropTypes.number,
+  height: PropTypes.number,
+};
 
 Button.defaultProps = {
-    content: '',
-    radius: null,
-    color: null,
-    fontSize: 16,
-    borderColor: null,
-    backgroundColor: null,
-    width: null,
-    height: null,
-}
-
+  content: "",
+  radius: null,
+  color: null,
+  fontSize: 16,
+  borderColor: null,
+  backgroundColor: null,
+  width: null,
+  height: null,
+};
 
 export default Button;

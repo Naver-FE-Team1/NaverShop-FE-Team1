@@ -1,7 +1,7 @@
 import "./checkout.scss";
 import Header from "../../organisms/Header";
 import ProductItem from "../../molecules/ProductItem/ProductItem";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, useFormikContext } from "formik";
 import { TextField } from "formik-mui";
 import {
   Button,
@@ -16,31 +16,42 @@ import moment from "moment";
 import Footer from "../../molecules/Footer/Footer";
 
 moment().format();
-
-const DATA_TEST = [
-  {
+const DATA_TEST = JSON.parse(localStorage.getItem("basket")).map(
+  (item, idx) => ({
     imgScr: "https://cf.shopee.vn/file/6aba1d32171c02c7e0c3d59a5f75fbb8",
     name: "Graystone vase",
     description: "A timeless ceramic vase with a tri color grey glaze.",
     color: "black",
-    size: "M",
-    quantity: 1,
+    size: item.size,
+    quantity: item.quantity,
     price: 85,
-  },
-  {
-    imgScr:
-      "https://bizweb.dktcdn.net/thumb/1024x1024/100/345/647/products/z1979282456037-bc0f790f06327f9fa7fae97d3eb9d145.jpg?v=1595429261300",
-    name: "Basic white vase",
-    description: "Beautiful and simple this is one for the classics",
-    color: "blue",
-    size: "L",
-    quantity: 1,
-    price: 125,
-  },
-];
+  })
+);
+// const DATA_TEST = [
+//   {
+//     imgScr: "https://cf.shopee.vn/file/6aba1d32171c02c7e0c3d59a5f75fbb8",
+//     name: "Graystone vase",
+//     description: "A timeless ceramic vase with a tri color grey glaze.",
+//     color: "black",
+//     size: "M",
+//     quantity: 1,
+//     price: 85,
+//   },
+//   {
+//     imgScr:
+//       "https://bizweb.dktcdn.net/thumb/1024x1024/100/345/647/products/z1979282456037-bc0f790f06327f9fa7fae97d3eb9d145.jpg?v=1595429261300",
+//     name: "Basic white vase",
+//     description: "Beautiful and simple this is one for the classics",
+//     color: "blue",
+//     size: "L",
+//     quantity: 1,
+//     price: 125,
+//   },
+// ];
 
 const Checkout = () => {
-  const [value, setValue] = useState(moment());
+  const [value, setValue] = useState(moment()); //state này lưu giá trị field ngày tháng
+  const formik = useFormikContext();
   const handleChange = (newValue) => {
     setValue(newValue);
   };
@@ -78,29 +89,26 @@ const Checkout = () => {
           }}
           validate={(values) => {
             const errors = {};
-            for (let item in values) {
-              if (!values[item]) {
-                errors[item] = "Required";
-              }
-              if (
-                item === "email" &&
-                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-              ) {
-                errors.email = "Invalid email address";
-              } else if (item === "cvc" && item.length > 3) {
-                errors.email = "Invalid CVC";
-              }
-            }
+            // console.log(values);
 
+            if (
+              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+            ) {
+              errors.email = "Invalid email address";
+            }
+            if (values.cvc.length > 3) {
+              errors.cvc = "Invalid CVC";
+            }
+            if (values.phone.length !== 10) {
+              errors.phone = "Invalid phone number";
+            }
             return errors;
           }}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
-            // console.log(values);
-            // setTimeout(() => {
-            //   setSubmitting(false);
-            alert(JSON.stringify(values, null, 2));
-            // }, 500);
+          onSubmit={(values, actions) => {
+            actions.setFieldValue(
+              "expirydate",
+              value.format("YYYY-MM-DD HH:mm:ss")
+            );
           }}
         >
           {({ submitForm, isSubmitting }) => (
@@ -134,7 +142,7 @@ const Checkout = () => {
                   <Field
                     label="Phone number"
                     component={TextField}
-                    name="phonenumber"
+                    name="phone"
                     type="text"
                   />
                 </Grid>
@@ -156,7 +164,7 @@ const Checkout = () => {
                 </Grid>
                 <Grid item xs={4}>
                   <Field
-                    label="CVC"
+                    label="CVC (3 digits)"
                     component={TextField}
                     name="cvc"
                     type="text"

@@ -15,8 +15,7 @@ const ProductList = (props) => {
 
   //TODO: NEED TO WORK ON CASE WHERE TITLES CAN BE TOO LONG
   return (
-    <div id="product-list">
-      <ImageList
+    <ImageList
         gap={smMatches ? 15 : 5}
         cols={lgMatches ? 3 : mdMatches ? 2 : smMatches ? 3 : 2}
         sx={{
@@ -69,7 +68,6 @@ const ProductList = (props) => {
           </ImageListItem>
         ))}
       </ImageList>
-    </div>
   );
 };
 

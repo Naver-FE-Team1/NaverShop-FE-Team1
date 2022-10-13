@@ -16,7 +16,6 @@ const ProductDetailInput = ({ width, height, showRating, widthInput, idCmt, onCh
   const [data, setData] = useState([])
   const lgMatches = useMediaQuery('(min-width:1200px)');
   const [value, setValue] = useState(2);
-  const focus = useRef(null)
   const handleCommentInput = (e) => {
     setComment(e.target.value)
   }
@@ -35,7 +34,7 @@ const ProductDetailInput = ({ width, height, showRating, widthInput, idCmt, onCh
       created: new Date,
       liked: 0,
       dislike: 0,
-      parentId: idCmt,
+      parentId: '',
       subComments: []
     }
     const newData = [dataCmt,...data];
@@ -50,9 +49,8 @@ const ProductDetailInput = ({ width, height, showRating, widthInput, idCmt, onCh
     //   })
     // })
     localStorage.setItem('comments', JSON.stringify(newData));
+    // setComment('')
     onChangeCmt()
-    setComment('')
-    focus.current.focus();
   };
   const handleClearForm = () => {
     setComment('')
@@ -88,7 +86,6 @@ const ProductDetailInput = ({ width, height, showRating, widthInput, idCmt, onCh
               fullWidth
               style={{ display: 'inline' }}
               onChange={handleCommentInput}
-              ref={focus}
             />
             <Stack direction='row' spacing={2} sx={{ alignItems: 'flex-end' }}>
               <Button

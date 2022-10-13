@@ -12,8 +12,6 @@ const ProductReview = () => {
   const [data, setData] = useState([]);
   const [submitted, setSubmitted] = useState(false)
   // const [disliked, setDisliked] = useState(data.disliked);
-
-  
   // const localCmts = localStorage.getItem('comments') ? JSON.parse(localStorage.getItem('comments')) : [];
   useEffect(() => {
     if(!(localStorage.getItem('comments'))){
@@ -24,11 +22,11 @@ const ProductReview = () => {
     if(localStorage.getItem('comments')){
       setData(JSON.parse(localStorage.getItem('comments')))
     }
-  }, [localStorage.getItem('comments'), submitted])
-  
+  }, [submitted])
   const onChangeCmt = () => {
     setSubmitted(!submitted)
   }
+  
   return (
     <Grid
       container

@@ -6,13 +6,15 @@ import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ProductDetailInput from './ProductDetailInput';
 
 const ProductReviewDetail = ({ data, ml, showRating }) => {
-  const [like, setLike] = useState(false);
-  const [dislike, setDislike] = useState(false);
-  const [reply, setReply] = useState(false);
-  const [liked, setLiked] = useState(data.liked);
-  const [disliked, setDisliked] = useState(data.disliked);
-  const [dataCmts, setDataCmts] = useState([]);
-  const [submitted, setSubmitted] = useState(false)
+  console.log(data)
+  const [like, setLike] = useState(false); //Kiểm tra tạng thái user like
+  const [dislike, setDislike] = useState(false);//Kiểm tra tạng thái user dislike
+  const [reply, setReply] = useState(false);//bình luận sẽ có rating còn phản hồi thì không cần
+  const [liked, setLiked] = useState(data.liked); //khởi tạo state liked  lưu trạng thái trong local storage
+  const [disliked, setDisliked] = useState(data.disliked);//khởi tạo state disliked  lưu trạng thái trong local storage
+  const dataCmts = useRef([]); //khởi tạo useRef lưu data comments trên local storage 
+  const [submitted, setSubmitted] = useState(false) //Cập nhật trạng thái chirld 
+  //Xử lý case like của user
   const handleLike = () => {
     setLike(!like);
     if (!like) {
@@ -26,6 +28,7 @@ const ProductReviewDetail = ({ data, ml, showRating }) => {
       setDisliked((data) => data - 1);
     }
   };
+  //Xử lý case dislike của user
   const handleDisLike = () => {
     setDislike(!dislike);
     if (!dislike) {
@@ -43,17 +46,16 @@ const ProductReviewDetail = ({ data, ml, showRating }) => {
   const handleToggleReply = () => {
     setReply(!reply);
   };
-  console.log(data.id);
   useEffect(() => {
     if (localStorage.getItem('comments')) {
-      setDataCmts(JSON.parse(localStorage.getItem('comments')));
+      dataCmts.current = JSON.parse(localStorage.getItem('comments'));
     }
-  }, [localStorage.getItem('comments'), submitted]);
+  }, []);
   const onChangeCmt = () => {
     setSubmitted(!submitted);
   }
   useEffect(() => {
-    dataCmts.map((item) => {
+    dataCmts.current.map((item) => {
       if (item.id === data.id) {
         item.liked = liked;
         item.disliked = disliked;
@@ -69,7 +71,7 @@ const ProductReviewDetail = ({ data, ml, showRating }) => {
     });
     
 
-    localStorage.setItem('comments', JSON.stringify(dataCmts));
+    localStorage.setItem('comments', JSON.stringify(dataCmts.current));
   }, [liked, disliked, localStorage.getItem('comments')]);
 
   return (
@@ -148,7 +150,7 @@ const ProductReviewDetail = ({ data, ml, showRating }) => {
       )}
       {data.subComments &&
         data.subComments.map((item) => 
-          <ProductReviewDetail ml='3rem' data={item} showRating={false} />)}
+          <ProductReviewDetail ml='3rem' key={item.id} data={item} showRating={false} />)}
     </Stack>
   );
 };

@@ -1,0 +1,93 @@
+@include mobile {
+}
+
+@include tablet {
+    .manageOrderHeader {
+        display: flex ;
+        flex-direction: row ;
+        justify-content: space-between;
+        width: 100%;
+        padding-left: 5%;
+        padding-right: 4%;
+        padding-top: 3%;
+    }
+    .__TextHeader {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        float: left;
+        width: 30%;
+    }
+    .__TextHeader h1 {
+        font-family: 'Satoshi', sans-serif;
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 2%;
+    }
+    .__TextHeader h4 {
+        font-size: 20px;
+        font-family: 'Clash Display', sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+    }
+    
+    .__ButtonNotification {
+        display: inline-block;
+        width: 45px;
+        height: 45px;
+        border-radius: 30%;
+        border-color: transparent;
+        background-color: $LightGreyColor;
+        align-items: center;
+        cursor: pointer;
+    }
+    .__ButtonNotification img {
+        width: 25px !important;
+        height: auto !important;
+        align-self: center;
+        object-fit: fill !important;
+    }
+    .__ButtonArrowDropDown {
+        width: 45px;
+        height: 45px;
+        border-radius: 30%;
+        border-color: transparent;
+        background-color: transparent;
+        align-items: center;
+        cursor: pointer;
+    }
+    .__ButtonArrowDropDown img {
+        width: 40%;
+        height: 40%;
+        align-self: center;
+        object-fit: fill;
+    }
+    .__ButtonProfileSetting {
+        width: 45px;
+        height: 45px;
+        border-radius: 30%;
+        border-color: transparent;
+        background-color: $LightGreyColor;
+        align-items: center;
+        cursor: pointer;
+    }
+    .__ButtonProfileSetting img {
+        width: 70%;
+        align-self: center;
+        height: 70%;
+        object-fit: fill;
+    }
+    .__ButtonHeader {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        float: right;
+        width: 20%;
+        height: 30px;
+    }
+    .__ButtonHeader button:hover {
+        transform: translateY(-0.25em);
+    }
+    
+}

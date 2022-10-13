@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const Button = ({ content, radius, color, fontSize, borderColor, backgroundColor, width, height }) => {
+const Button = ({ content, radius, color, fontSize, borderColor, backgroundColor, width, height, onClick }) => {
     return (
         <button
             style={{
@@ -15,6 +15,7 @@ const Button = ({ content, radius, color, fontSize, borderColor, backgroundColor
                 height: height,
             }}
             className= 'btn'
+            onClick={onClick}
         >
             {content}
         </button>
@@ -30,6 +31,7 @@ Button.propTypes = {
     backgroundColor: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
+    onClick: PropTypes.func,
 }
 
 Button.defaultProps = {
@@ -41,6 +43,7 @@ Button.defaultProps = {
     backgroundColor: null,
     width: null,
     height: null,
+    onClick: null,
 }
 
 

@@ -1,0 +1,126 @@
+@include tablet {
+    .containerListedAllOrder {
+        display: flex;
+        width: 100%;
+        height: 20em;
+        text-align: center;
+    }
+    .__headerDataGrid {
+        color: $WhiteColor;
+        font-size: 20px;
+        background-color: $DarkPrimaryColor;
+        float: left;
+    }
+    .MuiDataGrid-colCellTitle {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+    .MuiDataGrid-row--editing {
+        
+    }
+    .MuiDataGrid-rowCount {
+        
+    }
+    .MuiDataGrid-row {
+        font-size: 1.5em;
+        font-weight: 400;
+        color: $DarkPrimaryColor;
+    }
+    .MuiDataGrid-panelContent  {
+        height: 50em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25em;
+    }
+    .containerDispatchStatus {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 80px;
+        height: 80px;
+
+    }
+    .containerDispatchStatus img {
+        height: 25px;
+        width: 25px;
+        align-self: center;
+    }
+    .containerDispatchStatus p {
+        font-size: 15px;
+        color: green;
+        align-self: center;
+        margin-left: 10%;
+    }
+    .containerCompletedStatus {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 80px;
+        height: 80px;
+    }
+    .containerCompletedStatus img {
+        height: 25px;
+        width: 25px;
+        align-self: center;
+    }
+    .containerCompletedStatus p {
+        font-size: 15px;
+        color: gray;
+        align-self: center;
+        margin-left: 10%;
+    }
+    .containerPendingStatus {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 80px;
+        height: 80px;
+    }
+    .containerPendingStatus img {
+        height: 25px;
+        width: 25px;
+        align-self: center;
+    }
+    .containerPendingStatus p {
+        font-size: 15px;
+        color: red;
+        align-self: center;
+        margin-left: 10%;
+    }
+    .MuiSvgIcon-root {
+        fill: #FFF;
+    }
+    .MuiSvgIcon-fontSizeSmall {
+        fill: #FFF;
+    }
+    .containerBtnActionDataGrid {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 80;
+        height: 80;
+        align-items: center;
+    }
+    .containerBtnActionDataGrid button {
+        width: 55px;
+        height: 40px;
+        border-radius: 30%;
+        border-color: transparent;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        margin-right: 15%;
+        cursor: pointer;
+    }
+    .containerBtnActionDataGrid button>img {
+        height: 18px;
+        width: 18px;
+        align-self: center;
+        object-fit: contain;
+    }
+    .containerBtnActionDataGrid button:hover {
+        transform: translateY(-0.25em);
+    }
+}

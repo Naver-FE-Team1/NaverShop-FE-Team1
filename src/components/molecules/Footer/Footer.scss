@@ -1,267 +1,252 @@
 @include mobile {
-    body {
-        display: flex;
-        background-color: transparent;
-        font-weight: 300;
-        font-family: 'Satoshi', sans-serif;
-    }
-    .footer {
-        display: flex;
-        background-color: $DarkPrimaryColor;
-        padding: 7% 8%;
-        flex-direction: column;
-    }
+  body {
+    display: block;
+    background-color: transparent;
+    font-weight: 300;
+    font-family: "Satoshi", sans-serif;
+  }
+  .footer {
+    display: flex;
+    background-color: $DarkPrimaryColor;
+    padding: 7% 8%;
+    flex-direction: column;
+  }
 
+  // container containerInfoAndSocialLinks
+  .containerInfoAndSocialLinks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 20em;
+  }
+  .containerFooterInfo {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: inherit;
+    margin-bottom: 10%;
+  }
+  .containerFooterInfo h3 {
+    color: $WhiteColor;
+    font-size: 36px;
+    font-weight: 300;
+    font-family: "Clash Display", sans-serif;
+    margin-bottom: 5%;
+  }
+  .containerFooterInfo p {
+    font-size: 14px;
+    line-height: 110%;
+    color: #fff;
+  }
+  .containerSocialLinks {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 10em;
+    align-self: flex-start;
+  }
+  .containerSocialLinks h5 {
+    color: $WhiteColor;
+    font-size: 19px;
+    font-weight: 300;
+    font-family: "Clash Display", sans-serif;
+    margin-bottom: 10%;
+    margin-left: 12%;
+  }
+  .containerIconSocialLinks1 {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+  .containerIconSocialLinks1 img {
+    align-self: center;
+    width: 30px;
+    height: 30px;
+    margin: 5%;
+  }
+  .containerIconSocialLinks2 {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+  .containerIconSocialLinks2 img {
+    margin: 5%;
+    align-self: center;
+    width: 30px;
+    height: 30px;
+  }
 
-    // container containerInfoAndSocialLinks
-    .containerInfoAndSocialLinks {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
+  // container containerMenuCategoriesOurCompany
+  .containerMenuCategoriesOurCompany {
+    display: flex;
+    height: 20em;
+  }
+  .containerFooterCategories {
+    display: none;
+  }
+  .containerOurCompany {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: inherit;
+  }
+  .containerOurCompany h5 {
+    font-size: 19px;
+    font-weight: 400;
+    font-family: "Clash Display", sans-serif;
+    color: $WhiteColor;
+  }
+  .containerOurCompany p {
+    font-size: 16px;
+    font-weight: 300;
+    color: $WhiteColor;
+  }
+  .containerFooterMenu {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: inherit;
+    margin-left: 13%;
+  }
+  .containerFooterMenu h5 {
+    font-size: 19px;
+    font-weight: 400;
+    font-family: "Clash Display", sans-serif;
+    color: $WhiteColor;
+  }
+  .containerFooterMenu p {
+    font-size: 16px;
+    font-weight: 300;
+    color: $WhiteColor;
+  }
+  .containerIconSocialLinkDesktop {
+    display: none !important;
+  }
 
-    }
-    .containerFooterInfo {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 20em;
-        margin-bottom: 10%;
-    }
-    .containerFooterInfo h3 {
-        color: $WhiteColor;
-        font-size: 36px;
-        font-weight: 400;
-        font-family: 'Clash Display', sans-serif;
-        margin-bottom: 5%;
-    }
-    .containerFooterInfo p {
-        font-size: 14px;
-        font-weight: 200;
-        line-height: 110%;
-        color: #FFF;
-
-    }
-    .containerSocialLinks {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 18em;
-        margin-top: 2%;
-
-        align-self: flex-start;
-        
-    }
-    .containerSocialLinks h5 {
-        color: $WhiteColor;
-        font-size: 19px;
-        font-weight: 300;
-        font-family: 'Clash Display', sans-serif;
-        margin-bottom: 5%;
-        margin-left: 12%;
-    }
-    .containerIconSocialLinks1 {
-        display: flex;
-        width: 100%;
-        justify-content: space-evenly;
-    }
-    .containerIconSocialLinks1 img {
-        align-self: center;
-        margin: 5%;
-    }
-    .containerIconSocialLinks2 {
-        display: flex;
-        width: 100%;
-        justify-content: space-evenly;
-    }
-    .containerIconSocialLinks2 img {
-        margin: 5%;
-        align-self: center;
-    }
-
-
-
-    // container containerMenuCategoriesOurCompany
-    .containerMenuCategoriesOurCompany {
-        display: flex;
-    }
-    .containerFooterCategories {
-        display: none;
-    }
-    .containerOurCompany {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 15em;
-    }
-    .containerOurCompany h5 {
-        font-size: 19px;
-        font-weight: 400;
-        font-family: 'Clash Display', sans-serif;
-        color: $WhiteColor;
-    }
-    .containerOurCompany p {
-        font-size: 16px;
-        font-weight: 300;
-        color: $WhiteColor;
-    }
-    .containerFooterMenu {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 15em;
-        margin-left: 13%;
-    }
-    .containerFooterMenu h5 {
-        font-size: 19px;
-        font-weight: 400;
-        font-family: 'Clash Display', sans-serif;
-        color: $WhiteColor;
-    }
-    .containerFooterMenu p {
-        font-size: 16px;
-        font-weight: 300;
-        color: $WhiteColor;
-        
-    }
-    .containerIconSocialLinkDesktop {
-        display: none !important;
-    }
-
-
-
-    // container containerLineDevide
-    .containerLineDevide{
-        align-self: center;
-        margin-top: 5%;
-        width: 100%;
-        display: flex;
-        justify-content: space-evenly;
-        flex-direction: column;
-    }
-    .containerLineDevide div {
-        width: inherit;
-        height: 1px;
-        background-color: $LightGreyColor;
-        margin-bottom: 5%;
-    }
-    .containerLineDevide p {
-        align-self: center;
-        font-size: 15px;
-        line-height: 110%;
-        font-family: 'Satoshi', sans-serif;
-        color: #FFF;
-
-    }
+  // container containerLineDevide
+  .containerLineDevide {
+    align-self: center;
+    margin-top: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+  }
+  .containerLineDevide div {
+    width: inherit;
+    height: 1px;
+    background-color: $LightGreyColor;
+    margin-bottom: 5%;
+  }
+  .containerLineDevide p {
+    align-self: center;
+    font-size: 15px;
+    line-height: 110%;
+    font-family: "Satoshi", sans-serif;
+    color: #fff;
+  }
 }
 
-
-
 @include tablet {
-    body {
-        display: flex;
-
-    }
-    .footer {
-        display: inherit;
-        padding: 5em;
-    }
-    .footer div {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    .containerInfoAndSocialLinks {
-        display: flex;
-        flex-direction: row;
-        width: 40%;
-    }
-    // Avion column info
-    .containerFooterInfo {
-        display: flex;
-        flex-direction: column !important;
-        width: 40%;
-    }
-    .containerSocialLinks {
-        align-items: flex-start;
-        display: flex;
-        flex-direction: column !important;
-        margin: 0 2em;
-        width: 60%;
-        height: auto;
-    }
-    .containerSocialLinks h5 {
-        font-size: 16px;
-        font-weight: 400;
-        width: inherit !important;
-    }
-    .containerIconSocialLinks2 {
-        display: none !important;
-    }
-    .containerIconSocialLinks1 {
-        display: none !important;
-    }
-    .containerIconSocialLinkDesktop {
-        display: flex;
-        flex-direction: row !important;
-        width: inherit !important;
-    }
-    .containerIconSocialLinkDesktop img {
-        height: 24px;
-        width: 24px;
-        object-fit: fill;
-    }
-    .containerMenuCategoriesOurCompany {
-        display: flex;
-        flex-direction: row !important;
-        justify-content: space-evenly !important;
-        width: 60%;
-    }
-    .containerOurCompany {
-        display: flex;
-        flex-direction: column !important;
-        width: 20em;
-        height: auto;
-    }
-    .containerFooterMenu {
-        display: flex;
-        flex-direction: column !important;
-        width: 15em;
-        height: auto;
-        margin-right: 2em;
-    }
-    .containerFooterCategories {
-        display: flex;
-        flex-direction: column !important;
-        width: 15em;
-        height: auto;
-    }
-    .containerFooterCategories h5 {
-        font-size: 19px;
-        font-weight: 400;
-        font-family: 'Clash Display', sans-serif;
-        color: $WhiteColor;
-    }
-    .containerFooterCategories p {
-        font-size: 16px;
-        font-weight: 300;
-        color: $WhiteColor;
-    }
-    .containerLineDevide {
-        display: flex;
-        flex-direction: column !important;
-    }
-    .containerLineDevide div {
-        margin: 0em auto 1em auto !important;
-    }
-    .containerLineDevide p {
-        align-self: flex-start !important;
-    }
-
-
+  body {
+    display: block;
+  }
+  .footer {
+    display: inherit;
+    padding: 5em;
+  }
+  .footer div {
+    display: flex;
+    flex-direction: row;
     
+  }
+  .containerInfoAndSocialLinks {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    padding-top: 5%;
+  }
+  .containerFooterInfo {
+    display: flex;
+    flex-direction: column !important;
+    width: 200px;
+    height: inherit;
+  }
+  .containerSocialLinks {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column !important;
+    width: 200px;
+    margin-left: 20%;
+  }
+  .containerSocialLinks h5 {
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: -15%;
+    width: inherit !important;
+  }
+  .containerSocialLinks div {
+    display: inline-block;
+    margin-left: 4%;
+  }
+  .containerIconSocialLinks2 {
+    
+  }
+  .containerIconSocialLinks1 {
+    
+  }
+  .containerMenuCategoriesOurCompany {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-evenly !important;
+    width: 60%;
+    padding-top: 2%;
+    margin-left: 15%;
+  }
+  .containerOurCompany {
+    display: flex;
+    flex-direction: column !important;
+    width: 33%;
+  }
+  .containerFooterMenu {
+    display: flex;
+    flex-direction: column !important;
+    width: 33%;
+    margin-right: 2em;
+  }
+  .containerFooterCategories {
+    display: flex;
+    flex-direction: column !important;
+    justify-content: space-evenly;
+    width: 33%;
+    height: inherit;
+  }
+  .containerFooterCategories h5 {
+    font-size: 20px;
+    margin-bottom: 2%;  
+    font-weight: 400;
+    font-family: "Clash Display", sans-serif;
+    color: $WhiteColor;
+  }
+  .containerFooterCategories p {
+    font-size: 16px;
+    font-weight: 300;
+    color: $WhiteColor;
+  }
+  .containerLineDevide {
+    display: flex;
+    flex-direction: column !important;
+  }
+  .containerLineDevide div {
+    margin: 0em auto 1em auto !important;
+  }
+  .containerLineDevide p {
+    margin-top: 2%;
+    align-self: flex-start !important;
+  }
 }

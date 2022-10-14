@@ -18,41 +18,43 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+    width: inherit;
+    height: 250px;
   }
   .containerFooterInfo {
     width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 8.5em;
+    height: inherit;
     margin-bottom: 10%;
   }
   .containerFooterInfo h3 {
     color: $WhiteColor;
     font-size: 36px;
-    font-weight: 300;
+    font-weight: 400;
     font-family: "Clash Display", sans-serif;
-    margin-bottom: 5%;
+    margin-bottom: 0%;
   }
   .containerFooterInfo p {
     font-size: 14px;
     line-height: 110%;
+    font-weight: 200;
     color: #fff;
   }
   .containerSocialLinks {
     width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 7em;
+    height: 200px;
     align-self: flex-start;
   }
   .containerSocialLinks h5 {
     color: $WhiteColor;
     font-size: 19px;
-    font-weight: 300;
+    font-weight: 400;
     font-family: "Clash Display", sans-serif;
-    margin-bottom: 5%;
+    margin-bottom: 10%;
     margin-left: 12%;
   }
   .containerIconSocialLinks1 {
@@ -81,6 +83,9 @@
   // container containerMenuCategoriesOurCompany
   .containerMenuCategoriesOurCompany {
     display: flex;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    height: 250px;
   }
   .containerFooterCategories {
     display: none;
@@ -90,7 +95,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 8em;
+    height: inherit;
   }
   .containerOurCompany h5 {
     font-size: 19px;
@@ -108,7 +113,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 8em;
+    height: inherit;
     margin-left: 13%;
   }
   .containerFooterMenu h5 {
@@ -156,7 +161,7 @@
   }
   .footer {
     display: inherit;
-    padding: 2em;
+    padding: 50px;
   }
   .footer div {
     display: flex;
@@ -166,28 +171,32 @@
   .containerInfoAndSocialLinks {
     display: flex;
     flex-direction: row;
+    width: 40%;
+    padding-top: 12%;
   }
   .containerFooterInfo {
     display: flex;
     flex-direction: column !important;
-    width: 7em;
+    width: 45%;
+    height: inherit;
   }
   .containerSocialLinks {
     align-items: flex-start;
     display: flex;
     flex-direction: column !important;
-    margin: 0 2em;
-    width: 10em;
-    height: auto;
+    width: 55%;
+    margin-top: -20%;
+    height: inherit;
   }
   .containerSocialLinks h5 {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     width: inherit !important;
   }
   .containerSocialLinks div {
     display: inline-block;
     margin-left: 4%;
+    margin-bottom: 15%;
   }
   .containerIconSocialLinks2 {
     // display: none !important;
@@ -199,22 +208,26 @@
     display: flex;
     flex-direction: row !important;
     justify-content: space-evenly !important;
+    width: 60%;
+    margin-left: 20%;
   }
   .containerOurCompany {
     display: flex;
     flex-direction: column !important;
-    width: 10em;
+    width: 33%;
+    height: inherit;
   }
   .containerFooterMenu {
     display: flex;
     flex-direction: column !important;
-    width: 10em;
-    margin-right: 2em;
+    width: 33%;
+    height: inherit;
   }
   .containerFooterCategories {
     display: flex;
     flex-direction: column !important;
-    width: 10em;
+    width: 33%;
+    height: inherit;
   }
   .containerFooterCategories h5 {
     font-size: 19px;
@@ -235,6 +248,7 @@
     margin: 0em auto 1em auto !important;
   }
   .containerLineDevide p {
+    margin-top: 2%;
     align-self: flex-start !important;
   }
 }

@@ -24,14 +24,14 @@
     height: 100%;
   }
   .containerContentFirstContainer h4 {
-    font-size: 1.1em;
+    font-size: 20px;
     line-height: 120%;
     letter-spacing: 0.1px;
     font-family: "Clash Display", sans-serif;
     color: $WhiteColor;
     display: inline-block;
     margin-bottom: 2%;
-    font-weight: 100;
+    font-weight: 800;
   }
   .containerContentFirstContainer p {
     display: inline-block;
@@ -67,9 +67,9 @@
     padding: 10% 8%;
   }
   .containerContentSecond h4 {
-    font-size: 1em;
+    font-size: 20px;
     line-height: 120%;
-    font-weight: 400;
+    font-weight: 800;
     color: $DarkPrimaryColor;
     margin-bottom: 5%;
     font-family: "clash Display", sans-serif;
@@ -101,11 +101,11 @@
   }
   .imgFirstContainer {
     width: 50%;
-    height: 13.5em !important;
+    height: 500px !important;
   }
   .containerContentFirstContainer {
     width: 50%;
-    height: 13.5em !important;
+    height: 500px !important;
     margin-top: 3%;
     display: inline-block;
   }

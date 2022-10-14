@@ -1,62 +1,62 @@
 .FeatureCard {
-    display: flex;
-    flex-direction: column;
-    background-color: $LightGreyColor;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  background-color: $LightGreyColor;
+  justify-content: space-evenly;
 }
 .FeatureCard img {
-    height: 24px;
-    width: 24px;
-    object-fit: fill;
-    margin-bottom: 5%;
+  height: 24px;
+  width: 24px;
+  object-fit: fill;
+  margin-bottom: 5%;
 }
 .FeatureCard h4 {
-    color: $DarkPrimaryColor;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 110%;
-    margin-bottom: 5%;
-    font-family: 'Clash Display', sans-serif;
+  color: $DarkPrimaryColor;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 110%;
+  margin-bottom: 5%;
+  font-family: "Clash Display", sans-serif;
 }
 .FeatureCard p {
-    color: $DarkPrimaryColor;
-    font-size: 16px;
-    font-family: 'Satoshi', sans-serif;
-    line-height: 150%;
-
+  color: $DarkPrimaryColor;
+  font-size: 16px;
+  font-family: "Satoshi", sans-serif;
+  line-height: 150%;
 }
 @include mobile {
-    .FeatureCard {
-        padding: 2.5em 2em;
-        width: 100%;
-        height: 20em;
-        margin-top: 5%;
-    }
-    
+  .FeatureCard {
+    padding: 10px 20px;
+    width: 100%;
+    height: 250px;
+    margin-top: 5%;
+  }
 }
 
 @include tablet {
-    .FeatureCard {
-        margin: 1em !important;
-        padding: 2em 1.8em !important;
-        width: 30em !important;
-        flex-direction: column !important;
-    }
-    .FeatureCard img {
-        display: flex;
-        height: 24px;
-        width: 24px;
-        object-fit: fill;
-        margin-bottom: 2%;
-    }
-    .FeatureCard h4 {
-        display: inline-block !important;
-        width: inherit !important;
-        align-self: flex-start !important;
-        font-size: 1.6em !important;
-        
-    }
-    .FeatureCard p {
-
-    }
+  .FeatureCard {
+    margin: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 200px;
+    flex-direction: column !important;
+  }
+  .FeatureCard img {
+    display: flex;
+    height: 24px;
+    width: 24px;
+    object-fit: fill;
+    margin-bottom: 0%;
+  }
+  .FeatureCard h4 {
+    display: inline-block;
+    max-width: 200%;
+    width: 100% !important;
+    font-size: 17px;
+    margin-right: 0%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+  }
+  .FeatureCard p {
+  }
 }

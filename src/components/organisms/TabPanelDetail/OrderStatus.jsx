@@ -1,5 +1,5 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Typography } from '@mui/material'
-import React from 'react'
+import { Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Typography } from '@mui/material'
+import React, { useState } from 'react'
 import StatusChip from '../../molecules/StatusChip/StatusChip'
 import "./Tabs.scss"
 
@@ -26,17 +26,15 @@ const fontStyle = (fontSize = "16px", fontWeight = "400") => {
 }
 
 const OrderStatus = () => {
+    const [openModal, setOpenModal] = useState(false)
+    const handleOpenModal = () => {
+        setOpenModal(!openModal)
+    }
+
     return (
         <div className='user-tab'>
             <Typography variant='h3'>Order Tracking</Typography>
 
-            {/* <div
-                style={{
-                    boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px",
-                    borderRadius: "3px",
-                    overflowX: "auto"
-                }}
-            > */}
             <Paper
                 elevation={2}
                 style={{
@@ -75,7 +73,7 @@ const OrderStatus = () => {
                                 <TableRow
                                     key={index}
                                     hover
-                                    onClick={() => console.log("aloooo")}
+                                    onClick={handleOpenModal}
                                     sx={{
                                         "&.MuiTableRow-root.MuiTableRow-hover": {
                                             cursor: "pointer"
@@ -98,6 +96,24 @@ const OrderStatus = () => {
                     </Table>
                 </TableContainer>
                 {/* </div> */}
+
+                <Modal
+                    open={openModal}
+                    onClose={() => setOpenModal(false)}
+                >
+                    <div
+                        style={{
+                            backgroundColor: "#fff",
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: 'translate(-50%, -50%)',
+                            width: "70%"
+                        }}
+                    >
+                        dadsa
+                    </div>
+                </Modal>
             </Paper>
         </div>
     )
@@ -119,7 +135,7 @@ const dataTesting = [
     {
         billID: "0123456789",
         date: "22/07/2022",
-        status: "denied"
+        status: "rejected"
     },
     {
         billID: "0123456789",

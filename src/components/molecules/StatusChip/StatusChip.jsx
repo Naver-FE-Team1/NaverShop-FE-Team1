@@ -8,7 +8,7 @@ const StatusChip = (props) => {
         switch (label) {
             case "pending":
                 return "#06d6a0"
-            case "denied":
+            case "rejected":
                 return "#e63946"
             case "deliveried":
                 return "#00b4d8"

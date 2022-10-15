@@ -1,9 +1,10 @@
 import "./customButton.scss";
 
 const Button = (props) => {
-  const { children, width, bgColor, txtColor, padding, onClick, style } = props;
+  const { children, width, bgColor, txtColor, padding, onClick, style, type } = props;
   return (
     <button
+      type={type}
       className="my-btn"
       onClick={onClick}
       style={{

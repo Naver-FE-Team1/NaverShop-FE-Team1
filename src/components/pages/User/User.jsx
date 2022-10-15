@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./User.scss"
 import Banner from '../../organisms/Banner/Banner'
 import backgroundImage from "../../../assets/user-banner.jpg"
@@ -7,6 +7,9 @@ import TabPanel from '../../molecules/TabPanel/TabPanel'
 import UserInfo from '../../organisms/TabPanelDetail/UserInfo'
 import OrderStatus from '../../organisms/TabPanelDetail/OrderStatus'
 import ChangePassword from '../../organisms/TabPanelDetail/ChangePassword'
+import { auth, db } from '../../../firebase/firebase-config'
+import { doc, getDoc } from 'firebase/firestore'
+import { Navigate, useParams } from 'react-router-dom'
 
 const User = () => {
     const smMatches = useMediaQuery("(min-width: 600px)")
@@ -15,6 +18,8 @@ const User = () => {
     const handleChangeTab = (e, newValue) => {
         setTabValue(newValue)
     }
+
+    if(!auth.currentUser) return <Navigate to={"/"}/>
 
     return (
         <div id='user-page'>
@@ -57,10 +62,10 @@ const User = () => {
                 <main
                     style={{
                         flex: "1",
-                        maxWidth: "750px"
+                        maxWidth: "800px"
                     }}
                 >
-                    {tabsArr.map((item, index) => (
+                    {/* {tabsArr.map((item, index) => (
                         <TabPanel
                             key={index}
                             value={tabValue}
@@ -68,7 +73,27 @@ const User = () => {
                         >
                             { item.component }
                         </TabPanel>
-                    ))}
+                    ))} */}
+                    <TabPanel
+                        index={0}
+                        value={tabValue}
+                    >
+                        <UserInfo />
+                    </TabPanel>
+
+                    <TabPanel
+                        index={1}
+                        value={tabValue}
+                    >
+                        <OrderStatus />
+                    </TabPanel>
+
+                    <TabPanel
+                        index={2}
+                        value={tabValue}
+                    >
+                        <ChangePassword />
+                    </TabPanel>
                 </main>
             </section>
         </div>
@@ -83,11 +108,11 @@ const tabsArr = [
     {
         component: <OrderStatus />,
         title: "order status",
-    }, 
+    },
     {
         component: <ChangePassword />,
         title: "change password",
-    }, 
+    },
     {
         component: <div></div>,
         title: "logout"

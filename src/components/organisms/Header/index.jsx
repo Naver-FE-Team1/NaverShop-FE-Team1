@@ -15,7 +15,7 @@ const navItems = [
   {
     icon: null,
     title: "Products",
-    path: "/shopping-list",
+    path: "/product",
   },
   {
     icon: null,

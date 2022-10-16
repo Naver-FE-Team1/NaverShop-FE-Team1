@@ -5,12 +5,12 @@ import "./SliderSlick.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-const SliderSlick = ({ children }) => {
+const SliderSlick = ({ children, showItem }) => {
   //Slider setting
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: showItem,
     slidesToScroll: 1,
     nextArrow: <NextArrowSlider />,
     prevArrow: <PrevArrowSlider />,

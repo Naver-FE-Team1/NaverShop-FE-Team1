@@ -1,6 +1,8 @@
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/system";
 import { useState } from "react";
+import { useMediaQuery } from "@mui/material";
+import React from "react";
 import "../../../scss/ProductDetail/ProductDetailContent.scss";
 import Button from "../../atoms/Button/Button";
 import Quantity from "../../molecules/Quantity/Quantity";
@@ -18,6 +20,8 @@ const ProductDetailContent = () => {
 
   const navigate = useNavigate();
 
+  const mdMatches = useMediaQuery("(min-width:600px)");
+  const lgMatches = useMediaQuery("(min-width:1200px)");
   const sizes = [
     { id: 1, size: "S" },
     { id: 2, size: "M" },
@@ -47,7 +51,7 @@ const ProductDetailContent = () => {
               />
             </Grid>
             <Grid item>
-              <SliderSlick>
+              <SliderSlick showItem={3}>
                 {subImages.map((item, index) => (
                   <SubImage
                     key={item.id}

@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
 
 const Button = ({
+  handleClick,
   content,
   radius,
   color,
@@ -29,6 +29,7 @@ const Button = ({
           }}
           className="btn"
           type={type}
+          onClick={handleClick}
         >
           {content}
         </button>

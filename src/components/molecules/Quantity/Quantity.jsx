@@ -1,14 +1,15 @@
-import React from "react";
-const Quantity = () => {
+import React, { useState } from "react";
+const Quantity = ({ quant, setQuant }) => {
   return (
     <div className="productDetail__quantity-number">
-      <span>
+      <span onClick={() => quant > 0 && setQuant((quant) => --quant)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
+          style={quant > 0 ? { color: "#4e4d93" } : {}}
           className="icon"
         >
           <path
@@ -18,9 +19,10 @@ const Quantity = () => {
           />
         </svg>
       </span>
-      <p>1</p>
-      <span>
+      <p>{quant}</p>
+      <span onClick={() => setQuant((quant) => ++quant)}>
         <svg
+          style={{ color: "#4e4d93" }}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"

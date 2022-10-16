@@ -82,9 +82,9 @@ h6 {
 .align-self-end {
   align-self: flex-end;
 }
-// :root {
-// 	font-family: "Satoshi", "Clash Display", Helvetica, Arial, sans-serif;
-// }
+:root {
+	font-family: "Satoshi", "Clash Display", Helvetica, Arial, sans-serif;
+}
 
 *,
 *::before,
@@ -100,12 +100,12 @@ body {
   width: 100%;
   font-family: "Clash Display", sans-serif;
   font-weight: 400;
-  font-size: 2.25em;
+  // font-size: 2.25em;
   line-height: 110%;
   box-sizing: border-box;
 }
 
 html {
-  font-size: 66%;
+  // font-size: 66%;
   min-height: 100vh;
 }

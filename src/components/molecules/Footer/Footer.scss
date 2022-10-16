@@ -1,6 +1,5 @@
 @include mobile {
     body {
-        display: flex;
         background-color: transparent;
         font-weight: 300;
         font-family: 'Satoshi', sans-serif;
@@ -162,10 +161,10 @@
 
 
 @include tablet {
-    body {
-        display: flex;
+    // body {
+    //     display: flex;
 
-    }
+    // }
     .footer {
         display: inherit;
         padding: 5em;

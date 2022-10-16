@@ -1,5 +1,7 @@
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/system";
+import { useState } from "react";
+import { useMediaQuery } from "@mui/material";
 import React from "react";
 import "../../../scss/ProductDetail/ProductDetailContent.scss";
 import Button from "../../atoms/Button/Button";
@@ -7,7 +9,19 @@ import Quantity from "../../molecules/Quantity/Quantity";
 import Size from "../../atoms/Size/Size";
 import SubImage from "../../atoms/SubImage/SubImage";
 import SliderSlick from "../../molecules/SliderSlick/SliderSlick";
+import { useNavigate, useParams } from "react-router-dom";
 const ProductDetailContent = () => {
+  //state này để lưu size S,M,L,...
+  //ban đầu ấn add to basket sẽ lưu vô local
+  const [sizePicker, setSizePicker] = useState("");
+  const [quant, setQuant] = useState(1);
+  const { id } = useParams(); // id được khai báo ở trang App.jsx
+  //Lấy ra ở đây để dùng trong các trường hợp query 1 sản phẩm theo id
+
+  const navigate = useNavigate();
+
+  const mdMatches = useMediaQuery("(min-width:600px)");
+  const lgMatches = useMediaQuery("(min-width:1200px)");
   const sizes = [
     { id: 1, size: "S" },
     { id: 2, size: "M" },
@@ -15,6 +29,11 @@ const ProductDetailContent = () => {
     { id: 4, size: "XL" },
     { id: 5, size: "XXL" },
   ];
+
+  const handleAddtoCart = () => {
+    const productStringify = [{ id, quantity: quant, size: sizePicker }];
+    localStorage.setItem("basket", JSON.stringify(productStringify));
+  };
   //Number
   var price = 25000000;
   //subImages
@@ -32,7 +51,7 @@ const ProductDetailContent = () => {
               />
             </Grid>
             <Grid item>
-              <SliderSlick>
+              <SliderSlick showItem={3}>
                 {subImages.map((item, index) => (
                   <SubImage
                     key={item.id}
@@ -81,7 +100,11 @@ const ProductDetailContent = () => {
                 >
                   {sizes.map((item) => (
                     <Grid item key={item.id}>
-                      <Size size={item.size} />
+                      <Size
+                        picked={sizePicker === item.size}
+                        onClick={() => setSizePicker(item.size)}
+                        size={item.size}
+                      />
                     </Grid>
                   ))}
                 </Grid>
@@ -91,7 +114,7 @@ const ProductDetailContent = () => {
                 <h5 className="productDetail__quantity-title">Quantity</h5>
                 <Grid container spacing={2}>
                   <Grid item xs={12} md={3}>
-                    <Quantity></Quantity>
+                    <Quantity setQuant={setQuant} quant={quant} />
                   </Grid>
                 </Grid>
               </div>
@@ -102,13 +125,15 @@ const ProductDetailContent = () => {
                       backgroundColor="#2A254B"
                       color="#fff"
                       content="Add to cart"
+                      handleClick={handleAddtoCart}
                     ></Button>
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <Button
                       color="#000"
                       bgColor="#fff"
-                      text="Add to cart"
+                      content="Buy now"
+                      handleClick={() => navigate("/checkout")}
                     ></Button>
                   </Grid>
                 </Grid>

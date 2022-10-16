@@ -1,11 +1,12 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-const Size = ({ size }) => {
+const Size = ({ size, onClick, picked }) => {
   return (
     <Button
+      onClick={onClick}
       style={{ color: "#2A254B", border: "1px solid #2A254B" }}
-      variant="outlined"
+      variant={picked ? "contained" : "outlined"}
     >
       <p>{size}</p>
     </Button>

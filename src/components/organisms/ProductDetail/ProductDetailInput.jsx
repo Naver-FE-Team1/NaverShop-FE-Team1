@@ -1,43 +1,49 @@
+import DeleteIcon from "@mui/icons-material/Delete";
+import SendIcon from "@mui/icons-material/Send";
 import {
-  Stack,
-  TextField,
-  Rating,
   Avatar,
   Button,
+  Rating,
+  Stack,
+  TextField,
   useMediaQuery,
-  FormControl,
-} from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
-import { useState, useRef, useEffect } from 'react';
+} from "@mui/material";
+import { useEffect, useState } from "react";
 
-const ProductDetailInput = ({ width, height, showRating, widthInput, idCmt, onChangeCmt }) => {
-  const [comment, setComment] = useState('')
-  const [data, setData] = useState([])
-  const lgMatches = useMediaQuery('(min-width:1200px)');
+const ProductDetailInput = ({
+  width,
+  height,
+  showRating,
+  widthInput,
+  idCmt,
+  onChangeCmt,
+}) => {
+  const [comment, setComment] = useState("");
+  const [data, setData] = useState([]);
+  const lgMatches = useMediaQuery("(min-width:1200px)");
   const [value, setValue] = useState(2);
   const handleCommentInput = (e) => {
-    setComment(e.target.value)
-  }
+    setComment(e.target.value);
+  };
   useEffect(() => {
-    if(localStorage.getItem('comments')){
-      setData(JSON.parse(localStorage.getItem('comments')))
+    if (localStorage.getItem("comments")) {
+      setData(JSON.parse(localStorage.getItem("comments")));
     }
-  }, [localStorage.getItem('comments')])
+  }, [localStorage.getItem("comments")]);
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const dataCmt = {
-      id: '6',
-      author: 'Dang',
+      id: "6",
+      author: "Dang",
       content: comment,
       rating: value,
-      created: new Date,
+      created: new Date(),
       liked: 0,
       dislike: 0,
-      parentId: '',
-      subComments: []
-    }
-    const newData = [dataCmt,...data];
+      parentId: "",
+      subComments: [],
+    };
+    const newData = [dataCmt, ...data];
     // dataCmts.current.map((item) => {
     //   if(data.parentId === ''){
     //     newData = [...dataCmts.current, data];
@@ -48,58 +54,58 @@ const ProductDetailInput = ({ width, height, showRating, widthInput, idCmt, onCh
     //     }
     //   })
     // })
-    localStorage.setItem('comments', JSON.stringify(newData));
+    localStorage.setItem("comments", JSON.stringify(newData));
     // setComment('')
-    onChangeCmt()
+    onChangeCmt();
   };
   const handleClearForm = () => {
-    setComment('')
-  }
+    setComment("");
+  };
   return (
-    <Stack direction='row' spacing={2} sx={{ margin: '1rem 0' }}>
-      <Avatar src='/broken-image.jpg' sx={{ width: width, height: height }} />
-      <Stack style={{ display: 'inline' }} sx={{ width: '100%' }}>
+    <Stack direction="row" spacing={2} sx={{ margin: "1rem 0" }}>
+      <Avatar src="/broken-image.jpg" sx={{ width: width, height: height }} />
+      <Stack style={{ display: "inline" }} sx={{ width: "100%" }}>
         {showRating ? (
           <Rating
-            name='simple-controlled'
+            name="simple-controlled"
             value={value}
             onChange={(event, newEvent) => {
               setValue(newEvent);
             }}
           />
         ) : (
-          ''
+          ""
         )}
 
         <form onSubmit={handleSubmit}>
           <Stack
-            direction={{ xs: 'column', md: 'row' }}
+            direction={{ xs: "column", md: "row" }}
             spacing={5}
-            sx={{ width: lgMatches ? widthInput : '100%' }}
+            sx={{ width: lgMatches ? widthInput : "100%" }}
           >
             <TextField
-              id='standard-basic'
-              label='Viết bình luận....'
-              variant='standard'
-              name='comment'
+              id="standard-basic"
+              label="Viết bình luận...."
+              variant="standard"
+              name="comment"
               value={comment}
               fullWidth
-              style={{ display: 'inline' }}
+              style={{ display: "inline" }}
               onChange={handleCommentInput}
             />
-            <Stack direction='row' spacing={2} sx={{ alignItems: 'flex-end' }}>
+            <Stack direction="row" spacing={2} sx={{ alignItems: "flex-end" }}>
               <Button
-                variant='contained'
+                variant="contained"
                 endIcon={<SendIcon />}
-                type='submit'
-                value='submit'
+                type="submit"
+                value="submit"
                 sx={{
-                  background: '#2A254B',
-                  width: '100px',
-                  height: '40px',
-                  borderRadius: '20px',
-                  '&:hover': {
-                    background: '#2A254B',
+                  background: "#2A254B",
+                  width: "100px",
+                  height: "40px",
+                  borderRadius: "20px",
+                  "&:hover": {
+                    background: "#2A254B",
                   },
                 }}
               >
@@ -108,10 +114,10 @@ const ProductDetailInput = ({ width, height, showRating, widthInput, idCmt, onCh
               <Button
                 startIcon={<DeleteIcon />}
                 sx={{
-                  width: '100px',
-                  height: '40px',
-                  borderRadius: '20px',
-                  color: '#2A254B',
+                  width: "100px",
+                  height: "40px",
+                  borderRadius: "20px",
+                  color: "#2A254B",
                 }}
                 onClick={handleClearForm}
               >

@@ -3,7 +3,7 @@ import ProductReview from "../../organisms/ProductDetail/ProductReview";
 import ProductDetailList from "../../organisms/ProductDetail/ProductDetailList";
 import ProductDetailContent from "../../organisms/ProductDetail/ProductDetailContent";
 import Header from "../../organisms/Header";
-
+import Footer from "../../molecules/Footer/Footer";
 
 const ProductDetail = () => {
   return (
@@ -13,6 +13,7 @@ const ProductDetail = () => {
       <ProductDetailList />
       <ProductReview />
       <ProductDetailJoin />
+      <Footer />
     </>
   );
 };

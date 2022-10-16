@@ -55,18 +55,18 @@ const Header = () => {
         <nav className="nav-bar d-flex align-items-center justify-content-between">
           <img className="search" src={Search} alt="" />
           <div className="inner-nav">
-            <IconButton className="cart" aria-label="cart">
+            {/* <IconButton className="cart" aria-label="cart"> */}
               <Cart />
-            </IconButton>
-            <IconButton
+            {/* </IconButton> */}
+            {/* <IconButton
               aria-describedby={openPopover ? "user-button" : undefined}
               className="user"
               onClick={handleOpenPopover}
               aria-label="user"
-            >
+            > */}
               <User />
-            </IconButton>
-            {openPopover && (
+            {/* </IconButton> */}
+            {/* openPopover && (
               <Popper
                 id={"user-button"}
                 open={openPopover}
@@ -83,17 +83,18 @@ const Header = () => {
               >
                 <Paper >
                   <List>
-                    <Link to={`/user/${auth.currentUser.uid}`}>
-                      <ListItemButton>
-                        <ListItemText primary="Profile" />
-                      </ListItemButton>
-                    </Link>
+                    {auth.currentUser &&
+                      <Link to={`/user/${auth.currentUser.uid}`}>
+                        <ListItemButton>
+                          <ListItemText primary="Profile" />
+                        </ListItemButton>
+                      </Link>}
+
 
                     <Divider />
 
-                    {/* TESTING */}
                     <ListItemButton onClick={() => {
-                      signInWithEmailAndPassword(auth, "vandangnhathung10@gmail.com", "hunghung1")
+                      signInWithEmailAndPassword(auth, "vandangnhathung10@gmail.com", "123456")
                         .then((cred) => {
                           console.log("header", cred.user)
                         })
@@ -106,7 +107,7 @@ const Header = () => {
                   </List>
                 </Paper>
               </Popper>
-            )}
+            ) */}
             <div className="burger">
               <Menu customBurgerIcon={<MenuLogo />}>
                 {navItems.map((item, idx) => (

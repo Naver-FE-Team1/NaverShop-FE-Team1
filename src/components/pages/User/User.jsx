@@ -65,7 +65,7 @@ const User = () => {
                         maxWidth: "800px"
                     }}
                 >
-                    {/* {tabsArr.map((item, index) => (
+                    {tabsArr.map((item, index) => (
                         <TabPanel
                             key={index}
                             value={tabValue}
@@ -73,8 +73,8 @@ const User = () => {
                         >
                             { item.component }
                         </TabPanel>
-                    ))} */}
-                    <TabPanel
+                    ))}
+                    {/* <TabPanel
                         index={0}
                         value={tabValue}
                     >
@@ -94,6 +94,13 @@ const User = () => {
                     >
                         <ChangePassword />
                     </TabPanel>
+
+                    <TabPanel
+                        index={3}
+                        value={tabValue}
+                    >
+                        
+                    </TabPanel> */}
                 </main>
             </section>
         </div>

@@ -9,6 +9,11 @@ import { ThemeConfig } from '../../../theme/ThemeConfig'
 import PasswordInput from '../../molecules/PasswordInput/PasswordInput'
 import "./Tabs.scss"
 
+const errorStyle = {
+    marginTop: "5px",
+    marginLeft: "15px",
+    color: "red"
+}
 
 const ChangePassword = () => {
     const smMatches = useMediaQuery("(min-width: 600px)")
@@ -83,7 +88,7 @@ const ChangePassword = () => {
                                         {...field}
                                     />
                                     {meta.touched &&
-                                        meta.error && <div >{meta.error}</div>}
+                                        meta.error && <div style={errorStyle}>{meta.error}</div>}
                                 </>
                             )}
                         </Field>
@@ -98,7 +103,7 @@ const ChangePassword = () => {
                                         {...field}
                                     />
                                     {meta.touched &&
-                                        meta.error && <div >{meta.error}</div>}
+                                        meta.error && <div style={errorStyle}>{meta.error}</div>}
                                 </>
                             )}
                         </Field>

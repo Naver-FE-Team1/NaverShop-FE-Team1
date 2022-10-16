@@ -114,7 +114,7 @@ const UserInfo = (props) => {
                                             {...field}
                                         />
                                         {meta.touched &&
-                                            meta.error && <div style={{ ...errorStyle }}>{meta.error}</div>}
+                                            meta.error && <div style={errorStyle}>{meta.error}</div>}
                                     </>
                                 )}
                             </Field>
@@ -130,7 +130,7 @@ const UserInfo = (props) => {
                                             {...field}
                                         />
                                         {meta.touched &&
-                                            meta.error && <div style={{ ...errorStyle }}>{meta.error}</div>}
+                                            meta.error && <div style={errorStyle}>{meta.error}</div>}
                                     </>
                                 )}
                             </Field>

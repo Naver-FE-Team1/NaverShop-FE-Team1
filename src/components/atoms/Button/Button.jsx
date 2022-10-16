@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
 const Button = ({
   content,
@@ -10,24 +11,45 @@ const Button = ({
   backgroundColor,
   width,
   height,
+  navigate = "",
   type = "submit",
 }) => {
   return (
-    <button
-      style={{
-        fontSize: `${fontSize}px`,
-        borderRadius: `${radius}px`,
-        color: color,
-        border: `1px solid ${borderColor}`,
-        backgroundColor: backgroundColor,
-        width: width,
-        height: height,
-      }}
-      className="btn"
-      type={type}
-    >
-      {content}
-    </button>
+    <>
+      {navigate === "" ? (
+        <button
+          style={{
+            fontSize: `${fontSize}px`,
+            borderRadius: `${radius}px`,
+            color: color,
+            border: `1px solid ${borderColor}`,
+            backgroundColor: backgroundColor,
+            width: width,
+            height: height,
+          }}
+          className="btn"
+          type={type}
+        >
+          {content}
+        </button>
+      ) : (
+        <NavLink
+          style={{
+            fontSize: `${fontSize}px`,
+            borderRadius: `${radius}px`,
+            color: color,
+            border: `1px solid ${borderColor}`,
+            backgroundColor: backgroundColor,
+            width: width,
+            height: height,
+          }}
+          className="btn"
+          to={navigate}
+        >
+          {content}
+        </NavLink>
+      )}
+    </>
   );
 };
 

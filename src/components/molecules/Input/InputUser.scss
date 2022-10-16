@@ -9,6 +9,7 @@
     border: 1px solid rgb(238, 234, 234);
     border-radius: 10px;
     outline: none;
+    padding-right: 50px;
     &:focus {
       outline: 1px solid $text-primary;
     }
@@ -16,5 +17,9 @@
   &__error {
     color: red;
     text-align: left;
+  }
+  &__container {
+    position: relative;
+    width: 100%;
   }
 }

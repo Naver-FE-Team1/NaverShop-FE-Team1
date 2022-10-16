@@ -7,7 +7,9 @@
     display: block !important;
   }
   .layout {
-    padding: 24px;
+    background-color: $main;
+    height: 100vh;
+    padding: 20px;
     &__container {
       max-width: 327px;
       width: 100%;
@@ -15,7 +17,7 @@
       padding: 30px 20px;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
       border-radius: 10px;
-      margin: 0 auto;
+      margin: auto;
       text-align: center;
     }
     &__content {
@@ -36,10 +38,15 @@
       font-weight: 600;
       transition: all 0.3s ease;
     }
+    text-align: left;
     &__forget {
       @include font-size(13px);
       &:hover {
         color: #1a17a2;
+      }
+      &-content {
+        @include font-size(16px);
+        text-align: left;
       }
     }
   }
@@ -50,7 +57,9 @@
     display: block !important;
   }
   .layout {
-    padding: 24px;
+    background-color: $main;
+
+    padding: 80px 24px;
     &__container {
       max-width: 550px;
       width: 100%;
@@ -58,7 +67,7 @@
       padding: 30px 63px;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
       border-radius: 10px;
-      margin: 0 auto;
+      margin: auto;
       text-align: center;
     }
     &__content {

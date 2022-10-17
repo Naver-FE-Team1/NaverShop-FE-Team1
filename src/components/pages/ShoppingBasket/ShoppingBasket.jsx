@@ -8,7 +8,7 @@ import HeadTitle from "../../atoms/HeadTitle/HeadTitle";
 import FootBasket from "../../molecules/FootBasket/FootBasket";
 import Footer from "../../molecules/Footer/Footer";
 import Header from "../../organisms/Header";
-import ProductCheckout from "../../organisms/ProductCheckout/ProductCheckout";
+// import ProductCheckout from "../../organisms/ProductCheckout/ProductCheckout";
 const ShoppingBasket = () => {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -19,7 +19,7 @@ const ShoppingBasket = () => {
       <Header />
       <div className="shopping-basket">
         <HeadTitle content={"Your shopping cart"} />
-        <ProductCheckout />
+        {/* <ProductCheckout /> */}
         <FootBasket handleClick={handleClick} total={210} />
       </div>
       <Footer />

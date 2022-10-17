@@ -8,7 +8,7 @@ import ProductDetail from "./components/pages/ProductDetail/ProductDetail";
 import SignInPage from "./components/pages/Authentication/SignIn/SignInPage";
 import SignUpPage from "./components/pages/Authentication/SignUp/SignUpPage";
 import GetPasswordPage from "./components/pages/Authentication/GetPasswordPage/GetPasswordPage";
-import Checkout from "./components/pages/Checkout";
+// import Checkout from "./components/pages/Checkout";
 function App() {
   return (
     <div className="App">
@@ -19,10 +19,9 @@ function App() {
         <Route path="sign-in" element={<SignInPage />} />
         <Route path="recover-password" element={<GetPasswordPage />} />
         <Route path="shopping-list" element={<ShoppingList />} />
-        <Route path="product" element={<ShoppingList />} />
-        <Route path="product/detail/:id" element={<ProductDetail />} />
+        <Route path="product/detail/" element={<ProductDetail />} />
         <Route path="shopping-basket" element={<ShoppingBasket />} />
-        <Route path="checkout" element={<Checkout />} />
+        {/* <Route path="checkout" element={<Checkout />} /> */}
       </Routes>
     </div>
   );

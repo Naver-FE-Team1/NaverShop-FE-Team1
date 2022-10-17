@@ -20,7 +20,7 @@ const navItems = [
   {
     icon: null,
     title: "About us",
-    path: "/",
+    path: "/about",
   },
   {
     icon: <User />,

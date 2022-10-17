@@ -11,22 +11,23 @@ import {
   OutlinedInput,
 } from "@mui/material";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import moment from "moment";
 import Footer from "../../molecules/Footer/Footer";
 
 moment().format();
-const DATA_TEST = JSON.parse(localStorage.getItem("basket")).map(
-  (item, idx) => ({
-    imgScr: "https://cf.shopee.vn/file/6aba1d32171c02c7e0c3d59a5f75fbb8",
-    name: "Graystone vase",
-    description: "A timeless ceramic vase with a tri color grey glaze.",
-    color: "black",
-    size: item.size,
-    quantity: item.quantity,
-    price: 85,
-  })
-);
+const DATA_TEST =
+  localStorage.getItem("basket") !== null
+    ? JSON.parse(localStorage.getItem("basket")).map((item, idx) => ({
+        imgScr: "https://cf.shopee.vn/file/6aba1d32171c02c7e0c3d59a5f75fbb8",
+        name: "Graystone vase",
+        description: "A timeless ceramic vase with a tri color grey glaze.",
+        color: "black",
+        size: item.size,
+        quantity: item.quantity,
+        price: 85,
+      }))
+    : [];
 
 const Checkout = () => {
   const [value, setValue] = useState(moment()); //state này lưu giá trị field ngày tháng
@@ -34,6 +35,10 @@ const Checkout = () => {
   const handleChange = (newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    console.log(localStorage.getItem("basket"));
+  }, []);
   return (
     <section className="checkout">
       <Header />

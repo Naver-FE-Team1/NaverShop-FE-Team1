@@ -19,28 +19,6 @@ const DATA_TEST =
       }))
     : [];
 
-// const DATA_TEST = [
-//   {
-//     imgScr: "https://cf.shopee.vn/file/6aba1d32171c02c7e0c3d59a5f75fbb8",
-//     name: "Graystone vase",
-//     description: "A timeless ceramic vase with a tri color grey glaze.",
-//     color: "black",
-//     size: "M",
-//     quantity: 1,
-//     price: 85,
-//   },
-//   {
-//     imgScr:
-//       "https://bizweb.dktcdn.net/thumb/1024x1024/100/345/647/products/z1979282456037-bc0f790f06327f9fa7fae97d3eb9d145.jpg?v=1595429261300",
-//     name: "Basic white vase",
-//     description: "Beautiful and simple this is one for the classics",
-//     color: "blue",
-//     size: "L",
-//     quantity: 1,
-//     price: 125,
-//   },
-// ];
-
 const ProductCheckout = () => {
   useEffect(() => {
     console.log(localStorage.getItem("basket"));

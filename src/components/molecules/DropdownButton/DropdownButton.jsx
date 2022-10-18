@@ -3,8 +3,12 @@ import { Button, Select } from '@mui/material'
 import React from 'react'
 
 const DropdownButton = ({ children, title, onClick, style, variant = "button" }) => {
-
-
+    const fontStyle = {
+        color: "#2a254b",
+        textTransform: "capitalize",
+        fontWeight: "400",
+        fontSize: "16px"
+    }
 
     /* 
         There are 2 variants: button and select
@@ -21,6 +25,7 @@ const DropdownButton = ({ children, title, onClick, style, variant = "button" })
                 "&.MuiButton-root": {
                     justifyContent: "space-between"  
                 },
+                ...fontStyle,
                 ...style
             }}
             title={title}
@@ -41,7 +46,6 @@ const DropdownButton = ({ children, title, onClick, style, variant = "button" })
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
-                textTransform: "capitalize",
                 ".MuiSelect-outlined": {
                     backgroundColor: "#f6f6f6",
                     padding: "16px 24px",
@@ -51,7 +55,8 @@ const DropdownButton = ({ children, title, onClick, style, variant = "button" })
                 },
                 ".MuiOutlinedInput-notchedOutline": {
                     borderWidth: "0!important"
-                }
+                },
+                ...fontStyle
             }}
         >
             {children}

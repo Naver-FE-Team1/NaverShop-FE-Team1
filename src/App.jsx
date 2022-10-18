@@ -9,6 +9,7 @@ import SignInPage from "./components/pages/Authentication/SignIn/SignInPage";
 import SignUpPage from "./components/pages/Authentication/SignUp/SignUpPage";
 import GetPasswordPage from "./components/pages/Authentication/GetPasswordPage/GetPasswordPage";
 // import Checkout from "./components/pages/Checkout";
+import User from "./components/pages/User/User";
 function App() {
   return (
     <div className="App">
@@ -21,7 +22,9 @@ function App() {
         <Route path="shopping-list" element={<ShoppingList />} />
         <Route path="product/detail/" element={<ProductDetail />} />
         <Route path="shopping-basket" element={<ShoppingBasket />} />
-        {/* <Route path="checkout" element={<Checkout />} /> */}
+        <Route path="/user">
+          <Route path=":userUID" element={<User />}/>
+        </Route>
       </Routes>
     </div>
   );

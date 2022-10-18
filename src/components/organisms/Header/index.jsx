@@ -4,9 +4,9 @@ import { ReactComponent as Cart } from "../../../assets/Shopping--cart.svg";
 import { ReactComponent as User } from "../../../assets/User--avatar.svg";
 import { ReactComponent as MenuLogo } from "../../../assets/Menu.svg";
 import { stack as Menu } from "react-burger-menu";
-import { Divider, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Paper, Popper } from "@mui/material";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Button, Divider, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Paper, Popper } from "@mui/material";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 //import stuffs to test
 import { auth } from "../../../firebase/firebase-config";
@@ -37,6 +37,8 @@ const navItems = [
 ];
 
 const Header = () => {
+  const navigate = useNavigate();
+
   const [openPopover, setOpenPopover] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null)
   const handleOpenPopover = (e) => {
@@ -51,12 +53,12 @@ const Header = () => {
   return (
     <header className="landingpage-header d-flex flex-column justify-content-between align-items-center">
       <div className="upper-nav d-flex justify-content-between align-items-center">
-        <p className="logo">Avion</p>
+        <p className="logo">Yame</p>
         <nav className="nav-bar d-flex align-items-center justify-content-between">
           <img className="search" src={Search} alt="" />
           <div className="inner-nav">
             {/* <IconButton className="cart" aria-label="cart"> */}
-              <Cart />
+            <Cart className="cart" />
             {/* </IconButton> */}
             {/* <IconButton
               aria-describedby={openPopover ? "user-button" : undefined}
@@ -64,9 +66,10 @@ const Header = () => {
               onClick={handleOpenPopover}
               aria-label="user"
             > */}
-              <User />
+            <User className="user" onClick={handleOpenPopover} />
             {/* </IconButton> */}
-            {/* openPopover && (
+            
+            {openPopover && (
               <Popper
                 id={"user-button"}
                 open={openPopover}
@@ -81,33 +84,70 @@ const Header = () => {
                   horizontal: 'right',
                 }}
               >
-                <Paper >
-                  <List>
-                    {auth.currentUser &&
-                      <Link to={`/user/${auth.currentUser.uid}`}>
-                        <ListItemButton>
-                          <ListItemText primary="Profile" />
-                        </ListItemButton>
-                      </Link>}
+                <Paper component={"nav"} elevation={3}>
+                  <Button onClick={() => navigate(`/user/${auth.currentUser.uid}`)}>
+                    user
+                  </Button>
 
-
-                    <Divider />
-
-                    <ListItemButton onClick={() => {
-                      signInWithEmailAndPassword(auth, "vandangnhathung10@gmail.com", "123456")
+                  <Button
+                    onClick={() => {
+                      signInWithEmailAndPassword(auth, "123@gmail.com", "1234Qw")
                         .then((cred) => {
                           console.log("header", cred.user)
                         })
                         .catch(err => {
                           console.log(err)
                         })
-                    }}>
+                    }}
+                  >
+                    log in
+                  </Button>
+
+                  <Button
+                    onClick={() => auth.signOut()} 
+                  >
+                    log out
+                  </Button>
+                  {/* <List>
+
+                    <ListItemButton>
+                      <Link to={`/user/${auth.currentUser.uid}`}>
+                        <ListItemText primary="Profile" />
+                      </Link>
+                    </ListItemButton>
+
+                    
+                    <Divider />
+
+                    <ListItemButton
+                      onClick={() => {
+                        signInWithEmailAndPassword(auth, "vandangnhathung10@gmail.com", "123456")
+                          .then((cred) => {
+                            console.log("header", cred.user)
+                          })
+                          .catch(err => {
+                            console.log(err)
+                          })
+                      }}
+                    >
                       <ListItemText primary="Test: Log in" />
                     </ListItemButton>
-                  </List>
+
+                    <Divider />
+
+                    <ListItemButton
+                      onClick={() => {
+                        auth.signOut()
+                      }}
+                    >
+                      <ListItemText primary="Test: Log out" />
+                    </ListItemButton>
+
+                  </List> */}
                 </Paper>
               </Popper>
-            ) */}
+            )}
+
             <div className="burger">
               <Menu customBurgerIcon={<MenuLogo />}>
                 {navItems.map((item, idx) => (

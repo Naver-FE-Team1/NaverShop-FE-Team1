@@ -10,7 +10,7 @@ import PasswordInput from '../../molecules/PasswordInput/PasswordInput'
 import "./Tabs.scss"
 
 const errorStyle = {
-    marginTop: "5px",
+    marginTop: "0",
     marginLeft: "15px",
     color: "red"
 }

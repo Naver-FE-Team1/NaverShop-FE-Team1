@@ -29,6 +29,7 @@ const User = () => {
 
             <section
                 style={{
+                    flex: 1,
                     display: "flex",
                     flexDirection: smMatches ? "row" : "column",
                     justifyContent: "center",
@@ -62,7 +63,7 @@ const User = () => {
                 <main
                     style={{
                         flex: "1",
-                        maxWidth: "800px"
+                        maxWidth: "800px",
                     }}
                 >
                     {tabsArr.map((item, index) => (

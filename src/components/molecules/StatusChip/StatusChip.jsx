@@ -8,11 +8,11 @@ const StatusChip = (props) => {
         switch (label) {
             case "pending":
                 return "#06d6a0"
-            case "rejected":
+            case "cancelled":
                 return "#e63946"
-            case "deliveried":
+            case "dispatched":
                 return "#00b4d8"
-            case "processing":
+            case "completed":
                 return "#f9c74f"
             default:
                 return "#000"
@@ -28,7 +28,7 @@ const StatusChip = (props) => {
                 color: "#495057",
                 fontSize: '10px',
                 fontWeight: "600",
-                width: "75px",
+                width: "80px",
                 textTransform: "capitalize"
             }}
         />

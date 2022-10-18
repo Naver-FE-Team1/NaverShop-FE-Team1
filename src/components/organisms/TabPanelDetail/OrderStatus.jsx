@@ -5,6 +5,10 @@ import "./Tabs.scss"
 
 const headersTable = [
     {
+        label: "",
+        align: 'left'
+    },
+    {
         label: "Bill ID",
         align: 'left'
     },
@@ -13,15 +17,23 @@ const headersTable = [
         align: 'left'
     },
     {
-        label: "Bill Status",
-        align: 'center'
+        label: "Total",
+        align: 'left'
+    },
+    {
+        label: "Status",
+        align: 'left'
     },
 ]
 
-const fontStyle = (fontSize = "16px", fontWeight = "400") => {
+const rowStyle = (fontSize = "16px", fontWeight = "400") => {
     return {
         fontSize: fontSize,
-        fontWeight: fontWeight
+        fontWeight: fontWeight,
+        color: "#212b36",
+
+        borderColor: "#f4f6f8",
+        paddingRight: "0",
     }
 }
 
@@ -35,11 +47,11 @@ const OrderStatus = () => {
         <div className='user-tab'>
             <Typography variant='h3'>Order Tracking</Typography>
 
-            <Paper
-                elevation={2}
+            <div
                 style={{
                     overflowX: "auto",
-                    margin: "15px 0"
+                    margin: "15px 0",
+                    boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px"
                 }}
             >
                 <TableContainer
@@ -49,16 +61,21 @@ const OrderStatus = () => {
                 >
                     <Table>
                         <TableHead>
-                            <TableRow>
-
+                            <TableRow
+                                style={{
+                                    backgroundColor: "#f4f6f8"
+                                }}
+                            >
                                 {headersTable.map((item, index) => (
                                     <TableCell
                                         key={index}
                                         align={item.align}
+                                        sx={[rowStyle("15px", "500"), {
+                                            color: "#2a343e",
+                                        }]}
                                     >
                                         <TableSortLabel
                                             hideSortIcon
-                                            style={fontStyle("16px", "500")}
                                         >
                                             {item.label}
                                         </TableSortLabel>
@@ -80,11 +97,13 @@ const OrderStatus = () => {
                                         }
                                     }}
                                 >
-                                    <TableCell style={fontStyle("12px")} align='left'>{item.billID}</TableCell>
-                                    <TableCell style={fontStyle("12px")} align='left'>{item.date}</TableCell>
+                                    <TableCell sx={rowStyle("13px")} align='center'>{item.index}</TableCell>
+                                    <TableCell sx={rowStyle("13px", "500")} align='left'>#{item.billID}</TableCell>
+                                    <TableCell sx={rowStyle("13px")} align='left'>{item.date}</TableCell>
+                                    <TableCell sx={rowStyle("13px")} align='left'>${item.total}</TableCell>
                                     <TableCell
-                                        style={fontStyle("12px")}
-                                        align='center'
+                                        sx={rowStyle("13px")}
+                                        align='left'
                                     >
                                         <StatusChip
                                             label={item.status}
@@ -114,7 +133,7 @@ const OrderStatus = () => {
                         dadsa
                     </div>
                 </Modal>
-            </Paper>
+            </div>
         </div>
     )
 }
@@ -123,23 +142,31 @@ export default OrderStatus
 
 const dataTesting = [
     {
+        index: 0,
         billID: "0123456789",
         date: "22/07/2022",
-        status: "deliveried"
+        total: 300.00,
+        status: "dispatched"
     },
     {
+        index: 1,
         billID: "0123456789",
         date: "22/07/2022",
-        status: "processing"
+        total: 10.00,
+        status: "completed"
     },
     {
+        index: 2,
         billID: "0123456789",
         date: "22/07/2022",
-        status: "rejected"
+        total: 29.39,
+        status: "cancelled"
     },
     {
+        index: 3,
         billID: "0123456789",
         date: "22/07/2022",
+        total: 9991.00,
         status: "pending"
     }
 ]

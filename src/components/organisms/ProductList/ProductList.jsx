@@ -4,70 +4,103 @@ import {
   ImageListItemBar,
   useMediaQuery,
 } from "@mui/material";
+import { useEffect } from "react";
 import Button from "../../atoms/Button";
+import { addProducts } from "../../../store/reducers/productsSlice";
 import "./productlist.scss";
-
+import { useSelector, useDispatch } from "react-redux";
+import { collection, query, getDocs } from "firebase/firestore";
+import { db } from "../../../firebase/firebase-config";
+import { useNavigate } from "react-router-dom";
 const ProductList = (props) => {
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.products);
+  const navigate = useNavigate();
   //USEMEDIAQUERY to check true or false of the current width screen
   const smMatches = useMediaQuery("(min-width:600px)");
   const mdMatches = useMediaQuery("(min-width:900px)");
   const lgMatches = useMediaQuery("(min-width:1200px)");
 
+  useEffect(() => {
+    if (products.length === 0) {
+      (async () => {
+        const q = query(collection(db, "products"));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          dispatch(addProducts({ data: doc.data(), id: doc.id }));
+        });
+      })();
+    }
+  }, []);
+
   //TODO: NEED TO WORK ON CASE WHERE TITLES CAN BE TOO LONG
   return (
     <ImageList
-        gap={smMatches ? 15 : 5}
-        cols={lgMatches ? 3 : mdMatches ? 2 : smMatches ? 3 : 2}
-        sx={{
-          marginTop: "0px",
-        }}
-      >
-        {itemData.map((item, index) => (
-          //GOT TO CHANGE THIS WITH LINK (REACT ROUTER)
-          <ImageListItem key={index}>
-            <a href="#">
-              <img
+      gap={smMatches ? 8 : 0}
+      cols={lgMatches ? 4 : mdMatches ? 3 : smMatches ? 3 : 2}
+      sx={{
+        width: 1,
+        marginTop: "0px",
+      }}
+    >
+      {products.map((item, index) => (
+        //GOT TO CHANGE THIS WITH LINK (REACT ROUTER)
+        <ImageListItem
+          onClick={() => navigate(`/detail/${item.id}`)}
+          sx={{ width: "30%" }}
+          key={item.id}
+        >
+          <img
+            style={
+              !smMatches
+                ? {
+                    width: "163px",
+                    height: "201px",
+                    objectFit: "cover",
+                  }
+                : {}
+            }
+            src={item.data.image}
+            alt={item.data.name}
+          />
+          <ImageListItemBar
+            sx={{
+              marginBottom: "5px",
+            }}
+            title={
+              <span
                 style={{
-                  maxWidth: "100%",
+                  color: "#2a254b",
+                  fontFamily: ["Clash Display", "sans-serif"],
+                  display: "block",
+                  fontWeight: "400",
+                  lineHeight: "140%",
+                  fontSize: "20px",
+                  marginTop: "5px",
+                  marginBottom: "5px",
                 }}
-                src={`${item.img}`}
-                alt={item.title}
-              />
-            </a>
-            <ImageListItemBar
-              sx={{
-                marginBottom: "5px",
-              }}
-              title={
-                <span
-                  style={{
-                    color: "#2a254b",
-                    fontFamily: ["Clash Display", "sans-serif"],
-                    display: "block",
-                    fontSize: "18px",
-                    marginTop: "5px",
-                    marginBottom: "5px",
-                  }}
-                >
-                  {item.title}
-                </span>
-              }
-              subtitle={
-                <span
-                  style={{
-                    color: "#2a254b",
-                    fontFamily: ["Clash Display", "sans-serif"],
-                    fontSize: "13px",
-                  }}
-                >
-                  by: {item.author}
-                </span>
-              }
-              position="below"
-            />
-          </ImageListItem>
-        ))}
-      </ImageList>
+              >
+                {item.data.name}
+              </span>
+            }
+            subtitle={
+              <span
+                style={{
+                  color: "#2a254b",
+                  fontFamily: ["Clash Display", "sans-serif"],
+                  fontSize: "18px",
+                  fontWeight: "400",
+                  lineHeight: "150%",
+                }}
+              >
+                {item.data.price}
+              </span>
+            }
+            position="below"
+          />
+        </ImageListItem>
+      ))}
+    </ImageList>
   );
 };
 

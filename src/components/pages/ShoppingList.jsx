@@ -151,8 +151,8 @@ const ShoppingList = () => {
         {/* Product List section */}
         <Box
           sx={{
-            maxWidth: { xs: "850px", md: "700px", lg: "850px" },
-            paddingX: { xs: "10px", sm: "25px", md: "25px" },
+            width: { md: "70%" },
+            paddingX: "5%",
           }}
         >
           <ProductList />

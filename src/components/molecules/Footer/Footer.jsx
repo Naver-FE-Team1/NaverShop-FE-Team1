@@ -27,72 +27,43 @@ const Footer = () => {
                     {/* container Social links */}
                     <div className='containerSocialLinks'>
                         <h5>Social links</h5>
-                        <div className='containerIconSocialLinks1'>
-                            <img
-                                alt='Linkedin Icon'
-                                className='iconIn'
-                                src={LinkedinIcon}
-                            ></img>
-                            <img
-                                alt='Facebook Icon'
-                                className='iconFb'
-                                src={FacebookIcon}
-                            ></img>
-                            <img
-                                alt='Instagram Icon'
-                                className='iconIg'
-                                src={InstagramIcon}
-                            ></img>
+                        <div>
+                            <div className='containerIconSocialLinks1'>
+                                <img
+                                    alt='Linkedin Icon'
+                                    className='iconIn'
+                                    src={LinkedinIcon}
+                                ></img>
+                                <img
+                                    alt='Facebook Icon'
+                                    className='iconFb'
+                                    src={FacebookIcon}
+                                ></img>
+                                <img
+                                    alt='Instagram Icon'
+                                    className='iconIg'
+                                    src={InstagramIcon}
+                                ></img>
+                            </div>
+                            <div className='containerIconSocialLinks2'>
+                                <img
+                                    alt='Skype Icon'
+                                    className='iconSkype'
+                                    src={SkypeIcon}
+                                ></img>
+                                <img
+                                    alt='Twitter Icon'
+                                    className='iconTwitter'
+                                    src={TwitterIcon}
+                                ></img>
+                                <img
+                                    alt='Pinterest Icon'
+                                    className='iconPinterest'
+                                    src={PinterestIcon}
+                                ></img>
+                            </div>
                         </div>
-                        <div className='containerIconSocialLinks2'>
-                            <img
-                                alt='Skype Icon'
-                                className='iconSkype'
-                                src={SkypeIcon}
-                            ></img>
-                            <img
-                                alt='Twitter Icon'
-                                className='iconTwitter'
-                                src={TwitterIcon}
-                            ></img>
-                            <img
-                                alt='Pinterest Icon'
-                                className='iconPinterest'
-                                src={PinterestIcon}
-                            ></img>
-                        </div>
-                        <div className='containerIconSocialLinkDesktop'>
-                            <img
-                                alt='Linkedin Icon'
-                                className='iconIn'
-                                src={LinkedinIcon}
-                            ></img>
-                            <img
-                                alt='Facebook Icon'
-                                className='iconFb'
-                                src={FacebookIcon}
-                            ></img>
-                            <img
-                                alt='Instagram Icon'
-                                className='iconIg'
-                                src={InstagramIcon}
-                            ></img>
-                            <img
-                                alt='Skype Icon'
-                                className='iconSkype'
-                                src={SkypeIcon}
-                            ></img>
-                            <img
-                                alt='Twitter Icon'
-                                className='iconTwitter'
-                                src={TwitterIcon}
-                            ></img>
-                            <img
-                                alt='Pinterest Icon'
-                                className='iconPinterest'
-                                src={PinterestIcon}
-                            ></img>
-                        </div>
+                        
                     </div>
                 </div>
 

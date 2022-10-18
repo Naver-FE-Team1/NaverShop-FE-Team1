@@ -1,7 +1,6 @@
 import { Box, Divider, Drawer, MenuItem } from "@mui/material";
 import { CloseOutlined } from "@mui/icons-material";
 import { useState } from "react";
-import TitleBanner from "../atoms/TitleBanner";
 import DropdownButton from "../molecules/DropdownButton/DropdownButton";
 import Banner from "../organisms/Banner/Banner";
 import FiltersBox from "../organisms/Filters/FiltersBox";
@@ -9,6 +8,8 @@ import ProductList from "../organisms/ProductList/ProductList";
 import Footer from "../molecules/Footer/Footer";
 import "./shoppingList.scss";
 import Header from "../organisms/Header";
+import backgroundImage from "../../assets/background-banner.jpg"
+
 const container = window !== undefined ? () => window.document.body : undefined;
 
 const ShoppingList = () => {
@@ -23,31 +24,20 @@ const ShoppingList = () => {
     <div className="shopping-list">
       <Header />
       {/* Top Banner for Shopping List */}
-      <Banner>
-        <TitleBanner
-          style={{
-            margin: 0,
-            fontFamily: ["Clash Display", "sans-serif"],
-            fontWeight: "400",
-            color: "#fff",
-            fontSize: "28px",
-            textAlign: "center",
-          }}
-        >
-          All products
-        </TitleBanner>
+      <Banner bgImg={backgroundImage}>
+        All products
       </Banner>
 
       {/* Box containing FilterBox and ProductList */}
       <Box
         sx={{
-          paddingY: { xs: "20px", md: "60px" },
+          paddingY: { xs: "25px", md: "60px" },
           paddingX: "auto",
           flex: "1",
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           justifyContent: "space-evenly",
-          gap: { xs: "20px", md: "0" },
+          gap: { xs: "25px", md: "0" },
         }}
       >
         {/* Filter and Sort section */}
@@ -57,7 +47,7 @@ const ShoppingList = () => {
             sx={{
               display: { xs: "grid", md: "none" },
               gridTemplateColumns: "1fr 1fr",
-              paddingX: { xs: "15px", sm: "50px" },
+              paddingX: "5%",
               gap: "20px",
             }}
           >

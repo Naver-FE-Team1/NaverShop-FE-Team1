@@ -1,17 +1,28 @@
 import React from 'react'
-import backgroundImage from "../../../assets/background-banner.jpg"
+import TitleBanner from '../../atoms/TitleBanner'
 
-const Banner = ({ children, style }) => {
+const Banner = ({ children, style, bgImg }) => {
     return (
         <div id='banner'>
             <div
                 style={{
-                    padding: "30px 0",
-                    backgroundImage: `url(${backgroundImage})`,
+                    padding: "60px 0",
+                    backgroundImage: `url(${bgImg})`,
                     ...style
                 }}
             >
-                {children}
+                <TitleBanner
+                    style={{
+                        margin: 0,
+                        fontFamily: ["Clash Display", "sans-serif"],
+                        fontWeight: "400",
+                        color: "#fff",
+                        fontSize: "28px",
+                        textAlign: "center",
+                    }}
+                >
+                    { children }
+                </TitleBanner>
             </div>
         </div>
     )

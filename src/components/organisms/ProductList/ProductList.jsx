@@ -5,6 +5,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useEffect } from "react";
+import { ThemeConfig } from "../../../theme/ThemeConfig";
 import Button from "../../atoms/Button";
 import { addProducts } from "../../../store/reducers/productsSlice";
 import "./productlist.scss";

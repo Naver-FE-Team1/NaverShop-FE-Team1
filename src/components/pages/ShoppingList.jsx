@@ -19,13 +19,13 @@ import {
 
 const container = window !== undefined ? () => window.document.body : undefined;
 
-const productCategoryList = [
-  "Áo Thun Form Rộng",
-  "Quần Short Form Trên Gối",
-  "Quần Dài Form Tiêu Chuẩn",
-  "Áo Thun Form Tiêu Chuẩn",
-  "Áo thun",
-];
+// const productCategoryList = [
+//   "Áo Thun Form Rộng",
+//   "Quần Short Form Trên Gối",
+//   "Quần Dài Form Tiêu Chuẩn",
+//   "Áo Thun Form Tiêu Chuẩn",
+//   "Áo thun",
+// ];
 
 const sizeList = ["S", "M", "L", "XL", "XXL", "XXXL"];
 
@@ -34,6 +34,7 @@ const colorList = ["black", "red", "white", "green", "blue", "brown"];
 const ShoppingList = () => {
   /*     To open filter drawer (only available for mobile size) */
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [productCategoryList, setProductCategoryList] = useState([]);
   const [filter, setFilter] = useState({
     category: [],
     color: [],
@@ -81,6 +82,7 @@ const ShoppingList = () => {
         tempPos.push(item);
       }
     }
+    console.log(tempPos);
     //trường hợp chỉ chọn 1 field để filter
     if (tempPos.length === 1) {
       if (tempPos[0] === "category") {
@@ -188,7 +190,16 @@ const ShoppingList = () => {
         dispatch(addProducts(res));
       })();
     }
-
+    (async () => {
+      const categoryQuery = query(collection(db, "categories"));
+      const snapshot = await getDocs(categoryQuery);
+      let res = [];
+      snapshot.forEach((doc) => {
+        res.push(doc.data());
+      });
+      // console.log(res);
+      setProductCategoryList([...res]);
+    })();
     return () => {
       dispatch(filterProducts([...products]));
     };
@@ -307,6 +318,7 @@ const ShoppingList = () => {
               colorList={colorList}
               productCategoryList={productCategoryList}
               setFilter={setFilter}
+              onClick={handleClickFilter}
               filter={filter}
               gap={5}
             />
@@ -327,7 +339,7 @@ const ShoppingList = () => {
         <Box
           sx={{
             width: { md: "70%" },
-            paddingX: "5%",
+            paddingX: { xs: "1%", md: "5%" },
           }}
         >
           <ProductList />

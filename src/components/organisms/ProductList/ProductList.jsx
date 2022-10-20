@@ -4,17 +4,11 @@ import {
   ImageListItemBar,
   useMediaQuery,
 } from "@mui/material";
-import { useEffect } from "react";
-import { ThemeConfig } from "../../../theme/ThemeConfig";
-import Button from "../../atoms/Button";
-import { addProducts } from "../../../store/reducers/productsSlice";
-import "./productlist.scss";
-import { useSelector, useDispatch } from "react-redux";
-import { collection, query, getDocs } from "firebase/firestore";
-import { db } from "../../../firebase/firebase-config";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import "./productlist.scss";
+import Grid from "@mui/material/Grid";
 const ProductList = (props) => {
-  const dispatch = useDispatch();
   const { filteredProducts } = useSelector((state) => state.products);
   const navigate = useNavigate();
   //USEMEDIAQUERY to check true or false of the current width screen
@@ -26,24 +20,35 @@ const ProductList = (props) => {
 
   //TODO: NEED TO WORK ON CASE WHERE TITLES CAN BE TOO LONG
   return (
-    <ImageList
-      gap={smMatches ? 15 : 5}
-      cols={lgMatches ? 3 : mdMatches ? 2 : smMatches ? 3 : 2}
-      sx={{
-        marginTop: "0px",
-      }}
+    <Grid
+      container
+      spacing={{ lg: 4 }}
+      // gap={smMatches ? 15 : 5}
+      // cols={lgMatches ? 3 : mdMatches ? 2 : smMatches ? 3 : 2}
+      // sx={{
+      //   marginTop: "0px",
+      //   width: { sm: "100%" },
+      // }}
     >
       {filteredProducts.map(
         (item, index) =>
           item.data?.active && (
             //GOT TO CHANGE THIS WITH LINK (REACT ROUTER)
-            <ImageListItem
+            <Grid
+              item
+              sm={6}
+              md={4}
+              lg={3}
+              // lg={4}
+              sx={{ width: "100%" }}
               onClick={() => navigate(`/products/detail/${item.id}`)}
               key={index}
             >
               <img
                 style={{
-                  maxWidth: "100%",
+                  width: "100%",
+                  // width: "163px",
+                  // height: "201px",
                 }}
                 src={item.data.image}
                 alt={item.data.name}
@@ -51,10 +56,12 @@ const ProductList = (props) => {
               <ImageListItemBar
                 sx={{
                   marginBottom: "5px",
+                  width: "100%",
                 }}
                 title={
                   <span
                     style={{
+                      width: "100%",
                       color: "#2a254b",
                       fontFamily: ["Clash Display", "sans-serif"],
                       display: "block",
@@ -63,6 +70,7 @@ const ProductList = (props) => {
                       fontSize: "20px",
                       marginTop: "5px",
                       marginBottom: "5px",
+                      whiteSpace: "initial",
                     }}
                   >
                     {item.data.name}
@@ -83,10 +91,75 @@ const ProductList = (props) => {
                 }
                 position="below"
               />
-            </ImageListItem>
+            </Grid>
           )
       )}
-    </ImageList>
+    </Grid>
+    // <ImageList
+    //   gap={smMatches ? 15 : 5}
+    //   cols={lgMatches ? 3 : mdMatches ? 2 : smMatches ? 3 : 2}
+    //   sx={{
+    //     marginTop: "0px",
+    //     width: { sm: "100%" },
+    //   }}
+    // >
+    //   {filteredProducts.map(
+    //     (item, index) =>
+    //       item.data?.active && (
+    //         //GOT TO CHANGE THIS WITH LINK (REACT ROUTER)
+    //         <ImageListItem
+    //           sx={{ width: "163px" }}
+    //           onClick={() => navigate(`/products/detail/${item.id}`)}
+    //           key={index}
+    //         >
+    //           <img
+    //             style={{
+    //               // width: "100%",
+    //               width: "163px",
+    //               height: "201px",
+    //             }}
+    //             src={item.data.image}
+    //             alt={item.data.name}
+    //           />
+    //           <ImageListItemBar
+    //             sx={{
+    //               marginBottom: "5px",
+    //             }}
+    //             title={
+    //               <span
+    //                 style={{
+    //                   color: "#2a254b",
+    //                   fontFamily: ["Clash Display", "sans-serif"],
+    //                   display: "block",
+    //                   fontWeight: "400",
+    //                   lineHeight: "140%",
+    //                   fontSize: "20px",
+    //                   marginTop: "5px",
+    //                   marginBottom: "5px",
+    //                 }}
+    //               >
+    //                 {item.data.name}
+    //               </span>
+    //             }
+    //             subtitle={
+    //               <span
+    //                 style={{
+    //                   color: "#2a254b",
+    //                   fontFamily: ["Clash Display", "sans-serif"],
+    //                   fontSize: "18px",
+    //                   fontWeight: "400",
+    //                   lineHeight: "150%",
+    //                 }}
+    //               >
+    //                 {item.data.price}
+    //               </span>
+    //             }
+    //             position="below"
+    //           />
+    //         </ImageListItem>
+    //       )
+    //   )}
+    // </ImageList>
   );
 };
 

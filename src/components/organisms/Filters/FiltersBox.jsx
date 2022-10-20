@@ -8,6 +8,10 @@ import {
   Stack,
 } from "@mui/material";
 import React, { useState } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../../firebase/firebase-config";
+import { useDispatch } from "react-redux";
+import { addProducts } from "../../../store/reducers/productsSlice";
 
 const ThemedCheckbox = ({ onChange }) => {
   return (
@@ -33,6 +37,7 @@ const FiltersBox = (props) => {
     colorList,
   } = props;
   const [priceRange, setPriceRange] = useState({ range: [0, 100] });
+  const dispatch = useDispatch();
   const styleH3 = {
     fontFamily: ["Clash Display", "sans-serif"],
     color: "#2a254b",
@@ -64,26 +69,29 @@ const FiltersBox = (props) => {
         {/* Product type filter */}
         <FormControl>
           <h3 style={styleH3}>Category</h3>
-          {productCategoryList?.map((item, index) => (
-            <FormControlLabel
-              key={index}
-              onChange={(event) =>
-                event.target.checked
-                  ? setFilter((filter) => ({
-                      ...filter,
-                      category: [...filter.category, item],
-                    }))
-                  : setFilter((filter) => ({
-                      ...filter,
-                      category: filter.category.filter(
-                        (item2) => item !== item2
-                      ),
-                    }))
-              }
-              control={<ThemedCheckbox />}
-              label={<span style={styleCheckboxLabel}>{item}</span>}
-            />
-          ))}
+          {productCategoryList?.map(
+            (item, index) =>
+              item.active && (
+                <FormControlLabel
+                  key={item.id}
+                  onChange={(event) =>
+                    event.target.checked
+                      ? setFilter((filter) => ({
+                          ...filter,
+                          category: [...filter.category, item.name],
+                        }))
+                      : setFilter((filter) => ({
+                          ...filter,
+                          category: filter.category.filter(
+                            (item2) => item.name !== item2
+                          ),
+                        }))
+                  }
+                  control={<ThemedCheckbox />}
+                  label={<span style={styleCheckboxLabel}>{item.name}</span>}
+                />
+              )
+          )}
         </FormControl>
 
         {/* Price range filter */}
@@ -169,6 +177,21 @@ const FiltersBox = (props) => {
         <FormControl>
           <Button onClick={onClick} variant="contained">
             Filter
+          </Button>
+          <Button
+            sx={{ marginTop: "10px" }}
+            variant="outlined"
+            onClick={async () => {
+              const q = query(collection(db, "products"));
+              const querySnapshot = await getDocs(q);
+              let res = [];
+              querySnapshot.forEach((doc) => {
+                res.push({ data: doc.data(), id: doc.id });
+              });
+              dispatch(addProducts(res));
+            }}
+          >
+            Reset filter
           </Button>
         </FormControl>
       </Stack>

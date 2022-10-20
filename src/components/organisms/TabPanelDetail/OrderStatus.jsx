@@ -2,9 +2,7 @@ import { CloseOutlined } from '@mui/icons-material'
 import { Divider, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Typography, useMediaQuery } from '@mui/material'
 import React, { useState } from 'react'
 import { ThemeConfig } from '../../../theme/ThemeConfig'
-import FootBasket from '../../molecules/FootBasket/FootBasket'
 import StatusChip from '../../molecules/StatusChip/StatusChip'
-import ShoppingBasket from '../../pages/ShoppingBasket/ShoppingBasket'
 import ProductCheckout from '../ProductCheckout/ProductCheckout'
 import "./Tabs.scss"
 
@@ -62,7 +60,7 @@ const OrderStatus = () => {
 
     return (
         <div className='user-tab'>
-            <Typography variant='h3'>Order Tracking</Typography>
+            <Typography variant='h3'>My Orders</Typography>
 
             <div
                 style={{
@@ -131,7 +129,6 @@ const OrderStatus = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                {/* </div> */}
 
                 <Modal
                     open={openModal}

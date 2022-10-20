@@ -5,6 +5,10 @@ import { ReactComponent as User } from "../../../assets/User--avatar.svg";
 import { ReactComponent as MenuLogo } from "../../../assets/Menu.svg";
 import { stack as Menu } from "react-burger-menu";
 import { useNavigate } from "react-router-dom";
+import { Button, Paper, Popper } from "@mui/material";
+import { useState } from "react";
+import { auth } from "../../../firebase/firebase-config"
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const navItems = [
   {
@@ -36,6 +40,17 @@ const navItems = [
 
 const Header = () => {
   const navigate = useNavigate();
+
+  const [openPopover, setOpenPopover] = useState(false)
+  const [anchorEl, setAnchorEl] = useState(null)
+  const handleOpenPopover = (e) => {
+    setOpenPopover(!openPopover)
+    setAnchorEl(e.currentTarget);
+  }
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <header className="landingpage-header d-flex flex-column justify-content-between align-items-center">
       <div className="upper-nav d-flex justify-content-between align-items-center">
@@ -50,7 +65,52 @@ const Header = () => {
               onClick={() => navigate("/shopping-basket")}
               className="cart"
             />
-            <User className="user" style={{ cursor: "pointer" }} />
+            <User
+              onClick={handleOpenPopover}
+              className="user" style={{ cursor: "pointer" }} />
+            {openPopover && (
+              <Popper
+                id={"user-button"}
+                open={openPopover}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchororigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+                transformorigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+              >
+                <Paper component={"nav"} elevation={3}>
+                  <Button onClick={() => navigate(`/user/${auth.currentUser.uid}`)}>
+                    user
+                  </Button>
+
+                  <Button
+                    onClick={() => {
+                      signInWithEmailAndPassword(auth, "oitroioi@gmail.com", "hunghung1")
+                        .then((cred) => {
+                          console.log("header", cred.user)
+                        })
+                        .catch(err => {
+                          console.log(err)
+                        })
+                    }}
+                  >
+                    log in
+                  </Button>
+
+                  <Button
+                    onClick={() => auth.signOut()} 
+                  >
+                    log out
+                  </Button>
+                </Paper>
+              </Popper>
+            )}
+
             <div className="burger">
               <Menu customBurgerIcon={<MenuLogo />}>
                 {navItems.map((item, idx) => (

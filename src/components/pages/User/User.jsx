@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import "./User.scss"
 import Banner from '../../organisms/Banner/Banner'
 import backgroundImage from "../../../assets/user-banner.jpg"
@@ -7,9 +7,27 @@ import TabPanel from '../../molecules/TabPanel/TabPanel'
 import UserInfo from '../../organisms/TabPanelDetail/UserInfo'
 import OrderStatus from '../../organisms/TabPanelDetail/OrderStatus'
 import ChangePassword from '../../organisms/TabPanelDetail/ChangePassword'
-import { auth, db } from '../../../firebase/firebase-config'
-import { doc, getDoc } from 'firebase/firestore'
-import { Navigate, useParams } from 'react-router-dom'
+import Logout from '../../organisms/TabPanelDetail/Logout'
+import { auth } from '../../../firebase/firebase-config'
+
+const tabsArr = [
+    {
+        // component: <UserInfo />,
+        title: "my account",
+    },
+    {
+        // component: <OrderStatus />,
+        title: "orders status",
+    },
+    {
+        // component: <ChangePassword />,
+        title: "change password",
+    },
+    {
+        // component: <Logout />,
+        title: "logout"
+    }
+]
 
 const User = () => {
     const smMatches = useMediaQuery("(min-width: 600px)")
@@ -19,23 +37,28 @@ const User = () => {
         setTabValue(newValue)
     }
 
-    if(!auth.currentUser) return <Navigate to={"/"}/>
+    // onAuthStateChanged(auth, (user) => {
+    //     if (user) {
+    //         console.log("logged in");
+    //     }
+    //     else {
+    //         console.log("logged out");
+    //     }
+    // })
 
     return (
         <div id='user-page'>
             <Banner bgImg={backgroundImage}>
                 User
             </Banner>
-
-            <section
-                style={{
-                    flex: 1,
-                    display: "flex",
-                    flexDirection: smMatches ? "row" : "column",
-                    justifyContent: "center",
-                    margin: "15px 0"
-                }}
-            >
+            {/* {console.log("user")} */}
+            <section style={{
+                flex: 1,
+                display: "flex",
+                flexDirection: smMatches ? "row" : "column",
+                justifyContent: "center",
+                margin: "15px 0"
+            }}>
                 <aside>
                     <Tabs
                         value={tabValue}
@@ -66,7 +89,7 @@ const User = () => {
                         maxWidth: "800px",
                     }}
                 >
-                    {tabsArr.map((item, index) => (
+                    {/* {tabsArr.map((item, index) => (
                         <TabPanel
                             key={index}
                             value={tabValue}
@@ -74,8 +97,8 @@ const User = () => {
                         >
                             { item.component }
                         </TabPanel>
-                    ))}
-                    {/* <TabPanel
+                    ))} */}
+                    <TabPanel
                         index={0}
                         value={tabValue}
                     >
@@ -100,31 +123,12 @@ const User = () => {
                         index={3}
                         value={tabValue}
                     >
-                        
-                    </TabPanel> */}
+                        <Logout setTabValue={setTabValue} />
+                    </TabPanel>
                 </main>
             </section>
         </div>
     )
 }
-
-const tabsArr = [
-    {
-        component: <UserInfo />,
-        title: "account info",
-    },
-    {
-        component: <OrderStatus />,
-        title: "order status",
-    },
-    {
-        component: <ChangePassword />,
-        title: "change password",
-    },
-    {
-        component: <div></div>,
-        title: "logout"
-    }
-]
 
 export default User

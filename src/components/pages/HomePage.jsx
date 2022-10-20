@@ -21,9 +21,11 @@ const HomePage = () => {
     (async () => {
       const q = query(collection(db, "products"));
       const querySnapshot = await getDocs(q);
+      let res = [];
       querySnapshot.forEach((doc) => {
-        dispatch(addProducts({ data: doc.data(), id: doc.id }));
+        res.push({ data: doc.data(), id: doc.id });
       });
+      dispatch(addProducts(res));
     })();
   }, []);
 

@@ -15,92 +15,77 @@ import { db } from "../../../firebase/firebase-config";
 import { useNavigate } from "react-router-dom";
 const ProductList = (props) => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.products);
+  const { filteredProducts } = useSelector((state) => state.products);
   const navigate = useNavigate();
   //USEMEDIAQUERY to check true or false of the current width screen
   const smMatches = useMediaQuery("(min-width:600px)");
   const mdMatches = useMediaQuery("(min-width:900px)");
   const lgMatches = useMediaQuery("(min-width:1200px)");
 
-  useEffect(() => {
-    if (products.length === 0) {
-      (async () => {
-        const q = query(collection(db, "products"));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-          dispatch(addProducts({ data: doc.data(), id: doc.id }));
-        });
-      })();
-    }
-  }, []);
+  //fetch products trên firestore xuống redux
 
   //TODO: NEED TO WORK ON CASE WHERE TITLES CAN BE TOO LONG
   return (
     <ImageList
-      gap={smMatches ? 8 : 0}
-      cols={lgMatches ? 4 : mdMatches ? 3 : smMatches ? 3 : 2}
+      gap={smMatches ? 15 : 5}
+      cols={lgMatches ? 3 : mdMatches ? 2 : smMatches ? 3 : 2}
       sx={{
-        width: 1,
         marginTop: "0px",
       }}
     >
-      {products.map((item, index) => (
-        //GOT TO CHANGE THIS WITH LINK (REACT ROUTER)
-        <ImageListItem
-          onClick={() => navigate(`/detail/${item.id}`)}
-          sx={{ width: "30%" }}
-          key={item.id}
-        >
-          <img
-            style={
-              !smMatches
-                ? {
-                    width: "163px",
-                    height: "201px",
-                    objectFit: "cover",
-                  }
-                : {}
-            }
-            src={item.data.image}
-            alt={item.data.name}
-          />
-          <ImageListItemBar
-            sx={{
-              marginBottom: "5px",
-            }}
-            title={
-              <span
+      {filteredProducts.map(
+        (item, index) =>
+          item.data?.active && (
+            //GOT TO CHANGE THIS WITH LINK (REACT ROUTER)
+            <ImageListItem
+              onClick={() => navigate(`/products/detail/${item.id}`)}
+              key={index}
+            >
+              <img
                 style={{
-                  color: "#2a254b",
-                  fontFamily: ["Clash Display", "sans-serif"],
-                  display: "block",
-                  fontWeight: "400",
-                  lineHeight: "140%",
-                  fontSize: "20px",
-                  marginTop: "5px",
+                  maxWidth: "100%",
+                }}
+                src={item.data.image}
+                alt={item.data.name}
+              />
+              <ImageListItemBar
+                sx={{
                   marginBottom: "5px",
                 }}
-              >
-                {item.data.name}
-              </span>
-            }
-            subtitle={
-              <span
-                style={{
-                  color: "#2a254b",
-                  fontFamily: ["Clash Display", "sans-serif"],
-                  fontSize: "18px",
-                  fontWeight: "400",
-                  lineHeight: "150%",
-                }}
-              >
-                {item.data.price}
-              </span>
-            }
-            position="below"
-          />
-        </ImageListItem>
-      ))}
+                title={
+                  <span
+                    style={{
+                      color: "#2a254b",
+                      fontFamily: ["Clash Display", "sans-serif"],
+                      display: "block",
+                      fontWeight: "400",
+                      lineHeight: "140%",
+                      fontSize: "20px",
+                      marginTop: "5px",
+                      marginBottom: "5px",
+                    }}
+                  >
+                    {item.data.name}
+                  </span>
+                }
+                subtitle={
+                  <span
+                    style={{
+                      color: "#2a254b",
+                      fontFamily: ["Clash Display", "sans-serif"],
+                      fontSize: "18px",
+                      fontWeight: "400",
+                      lineHeight: "150%",
+                    }}
+                  >
+                    {item.data.price}
+                  </span>
+                }
+                position="below"
+              />
+            </ImageListItem>
+          )
+      )}
     </ImageList>
   );
 };
@@ -110,63 +95,67 @@ export default ProductList;
 //THIS DATA IS FOR TESTING!!!!
 const itemData = [
   {
-    img: "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
-    title: "Breakfast",
-    author: "@bkristastucchio",
+    image:
+      "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
+    name: "Breakfast",
+    price: "@bkristastucchio",
+  },
+  {
+    image:
+      "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
+    name: "Burger",
+    price: "@rollelflex",
+  },
+  {
+    image:
+      "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
+    name: "Camera",
+    price: "@helloimnik",
+  },
+  {
+    image:
+      "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
+    name: "Coffee",
+    price: "@nolanissac",
   },
   {
     img: "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
-    title: "Burger",
-    author: "@rollelflex",
+    name: "Hats",
+    price: "@hjrc33",
   },
   {
     img: "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
-    title: "Camera",
-    author: "@helloimnik",
+    name: "Honey",
+    price: "@arwinneil",
   },
   {
     img: "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
-    title: "Coffee",
-    author: "@nolanissac",
+    name: "Basketball",
+    price: "@tjdragotta",
   },
   {
     img: "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
-    title: "Hats",
-    author: "@hjrc33",
+    name: "Fern",
+    price: "@katie_wasserman",
   },
   {
     img: "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
-    title: "Honey",
-    author: "@arwinneil",
+    name: "Mushrooms",
+    price: "@silverdalex",
   },
   {
     img: "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
-    title: "Basketball",
-    author: "@tjdragotta",
+    name: "Tomato basil",
+    price: "@shelleypauls",
   },
   {
     img: "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
-    title: "Fern",
-    author: "@katie_wasserman",
+    name: "Sea star",
+    price: "@peterlaster",
   },
   {
     img: "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
-    title: "Mushrooms",
-    author: "@silverdalex",
-  },
-  {
-    img: "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
-    title: "Tomato basil",
-    author: "@shelleypauls",
-  },
-  {
-    img: "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
-    title: "Sea star",
-    author: "@peterlaster",
-  },
-  {
-    img: "https://cdn2.yame.vn/pimg/ao-khoac-hoodie-on-gian-y-nguyen-ban-ver63-0021342/64a7a53a-c8bf-0d00-e086-001962ace5a9.jpg?w=540&h=756",
-    title: "Bike",
-    author: "@southside",
+    name: "Bike",
+    price: "@southside",
   },
 ];

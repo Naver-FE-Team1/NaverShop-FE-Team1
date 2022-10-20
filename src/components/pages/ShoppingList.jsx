@@ -1,6 +1,6 @@
 import { Box, Divider, Drawer, MenuItem } from "@mui/material";
 import { CloseOutlined } from "@mui/icons-material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DropdownButton from "../molecules/DropdownButton/DropdownButton";
 import Banner from "../organisms/Banner/Banner";
 import FiltersBox from "../organisms/Filters/FiltersBox";
@@ -8,25 +8,197 @@ import ProductList from "../organisms/ProductList/ProductList";
 import Footer from "../molecules/Footer/Footer";
 import "./shoppingList.scss";
 import Header from "../organisms/Header";
-import backgroundImage from "../../assets/background-banner.jpg"
+import backgroundImage from "../../assets/background-banner.jpg";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../firebase/firebase-config";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  filterProducts,
+  addProducts,
+} from "../../store/reducers/productsSlice";
 
 const container = window !== undefined ? () => window.document.body : undefined;
+
+const productCategoryList = [
+  "Áo Thun Form Rộng",
+  "Quần Short Form Trên Gối",
+  "Quần Dài Form Tiêu Chuẩn",
+  "Áo Thun Form Tiêu Chuẩn",
+  "Áo thun",
+];
+
+const sizeList = ["S", "M", "L", "XL", "XXL", "XXXL"];
+
+const colorList = ["black", "red", "white", "green", "blue", "brown"];
 
 const ShoppingList = () => {
   /*     To open filter drawer (only available for mobile size) */
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [filter, setFilter] = useState({
+    category: [],
+    color: [],
+    price: [0, 100],
+    sizes: [],
+  });
+  const { products } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
 
   const handleDrawerToggle = () => {
     setOpenDrawer(!openDrawer);
   };
 
+  const handleClickFilter = async () => {
+    // const q1 = query(
+    //   collection(db, "products"),
+    //   where(
+    //     "category",
+    //     "in",
+    //     filter.category.length === 0
+    //       ? productCategoryList.map((item) => item)
+    //       : filter.category
+    //   )
+    // );
+    // const q4 = query(
+    //   collection(db, "products"),
+    //   where(
+    //     "price",
+    //     ">",
+    //     filter.price.length !== undefined
+    //       ? filter.price[0] * 100000
+    //       : filter.price.range[0] * 100000
+    //   ),
+    //   where(
+    //     "price",
+    //     "<",
+    //     filter.price.length !== undefined
+    //       ? filter.price[1] * 100000
+    //       : filter.price.range[1] * 100000
+    //   )
+    // );
+    let tempPos = []; //chứa danh sách các trường filter được chọn trên UI
+    for (let item in filter) {
+      if (filter[item].length > 0 && item !== "price") {
+        tempPos.push(item);
+      }
+    }
+    //trường hợp chỉ chọn 1 field để filter
+    if (tempPos.length === 1) {
+      if (tempPos[0] === "category") {
+        let q = query(
+          collection(db, "products"),
+          where("category", "in", filter.category)
+        );
+        const querySnapshot = await getDocs(q);
+        let temp = [];
+        querySnapshot.forEach((doc) => {
+          temp.push({ data: doc.data(), id: doc.id });
+        });
+        dispatch(filterProducts(temp));
+      } else {
+        let q = query(
+          collection(db, "products"),
+          where(tempPos[0], "array-contains-any", filter[tempPos[0]])
+        );
+        const querySnapshot = await getDocs(q);
+        let temp = [];
+        querySnapshot.forEach((doc) => {
+          temp.push({ data: doc.data(), id: doc.id });
+        });
+        dispatch(filterProducts(temp));
+      }
+    } else if (tempPos.length > 1) {
+      let resArr = [];
+      if (tempPos[0] === "category") {
+        const q2 = query(
+          collection(db, "products"),
+          where("category", "in", filter.category)
+        );
+        const querySnapshot = await getDocs(q2);
+        tempPos = tempPos.filter((item) => item !== "category");
+        //Chỉ có 2 field sử dụng array-contains-any
+        //So sánh các array item với nhau trong trường hợp có quá nhiều field cần filter
+
+        querySnapshot.forEach((doc) => {
+          let flag = true;
+          tempPos.forEach((item) => {
+            //các item chắc chắc sẽ là các array
+            filter[item].forEach((item2) => {
+              if (!doc.data()[item].includes(item2)) {
+                flag = false;
+              }
+            });
+          });
+          if (flag === true) resArr.push({ data: doc.data(), id: doc.id });
+        });
+      } else {
+        const q3 = query(
+          collection(db, "products"),
+          where(tempPos[0], "array-contains-any", filter[tempPos[0]])
+        );
+        let firstItem = tempPos[0];
+        const querySnapshot2 = await getDocs(q3);
+        tempPos = tempPos.filter((item) => item !== firstItem);
+        querySnapshot2.forEach((doc) => {
+          let flag = true; //mặc định là sản phẩm doc là có đầy đủ các filter được filter
+          tempPos.forEach((item) => {
+            //các item chắc chắc sẽ là các array
+            filter[item].forEach((item2) => {
+              if (!doc.data()[item].includes(item2)) {
+                flag = false;
+              }
+            });
+          });
+          flag && resArr.push({ data: doc.data(), id: doc.id });
+        });
+      }
+
+      resArr = resArr.filter(
+        (item) =>
+          item.data.price > filter.price.range[0] * 10000 &&
+          item.data.price > filter.price.range[1] * 10000
+      );
+
+      dispatch(filterProducts(resArr));
+    } else {
+      let resArr = [];
+
+      const q4 = query(
+        collection(db, "products"),
+        where("price", ">", filter.price.range[0] * 10000),
+        where("price", "<", filter.price.range[1] * 10000)
+      );
+      const querySnapshot = await getDocs(q4);
+      querySnapshot.forEach((doc) => {
+        resArr.push({ data: doc.data(), id: doc.id });
+      });
+
+      dispatch(filterProducts(resArr));
+    }
+  };
+
+  useEffect(() => {
+    if (products.length === 0) {
+      (async () => {
+        const q = query(collection(db, "products"));
+        const querySnapshot = await getDocs(q);
+        let res = [];
+        querySnapshot.forEach((doc) => {
+          res.push({ data: doc.data(), id: doc.id });
+        });
+        dispatch(addProducts(res));
+      })();
+    }
+
+    return () => {
+      dispatch(filterProducts([...products]));
+    };
+  }, []);
+
   return (
     <div className="shopping-list">
       <Header />
       {/* Top Banner for Shopping List */}
-      <Banner bgImg={backgroundImage}>
-        All products
-      </Banner>
+      <Banner bgImg={backgroundImage}>All products</Banner>
 
       {/* Box containing FilterBox and ProductList */}
       <Box
@@ -105,6 +277,12 @@ const ShoppingList = () => {
                 </div>
                 <Divider />
                 <FiltersBox
+                  sizeList={sizeList}
+                  colorList={colorList}
+                  productCategoryList={productCategoryList}
+                  onClick={handleClickFilter}
+                  setFilter={setFilter}
+                  filter={filter}
                   gap={3}
                   sx={{
                     margin: "15px 50px",
@@ -124,7 +302,14 @@ const ShoppingList = () => {
               width: "fit-content",
             }}
           >
-            <FiltersBox gap={5} />
+            <FiltersBox
+              sizeList={sizeList}
+              colorList={colorList}
+              productCategoryList={productCategoryList}
+              setFilter={setFilter}
+              filter={filter}
+              gap={5}
+            />
             <DropdownButton
               variant="select"
               style={{

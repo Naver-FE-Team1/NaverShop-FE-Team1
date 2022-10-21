@@ -6,6 +6,7 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { AuthProvider } from "./contexts/auth-context";
 import "./scss/index.scss";
 import store from "./store";
 import { ThemeConfig } from "./theme/ThemeConfig";
@@ -16,9 +17,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <CssBaseline />
       <Provider store={store}>
         <LocalizationProvider dateAdapter={AdapterMoment}>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <AuthProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </AuthProvider>
         </LocalizationProvider>
       </Provider>
     </ThemeProvider>

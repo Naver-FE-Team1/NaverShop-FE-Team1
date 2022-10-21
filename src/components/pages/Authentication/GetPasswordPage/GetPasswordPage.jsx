@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import LayoutAuthentication from "../../../molecules/LayoutAuthentication/LayoutAuthentication";
 import InputUser from "../../../molecules/Input/InputUser";
@@ -6,11 +6,28 @@ import FormAuthentication from "../../../organisms/Form/FormAuthentication";
 import { Formik } from "formik";
 import * as yup from "yup";
 import Button from "../../../atoms/Button/Button";
+import { auth } from "../../../../firebase/firebase-config";
+import { sendPasswordResetEmail } from "firebase/auth";
 const GetPasswordPage = (props) => {
+  const resetPassword = async (value, { resetForm }) => {
+    const errors = {};
+    if (!value.email) {
+      errors.name = "Required";
+      return errors;
+    }
+    try {
+      await sendPasswordResetEmail(auth, value.email);
+      resetForm({
+        email: "",
+      });
+    } catch (errors) {
+      console.log(errors);
+    }
+  };
   return (
     <Formik
       initialValues={{
-        email: "",
+        email: null,
       }}
       validationSchema={yup.object({
         email: yup
@@ -18,7 +35,7 @@ const GetPasswordPage = (props) => {
           .email("Invalid email address")
           .required("Email is required"),
       })}
-      onSubmit={(values) => {}}
+      onSubmit={resetPassword}
     >
       <LayoutAuthentication
         title="Find your account"

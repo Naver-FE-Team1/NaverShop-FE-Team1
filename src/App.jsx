@@ -8,6 +8,7 @@ import ProductDetail from "./components/pages/ProductDetail/ProductDetail";
 import SignInPage from "./components/pages/Authentication/SignIn/SignInPage";
 import SignUpPage from "./components/pages/Authentication/SignUp/SignUpPage";
 import GetPasswordPage from "./components/pages/Authentication/GetPasswordPage/GetPasswordPage";
+import { AuthProvider } from "./contexts/auth-context";
 // import Checkout from "./components/pages/Checkout";
 import User from "./components/pages/User/User";
 function App() {
@@ -19,11 +20,11 @@ function App() {
         <Route path="sign-up" element={<SignUpPage />} />
         <Route path="sign-in" element={<SignInPage />} />
         <Route path="recover-password" element={<GetPasswordPage />} />
-        <Route path="shopping-list" element={<ShoppingList />} />
-        <Route path="product/detail/" element={<ProductDetail />} />
+        <Route path="products" element={<ShoppingList />} />
+        <Route path="products/detail/:id" element={<ProductDetail />} />
         <Route path="shopping-basket" element={<ShoppingBasket />} />
         <Route path="/user">
-          <Route path=":userUID" element={<User />}/>
+          <Route path=":userUID" element={<User />} />
         </Route>
       </Routes>
     </div>

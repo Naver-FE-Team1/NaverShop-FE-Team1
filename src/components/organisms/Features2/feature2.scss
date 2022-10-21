@@ -1,4 +1,9 @@
 @import "../../../scss/index.scss";
+.feature-2 {
+  img {
+    width: 100%;
+  }
+}
 
 @include tablet {
   .feature-2 {

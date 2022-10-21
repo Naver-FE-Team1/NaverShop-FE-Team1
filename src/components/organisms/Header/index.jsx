@@ -16,7 +16,7 @@ const navItems = [
   {
     icon: null,
     title: "Products",
-    path: "/product",
+    path: "/products",
   },
   {
     icon: null,
@@ -41,7 +41,7 @@ const Header = ({ authen }) => {
     <header className="landingpage-header d-flex flex-column justify-content-between align-items-center">
       <div className="upper-nav d-flex justify-content-between align-items-center">
         <p className="logo" onClick={() => navigate("/")}>
-          Avion
+          Yame
         </p>
         <nav className="nav-bar d-flex align-items-center justify-content-between">
           <img className="search" src={Search} alt="" />

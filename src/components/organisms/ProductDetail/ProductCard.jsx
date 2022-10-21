@@ -4,7 +4,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 const ProductCard = ({ data }) => {
-  console.log(data);
   const mdMatches = useMediaQuery("(min-width:600px)");
   const lgMatches = useMediaQuery("(min-width:1200px)");
 

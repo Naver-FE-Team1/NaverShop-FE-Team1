@@ -5,7 +5,7 @@ const Size = ({ size, onClick, picked }) => {
   return (
     <Button
       onClick={onClick}
-      style={{ color: "#2A254B", border: "1px solid #2A254B" }}
+      style={{  border: "1px solid #2A254B" }}
       variant={picked ? "contained" : "outlined"}
     >
       <p>{size}</p>

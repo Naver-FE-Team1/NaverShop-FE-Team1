@@ -60,7 +60,7 @@ const SignUpForm = (props) => {
       <Formik
         initialValues={{
           fullname: "",
-          email: null,
+          email: "",
           password: "",
           address: "",
           phonenumber: "",

@@ -1,4 +1,6 @@
 import { db } from "../../firebase/firebase-config";
+import { useState } from "react";
+import { useAuth } from "../../contexts/auth-context";
 import Footer from "../molecules/Footer/Footer";
 import Feature2 from "../organisms/Features2";
 import FeaturesBlock from "../organisms/FeaturesBlock";
@@ -16,6 +18,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
   const smMatches = useMediaQuery("(min-width:600px)");
+  const { userInfo, loading } = useAuth();
 
   useEffect(() => {
     (async () => {
@@ -29,24 +32,55 @@ const HomePage = () => {
     })();
   }, []);
 
+  // return (
+  //   <section className="home-page">
+  //     <Header />
+  //     <HeroBlock />
+  //     <FeaturesBlock />
+  //     <div
+  //       style={
+  //         smMatches
+  //           ? { padding: "28px 80px", width: "100%" }
+  //           : { padding: "28px 24px", width: "100%" }
+  //       }
+  //     >
+  //       <ProductList />
+  //     </div>
+  //     <Feature2 />
+  //     <Subscibe />
+  //     <Footer />
+  //   </section>
   return (
-    <section className="home-page">
-      <Header />
-      <HeroBlock />
-      <FeaturesBlock />
-      <div
-        style={
-          smMatches
-            ? { padding: "28px 80px", width: "100%" }
-            : { padding: "28px 24px", width: "100%" }
-        }
-      >
-        <ProductList />
-      </div>
-      <Feature2 />
-      <Subscibe />
-      <Footer />
-    </section>
+    <>
+      {!loading ? (
+        <section className="home-page">
+          <Header />
+          <HeroBlock />
+          <FeaturesBlock />
+          <div
+            style={
+              smMatches
+                ? { padding: "28px 80px", width: "100%" }
+                : { padding: "28px 24px", width: "100%" }
+            }
+          >
+            <ProductList />
+          </div>
+          <Feature2 />
+          <Subscibe />
+          <Footer />
+        </section>
+      ) : (
+        <section className="home-page">
+          <Header />
+          <HeroBlock />
+          <FeaturesBlock />
+
+          <Subscibe />
+          <Footer />
+        </section>
+      )}
+    </>
   );
 };
 

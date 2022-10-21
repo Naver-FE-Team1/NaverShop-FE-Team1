@@ -1,12 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const commentSlice = createSlice({
-  name: 'comments',
+  name: "comments",
   initialState: {
     allCmts: [
       {
-        author: 'Dang',
-        content: 'Hai Dang',
+        author: "Dang",
+        content: "Hai Dang",
       },
     ],
   },

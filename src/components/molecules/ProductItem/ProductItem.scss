@@ -131,6 +131,22 @@
         justify-content: flex-end;
       }
     }
+    &__delete{
+      &--desktop {
+
+        font-family: "Satoshi";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 150%;
+        color: #2a254b;
+        display: flex;
+        flex: 0.1;
+        justify-content: flex-end;
+        margin-top: .5rem;
+        cursor: pointer;
+      }
+    }
   }
 }
 @include desktop {

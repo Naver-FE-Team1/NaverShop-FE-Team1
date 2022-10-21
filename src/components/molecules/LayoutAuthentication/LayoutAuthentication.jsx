@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import PageHeader from "../PageHeader/PageHeader";
 import Header from "../../organisms/Header";
+import Footer from "../Footer/Footer";
 const LayoutAuthentication = (props) => {
   const {
     children,
@@ -16,7 +17,7 @@ const LayoutAuthentication = (props) => {
 
   return (
     <>
-      <Header></Header>
+      <Header authen={true}></Header>
       <div className="layout">
         <div
           className="layout__container"
@@ -75,6 +76,7 @@ const LayoutAuthentication = (props) => {
           </NavLink>
         </div>
       </div>
+      <Footer></Footer>
     </>
   );
 };

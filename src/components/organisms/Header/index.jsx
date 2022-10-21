@@ -38,16 +38,6 @@ const navItems = [
 const Header = ({ authen }) => {
   const navigate = useNavigate();
 
-  const [openPopover, setOpenPopover] = useState(false)
-  const [anchorEl, setAnchorEl] = useState(null)
-  const handleOpenPopover = (e) => {
-    setOpenPopover(!openPopover)
-    setAnchorEl(e.currentTarget);
-  }
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
     <header className="landingpage-header d-flex flex-column justify-content-between align-items-center">
       <div className="upper-nav d-flex justify-content-between align-items-center">

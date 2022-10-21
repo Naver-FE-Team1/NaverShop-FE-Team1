@@ -1,4 +1,4 @@
-import { Stack, Typography } from '@mui/material'
+import { Stack, Typography, useMediaQuery } from '@mui/material'
 import { Formik, Form, Field } from 'formik'
 import React, { useEffect, useState } from 'react'
 import OutlinedInput from '../../molecules/TextField/OutlinedInput'
@@ -15,13 +15,16 @@ const errorStyle = {
 }
 
 const UserInfo = (props) => {
+    const tabletMatches = useMediaQuery("(min-width: 768px)")
+
     const [accountInfo, setAccountInfo] = useState({
         fullname: "",
+        age: 0,
         email: "",
         address: "",
         phonenumber: "",
     })
-    
+
     useEffect(() => {
         (async function () {
             const userRef = doc(db, "users", auth.currentUser?.uid)
@@ -48,6 +51,10 @@ const UserInfo = (props) => {
                     //regex for fullname
                     if (values.fullname && !/^[a-zA-Z ]+$/.test(values.fullname)) {
                         errors.fullname = "Full name can only be consisted of lowercase and uppercase letters"
+                    }
+
+                    if (values.age && !/^\d+$/.test(values.age)) {
+                        errors.age = "Age can only be contained of numbers"
                     }
 
                     //regex for email
@@ -95,26 +102,43 @@ const UserInfo = (props) => {
                             flexDirection: "column",
                             gap: "25px"
                         }}>
-                            <AvatarButton /> 
+                            <AvatarButton />
                             <Stack sx={{ width: "100%" }} spacing={3}>
-                                <Field
-                                    name="fullname"
-                                >
-                                    {({ field, form, meta }) => (
-                                        <>
-                                            <OutlinedInput
-                                                label="Full name"
-                                                type="text"
-                                                {...field}
-                                            />
-                                            {meta.touched &&
-                                                meta.error && <div style={errorStyle}>{meta.error}</div>}
-                                        </>
-                                    )}
-                                </Field>
-                                <Field
-                                    name="email"
-                                >
+                                <div style={{
+                                    display: "flex",
+                                    flexDirection: tabletMatches ? "row" : "column",
+                                    gap: tabletMatches ? "10px" : "25px"
+                                }}>
+                                    <Field name="fullname">
+                                        {({ field, form, meta }) => (
+                                            <div style={{ width: "100%" }}>
+                                                <OutlinedInput
+                                                    label="Full name"
+                                                    type="text"
+                                                    style={{ width: "100%"}}
+                                                    {...field}
+                                                />
+                                                {meta.touched &&
+                                                    meta.error && <div style={errorStyle}>{meta.error}</div>}
+                                            </div>
+                                        )}
+                                    </Field>
+                                    <Field name="age">
+                                        {({ field, form, meta }) => (
+                                            <div>
+                                                <OutlinedInput
+                                                    label="Age"
+                                                    type="text"
+                                                    style={{ width: "100%" }}
+                                                    {...field}
+                                                />
+                                                {meta.touched &&
+                                                    meta.error && <div style={errorStyle}>{meta.error}</div>}
+                                            </div>
+                                        )}
+                                    </Field>
+                                </div>
+                                <Field name="email">
                                     {({ field, form, meta }) => (
                                         <>
                                             <OutlinedInput
@@ -128,9 +152,7 @@ const UserInfo = (props) => {
                                         </>
                                     )}
                                 </Field>
-                                <Field
-                                    name="address"
-                                >
+                                <Field name="address">
                                     {({ field, form, meta }) => (
                                         <>
                                             <OutlinedInput
@@ -143,9 +165,7 @@ const UserInfo = (props) => {
                                         </>
                                     )}
                                 </Field>
-                                <Field
-                                    name="phonenumber"
-                                >
+                                <Field name="phonenumber">
                                     {({ field, form, meta }) => (
                                         <>
                                             <OutlinedInput
@@ -160,7 +180,6 @@ const UserInfo = (props) => {
                                 </Field>
                             </Stack>
                         </div>
-
 
                         <div style={{ display: "flex", justifyContent: "flex-end" }}>
                             <MuiCustomButton

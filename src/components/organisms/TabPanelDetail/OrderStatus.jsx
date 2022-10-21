@@ -1,9 +1,12 @@
+import { async } from '@firebase/util'
 import { CloseOutlined } from '@mui/icons-material'
 import { Divider, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Typography, useMediaQuery } from '@mui/material'
-import React, { useState } from 'react'
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
+import React, { useEffect, useState } from 'react'
+import { auth, db } from '../../../firebase/firebase-config'
 import { ThemeConfig } from '../../../theme/ThemeConfig'
 import StatusChip from '../../molecules/StatusChip/StatusChip'
-import ProductCheckout from '../ProductCheckout/ProductCheckout'
+import Orders from '../Orders/Orders'
 import "./Tabs.scss"
 
 const headersTable = [
@@ -50,18 +53,44 @@ const fontStyle = (fontSize = "16px", fontColor = "#000", fontWeight = "400") =>
     }
 }
 
+
 const OrderStatus = () => {
+    const mdMatches = useMediaQuery("(min-width: 900px)")
+    const [orders, setOrders] = useState([])
+
+    useEffect(() => {
+        (async function () {
+            // const userRef = doc(db, "users", auth.currentUser?.uid)
+            // const userInfoSnap = await getDoc(userRef)
+            // if (userInfoSnap.exists()) {
+            //     const result = userInfoSnap.data().ordersId
+            //     setOrders([...result])
+            // }
+            // else {
+            //     return
+            // }
+
+            const q = query(collection(db, "listOrdered"), where("userId", "==", auth.currentUser.uid))
+            const querySnapshot = await getDocs(q)
+
+            let result = [];
+            querySnapshot.forEach((doc) => {
+                result.push(doc.data())
+            })
+            setOrders([...result])
+        })()
+    }, [])
+
     const [openModal, setOpenModal] = useState(false)
-    const handleOpenModal = () => {
+    const handleOpenModal = (orderId) => {
         setOpenModal(!openModal)
     }
 
-    const mdMatches = useMediaQuery("(min-width: 900px)")
 
     return (
         <div className='user-tab'>
             <Typography variant='h3'>My Orders</Typography>
-
+            {console.log("render", orders)}
             <div
                 style={{
                     overflowX: "auto",
@@ -101,31 +130,30 @@ const OrderStatus = () => {
                         </TableHead>
 
                         <TableBody>
-                            {dataTesting.map((item, index) => (
-                                <TableRow
-                                    key={index}
-                                    hover
-                                    onClick={handleOpenModal}
-                                    sx={{
-                                        "&.MuiTableRow-root.MuiTableRow-hover": {
-                                            cursor: "pointer"
-                                        }
-                                    }}
-                                >
-                                    <TableCell sx={rowStyle("13px")} align='center'>{item.index}</TableCell>
-                                    <TableCell sx={rowStyle("13px", "500")} align='left'>#{item.billID}</TableCell>
-                                    <TableCell sx={rowStyle("13px")} align='left'>{item.date}</TableCell>
-                                    <TableCell sx={rowStyle("13px")} align='left'>${item.total}</TableCell>
-                                    <TableCell
-                                        sx={rowStyle("13px")}
-                                        align='left'
+                            {orders.map((item, index) => (
+                                    <TableRow
+                                        key={index}
+                                        hover
+                                        onClick={() => handleOpenModal(item.id)}
+                                        sx={{
+                                            "&.MuiTableRow-root.MuiTableRow-hover": {
+                                                cursor: "pointer"
+                                            }
+                                        }}
                                     >
-                                        <StatusChip
-                                            label={item.status}
-                                        />
-                                    </TableCell>
-                                </TableRow>
-                            ))}
+                                        <TableCell sx={rowStyle("13px")} align='center'>{index + 1}</TableCell>
+                                        <TableCell sx={rowStyle("13px", "500")} align='left'>#{item.id}</TableCell>
+                                        <TableCell sx={rowStyle("13px")} align='left'>{item.orderDate}</TableCell>
+                                        <TableCell sx={rowStyle("13px")} align='left'>${item.Total}</TableCell>
+                                        <TableCell
+                                            sx={rowStyle("13px")}
+                                            align='left'
+                                        >
+                                            <StatusChip label={item.orderStatus} />
+                                        </TableCell>
+                                    </TableRow>
+                                )
+                            )}
                         </TableBody>
                     </Table>
                 </TableContainer>
@@ -155,7 +183,7 @@ const OrderStatus = () => {
                             }}>
                                 <CloseOutlined onClick={() => setOpenModal(false)} />
                             </div>
-                            
+
                             <div style={{
                                 display: "flex",
                                 alignItems: "center",
@@ -174,7 +202,7 @@ const OrderStatus = () => {
                             </div>
                         </div>
                         <Divider sx={{ marginY: "15px" }} />
-                        <ProductCheckout />
+                        <Orders />
                     </Paper>
                 </Modal>
             </div>

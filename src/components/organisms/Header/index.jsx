@@ -1,10 +1,11 @@
 import "./header.scss";
 import Search from "../../../assets/Search.svg";
 import { ReactComponent as Cart } from "../../../assets/Shopping--cart.svg";
-import { ReactComponent as User } from "../../../assets/User--avatar.svg";
 import { ReactComponent as MenuLogo } from "../../../assets/Menu.svg";
 import { stack as Menu } from "react-burger-menu";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../contexts/auth-context";
+import User from "../../molecules/User/User";
 
 const navItems = [
   {
@@ -34,7 +35,7 @@ const navItems = [
   },
 ];
 
-const Header = () => {
+const Header = ({ authen }) => {
   const navigate = useNavigate();
   return (
     <header className="landingpage-header d-flex flex-column justify-content-between align-items-center">
@@ -50,7 +51,7 @@ const Header = () => {
               onClick={() => navigate("/shopping-basket")}
               className="cart"
             />
-            <User className="user" style={{ cursor: "pointer" }} />
+            {!authen && <User></User>}
             <div className="burger">
               <Menu customBurgerIcon={<MenuLogo />}>
                 {navItems.map((item, idx) => (

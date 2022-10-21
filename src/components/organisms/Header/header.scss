@@ -150,6 +150,26 @@
   }
 }
 @include desktop {
+  .authentication {
+    white-space: nowrap;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      color: rgb(129, 128, 128);
+    }
+  }
+  .popover {
+    padding: 8px;
+    border: 1px solid #ccc;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    position: absolute;
+    background-color: #fff;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    white-space: nowrap;
+  }
   .landingpage-header {
     position: relative;
     .upper-nav {
@@ -166,17 +186,17 @@
         justify-content: space-between;
         align-items: center;
         .inner-nav {
-          width: 5%;
           display: flex;
           justify-content: space-between;
           align-items: center;
+          gap: 10px;
           .burger {
             display: none;
           }
           .cart,
           .user {
+            width: 20px;
             display: inline-block;
-            width: 25px;
             aspect-ratio: 1/1;
           }
         }

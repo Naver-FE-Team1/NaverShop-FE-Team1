@@ -11,6 +11,10 @@
     &__product {
       width: 100%;
       border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 1.5rem;
       .pro-item__image {
         border-radius: 6px;
       }
@@ -37,6 +41,10 @@
       justify-content: space-between;
       &__product {
         width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 1.5rem;
         .pro-item {
           &__content {
             width: 100%;

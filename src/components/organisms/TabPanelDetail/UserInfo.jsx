@@ -31,14 +31,14 @@ const UserInfo = (props) => {
     useEffect(() => {
         const unSub = auth.onAuthStateChanged((user) => {
             unSub();
-            if (user) {
+            if (!user) {
+                navigate("/")
+            }
+            else {
                 const userRef = doc(db, "users", auth.currentUser.uid)
                 const result = getDoc(userRef)
                     .then((res) => setAccountInfo({ ...res.data() }))
                     .catch(err => console.log(err))
-            }
-            else {
-                navigate("/")
             }
         })
     }, [])
@@ -54,8 +54,8 @@ const UserInfo = (props) => {
                     const errors = {};
 
                     //regex for fullname
-                    if (values.fullname && !/^[a-zA-Z ]+$/.test(values.fullname)) {
-                        errors.fullname = "Full name can only be consisted of lowercase and uppercase letters"
+                    if (values.fullname && !/^[a-zA-Z0-9ỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ' ]+$/.test(values.fullname)) {
+                        errors.fullname = "Invalid name"
                     }
 
                     if (values.age && !/^\d+$/.test(values.age)) {
@@ -107,7 +107,7 @@ const UserInfo = (props) => {
                             flexDirection: "column",
                             gap: "25px"
                         }}>
-                            <AvatarButton data={props.values.avatarId}/>
+                            <AvatarButton data={props.values.avatarId} />
                             <Stack sx={{ width: "100%" }} spacing={3}>
                                 <div style={{
                                     display: "flex",

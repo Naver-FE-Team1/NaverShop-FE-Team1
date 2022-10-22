@@ -1,10 +1,12 @@
 /**
  * 
  */
-
-import React from 'react'
+import { doc, getDoc } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react'
+import { db } from '../../../firebase/firebase-config';
 import ProductBar from '../../atoms/ProductBar/ProductBar';
 import ProductItem from '../../molecules/ProductItem/ProductItem';
+import _ from 'lodash';
 
 const DATA_TEST = [
     {
@@ -19,22 +21,44 @@ const DATA_TEST = [
 ]
 
 const Orders = (props) => {
-    const { } = props
+    const { order } = props
+
+    const [productsList, setProductsList] = useState([])
+
+    useEffect(() => {
+        const [...productInfo] = order.productInfo
+
+        const result = []
+        productInfo.map(async (item) => {
+            const productRef = doc(db, "products", item.productId)
+            const productSnap = await getDoc(productRef)
+            if (productSnap.exists()) {
+                let data = JSON.stringify({ ...productSnap.data(), quantity: item.productQuantities })
+                // console.log(data)
+                result.push(JSON.parse(data))
+            }
+            else {
+                console.log("error while getting products info");
+            }
+            setProductsList([...productsList, ...result])
+        })
+    }, [])
 
     return (
         <div>
             <ProductBar />
-            {DATA_TEST.map((item, index) => {
+            {productsList.map((item, index) => {
                 return (
                     <ProductItem
                         key={index}
-                        imgScr={item.imgScr}
+                        imgScr={item.image}
                         name={item.name}
                         description={item.description}
-                        color={item.color}
-                        size={item.size}
+                        color={item.color[0]}
+                        size={item.sizes[0]}
+                        //TO DO: hide the - + buttons
                         quantity={item.quantity}
-                        price={item.price}
+                        price={(item.price * item.quantity )}
                     />
                 );
             })}

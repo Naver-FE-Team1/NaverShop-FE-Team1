@@ -23,15 +23,15 @@
       line-height: 140%;
       color: $main;
       &--first {
-        flex: 0.6;
+        flex: 0.58;
       }
       &--second {
-        flex: 0.2;
+        flex: 0.25;
       }
       &--last {
         flex: 0.2;
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
       }
     }
   }

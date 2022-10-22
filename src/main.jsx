@@ -10,6 +10,7 @@ import { AuthProvider } from "./contexts/auth-context";
 import "./scss/index.scss";
 import store from "./store";
 import { ThemeConfig } from "./theme/ThemeConfig";
+import {Toastify} from './config/Toastify';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <LocalizationProvider dateAdapter={AdapterMoment}>
           <AuthProvider>
             <BrowserRouter>
+            <Toastify />
               <App />
             </BrowserRouter>
           </AuthProvider>
@@ -27,3 +29,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </ThemeProvider>
   </React.StrictMode>
 );
+

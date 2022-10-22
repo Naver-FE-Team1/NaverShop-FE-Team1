@@ -38,6 +38,16 @@
   width: 100%;
   height: 358px;
 }
+.product-detail__react{
+  display: block;
+  width: .5rem;
+}
+.product-detail__ud{
+  color: $main;
+  cursor: pointer;
+  display: inline-block; 
+  width: 3rem;
+}
 
 @include desktop {
   .product-join {
@@ -75,5 +85,15 @@
   .product-join__img{
     width: 50%;
     height: 603px;
+  }
+  .product-detail__react{
+    display: block;
+    width: .5rem;
+  }
+  .product-detail__ud{
+    color: $main;
+    cursor: pointer;
+    display: inline-block; 
+    width: 3rem;
   }
 }

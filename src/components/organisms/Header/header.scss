@@ -127,8 +127,14 @@
     }
   }
 }
+.css-hvnn7i-MuiBadge-badge{
+  background-color: #4e4d93 !important;
+  }
 
 @include tablet {
+  .css-hvnn7i-MuiBadge-badge{
+    background-color: #4e4d93 !important;
+    }
   .landingpage-header {
     .upper-nav {
       .logo {
@@ -170,6 +176,9 @@
     cursor: pointer;
     white-space: nowrap;
   }
+  .css-hvnn7i-MuiBadge-badge{
+    background-color: #4e4d93 !important;
+    }
   .landingpage-header {
     position: relative;
     .upper-nav {

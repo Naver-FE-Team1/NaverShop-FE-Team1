@@ -1,131 +1,214 @@
-import DeleteIcon from "@mui/icons-material/Delete";
-import SendIcon from "@mui/icons-material/Send";
+import moment from 'moment';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
+import { Formik, Form, Field } from 'formik';
+import * as yup from 'yup';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import { addCmt, editCmt } from '../../../store/reducers/commentSlice';
 import {
   Avatar,
   Button,
   Rating,
   Stack,
-  TextField,
   useMediaQuery,
-} from "@mui/material";
-import { useEffect, useState } from "react";
+  TextField,
+} from '@mui/material';
 
+import { useEffect, useState } from 'react';
+
+moment().format();
 const ProductDetailInput = ({
   width,
   height,
   showRating,
   widthInput,
-  idCmt,
-  onChangeCmt,
+  dataCmt,
+  toggleEditInput,
 }) => {
-  const [comment, setComment] = useState("");
-  const [data, setData] = useState([]);
-  const lgMatches = useMediaQuery("(min-width:1200px)");
+  const dispatch = useDispatch();
+  const [comment, setComment] = useState(''); // Thiếp lập thêm comment mới
+  const [cmtAvailable, setCmtAvailable] = useState(dataCmt.content); // Thiếp lập chỉnh sửa comment hiện tại
   const [value, setValue] = useState(2);
-  const handleCommentInput = (e) => {
+
+  // const [field, meta] = useField();
+
+  const lgMatches = useMediaQuery('(min-width:1200px)');
+
+  const handleOnChangeComment = (e) => {
     setComment(e.target.value);
   };
-  useEffect(() => {
-    if (localStorage.getItem("comments")) {
-      setData(JSON.parse(localStorage.getItem("comments")));
-    }
-  }, [localStorage.getItem("comments")]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const dataCmt = {
-      id: "6",
-      author: "Dang",
+    const result = {
+      id: nanoid(),
+      author: 'Dang',
       content: comment,
       rating: value,
-      created: new Date(),
+      created: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
       liked: 0,
       dislike: 0,
-      parentId: "",
-      subComments: [],
     };
-    const newData = [dataCmt, ...data];
-    // dataCmts.current.map((item) => {
-    //   if(data.parentId === ''){
-    //     newData = [...dataCmts.current, data];
-    //   }
-    //   item.subComments.map((subCmt) => {
-    //     if(data.parentId === subCmt.parentId){
-    //       subCmt.
-    //     }
-    //   })
-    // })
-    localStorage.setItem("comments", JSON.stringify(newData));
-    // setComment('')
-    onChangeCmt();
+    dispatch(addCmt(result));
+    toast.success('Thêm bình luận thành công');
+    setComment('');
   };
-  const handleClearForm = () => {
-    setComment("");
+  const handleClearCmt = () => {
+    setComment('');
+  };
+  // Xử lý chỉnh sửa comment
+  //Xử lý input
+  const handleOnChangeCommentAvailable = (e) => {
+    setCmtAvailable(e.target.value);
+  };
+  //Xử lý user thay cập nhật thay đổi
+  const handleEditComment = (e) => {
+    e.preventDefault();
+    const result = {
+      id: dataCmt.id,
+      content: cmtAvailable,
+      created: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+      author: dataCmt.author,
+      rating: dataCmt.rating,
+      liked: dataCmt.liked,
+      dislike: dataCmt.disliked,
+    };
+    dispatch(editCmt(result));
+    toggleEditInput();
+  };
+  //Xử lý user clear comment
+  const handleClearCmtAvailable = () => {
+    setCmtAvailable('');
   };
   return (
-    <Stack direction="row" spacing={2} sx={{ margin: "1rem 0" }}>
-      <Avatar src="/broken-image.jpg" sx={{ width: width, height: height }} />
-      <Stack style={{ display: "inline" }} sx={{ width: "100%" }}>
+    <Stack direction='row' spacing={2} sx={{ margin: '1rem 0' }}>
+      <Avatar src='/broken-image.jpg' sx={{ width: width, height: height }} />
+      <Stack style={{ display: 'inline' }} sx={{ width: '100%' }}>
         {showRating ? (
           <Rating
-            name="simple-controlled"
+            name='simple-controlled'
             value={value}
             onChange={(event, newEvent) => {
               setValue(newEvent);
             }}
           />
         ) : (
-          ""
+          ''
         )}
 
-        <form onSubmit={handleSubmit}>
-          <Stack
-            direction={{ xs: "column", md: "row" }}
-            spacing={5}
-            sx={{ width: lgMatches ? widthInput : "100%" }}
-          >
-            <TextField
-              id="standard-basic"
-              label="Viết bình luận...."
-              variant="standard"
-              name="comment"
-              value={comment}
-              fullWidth
-              style={{ display: "inline" }}
-              onChange={handleCommentInput}
-            />
-            <Stack direction="row" spacing={2} sx={{ alignItems: "flex-end" }}>
-              <Button
-                variant="contained"
-                endIcon={<SendIcon />}
-                type="submit"
-                value="submit"
-                sx={{
-                  background: "#2A254B",
-                  width: "100px",
-                  height: "40px",
-                  borderRadius: "20px",
-                  "&:hover": {
-                    background: "#2A254B",
-                  },
-                }}
+        {dataCmt ? (
+          <form onSubmit={handleEditComment}>
+            <Stack
+              direction={{ xs: 'column', md: 'row' }}
+              spacing={5}
+              sx={{ width: lgMatches ? widthInput : '100%' }}
+            >
+              <TextField
+                id='standard-basic'
+                label='Chỉnh sửa bình luận....'
+                variant='standard'
+                name='comment'
+                value={cmtAvailable}
+                fullWidth
+                multiline
+                maxRows={7}
+                style={{ display: 'inline' }}
+                onChange={handleOnChangeCommentAvailable}
+              />
+              <Stack
+                direction='row'
+                spacing={2}
+                sx={{ alignItems: 'flex-end' }}
               >
-                Send
-              </Button>
-              <Button
-                startIcon={<DeleteIcon />}
-                sx={{
-                  width: "100px",
-                  height: "40px",
-                  borderRadius: "20px",
-                  color: "#2A254B",
-                }}
-                onClick={handleClearForm}
-              >
-                Delete
-              </Button>
+                <Button
+                  variant='contained'
+                  endIcon={<SendIcon />}
+                  type='submit'
+                  value='submit'
+                  sx={{
+                    background: '#2A254B',
+                    width: '100px',
+                    height: '40px',
+                    borderRadius: '20px',
+                    '&:hover': {
+                      background: '#2A254B',
+                    },
+                  }}
+                >
+                  Update
+                </Button>
+                <Button
+                  startIcon={<DeleteIcon />}
+                  sx={{
+                    width: '100px',
+                    height: '40px',
+                    borderRadius: '20px',
+                    color: '#2A254B',
+                  }}
+                  onClick={handleClearCmtAvailable}
+                >
+                  Delete
+                </Button>
+              </Stack>
             </Stack>
-          </Stack>
-        </form>
+          </form>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <Stack
+              direction={{ xs: 'column', md: 'row' }}
+              spacing={5}
+              sx={{ width: lgMatches ? widthInput : '100%' }}
+            >
+              <TextField
+                id='standard-basic'
+                label='Viết bình luận....'
+                variant='standard'
+                name='comment'
+                value={comment}
+                fullWidth
+                style={{ display: 'inline' }}
+                onChange={handleOnChangeComment}
+              />
+
+              <Stack
+                direction='row'
+                spacing={2}
+                sx={{ alignItems: 'flex-end' }}
+              >
+                <Button
+                  variant='contained'
+                  endIcon={<SendIcon />}
+                  type='submit'
+                  value='submit'
+                  sx={{
+                    background: '#2A254B',
+                    width: '100px',
+                    height: '40px',
+                    borderRadius: '20px',
+                    '&:hover': {
+                      background: '#2A254B',
+                    },
+                  }}
+                >
+                  Send
+                </Button>
+                <Button
+                  startIcon={<DeleteIcon />}
+                  sx={{
+                    width: '100px',
+                    height: '40px',
+                    borderRadius: '20px',
+                    color: '#2A254B',
+                  }}
+                  onClick={handleClearCmt}
+                >
+                  Delete
+                </Button>
+              </Stack>
+            </Stack>
+          </form>
+        )}
       </Stack>
     </Stack>
   );

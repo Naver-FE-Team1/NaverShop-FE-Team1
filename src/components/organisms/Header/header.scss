@@ -159,16 +159,6 @@
     }
   }
   .popover {
-    padding: 8px;
-    border: 1px solid #ccc;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    position: absolute;
-    background-color: #fff;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    cursor: pointer;
-    white-space: nowrap;
   }
   .landingpage-header {
     position: relative;
@@ -193,9 +183,13 @@
           .burger {
             display: none;
           }
-          .cart,
-          .user {
+          .cart {
             width: 20px;
+            display: inline-block;
+            aspect-ratio: 1/1;
+          }
+          .user {
+            width: 30px;
             display: inline-block;
             aspect-ratio: 1/1;
           }

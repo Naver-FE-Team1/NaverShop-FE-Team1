@@ -9,6 +9,8 @@ import SignInPage from "./components/pages/Authentication/SignIn/SignInPage";
 import SignUpPage from "./components/pages/Authentication/SignUp/SignUpPage";
 import GetPasswordPage from "./components/pages/Authentication/GetPasswordPage/GetPasswordPage";
 import { AuthProvider } from "./contexts/auth-context";
+import PrivateRoute from "./Routes/PrivateRoute";
+import Header from "./components/organisms/Header";
 // import Checkout from "./components/pages/Checkout";
 function App() {
   return (

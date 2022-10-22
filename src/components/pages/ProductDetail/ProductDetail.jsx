@@ -5,15 +5,19 @@ import ProductDetailContent from "../../organisms/ProductDetail/ProductDetailCon
 import Header from "../../organisms/Header";
 import Footer from "../../molecules/Footer/Footer";
 import { useEffect } from "react";
+import {productDetail} from '../../organisms/ProductDetail/data';
 
 const ProductDetail = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const ProductDetail = () => {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+  
+
   return (
     <>
       <Header />
-      <ProductDetailContent />
+      {productDetail.map((product) => <ProductDetailContent key={product.id} data={product}/>)}
       <ProductDetailList />
       <ProductReview />
       <ProductDetailJoin />

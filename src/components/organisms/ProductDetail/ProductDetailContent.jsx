@@ -1,3 +1,7 @@
+import {useDispatch} from 'react-redux';
+import { toast } from 'react-toastify';
+import {nanoid} from '@reduxjs/toolkit'
+import {addBasket} from '../../../store/reducers/basketSlice'
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/system";
 import { useState } from "react";
@@ -10,29 +14,36 @@ import Size from "../../atoms/Size/Size";
 import SubImage from "../../atoms/SubImage/SubImage";
 import SliderSlick from "../../molecules/SliderSlick/SliderSlick";
 import { useNavigate, useParams } from "react-router-dom";
-const ProductDetailContent = () => {
+const ProductDetailContent = ({data}) => {
   //state này để lưu size S,M,L,...
   //ban đầu ấn add to basket sẽ lưu vô local
-  const [sizePicker, setSizePicker] = useState("");
-  const [quant, setQuant] = useState(1);
+  const [sizePicker, setSizePicker] = useState(data.sizes[0].size);
+  const [quant, setQuant] = useState(data.quantity);
   const { id } = useParams(); // id được khai báo ở trang App.jsx
   //Lấy ra ở đây để dùng trong các trường hợp query 1 sản phẩm theo id
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const mdMatches = useMediaQuery("(min-width:600px)");
   const lgMatches = useMediaQuery("(min-width:1200px)");
-  const sizes = [
-    { id: 1, size: "S" },
-    { id: 2, size: "M" },
-    { id: 3, size: "L" },
-    { id: 4, size: "XL" },
-    { id: 5, size: "XXL" },
-  ];
-
+  
   const handleAddtoCart = () => {
-    const productStringify = [{ id, quantity: quant, size: sizePicker }];
-    localStorage.setItem("basket", JSON.stringify(productStringify));
+    const productStringify = 
+      { 
+        id: nanoid(), 
+        title: data.title,
+        price: data.price,
+        desc: data.desc,
+        quantity: quant, 
+        sizes: sizePicker,
+        srcImg: data.srcImg[0].src,
+        totalPrice: data.price * quant,
+        productId: data.id,
+      }
+    ;
+    dispatch(addBasket(productStringify))
+    toast.success(`Thêm thành công sản phẩm ${data.title} vào giỏ hàng`)
   };
   //Number
   var price = 25000000;
@@ -45,18 +56,18 @@ const ProductDetailContent = () => {
           <Grid item xs={12} lg={6}>
             <Grid>
               <img
-                src="https://source.unsplash.com/random"
+                src={data.srcImg[0].src}
                 className="productDetail-img"
-                alt=""
+                alt={data.srcImg[0].alt}
               />
             </Grid>
             <Grid item>
               <SliderSlick showItem={3}>
-                {subImages.map((item, index) => (
+                {data.srcImg.map((item) => (
                   <SubImage
                     key={item.id}
-                    src="https://images.unsplash.com/photo-1664833027898-540676803f80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-                  ></SubImage>
+                    data={item}
+                  />
                 ))}
               </SliderSlick>
             </Grid>
@@ -66,10 +77,10 @@ const ProductDetailContent = () => {
             <Container maxWidth="sm" style={{ padding: "28px" }}>
               <div className="productDetail__topContent">
                 <h3 className="productDetail__topContent-name">
-                  The Dandy Chair
+                  {data.title}
                 </h3>
                 <p className="productDetail__topContent-price">
-                  {price.toLocaleString("vi-VN", {
+                  {data.price.toLocaleString("vi-VN", {
                     style: "currency",
                     currency: "VND",
                   })}
@@ -80,16 +91,14 @@ const ProductDetailContent = () => {
                   Product description
                 </h5>
                 <p className="productDetail__description-content">
-                  A timeless design, with premium materials features as one of
-                  our most popular and iconic pieces. The dandy chair is perfect
-                  for any stylish living space with beech legs and lambskin
-                  leather upholstery.
+                  {data.desc}
                 </p>
                 <ul className="productDetail__description-fabric">
                   <li>Product description</li>
                   <li>Product description</li>
                   <li>Product description</li>
                 </ul>
+                
               </div>
               <div className="productDetail__dimension">
                 <h5 className="productDetail__dimension-title">Dimensions</h5>
@@ -98,7 +107,7 @@ const ProductDetailContent = () => {
                   spacing={1}
                   sx={{ justifyContent: "space-between" }}
                 >
-                  {sizes.map((item) => (
+                  {data.sizes.map((item) => (
                     <Grid item key={item.id}>
                       <Size
                         picked={sizePicker === item.size}

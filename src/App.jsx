@@ -9,8 +9,9 @@ import SignInPage from "./components/pages/Authentication/SignIn/SignInPage";
 import SignUpPage from "./components/pages/Authentication/SignUp/SignUpPage";
 import GetPasswordPage from "./components/pages/Authentication/GetPasswordPage/GetPasswordPage";
 import { AuthProvider } from "./contexts/auth-context";
-// import Checkout from "./components/pages/Checkout";
 import User from "./components/pages/User/User";
+import Checkout from "./components/pages/Checkout";
+import NotFound from "./components/pages/NotFound/NotFound";
 function App() {
   return (
     <div className="App">
@@ -26,6 +27,8 @@ function App() {
         <Route path="/user">
           <Route path=":userUID" element={<User />} />
         </Route>
+        <Route path="checkout" element={<Checkout />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

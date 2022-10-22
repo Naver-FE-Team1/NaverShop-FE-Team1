@@ -2,19 +2,53 @@
  * The bar use to inscrease/ decrease the amount of product
  * file: QuantitiesBar.jsx
  */
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { increment, decrement } from '../../../store/reducers/basketSlice';
+import PropTypes from 'prop-types';
 
-const QuantitiesBar = ({ quantity, handleIncrease, handleDecrease }) => {
+const QuantitiesBar = ({ basketId, quantity, setQuantity, fromBasket }) => {
+  const dispatch = useDispatch();
+  const handleIncrementItem = () => {
+    if (fromBasket) {
+      setQuantity(++quantity);
+      const newData = {
+        id: basketId,
+        quantity,
+      };
+      dispatch(increment(newData));
+    }
+  };
+  const handleDecrementItem = () => {
+    if (quantity > 0 && fromBasket) {
+      setQuantity(--quantity);
+      const newData = {
+        id: basketId,
+        quantity,
+      };
+      dispatch(decrement(newData));
+    }
+  };
   return (
-    <div className="quan-bar">
-      <div onClick={handleDecrease} className="quan-bar__btn">
-        -
-      </div>
-      <span className="quan-bar__text">{quantity}</span>
-      <div onClick={handleIncrease} className="quan-bar__btn">
-        +
-      </div>
+    <div
+      className='quan-bar'
+      style={fromBasket ? {} : { justifyContent: 'center' }}
+    >
+      {fromBasket ? (
+        <div onClick={handleDecrementItem} className='quan-bar__btn'>
+          -
+        </div>
+      ) : (
+        ''
+      )}
+      <span className='quan-bar__text'>{quantity}</span>
+      {fromBasket ? (
+        <div onClick={handleIncrementItem} className='quan-bar__btn'>
+          +
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 };

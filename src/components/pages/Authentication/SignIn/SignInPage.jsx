@@ -16,9 +16,8 @@ import Google from "../../../../assets/icons/icons svg/Google";
 import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 import { useAuth } from "../../../../contexts/auth-context";
 
-const SignIpForm = (props) => {
+const SignInPage = (props) => {
   const navigate = useNavigate();
-  const { setUserInfo } = useAuth();
 
   //Bias redux
   const [togglePassword, setTogglePassword] = useState(false);
@@ -112,6 +111,6 @@ const SignIpForm = (props) => {
   );
 };
 
-SignIpForm.propTypes = {};
+SignInPage.propTypes = {};
 
-export default SignIpForm;
+export default SignInPage;

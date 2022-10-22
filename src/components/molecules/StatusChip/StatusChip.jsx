@@ -5,7 +5,7 @@ const StatusChip = (props) => {
     const { label } = props
 
     const [bgColor, setBgColor] = useState(() => {
-        switch (label) {
+        switch (label.toLowerCase()) {
             case "pending":
                 return "#06d6a0"
             case "cancelled":

@@ -1,11 +1,9 @@
-import { async } from '@firebase/util'
-import { Visibility, VisibilityOff } from '@mui/icons-material'
-import { Button, FormControl, FormGroup, IconButton, InputAdornment, InputLabel, OutlinedInput, Paper, TextField, Typography, useMediaQuery } from '@mui/material'
+import { Typography } from '@mui/material'
 import { updatePassword } from 'firebase/auth'
 import { Field, Form, Formik } from 'formik'
-import React, { useState } from 'react'
+import React from 'react'
 import { auth } from '../../../firebase/firebase-config'
-import { ThemeConfig } from '../../../theme/ThemeConfig'
+import MuiCustomButton from '../../atoms/Button/MuiCustomButton'
 import PasswordInput from '../../molecules/PasswordInput/PasswordInput'
 import "./Tabs.scss"
 
@@ -16,7 +14,6 @@ const errorStyle = {
 }
 
 const ChangePassword = () => {
-    const smMatches = useMediaQuery("(min-width: 600px)")
 
     const compare = (a, b) => {
         return a.localeCompare(b) === 0 ? true : false
@@ -38,7 +35,7 @@ const ChangePassword = () => {
                     if (!values.newpassword) {
                         errors.newpassword = "Please enter your new password"
                     }
-                    else if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/.test(values.newpassword)) {
+                    else if (!/^(?=.*\d)(?=.*[a-z])[0-9a-zA-Z]{6,}$/.test(values.newpassword)) {
                         errors.newpassword = "Password must only be contained of at least one digit, one lowercase and one uppercase letter and 6 letter-long"
                     }
 
@@ -109,24 +106,12 @@ const ChangePassword = () => {
                         </Field>
 
                         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                            <Button
+                            <MuiCustomButton
                                 onClick={props.submitForm}
-                                type='submit'
-                                style={{
-                                    flex: 1,
-                                    maxWidth: smMatches ? "150px" : "100%",
-                                    padding: "10px 0",
-                                    marginTop: "5px",
-                                    borderRadius: "3px",
-                                    backgroundColor: ThemeConfig.palette.primary.main,
-                                    color: "#fff",
-                                    fontSize: "14px",
-                                    fontWeight: "500",
-                                    letterSpacing: "1px"
-                                }}
+                                type="submit"
                             >
                                 Confirm
-                            </Button>
+                            </MuiCustomButton>
                         </div>
                     </Form>
                 )}

@@ -53,6 +53,7 @@ const Header = ({ authen }) => {
         <p className="logo" onClick={() => navigate("/")}>
           Yame
         </p>
+
         <nav className="nav-bar d-flex align-items-center justify-content-between">
           <img className="search" src={Search} alt="" />
           <div className="inner-nav">

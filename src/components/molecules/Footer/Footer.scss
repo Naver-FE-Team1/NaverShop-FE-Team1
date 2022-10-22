@@ -198,12 +198,12 @@
     margin-left: 4%;
     margin-bottom: 15%;
   }
-  .containerIconSocialLinks2 {
-    // display: none !important;
-  }
-  .containerIconSocialLinks1 {
-    // display: none !important;
-  }
+  // .containerIconSocialLinks2 {
+  //   // display: none !important;
+  // }
+  // .containerIconSocialLinks1 {
+  //   // display: none !important;
+  // }
   .containerMenuCategoriesOurCompany {
     display: flex;
     flex-direction: row !important;
@@ -250,5 +250,23 @@
   .containerLineDevide p {
     margin-top: 2%;
     align-self: flex-start !important;
+  }
+}
+
+@include desktop {
+  .containerSocialLinks {
+    width: 100%;
+    // background-color: red !important;
+    div {
+      width: 100%;
+      .containerIconSocialLinks2,
+      .containerIconSocialLinks1 {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        // background-color: black !important;
+      }
+    }
   }
 }

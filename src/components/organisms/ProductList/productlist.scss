@@ -3,6 +3,36 @@
   width: 100vw !important;
 }
 
+.product-card {
+  cursor: pointer;
+  &-img {
+    position: relative;
+    z-index: 1;
+    img {
+      position: relative;
+      z-index: 1;
+    }
+    &-button {
+      position: absolute;
+      bottom: 0%;
+      left: 25%;
+      z-index: 2;
+      opacity: 0;
+      width: 50%;
+      transition: all 0.3s ease-out;
+    }
+    &:hover {
+      img {
+        filter: blur(2px) !important;
+      }
+      .product-card-img-button {
+        opacity: 1 !important;
+        transform: translateY(-80%);
+      }
+    }
+  }
+}
+
 @include tablet {
   #product-list {
     // padding: 28px 80px;

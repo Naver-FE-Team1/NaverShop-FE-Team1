@@ -4,8 +4,12 @@ import ProductDetailList from "../../organisms/ProductDetail/ProductDetailList";
 import ProductDetailContent from "../../organisms/ProductDetail/ProductDetailContent";
 import Header from "../../organisms/Header";
 import Footer from "../../molecules/Footer/Footer";
+import { useEffect } from "react";
 
 const ProductDetail = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Header />

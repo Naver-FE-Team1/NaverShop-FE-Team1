@@ -7,36 +7,43 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/auth-context";
 import User from "../../molecules/User/User";
 
-const navItems = [
-  {
-    icon: null,
-    title: "Home",
-    path: "/",
-  },
-  {
-    icon: null,
-    title: "Products",
-    path: "/products",
-  },
-  {
-    icon: null,
-    title: "About us",
-    path: "/about",
-  },
-  {
-    icon: <User />,
-    title: "User",
-    path: "/",
-  },
-  {
-    icon: <Cart />,
-    title: "Cart",
-    path: "/shopping-basket",
-  },
-];
-
 const Header = ({ authen }) => {
   const navigate = useNavigate();
+  const { userInfo, loading, setLoading } = useAuth();
+
+  const navItems = [
+    {
+      icon: null,
+      title: "Home",
+      path: "/",
+    },
+    {
+      icon: null,
+      title: "Products",
+      path: "/products",
+    },
+    {
+      icon: null,
+      title: "About us",
+      path: "/about",
+    },
+    {
+      icon: <Cart />,
+      title: "Cart",
+      path: "/shopping-basket",
+    },
+    {
+      icon: <User />,
+      title: "User",
+      path: "/",
+    },
+    {
+      icon: null,
+      title: "Sign In",
+      path: "/sign-in",
+    },
+  ];
+
   return (
     <header className="landingpage-header d-flex flex-column justify-content-between align-items-center">
       <div className="upper-nav d-flex justify-content-between align-items-center">
@@ -54,16 +61,23 @@ const Header = ({ authen }) => {
             {!authen && <User></User>}
             <div className="burger">
               <Menu customBurgerIcon={<MenuLogo />}>
-                {navItems.map((item, idx) => (
-                  <li
-                    key={idx}
-                    onClick={() => navigate(item.path)}
-                    className="menu-item"
-                  >
-                    {/* {item.icon !== null && item.icon} */}
-                    <p>{item.title}</p>
-                  </li>
-                ))}
+                {navItems.map((item, idx) => {
+                  if (userInfo === null && item.title === "User") {
+                    return null;
+                  } else if (userInfo !== null && item.title === "Sign In") {
+                    return null;
+                  } else {
+                    return (
+                      <li
+                        key={idx}
+                        onClick={() => navigate(item.path)}
+                        className="menu-item"
+                      >
+                        <p>{item.title}</p>
+                      </li>
+                    );
+                  }
+                })}
               </Menu>
             </div>
           </div>

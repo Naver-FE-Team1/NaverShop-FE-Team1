@@ -7,7 +7,7 @@ import FeaturesBlock from "../organisms/FeaturesBlock";
 import Header from "../organisms/Header";
 import HeroBlock from "../organisms/HeroBlock";
 import ProductList from "../organisms/ProductList/ProductList";
-import Subscibe from "../organisms/Subcribe";
+import Subscribe from "../organisms/Subcribe";
 import { useMediaQuery } from "@mui/material";
 import { addProducts } from "../../store/reducers/productsSlice.js";
 import { useEffect } from "react";
@@ -32,31 +32,12 @@ const HomePage = () => {
     })();
   }, []);
 
-  // return (
-  //   <section className="home-page">
-  //     <Header />
-  //     <HeroBlock />
-  //     <FeaturesBlock />
-  //     <div
-  //       style={
-  //         smMatches
-  //           ? { padding: "28px 80px", width: "100%" }
-  //           : { padding: "28px 24px", width: "100%" }
-  //       }
-  //     >
-  //       <ProductList />
-  //     </div>
-  //     <Feature2 />
-  //     <Subscibe />
-  //     <Footer />
-  //   </section>
   return (
     <>
       {!loading ? (
         <section className="home-page">
           <Header />
           <HeroBlock />
-          <FeaturesBlock />
           <div
             style={
               smMatches
@@ -66,8 +47,9 @@ const HomePage = () => {
           >
             <ProductList />
           </div>
+          <FeaturesBlock />
           <Feature2 />
-          <Subscibe />
+          <Subscribe />
           <Footer />
         </section>
       ) : (
@@ -76,7 +58,7 @@ const HomePage = () => {
           <HeroBlock />
           <FeaturesBlock />
 
-          <Subscibe />
+          <Subscribe />
           <Footer />
         </section>
       )}

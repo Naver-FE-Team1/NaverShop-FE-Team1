@@ -1,7 +1,18 @@
+import { margin } from "@mui/system";
 import "./customButton.scss";
 
 const Button = (props) => {
-  const { children, width, bgColor, txtColor, padding, onClick, style, type } = props;
+  const {
+    children,
+    width,
+    margin,
+    bgColor,
+    txtColor,
+    padding,
+    onClick,
+    style,
+    type,
+  } = props;
   return (
     <button
       type={type}
@@ -12,7 +23,8 @@ const Button = (props) => {
         background: bgColor,
         color: txtColor,
         padding: padding,
-        ...style
+        margin: margin,
+        ...style,
       }}
     >
       {children}

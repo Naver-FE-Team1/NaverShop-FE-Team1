@@ -49,65 +49,49 @@ const ShoppingList = () => {
   };
 
   const handleClickFilter = async () => {
-    // const q1 = query(
-    //   collection(db, "products"),
-    //   where(
-    //     "category",
-    //     "in",
-    //     filter.category.length === 0
-    //       ? productCategoryList.map((item) => item)
-    //       : filter.category
-    //   )
-    // );
-    // const q4 = query(
-    //   collection(db, "products"),
-    //   where(
-    //     "price",
-    //     ">",
-    //     filter.price.length !== undefined
-    //       ? filter.price[0] * 100000
-    //       : filter.price.range[0] * 100000
-    //   ),
-    //   where(
-    //     "price",
-    //     "<",
-    //     filter.price.length !== undefined
-    //       ? filter.price[1] * 100000
-    //       : filter.price.range[1] * 100000
-    //   )
-    // );
     let tempPos = []; //chứa danh sách các trường filter được chọn trên UI
     for (let item in filter) {
       if (filter[item].length > 0 && item !== "price") {
         tempPos.push(item);
       }
     }
-    console.log(tempPos);
+    // console.log(tempPos);
     //trường hợp chỉ chọn 1 field để filter
     if (tempPos.length === 1) {
+      let temp = [];
       if (tempPos[0] === "category") {
         let q = query(
           collection(db, "products"),
           where("category", "in", filter.category)
         );
         const querySnapshot = await getDocs(q);
-        let temp = [];
         querySnapshot.forEach((doc) => {
           temp.push({ data: doc.data(), id: doc.id });
         });
-        dispatch(filterProducts(temp));
       } else {
         let q = query(
           collection(db, "products"),
           where(tempPos[0], "array-contains-any", filter[tempPos[0]])
         );
         const querySnapshot = await getDocs(q);
-        let temp = [];
         querySnapshot.forEach((doc) => {
           temp.push({ data: doc.data(), id: doc.id });
         });
-        dispatch(filterProducts(temp));
       }
+      temp = temp.filter((item) => {
+        if (filter.price.length !== undefined) {
+          return (
+            item.data.price > filter.price[0] * 10000 &&
+            item.data.price < filter.price[1] * 10000
+          );
+        } else {
+          return (
+            item.data.price > filter.price.range[0] * 10000 &&
+            item.data.price < filter.price.range[1] * 10000
+          );
+        }
+      });
+      dispatch(filterProducts(temp));
     } else if (tempPos.length > 1) {
       let resArr = [];
       if (tempPos[0] === "category") {
@@ -154,21 +138,37 @@ const ShoppingList = () => {
         });
       }
 
-      resArr = resArr.filter(
-        (item) =>
-          item.data.price > filter.price.range[0] * 10000 &&
-          item.data.price > filter.price.range[1] * 10000
-      );
+      resArr = resArr.filter((item) => {
+        if (filter.price.length !== undefined) {
+          return (
+            item.data.price > filter.price[0] * 10000 &&
+            item.data.price < filter.price[1] * 10000
+          );
+        } else {
+          return (
+            item.data.price > filter.price.range[0] * 10000 &&
+            item.data.price < filter.price.range[1] * 10000
+          );
+        }
+      });
 
       dispatch(filterProducts(resArr));
     } else {
       let resArr = [];
 
-      const q4 = query(
-        collection(db, "products"),
-        where("price", ">", filter.price.range[0] * 10000),
-        where("price", "<", filter.price.range[1] * 10000)
-      );
+      const q4 =
+        filter.price.length !== undefined
+          ? query(
+              collection(db, "products"),
+              where("price", ">", filter.price[0] * 10000),
+              where("price", "<", filter.price[1] * 10000)
+            )
+          : query(
+              collection(db, "products"),
+              where("price", ">", filter.price.range[0] * 10000),
+              where("price", "<", filter.price.range[1] * 10000)
+            );
+
       const querySnapshot = await getDocs(q4);
       querySnapshot.forEach((doc) => {
         resArr.push({ data: doc.data(), id: doc.id });

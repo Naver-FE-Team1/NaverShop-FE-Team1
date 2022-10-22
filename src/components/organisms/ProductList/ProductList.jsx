@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./productlist.scss";
 import Grid from "@mui/material/Grid";
+import Button from "../../atoms/Button";
+
 const ProductList = (props) => {
   const { filteredProducts } = useSelector((state) => state.products);
   const navigate = useNavigate();
@@ -40,57 +42,80 @@ const ProductList = (props) => {
               md={4}
               lg={3}
               // lg={4}
-              sx={{ width: "100%" }}
+              sx={{ width: "100%", cursor: "pointer" }}
               onClick={() => navigate(`/products/detail/${item.id}`)}
               key={index}
             >
-              <img
-                style={{
-                  width: "100%",
-                  // width: "163px",
-                  // height: "201px",
-                }}
-                src={item.data.image}
-                alt={item.data.name}
-              />
-              <ImageListItemBar
-                sx={{
-                  marginBottom: "5px",
-                  width: "100%",
-                }}
-                title={
-                  <span
+              <div classNames="product-card">
+                <div className="product-card-img">
+                  <img
                     style={{
                       width: "100%",
-                      color: "#2a254b",
-                      fontFamily: ["Clash Display", "sans-serif"],
-                      display: "block",
-                      fontWeight: "400",
-                      lineHeight: "140%",
-                      fontSize: "20px",
-                      marginTop: "5px",
-                      marginBottom: "5px",
-                      whiteSpace: "initial",
+                      // width: "163px",
+                      height: "100%",
                     }}
-                  >
-                    {item.data.name}
-                  </span>
-                }
-                subtitle={
-                  <span
-                    style={{
-                      color: "#2a254b",
-                      fontFamily: ["Clash Display", "sans-serif"],
-                      fontSize: "18px",
-                      fontWeight: "400",
-                      lineHeight: "150%",
-                    }}
-                  >
-                    {item.data.price}
-                  </span>
-                }
-                position="below"
-              />
+                    src={item.data.image}
+                    alt={item.data.name}
+                  />
+                  <div className="product-card-img-button">
+                    <Button
+                      width="100%"
+                      padding="16px 0"
+                      txtColor="#fff"
+                      bgColor="#2a254b"
+                    >
+                      Add to cart
+                    </Button>
+                    <Button
+                      width="100%"
+                      padding="16px 0"
+                      txtColor="#2A254B"
+                      bgColor="#F9F9F9"
+                      margin="10px 0"
+                    >
+                      Buy now
+                    </Button>
+                  </div>
+                </div>
+                <ImageListItemBar
+                  sx={{
+                    marginBottom: "5px",
+                    width: "100%",
+                  }}
+                  title={
+                    <span
+                      style={{
+                        width: "100%",
+                        color: "#2a254b",
+                        fontFamily: ["Clash Display", "sans-serif"],
+                        display: "block",
+                        fontWeight: "400",
+                        lineHeight: "140%",
+                        fontSize: "20px",
+                        marginTop: "5px",
+                        marginBottom: "5px",
+                        whiteSpace: "initial",
+                      }}
+                    >
+                      {item.data.name}
+                    </span>
+                  }
+                  subtitle={
+                    <span
+                      style={{
+                        color: "#2a254b",
+                        fontFamily: ["Clash Display", "sans-serif"],
+                        fontSize: "18px",
+                        fontWeight: "400",
+                        lineHeight: "150%",
+                      }}
+                    >
+                      {item.data.price}
+                    </span>
+                  }
+                  position="below"
+                />
+              </div>
             </Grid>
           )
       )}

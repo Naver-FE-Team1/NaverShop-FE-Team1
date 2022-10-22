@@ -5,8 +5,11 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase/firebase-config";
 import userAvatarDefault from "../../../assets/images/userAvatarDefault.jpg";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "@mui/material";
 
 const User = ({ props }) => {
+  const lgMatches = useMediaQuery("(min-width:1200px)");
+
   const navigate = useNavigate();
   const [popOver, setPopOver] = useState(false);
   const { userInfo, loading, setLoading } = useAuth();
@@ -24,7 +27,7 @@ const User = ({ props }) => {
         setPopOver(!popOver);
       }}
     >
-      {userInfo === null && loading === false && (
+      {userInfo === null && loading === false && lgMatches && (
         <>
           {
             <div

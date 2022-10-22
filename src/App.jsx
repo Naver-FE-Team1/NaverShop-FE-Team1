@@ -15,6 +15,7 @@ import NotFound from "./components/pages/NotFound/NotFound";
 import PrivateRoute from "./Routes/PrivateRoute";
 import Header from "./components/organisms/Header";
 
+// import Checkout from "./components/pages/Checkout";
 function App() {
   return (
     <div className="App">

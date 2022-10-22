@@ -47,18 +47,15 @@ const Header = ({ authen }) => {
         <p className="logo" onClick={() => navigate("/")}>
           Yame
         </p>
-
         <nav className="nav-bar d-flex align-items-center justify-content-between">
           <img className="search" src={Search} alt="" />
           <div className="inner-nav">
-            <Badge badgeContent={getQuantities} color="primary">
-              <Cart
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate("/shopping-basket")}
-                className="cart"
-              />
-            </Badge>
-            {!authen && <User></User>}
+            <Cart
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/shopping-basket")}
+              className="cart"
+            />
+            {!authen && <UserAvatar></UserAvatar>}
             <div className="burger">
               <Menu customBurgerIcon={<MenuLogo />}>
                 {navItems.map((item, idx) => (

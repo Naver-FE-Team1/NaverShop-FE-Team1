@@ -1,36 +1,63 @@
-import {  useSelector } from 'react-redux';
-import './checkout.scss';
-import Header from '../../organisms/Header';
-import ProductItem from '../../molecules/ProductItem/ProductItem';
-import { Formik, Form, Field, useFormikContext } from 'formik';
-import { TextField } from 'formik-mui';
+import { useSelector } from "react-redux";
+import "./checkout.scss";
+import Header from "../../organisms/Header";
+import ProductItem from "../../molecules/ProductItem/ProductItem";
+import { Formik, Form, Field, useFormikContext } from "formik";
+import { TextField } from "formik-mui";
 import {
   Button,
   FormControl,
   Grid,
   InputLabel,
   OutlinedInput,
-} from '@mui/material';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import { useState, useEffect } from 'react';
-import moment from 'moment';
-import Footer from '../../molecules/Footer/Footer';
+} from "@mui/material";
+import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
+import { useState, useEffect } from "react";
+import moment from "moment";
+import Footer from "../../molecules/Footer/Footer";
+import { useNavigate } from "react-router-dom";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { auth, db } from "../../../firebase/firebase-config";
 
 moment().format();
 
 const Checkout = () => {
   const dataBasket = useSelector((state) => state.basket);
+  const [accountInfo, setAccountInfo] = useState({
+    fullname: "",
+    age: 0,
+    email: "",
+    address: "",
+    phonenumber: "",
+    avatarId: "link",
+  });
   const { cartItem, totalAmount, totalQuantity } = dataBasket;
   const [value, setValue] = useState(moment()); //state này lưu giá trị field ngày tháng
   const formik = useFormikContext();
+  const navigate = useNavigate();
   const handleChange = (newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    const unSub = auth.onAuthStateChanged((user) => {
+      unSub();
+      if (user) {
+        const userRef = doc(db, "users", auth.currentUser.uid);
+        const result = getDoc(userRef)
+          .then((res) => setAccountInfo({ ...res.data() }))
+          .catch((err) => console.log(err));
+      } else {
+        navigate("/");
+      }
+    });
+  }, []);
+
   return (
-    <section className='checkout'>
+    <section className="checkout">
       <Header />
-      <main className='body'>
-        <div className='body__product'>
+      <main className="body">
+        <div className="body__product">
           <div>Quantities: {totalQuantity}</div>
           {cartItem.map((item) => (
             <ProductItem
@@ -48,11 +75,11 @@ const Checkout = () => {
             />
           ))}
 
-          <div style={{alignSelf: 'flex-end'}}>
-            Subtotal:{' '}
-            {totalAmount.toLocaleString('vi-VN', {
-              style: 'currency',
-              currency: 'VND',
+          <div style={{ alignSelf: "flex-end" }}>
+            Subtotal:{" "}
+            {totalAmount.toLocaleString("vi-VN", {
+              style: "currency",
+              currency: "VND",
             })}
           </div>
         </div>
@@ -60,101 +87,115 @@ const Checkout = () => {
         {/* Formik dành cho MUI  */}
         <Formik
           initialValues={{
-            firstname: '',
-            lastname: '',
-            email: '',
-            phone: '',
-            billing: '',
-            cardnumber: '',
-            cvc: '',
-            expirydate: '',
-            zip: '',
+            firstname: accountInfo.fullname.split(" ")[0],
+            lastname: accountInfo.fullname.split(" ")[1],
+            email: accountInfo.email,
+            phone: accountInfo.phonenumber,
+            billing: accountInfo.address,
+            cardnumber: "",
+            cvc: "",
+            expirydate: "",
+            zip: "",
           }}
           validate={(values) => {
             const errors = {};
             if (
               !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
             ) {
-              errors.email = 'Invalid email address';
+              errors.email = "Invalid email address";
             }
             if (values.cvc.length > 3) {
-              errors.cvc = 'Invalid CVC';
+              errors.cvc = "Invalid CVC";
             }
             if (values.phone.length !== 10) {
-              errors.phone = 'Invalid phone number';
+              errors.phone = "Invalid phone number";
             }
             return errors;
           }}
           onSubmit={(values, actions) => {
             actions.setFieldValue(
-              'expirydate',
-              value.format('YYYY-MM-DD HH:mm:ss')
+              "expirydate",
+              value.format("YYYY-MM-DD HH:mm:ss")
             );
+            console.log(values.firstname);
           }}
         >
           {({ submitForm, isSubmitting }) => (
-            <Form style={{ width: '100%' }}>
+            <Form style={{ width: "100%" }}>
               <Grid spacing={2} container>
                 <Grid item xs={6}>
                   <Field
-                    label='First name'
+                    value={
+                      accountInfo.fullname.includes(" ")
+                        ? accountInfo.fullname.split(" ")[0]
+                        : accountInfo.fullname
+                    }
+                    label="First name"
                     component={TextField}
-                    name='firstname'
-                    type='text'
+                    name="firstname"
+                    type="text"
                   />
                 </Grid>
                 <Grid item xs={6}>
                   <Field
-                    label='Last name'
+                    value={
+                      accountInfo.fullname.includes(" ")
+                        ? accountInfo.fullname.split(" ")[1]
+                        : ""
+                    }
+                    label="Last name"
                     component={TextField}
-                    name='lastname'
-                    type='text'
+                    name="lastname"
+                    type="text"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <Field
-                    label='Email'
+                    value={accountInfo.email}
+                    label="Email"
                     component={TextField}
-                    name='email'
-                    type='email'
+                    name="email"
+                    type="email"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <Field
-                    label='Phone number'
+                    value={accountInfo.phonenumber}
+                    label="Phone number"
                     component={TextField}
-                    name='phone'
-                    type='text'
+                    name="phone"
+                    type="text"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <Field
-                    label='Billing address'
+                    value={accountInfo.address}
+                    label="Billing address"
                     component={TextField}
-                    name='billing'
-                    type='text'
+                    name="billing"
+                    type="text"
                   />
                 </Grid>
                 <Grid item xs={8}>
                   <Field
-                    label='Card number'
+                    label="Card number"
                     component={TextField}
-                    name='cardnumber'
-                    type='text'
+                    name="cardnumber"
+                    type="text"
                   />
                 </Grid>
                 <Grid item xs={4}>
                   <Field
-                    label='CVC (3 digits)'
+                    label="CVC (3 digits)"
                     component={TextField}
-                    name='cvc'
-                    type='text'
+                    name="cvc"
+                    type="text"
                   />
                 </Grid>
                 <Grid item xs={3}>
                   <MobileDatePicker
-                    label='Expiry date'
-                    inputFormat='MM/DD/YYYY'
+                    label="Expiry date"
+                    inputFormat="MM/DD/YYYY"
                     value={value}
                     onChange={handleChange}
                     renderInput={(params) => <OutlinedInput {...params} />}
@@ -162,17 +203,17 @@ const Checkout = () => {
                 </Grid>
                 <Grid item xs={9}>
                   <Field
-                    label='ZIP code'
+                    label="ZIP code"
                     component={TextField}
-                    name='zip'
-                    type='text'
+                    name="zip"
+                    type="text"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <Button
                     onClick={submitForm}
-                    variant='contained'
-                    color='primary'
+                    variant="contained"
+                    color="primary"
                   >
                     Confirm payment
                   </Button>

@@ -52,7 +52,7 @@ const Header = ({ authen }) => {
               onClick={() => navigate("/shopping-basket")}
               className="cart"
             />
-            {!authen && <User></User>}
+            {!authen && <User ></User>}
             <div className="burger">
               <Menu customBurgerIcon={<MenuLogo />}>
                 {navItems.map((item, idx) => (

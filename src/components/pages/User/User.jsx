@@ -8,7 +8,6 @@ import UserInfo from '../../organisms/TabPanelDetail/UserInfo'
 import OrderStatus from '../../organisms/TabPanelDetail/OrderStatus'
 import ChangePassword from '../../organisms/TabPanelDetail/ChangePassword'
 import Logout from '../../organisms/TabPanelDetail/Logout'
-import { auth } from '../../../firebase/firebase-config'
 
 const tabsArr = [
     {
@@ -37,21 +36,11 @@ const User = () => {
         setTabValue(newValue)
     }
 
-    // onAuthStateChanged(auth, (user) => {
-    //     if (user) {
-    //         console.log("logged in");
-    //     }
-    //     else {
-    //         console.log("logged out");
-    //     }
-    // })
-
     return (
         <div id='user-page'>
             <Banner bgImg={backgroundImage}>
                 User
             </Banner>
-            {/* {console.log("user")} */}
             <section style={{
                 flex: 1,
                 display: "flex",

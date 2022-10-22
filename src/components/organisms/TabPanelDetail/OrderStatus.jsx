@@ -58,6 +58,8 @@ const OrderStatus = () => {
     const mdMatches = useMediaQuery("(min-width: 900px)")
     const [orders, setOrders] = useState([])
 
+    const [selectedOrder, setSelectedOrder] = useState("")
+
     useEffect(() => {
         (async function () {
             // const userRef = doc(db, "users", auth.currentUser?.uid)
@@ -90,7 +92,6 @@ const OrderStatus = () => {
     return (
         <div className='user-tab'>
             <Typography variant='h3'>My Orders</Typography>
-            {console.log("render", orders)}
             <div
                 style={{
                     overflowX: "auto",

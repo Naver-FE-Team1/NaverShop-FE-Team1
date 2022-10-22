@@ -7,6 +7,7 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { auth, db } from '../../../firebase/firebase-config'
 import AvatarButton from '../AvatarButton/AvatarButton'
 import MuiCustomButton from '../../atoms/Button/MuiCustomButton'
+import { useNavigate } from 'react-router-dom'
 
 const errorStyle = {
     marginTop: "5px",
@@ -16,6 +17,7 @@ const errorStyle = {
 
 const UserInfo = (props) => {
     const tabletMatches = useMediaQuery("(min-width: 768px)")
+    const navigate = useNavigate()
 
     const [accountInfo, setAccountInfo] = useState({
         fullname: "",
@@ -23,19 +25,22 @@ const UserInfo = (props) => {
         email: "",
         address: "",
         phonenumber: "",
+        avatarId: "link"
     })
 
     useEffect(() => {
-        (async function () {
-            const userRef = doc(db, "users", auth.currentUser?.uid)
-            const userInfoSnap = await getDoc(userRef)
-            if (userInfoSnap.exists()) {
-                setAccountInfo({ ...userInfoSnap.data() })
+        const unSub = auth.onAuthStateChanged((user) => {
+            unSub();
+            if (user) {
+                const userRef = doc(db, "users", auth.currentUser.uid)
+                const result = getDoc(userRef)
+                    .then((res) => setAccountInfo({ ...res.data() }))
+                    .catch(err => console.log(err))
             }
             else {
-                return
+                navigate("/")
             }
-        })()
+        })
     }, [])
 
 
@@ -102,7 +107,7 @@ const UserInfo = (props) => {
                             flexDirection: "column",
                             gap: "25px"
                         }}>
-                            <AvatarButton />
+                            <AvatarButton data={props.values.avatarId}/>
                             <Stack sx={{ width: "100%" }} spacing={3}>
                                 <div style={{
                                     display: "flex",
@@ -115,7 +120,7 @@ const UserInfo = (props) => {
                                                 <OutlinedInput
                                                     label="Full name"
                                                     type="text"
-                                                    style={{ width: "100%"}}
+                                                    style={{ width: "100%" }}
                                                     {...field}
                                                 />
                                                 {meta.touched &&

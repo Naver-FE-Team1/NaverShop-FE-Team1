@@ -18,8 +18,8 @@ const DATA_TEST = [
     }
 ]
 
-const Orders = () => {
-
+const Orders = (props) => {
+    const { } = props
 
     return (
         <div>

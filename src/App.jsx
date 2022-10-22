@@ -23,9 +23,7 @@ function App() {
         <Route path="products" element={<ShoppingList />} />
         <Route path="products/detail/:id" element={<ProductDetail />} />
         <Route path="shopping-basket" element={<ShoppingBasket />} />
-        <Route path="/user">
-          <Route path=":userUID" element={<User />} />
-        </Route>
+        <Route path="/user" element={<User />} />
       </Routes>
     </div>
   );

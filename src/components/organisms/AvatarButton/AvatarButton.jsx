@@ -1,32 +1,18 @@
 import { Avatar, IconButton } from '@mui/material'
-import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import { doc, updateDoc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import React, { useEffect, useRef, useState } from 'react'
 import DefaultUser from "../../../assets/icons/default_user.jpg"
 import { auth, db, storage } from '../../../firebase/firebase-config'
 
 const AvatarButton = (props) => {
-    const { containerStyle } = props
+    const { containerStyle, data } = props
 
-    const [avatar, setAvatar] = useState(null)
-    const userRef = doc(db, "users", auth.currentUser?.uid)
-    const storageRef = ref(storage, `user-avatars/user-${auth.currentUser?.uid}`)
     const inputRef = useRef()
-
+    const [avatar, setAvatar] = useState("")
     useEffect(() => {
-        (async () => {
-            const userInfoSnap = await getDoc(userRef)
-
-            if (userInfoSnap.exists()) {
-                const { avatarId } = userInfoSnap.data()
-                setAvatar(avatarId)
-            }
-            else {
-                return
-            }
-        })()
-    }, [])
-
+        setAvatar(data)
+    }, [data])
 
     //clean up the input ref 
     const cleanUpInput = () => {
@@ -40,11 +26,13 @@ const AvatarButton = (props) => {
             //to delete the current avatar before uploading a new one
             if (avatar) cleanUpInput()
 
+            const storageRef = ref(storage, `user-avatars/user-${auth.currentUser?.uid}`)
             uploadBytes(storageRef, newAvatar)
                 .then((snapshot) => {
                     setAvatar(URL.createObjectURL(newAvatar))
                     getDownloadURL(storageRef)
                         .then((url) => {
+                            const userRef = doc(db, "users", auth.currentUser?.uid)
                             updateDoc(userRef, {
                                 avatarId: url
                             })

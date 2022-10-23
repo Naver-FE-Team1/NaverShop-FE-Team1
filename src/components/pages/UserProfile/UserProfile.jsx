@@ -16,7 +16,7 @@ import Logout from '../../organisms/TabPanelDetail/Logout'
 
 const UserProfile = () => {
     const smMatches = useMediaQuery("(min-width: 600px)")
-    
+
     const [tabValue, setTabValue] = useState(0)
     const handleChangeTab = (e, newValue) => {
         setTabValue(newValue)
@@ -42,64 +42,63 @@ const UserProfile = () => {
     ], [])
 
     return (
-        <>
-            <div id='user-page'>
-                <Banner bgImg={backgroundImage}>
-                    User
-                </Banner>
+        <div id='user-page'>
+            <Banner bgImg={backgroundImage}>
+                User
+            </Banner>
 
-                <section
-                    style={{
-                        flex: 1,
-                        display: "flex",
-                        flexDirection: smMatches ? "row" : "column",
-                        justifyContent: "center",
-                        margin: "15px 0"
-                    }}
-                >
-                    <aside>
-                        <Tabs
-                            value={tabValue}
-                            onChange={handleChangeTab}
-                            variant='scrollable'
-                            orientation={smMatches ? "vertical" : "horizontal"}
-                            textColor="primary"
-                            indicatorColor='primary'
-                            sx={{
-                                borderColor: "divider"
-                            }}
-                        >
-                            {tabsArr.map((item, index) => (
-                                <Tab
-                                    key={index}
-                                    label={item.title.toUpperCase()}
-                                    sx={{
-                                        fontSize: "12px"
-                                    }}
-                                />
-                            ))}
-                        </Tabs>
-                    </aside>
-
-                    <main
-                        style={{
-                            flex: "1",
-                            maxWidth: "800px",
+            <section
+                style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: smMatches ? "row" : "column",
+                    justifyContent: "center",
+                    gap: "10px",
+                    margin: "35px 0"
+                }}
+            >
+                <aside>
+                    <Tabs
+                        value={tabValue}
+                        onChange={handleChangeTab}
+                        variant='scrollable'
+                        orientation={smMatches ? "vertical" : "horizontal"}
+                        textColor="primary"
+                        indicatorColor='primary'
+                        sx={{
+                            borderColor: "divider"
                         }}
                     >
                         {tabsArr.map((item, index) => (
-                            <TabPanel
+                            <Tab
                                 key={index}
-                                value={tabValue}
-                                index={index}
-                            >
-                                {item.component}
-                            </TabPanel>
+                                label={item.title.toUpperCase()}
+                                sx={{
+                                    fontSize: "12px"
+                                }}
+                            />
                         ))}
-                    </main>
-                </section>
-            </div>
-        </>
+                    </Tabs>
+                </aside>
+
+                <main
+                    style={{
+                        flex: "1",
+                        maxWidth: "800px",
+                    }}
+                >
+                    {tabsArr.map((item, index) => (
+                        <TabPanel
+                            key={index}
+                            value={tabValue}
+                            index={index}
+                        >
+                            {item.component}
+                        </TabPanel>
+                    ))}
+                </main>
+            </section>
+        </div>
     )
 }
 

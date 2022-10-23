@@ -51,7 +51,6 @@ const ProductDetailInput = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = {
-      id: nanoid(),
       author: "Dang",
       content: comment,
       rating: value,

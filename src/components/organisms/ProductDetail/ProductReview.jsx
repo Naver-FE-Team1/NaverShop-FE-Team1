@@ -92,7 +92,12 @@ const ProductReview = () => {
             addReview={addReivew}
           />
           {reviewsData.map((data, index) => (
-            <ProductReviewDetail key={index} data={data} showRating={true} />
+            <ProductReviewDetail
+              key={index}
+              data={data}
+              showRating={true}
+              reRender={addReivew}
+            />
           ))}
         </Grid>
       </Grid>

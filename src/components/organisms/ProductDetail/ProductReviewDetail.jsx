@@ -8,12 +8,12 @@ import { useEffect, useRef, useState } from "react";
 // import '../../../scss/ProductDetail/ProductDetail.scss';
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ProductDetailInput from "./ProductDetailInput";
-import { collection, doc, updateDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase-config";
 import { useAuth } from "../../../contexts/auth-context";
 import { useParams } from "react-router-dom";
 
-const ProductReviewDetail = ({ data, ml, showRating }) => {
+const ProductReviewDetail = ({ data, ml, showRating, reRender }) => {
   const { userInfo } = useAuth();
   const productId = useParams();
   const [like, setLike] = useState(false); //Kiểm tra tạng thái user like
@@ -51,8 +51,11 @@ const ProductReviewDetail = ({ data, ml, showRating }) => {
     setEdit(!edit);
   };
   // Xóa bình luận
-  const handleDeleteCmt = () => {
-    dispatch(deleteCmt(data.id));
+  const [deleteCmt, setDeleteCmt] = useState(false);
+  const handleDeleteCmt = async () => {
+    const docRef = doc(db, "reviews", data.id);
+    await deleteDoc(docRef);
+    reRender();
     toast.success("Xóa bình luận thành công");
   };
   useEffect(() => {

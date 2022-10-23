@@ -109,7 +109,7 @@ const OrderStatus = () => {
                                     <TableCell
                                         key={index}
                                         align={item.align}
-                                        sx={[rowStyle("15px", "500"), {
+                                        sx={[rowStyle("16px", "500"), {
                                             color: "#2a343e",
                                         }]}
                                     >
@@ -136,10 +136,10 @@ const OrderStatus = () => {
                                         }
                                     }}
                                 >
-                                    <TableCell sx={rowStyle("13px")} align='right'>{index + 1}</TableCell>
+                                    <TableCell sx={rowStyle("14px")} align='right'>{index + 1}</TableCell>
                                     <TableCell align='left'
                                         sx={{
-                                            ...rowStyle("13px", "500"),
+                                            ...rowStyle("14px", "500"),
                                             maxWidth: "180px",
                                             textOverflow: "ellipsis",
                                             whiteSpace: "nowrap",
@@ -148,10 +148,10 @@ const OrderStatus = () => {
                                     >
                                         #{item.id}00000000
                                     </TableCell>
-                                    <TableCell sx={rowStyle("13px")} align='left'>{item.orderDate}</TableCell>
-                                    <TableCell sx={rowStyle("13px")} align='left'>${item.Total}</TableCell>
+                                    <TableCell sx={rowStyle("14px")} align='left'>{item.orderDate}</TableCell>
+                                    <TableCell sx={rowStyle("14px")} align='left'>${item.Total}</TableCell>
                                     <TableCell
-                                        sx={rowStyle("13px")}
+                                        sx={rowStyle("14px")}
                                         align='left'
                                     >
                                         <StatusChip label={item.orderStatus} />

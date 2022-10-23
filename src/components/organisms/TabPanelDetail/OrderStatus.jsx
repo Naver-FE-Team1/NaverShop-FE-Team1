@@ -143,7 +143,7 @@ const OrderStatus = () => {
                                             overflow: "hidden"
                                         }}
                                     >
-                                        #{item.id}00000000
+                                        #{item.id}
                                     </TableCell>
                                     <TableCell sx={rowStyle("14px")} align='left'>{item.orderDate}</TableCell>
                                     <TableCell sx={rowStyle("14px")} align='left'>${item.Total}</TableCell>

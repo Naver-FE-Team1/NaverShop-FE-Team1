@@ -29,18 +29,14 @@ const UserAvatar = ({ props }) => {
   return (
     <div className="user" style={{ position: "relative" }}>
       {userInfo === null && loading === false && (
-        <>
-          {
-            <div
-              className="authentication"
-              onClick={() => {
-                navigate("/sign-in");
-              }}
-            >
-              Sign in
-            </div>
-          }
-        </>
+        <div
+          className="authentication"
+          onClick={() => {
+            navigate("/sign-in");
+          }}
+        >
+          Sign in
+        </div>
       )}
       {userInfo !== null && loading === true && (
         <>

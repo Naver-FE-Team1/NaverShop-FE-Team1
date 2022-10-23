@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ReactComponent as MenuLogo } from "../../../assets/Menu.svg";
 import Search from "../../../assets/Search.svg";
 import { ReactComponent as Cart } from "../../../assets/Shopping--cart.svg";
+import { ReactComponent as User } from "../../../assets/User--avatar.svg";
 import { useAuth } from "../../../contexts/auth-context";
 import UserAvatar from "../../molecules/UserAvatar/UserAvatar";
 import "./header.scss";
@@ -57,11 +58,14 @@ const Header = ({ authen }) => {
         <nav className="nav-bar d-flex align-items-center justify-content-between">
           <img className="search" src={Search} alt="" />
           <div className="inner-nav">
-            <Badge badgeContent={getQuantities} color="primary">
+            <Badge
+              className="cart"
+              badgeContent={getQuantities}
+              color="primary"
+            >
               <Cart
                 style={{ cursor: "pointer" }}
                 onClick={() => navigate("/shopping-basket")}
-                className="cart"
               />
             </Badge>
             {!authen && <UserAvatar />}

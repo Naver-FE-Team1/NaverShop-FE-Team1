@@ -14,14 +14,12 @@ const ProductDetail = () => {
 
   return (
     <>
-      <Header />
       {productDetail.map((product) => (
         <ProductDetailContent key={product.id} data={product} />
       ))}
       <ProductDetailList />
       <ProductReview />
       <ProductDetailJoin />
-      <Footer />
     </>
   );
 };

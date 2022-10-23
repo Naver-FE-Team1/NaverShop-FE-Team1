@@ -11,11 +11,13 @@ import { db } from "../../../firebase/firebase-config";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { getCmts } from "../../../store/reducers/commentSlice";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../../../contexts/auth-context";
 
 const ProductReview = () => {
   const dispatch = useDispatch();
   const [isReview, setIsReview] = useState(false);
   const productId = useParams();
+  const { userInfo } = useAuth();
   // const [disliked, setDisliked] = useState(data.disliked);
   const dataCmts = useSelector((state) => state.comments.allCmts);
   // const localCmts = localStorage.getItem('comments') ? JSON.parse(localStorage.getItem('comments')) : [];
@@ -32,6 +34,37 @@ const ProductReview = () => {
   // }, [submitted]);
   //interact with firebase
   const [reviewsData, setReviewsData] = useState([]);
+  const [listOrdered, setListOrdered] = useState([]);
+  //get doc ordered product from firebase
+
+  useEffect(() => {
+    const colRef = collection(db, "listOrdered");
+    getDocs(colRef).then((snapshot) => {
+      let orderedProducts = [];
+
+      snapshot.docs.forEach((doc) => {
+        orderedProducts.push({ id: doc.id, ...doc.data() });
+      });
+
+      setListOrdered(orderedProducts);
+    });
+  }, []);
+  const getListOrdered = () => {
+    if (!userInfo) {
+      return false;
+    }
+    let temp = false;
+    listOrdered.map((item) => {
+      if (item.userId === userInfo?.uid) {
+        temp = true;
+        return;
+      }
+    });
+    return temp;
+  };
+  //check authorization to comment
+  const haveAuthCmt = getListOrdered();
+  //get doc reviews from firebase
   useEffect(() => {
     const colRef = query(
       collection(db, "reviews"),
@@ -39,12 +72,12 @@ const ProductReview = () => {
     );
 
     getDocs(colRef).then((snapshot) => {
-      let listReviews = [];
+      let listOrdered = [];
       snapshot.docs.forEach((doc) => {
-        listReviews.push({ id: doc.id, ...doc.data() });
+        listOrdered.push({ id: doc.id, ...doc.data() });
       });
-      setReviewsData(listReviews);
-      dispatch(getCmts(listReviews));
+      setReviewsData(listOrdered);
+      dispatch(getCmts(listOrdered));
     });
   }, [isReview]);
   console.log(reviewsData);
@@ -82,15 +115,19 @@ const ProductReview = () => {
           ))}
         </Grid>
         <Grid item xs={10} md={5}>
-          <h1 style={{ fontSize: "2rem" }}>{dataCmts.length} ratings</h1>
-          <ProductDetailInput
-            width="60px"
-            height="60px"
-            showRating={true}
-            widthInput="40rem"
-            dataCmt=""
-            addReview={addReivew}
-          />
+          {haveAuthCmt && (
+            <>
+              <h1 style={{ fontSize: "2rem" }}>{dataCmts.length} ratings</h1>
+              <ProductDetailInput
+                width="60px"
+                height="60px"
+                showRating={true}
+                widthInput="40rem"
+                dataCmt=""
+                addReview={addReivew}
+              />
+            </>
+          )}
           {reviewsData.map((data, index) => (
             <ProductReviewDetail
               key={index}

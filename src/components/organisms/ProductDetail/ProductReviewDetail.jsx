@@ -51,7 +51,6 @@ const ProductReviewDetail = ({ data, ml, showRating, reRender }) => {
     setEdit(!edit);
   };
   // Xóa bình luận
-  const [deleteCmt, setDeleteCmt] = useState(false);
   const handleDeleteCmt = async () => {
     const docRef = doc(db, "reviews", data.id);
     await deleteDoc(docRef);

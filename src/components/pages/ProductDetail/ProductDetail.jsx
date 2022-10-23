@@ -1,11 +1,9 @@
-import ProductDetailJoin from "../../organisms/ProductDetail/ProductDetailJoin";
-import ProductReview from "../../organisms/ProductDetail/ProductReview";
-import ProductDetailList from "../../organisms/ProductDetail/ProductDetailList";
-import ProductDetailContent from "../../organisms/ProductDetail/ProductDetailContent";
-import Header from "../../organisms/Header";
-import Footer from "../../molecules/Footer/Footer";
 import { useEffect } from "react";
 import { productDetail } from "../../organisms/ProductDetail/data";
+import ProductDetailContent from "../../organisms/ProductDetail/ProductDetailContent";
+import ProductDetailJoin from "../../organisms/ProductDetail/ProductDetailJoin";
+import ProductDetailList from "../../organisms/ProductDetail/ProductDetailList";
+import ProductReview from "../../organisms/ProductDetail/ProductReview";
 
 const ProductDetail = () => {
   useEffect(() => {

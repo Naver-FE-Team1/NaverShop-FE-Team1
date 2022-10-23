@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import LayoutAuthentication from "../../../molecules/LayoutAuthentication/LayoutAuthentication";
-import Button from "../../../atoms/Button/Button";
-import FormAuthentication from "../../../organisms/Form/FormAuthentication";
-import InputUser from "../../../molecules/Input/InputUser";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as yup from "yup";
-import { auth, db } from "../../../../firebase/firebase-config";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import IconEyeOpen from "../../../../assets/icons/IconEyes/IconEyeOpen";
-import IconEyeClose from "../../../../assets/icons/IconEyes/IconEyeClose";
-import ButtonSignIn from "../../../atoms/Button/ButtonSignIn";
-import Google from "../../../../assets/icons/icons svg/Google";
-import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
-import { useAuth } from "../../../../contexts/auth-context";
-import { toast } from "react-toastify";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
+import { Formik } from "formik";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import * as yup from "yup";
+import IconEyeClose from "../../../../assets/icons/IconEyes/IconEyeClose";
+import IconEyeOpen from "../../../../assets/icons/IconEyes/IconEyeOpen";
+import Google from "../../../../assets/icons/icons svg/Google";
+import { auth, db } from "../../../../firebase/firebase-config";
+import Button from "../../../atoms/Button/Button";
+import ButtonSignIn from "../../../atoms/Button/ButtonSignIn";
+import InputUser from "../../../molecules/Input/InputUser";
+import LayoutAuthentication from "../../../molecules/LayoutAuthentication/LayoutAuthentication";
+import FormAuthentication from "../../../organisms/Form/FormAuthentication";
 
 const SignInPage = (props) => {
   const navigate = useNavigate();

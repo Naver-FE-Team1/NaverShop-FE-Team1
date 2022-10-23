@@ -39,13 +39,13 @@ const rowStyle = (fontSize = "16px", fontWeight = "400") => {
         color: "#212b36",
 
         borderColor: "#f4f6f8",
-        paddingRight: "0",
+        // paddingRight: "0",
     }
 }
 
-const fontStyle = (fontSize = "16px", fontColor = "#000", fontWeight = "400") => {
+const fontStyle = (fontSize = "16px", fontWeight = "400", fontColor = "#000") => {
     return {
-        fontFamily: "Clash Display",
+        fontFamily: "Satoshi",
         fontWeight: fontWeight,
         fontSize: fontSize,
         lineHeight: "140%",
@@ -56,22 +56,21 @@ const fontStyle = (fontSize = "16px", fontColor = "#000", fontWeight = "400") =>
 
 const OrderStatus = () => {
     const mdMatches = useMediaQuery("(min-width: 900px)")
-    const [orders, setOrders] = useState([])
 
-    const [selectedOrder, setSelectedOrder] = useState("")
+    //to open a modal
+    const [openModal, setOpenModal] = useState(false)
+    const handleOpenModal = (order) => {
+        setOpenModal(!openModal)
+        setSelectedOrder(order)
+    }
+
+    //contained of list orders
+    const [orders, setOrders] = useState([])
+    //the selected order, used for opening the selected order
+    const [selectedOrder, setSelectedOrder] = useState(null)
 
     useEffect(() => {
         (async function () {
-            // const userRef = doc(db, "users", auth.currentUser?.uid)
-            // const userInfoSnap = await getDoc(userRef)
-            // if (userInfoSnap.exists()) {
-            //     const result = userInfoSnap.data().ordersId
-            //     setOrders([...result])
-            // }
-            // else {
-            //     return
-            // }
-
             const q = query(collection(db, "listOrdered"), where("userId", "==", auth.currentUser.uid))
             const querySnapshot = await getDocs(q)
 
@@ -82,11 +81,6 @@ const OrderStatus = () => {
             setOrders([...result])
         })()
     }, [])
-
-    const [openModal, setOpenModal] = useState(false)
-    const handleOpenModal = (orderId) => {
-        setOpenModal(!openModal)
-    }
 
 
     return (
@@ -115,7 +109,7 @@ const OrderStatus = () => {
                                     <TableCell
                                         key={index}
                                         align={item.align}
-                                        sx={[rowStyle("15px", "500"), {
+                                        sx={[rowStyle("16px", "500"), {
                                             color: "#2a343e",
                                         }]}
                                     >
@@ -132,28 +126,38 @@ const OrderStatus = () => {
 
                         <TableBody>
                             {orders.map((item, index) => (
-                                    <TableRow
-                                        key={index}
-                                        hover
-                                        onClick={() => handleOpenModal(item.id)}
+                                <TableRow
+                                    key={index}
+                                    hover
+                                    onClick={() => handleOpenModal(item)}
+                                    sx={{
+                                        "&.MuiTableRow-root.MuiTableRow-hover": {
+                                            cursor: "pointer"
+                                        }
+                                    }}
+                                >
+                                    <TableCell sx={rowStyle("14px")} align='right'>{index + 1}</TableCell>
+                                    <TableCell align='left'
                                         sx={{
-                                            "&.MuiTableRow-root.MuiTableRow-hover": {
-                                                cursor: "pointer"
-                                            }
+                                            ...rowStyle("14px", "500"),
+                                            maxWidth: "180px",
+                                            textOverflow: "ellipsis",
+                                            whiteSpace: "nowrap",
+                                            overflow: "hidden"
                                         }}
                                     >
-                                        <TableCell sx={rowStyle("13px")} align='center'>{index + 1}</TableCell>
-                                        <TableCell sx={rowStyle("13px", "500")} align='left'>#{item.id}</TableCell>
-                                        <TableCell sx={rowStyle("13px")} align='left'>{item.orderDate}</TableCell>
-                                        <TableCell sx={rowStyle("13px")} align='left'>${item.Total}</TableCell>
-                                        <TableCell
-                                            sx={rowStyle("13px")}
-                                            align='left'
-                                        >
-                                            <StatusChip label={item.orderStatus} />
-                                        </TableCell>
-                                    </TableRow>
-                                )
+                                        #{item.id}00000000
+                                    </TableCell>
+                                    <TableCell sx={rowStyle("14px")} align='left'>{item.orderDate}</TableCell>
+                                    <TableCell sx={rowStyle("14px")} align='left'>${item.Total}</TableCell>
+                                    <TableCell
+                                        sx={rowStyle("14px")}
+                                        align='left'
+                                    >
+                                        <StatusChip label={item.orderStatus} />
+                                    </TableCell>
+                                </TableRow>
+                            )
                             )}
                         </TableBody>
                     </Table>
@@ -173,37 +177,55 @@ const OrderStatus = () => {
                             width: mdMatches ? "70%" : "95%",
                             height: "85%",
                             overflow: "auto",
-                            padding: "20px 30px"
+                            padding: "15px"
                         }}
                     >
                         <div>
                             <div style={{
                                 display: "flex",
                                 flexDirection: "row-reverse",
-                                padding: "10px",
                             }}>
                                 <CloseOutlined onClick={() => setOpenModal(false)} />
                             </div>
 
                             <div style={{
                                 display: "flex",
-                                alignItems: "center",
-                                gap: "16px"
+                                flexDirection: "column",
                             }}>
-                                <span style={fontStyle("16px", "#5b5676")}>Subtotal:</span>
-                                <span style={fontStyle("20px", ThemeConfig.palette.primary.main)}>£210</span>
-                            </div>
-                            <div style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "16px"
-                            }}>
-                                <span style={fontStyle("22px", "#5b5676")}>Total: </span>
-                                <span style={fontStyle("26px", ThemeConfig.palette.primary.main)}>£250</span>
+                                <h1 style={fontStyle("19px", "700")}>#{selectedOrder?.id}</h1>
+                                {/* <Divider sx={{ marginY: "10px" }} /> */}
+                                {/* <span style={fontStyle("16px", "#5b5676")}>Subtotal</span> */}
+                                <div>
+                                    <span style={{ ...fontStyle("13px", "400", "#696969"), marginRight: "5px" }}>Address:</span>
+                                    <span style={fontStyle("16px")}>{selectedOrder?.orderAddress}</span>
+                                </div>
+                                <div>
+                                    <span style={{ ...fontStyle("13px", "400", "#696969"), marginRight: "5px" }}>Date:</span>
+                                    <span style={fontStyle("16px")}>{selectedOrder?.orderDate}</span>
+                                </div>
+                                <div style={{ alignSelf: "flex-end", textAlign: "right" }}>
+                                    {/* <span style={{ ...fontStyle("15px", "500", "#474747"), marginRight: "5px" }}>Total:</span> */}
+                                    <h1 style={fontStyle("21px", "500")}>
+                                        {selectedOrder?.Total.toLocaleString("vi-vn", {
+                                            style: "currency",
+                                            currency: "VND"
+                                        })}
+                                    </h1>
+                                    <span style={{ ...fontStyle("12px", "400", "#696969") }}>
+                                        *Subtotal: {selectedOrder?.subTotal.toLocaleString("vi-vn", {
+                                            style: "currency",
+                                            currency: "VND"
+                                        })} -
+                                        Shipping: {selectedOrder?.shippingTotal.toLocaleString("vi-vn", {
+                                            style: "currency",
+                                            currency: "VND"
+                                        })}
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                        <Divider sx={{ marginY: "15px" }} />
-                        <Orders />
+                        <Divider sx={{ marginY: "10px" }} />
+                        <Orders order={selectedOrder} />
                     </Paper>
                 </Modal>
             </div>
@@ -212,34 +234,3 @@ const OrderStatus = () => {
 }
 
 export default OrderStatus
-
-const dataTesting = [
-    {
-        index: 0,
-        billID: "0123456789",
-        date: "22/07/2022",
-        total: 300.00,
-        status: "dispatched"
-    },
-    {
-        index: 1,
-        billID: "0123456789",
-        date: "22/07/2022",
-        total: 10.00,
-        status: "completed"
-    },
-    {
-        index: 2,
-        billID: "0123456789",
-        date: "22/07/2022",
-        total: 29.39,
-        status: "cancelled"
-    },
-    {
-        index: 3,
-        billID: "0123456789",
-        date: "22/07/2022",
-        total: 9991.00,
-        status: "pending"
-    }
-]

@@ -28,6 +28,13 @@ const UserInfo = (props) => {
         avatarId: "link"
     })
 
+    /**
+     * To wait for UserInfo render, 
+     * then wait for state changing from auth,
+     * (with onAuthStateChanged, this will return auth the currentUser.uid),
+     * unsubcribe the listener
+     * finally, get the data from the auth.currentUser.uid
+     */
     useEffect(() => {
         const unSub = auth.onAuthStateChanged((user) => {
             unSub();

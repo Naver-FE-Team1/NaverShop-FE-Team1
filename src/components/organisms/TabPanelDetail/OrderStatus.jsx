@@ -39,7 +39,7 @@ const rowStyle = (fontSize = "16px", fontWeight = "400") => {
         color: "#212b36",
 
         borderColor: "#f4f6f8",
-        paddingRight: "0",
+        // paddingRight: "0",
     }
 }
 
@@ -136,8 +136,18 @@ const OrderStatus = () => {
                                         }
                                     }}
                                 >
-                                    <TableCell sx={rowStyle("13px")} align='center'>{index + 1}</TableCell>
-                                    <TableCell sx={rowStyle("13px", "500")} align='left'>#{item.id}</TableCell>
+                                    <TableCell sx={rowStyle("13px")} align='right'>{index + 1}</TableCell>
+                                    <TableCell align='left'
+                                        sx={{
+                                            ...rowStyle("13px", "500"),
+                                            maxWidth: "180px",
+                                            textOverflow: "ellipsis",
+                                            whiteSpace: "nowrap",
+                                            overflow: "hidden"
+                                        }}
+                                    >
+                                        #{item.id}00000000
+                                    </TableCell>
                                     <TableCell sx={rowStyle("13px")} align='left'>{item.orderDate}</TableCell>
                                     <TableCell sx={rowStyle("13px")} align='left'>${item.Total}</TableCell>
                                     <TableCell
@@ -195,10 +205,21 @@ const OrderStatus = () => {
                                 </div>
                                 <div style={{ alignSelf: "flex-end", textAlign: "right" }}>
                                     {/* <span style={{ ...fontStyle("15px", "500", "#474747"), marginRight: "5px" }}>Total:</span> */}
-                                    <h1 style={fontStyle("21px", "500")}>{selectedOrder?.Total} VND</h1>
-                                    <span style={{ ...fontStyle("12px", "400", "#696969")}}>
-                                        *Subtotal: {selectedOrder?.subTotal} -   
-                                        Shipping: {selectedOrder?.shippingTotal}
+                                    <h1 style={fontStyle("21px", "500")}>
+                                        {selectedOrder?.Total.toLocaleString("vi-vn", {
+                                            style: "currency",
+                                            currency: "VND"
+                                        })}
+                                    </h1>
+                                    <span style={{ ...fontStyle("12px", "400", "#696969") }}>
+                                        *Subtotal: {selectedOrder?.subTotal.toLocaleString("vi-vn", {
+                                            style: "currency",
+                                            currency: "VND"
+                                        })} -
+                                        Shipping: {selectedOrder?.shippingTotal.toLocaleString("vi-vn", {
+                                            style: "currency",
+                                            currency: "VND"
+                                        })}
                                     </span>
                                 </div>
                             </div>

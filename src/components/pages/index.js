@@ -1,0 +1,11 @@
+export { default as AboutPage } from './About/AboutPage';
+export { default as SignInPage } from './Authentication/SignIn/SignInPage';
+export { default as SignUpPage } from './Authentication/SignUp/SignUpPage';
+export { default as GetPasswordPage } from './Authentication/GetPasswordPage/GetPasswordPage';
+export { default as Checkout } from './Checkout';
+export { default as HomePage } from './Home/HomePage';
+export { default as NotFound } from './NotFound/NotFound';
+export { default as ProductDetail } from './ProductDetail/ProductDetail';
+export { default as ShoppingBasket } from './ShoppingBasket/ShoppingBasket';
+export { default as ShoppingList } from './ShoppingList/ShoppingList';
+export { default as UserProfile } from './UserProfile/UserProfile';

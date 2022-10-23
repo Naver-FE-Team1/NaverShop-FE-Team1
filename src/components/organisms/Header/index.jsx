@@ -58,7 +58,7 @@ const Header = ({ authen }) => {
                 className="cart"
               />
             </Badge>
-            {!authen && <User></User>}
+            {!authen && <UserAvatar></UserAvatar>}
             <div className="burger">
               <Menu customBurgerIcon={<MenuLogo />}>
                 {navItems.map((item, idx) => (

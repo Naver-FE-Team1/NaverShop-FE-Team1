@@ -1,13 +1,13 @@
+import { Badge } from "@mui/material";
+import { stack as Menu } from "react-burger-menu";
 import { useSelector } from "react-redux";
-import "./header.scss";
+import { useNavigate } from "react-router-dom";
+import { ReactComponent as MenuLogo } from "../../../assets/Menu.svg";
 import Search from "../../../assets/Search.svg";
 import { ReactComponent as Cart } from "../../../assets/Shopping--cart.svg";
-import { ReactComponent as MenuLogo } from "../../../assets/Menu.svg";
-import { stack as Menu } from "react-burger-menu";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/auth-context";
-import User from "../../molecules/User/User";
-import { Badge } from "@mui/material";
+import UserAvatar from "../../molecules/UserAvatar/UserAvatar";
+import "./header.scss";
 
 const Header = ({ authen }) => {
   const getQuantities = useSelector((state) => state.basket.totalQuantity);
@@ -64,7 +64,7 @@ const Header = ({ authen }) => {
                 className="cart"
               />
             </Badge>
-            {!authen && <User></User>}
+            {!authen && <UserAvatar />}
             <div className="burger">
               <Menu customBurgerIcon={<MenuLogo />}>
                 {navItems.map((item, idx) => {

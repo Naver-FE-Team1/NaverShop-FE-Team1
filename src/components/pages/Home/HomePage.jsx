@@ -1,5 +1,9 @@
-import { db } from "../../firebase/firebase-config";
-import { useState } from "react";
+import { useMediaQuery } from "@mui/material";
+import { collection, getDocs, query } from "firebase/firestore";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { db } from "../../../firebase/firebase-config";
+import { addProducts } from "../../../store/reducers/productsSlice.js";
 import { useAuth } from "../../contexts/auth-context";
 import Footer from "../molecules/Footer/Footer";
 import Feature2 from "../organisms/Features2";
@@ -8,11 +12,6 @@ import Header from "../organisms/Header";
 import HeroBlock from "../organisms/HeroBlock";
 import ProductList from "../organisms/ProductList/ProductList";
 import Subscribe from "../organisms/Subcribe";
-import { useMediaQuery } from "@mui/material";
-import { addProducts } from "../../store/reducers/productsSlice.js";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { collection, query, getDocs } from "firebase/firestore";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -36,7 +35,6 @@ const HomePage = () => {
     <>
       {!loading ? (
         <section className="home-page">
-          <Header />
           <HeroBlock />
           <div
             style={

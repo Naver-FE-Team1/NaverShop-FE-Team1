@@ -1,14 +1,9 @@
-import {
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
-  useMediaQuery,
-} from "@mui/material";
+import { ImageListItemBar, useMediaQuery } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import "./productlist.scss";
-import Grid from "@mui/material/Grid";
 import Button from "../../atoms/Button";
+import "./productlist.scss";
 
 const ProductList = (props) => {
   const { filteredProducts } = useSelector((state) => state.products);

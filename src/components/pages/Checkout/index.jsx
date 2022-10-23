@@ -1,23 +1,16 @@
-import { useSelector } from "react-redux";
-import "./checkout.scss";
-import Header from "../../organisms/Header";
-import ProductItem from "../../molecules/ProductItem/ProductItem";
-import { Formik, Form, Field, useFormikContext } from "formik";
-import { TextField } from "formik-mui";
-import {
-  Button,
-  FormControl,
-  Grid,
-  InputLabel,
-  OutlinedInput,
-} from "@mui/material";
+import { Button, Grid, OutlinedInput } from "@mui/material";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import { useState, useEffect } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { Field, Form, Formik, useFormikContext } from "formik";
+import { TextField } from "formik-mui";
 import moment from "moment";
-import Footer from "../../molecules/Footer/Footer";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../../firebase/firebase-config";
+import ProductItem from "../../molecules/ProductItem/ProductItem";
+import Header from "../../organisms/Header";
+import "./checkout.scss";
 
 moment().format();
 
@@ -223,7 +216,6 @@ const Checkout = () => {
           )}
         </Formik>
       </main>
-      <Footer />
     </section>
   );
 };

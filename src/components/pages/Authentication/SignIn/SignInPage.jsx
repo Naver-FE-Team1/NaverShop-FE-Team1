@@ -1,3 +1,8 @@
+/**
+ * Sign in page 
+ * file: SignInPage.jsx
+ */
+
 import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
@@ -137,7 +142,5 @@ const SignInPage = (props) => {
     </Formik>
   );
 };
-
-SignInPage.propTypes = {};
 
 export default SignInPage;

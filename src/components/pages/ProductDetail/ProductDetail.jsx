@@ -1,3 +1,8 @@
+/**
+ * Detail of Product Page
+ * file: ProductDetail.jsx
+ */
+
 import { useEffect } from "react";
 import { productDetail } from "../../organisms/ProductDetail/data";
 import ProductDetailContent from "../../organisms/ProductDetail/ProductDetailContent";

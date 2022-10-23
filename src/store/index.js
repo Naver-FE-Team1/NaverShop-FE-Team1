@@ -1,3 +1,8 @@
+/**
+ * Redux store
+ * file: (store/reducers) index.js
+ */
+
 import { configureStore } from '@reduxjs/toolkit';
 import { rootReducers } from './reducers/rootReducer';
 

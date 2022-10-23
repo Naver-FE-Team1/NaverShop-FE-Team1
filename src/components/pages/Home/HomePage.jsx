@@ -1,3 +1,8 @@
+/**
+ * Landing / Home Page
+ * file: HomePage.jsx
+ */
+
 import { useMediaQuery } from "@mui/material";
 import { collection, getDocs, query } from "firebase/firestore";
 import { useEffect } from "react";

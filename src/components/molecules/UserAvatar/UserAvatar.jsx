@@ -6,14 +6,14 @@ import { auth } from "../../../firebase/firebase-config";
 import userAvatarDefault from "../../../assets/images/userAvatarDefault.jpg";
 import { useNavigate } from "react-router-dom";
 
-const User = ({ props }) => {
+const UserAvatar = ({ props }) => {
   const navigate = useNavigate();
   const { userInfo, loading, setLoading } = useAuth();
   const userFunctions = [
     {
       title: "Profile",
       onClick() {
-        navigate("/profile");
+        navigate("/user");
       },
     },
     {
@@ -69,6 +69,6 @@ const User = ({ props }) => {
   );
 };
 
-User.propTypes = {};
+UserAvatar.propTypes = {};
 
-export default User;
+export default UserAvatar;

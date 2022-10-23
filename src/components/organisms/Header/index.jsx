@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useSelector } from 'react-redux';
 import './header.scss';
 import Search from '../../../assets/Search.svg';
@@ -8,6 +9,16 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../contexts/auth-context';
 import User from '../../molecules/User/User';
 import { Badge } from '@mui/material';
+=======
+import "./header.scss";
+import Search from "../../../assets/Search.svg";
+import { ReactComponent as Cart } from "../../../assets/Shopping--cart.svg";
+import { ReactComponent as MenuLogo } from "../../../assets/Menu.svg";
+import { stack as Menu } from "react-burger-menu";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../contexts/auth-context";
+import UserAvatar from "../../molecules/UserAvatar/UserAvatar";
+>>>>>>> 827b3f4 (completed checked passive function)
 
 const navItems = [
   {
@@ -26,9 +37,15 @@ const navItems = [
     path: '/about',
   },
   {
+<<<<<<< HEAD
     icon: <User />,
     title: 'User',
     path: '/',
+=======
+    icon: <UserAvatar />,
+    title: "User",
+    path: "/",
+>>>>>>> 827b3f4 (completed checked passive function)
   },
   {
     icon: <Cart />,
@@ -47,6 +64,7 @@ const Header = ({ authen }) => {
         <p className='logo' onClick={() => navigate('/')}>
           Yame
         </p>
+<<<<<<< HEAD
 
         <nav className='nav-bar d-flex align-items-center justify-content-between'>
           <img className='search' src={Search} alt='' />
@@ -61,6 +79,18 @@ const Header = ({ authen }) => {
             {!authen && <User></User>}
             <div className='burger'>
 
+=======
+        <nav className="nav-bar d-flex align-items-center justify-content-between">
+          <img className="search" src={Search} alt="" />
+          <div className="inner-nav">
+            <Cart
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/shopping-basket")}
+              className="cart"
+            />
+            {!authen && <UserAvatar></UserAvatar>}
+            <div className="burger">
+>>>>>>> 827b3f4 (completed checked passive function)
               <Menu customBurgerIcon={<MenuLogo />}>
                 {navItems.map((item, idx) => (
                   <li

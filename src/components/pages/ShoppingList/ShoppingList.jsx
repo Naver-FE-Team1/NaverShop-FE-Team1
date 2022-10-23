@@ -1,21 +1,19 @@
 import { Box, Divider, Drawer, MenuItem } from "@mui/material";
 import { CloseOutlined } from "@mui/icons-material";
 import { useState, useEffect } from "react";
-import DropdownButton from "../molecules/DropdownButton/DropdownButton";
-import Banner from "../organisms/Banner/Banner";
-import FiltersBox from "../organisms/Filters/FiltersBox";
-import ProductList from "../organisms/ProductList/ProductList";
-import Footer from "../molecules/Footer/Footer";
+import DropdownButton from "../../molecules/DropdownButton/DropdownButton";
+import Banner from "../../organisms/Banner/Banner";
+import FiltersBox from "../../organisms/Filters/FiltersBox";
+import ProductList from "../../organisms/ProductList/ProductList";
 import "./shoppingList.scss";
-import Header from "../organisms/Header";
-import backgroundImage from "../../assets/background-banner.jpg";
+import backgroundImage from "../../../assets/background-banner.jpg";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../firebase/firebase-config";
+import { db } from "../../../firebase/firebase-config";
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterProducts,
   addProducts,
-} from "../../store/reducers/productsSlice";
+} from "../../../store/reducers/productsSlice";
 
 const container = window !== undefined ? () => window.document.body : undefined;
 
@@ -207,7 +205,6 @@ const ShoppingList = () => {
 
   return (
     <div className="shopping-list">
-      <Header />
       {/* Top Banner for Shopping List */}
       <Banner bgImg={backgroundImage}>All products</Banner>
 
@@ -345,7 +342,6 @@ const ShoppingList = () => {
           <ProductList />
         </Box>
       </Box>
-      <Footer />
     </div>
   );
 };

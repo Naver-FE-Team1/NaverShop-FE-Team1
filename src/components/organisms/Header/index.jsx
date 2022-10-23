@@ -1,7 +1,7 @@
 import { Badge } from "@mui/material";
 import { stack as Menu } from "react-burger-menu";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as MenuLogo } from "../../../assets/Menu.svg";
 import Search from "../../../assets/Search.svg";
 import { ReactComponent as Cart } from "../../../assets/Shopping--cart.svg";
@@ -51,9 +51,9 @@ const Header = ({ authen }) => {
   return (
     <header className="landingpage-header d-flex flex-column justify-content-between align-items-center">
       <div className="upper-nav d-flex justify-content-between align-items-center">
-        <p className="logo" onClick={() => navigate("/")}>
+        <Link className="logo" to={"/"}>
           Yame
-        </p>
+        </Link>
 
         <nav className="nav-bar d-flex align-items-center justify-content-between">
           <img className="search" src={Search} alt="" />

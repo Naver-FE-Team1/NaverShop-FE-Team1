@@ -1,6 +1,5 @@
 import {  useSelector } from 'react-redux';
 import './checkout.scss';
-import Header from '../../organisms/Header';
 import ProductItem from '../../molecules/ProductItem/ProductItem';
 import { Formik, Form, Field, useFormikContext } from 'formik';
 import { TextField } from 'formik-mui';
@@ -14,7 +13,6 @@ import {
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { useState, useEffect } from 'react';
 import moment from 'moment';
-import Footer from '../../molecules/Footer/Footer';
 
 moment().format();
 
@@ -28,7 +26,6 @@ const Checkout = () => {
   };
   return (
     <section className='checkout'>
-      <Header />
       <main className='body'>
         <div className='body__product'>
           <div>Quantities: {totalQuantity}</div>
@@ -182,7 +179,6 @@ const Checkout = () => {
           )}
         </Formik>
       </main>
-      <Footer />
     </section>
   );
 };

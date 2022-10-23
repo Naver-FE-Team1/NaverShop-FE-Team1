@@ -1,11 +1,13 @@
-import { Button, Stack, Typography, useMediaQuery } from '@mui/material'
+import { Stack, Typography, useMediaQuery } from '@mui/material'
 import { Formik, Form, Field } from 'formik'
 import React, { useEffect, useState } from 'react'
-import { ThemeConfig } from '../../../theme/ThemeConfig'
 import OutlinedInput from '../../molecules/TextField/OutlinedInput'
 import "./Tabs.scss"
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { auth, db } from '../../../firebase/firebase-config'
+import AvatarButton from '../AvatarButton/AvatarButton'
+import MuiCustomButton from '../../atoms/Button/MuiCustomButton'
+import { useNavigate } from 'react-router-dom'
 
 const errorStyle = {
     marginTop: "5px",
@@ -14,40 +16,44 @@ const errorStyle = {
 }
 
 const UserInfo = (props) => {
+    const tabletMatches = useMediaQuery("(min-width: 768px)")
+    const navigate = useNavigate()
+
     const [accountInfo, setAccountInfo] = useState({
         fullname: "",
+        age: 0,
         email: "",
         address: "",
-        phonenumber: ""
+        phonenumber: "",
+        avatarId: "link"
     })
 
+    /**
+     * To wait for UserInfo render, 
+     * then wait for state changing from auth,
+     * (with onAuthStateChanged, this will return auth the currentUser.uid),
+     * unsubcribe the listener
+     * finally, get the data from the auth.currentUser.uid
+     */
     useEffect(() => {
-        (async function () {
-            const userRef = doc(db, "users", auth.currentUser.uid)
-            const userInfoSnap = await getDoc(userRef)
-
-            if (userInfoSnap.exists()) {
-                setAccountInfo({ ...userInfoSnap.data() })
+        const unSub = auth.onAuthStateChanged((user) => {
+            unSub();
+            if (!user) {
+                navigate("/")
             }
             else {
-                return
+                const userRef = doc(db, "users", auth.currentUser.uid)
+                const result = getDoc(userRef)
+                    .then((res) => setAccountInfo({ ...res.data() }))
+                    .catch(err => console.log(err))
             }
-        })()
+        })
     }, [])
 
-    // const handleChangeInput = (e) => {
-    //     setAccountInfo({
-    //         ...accountInfo,
-    //         [e.target.name]: e.target.value
-    //     })
-    // }
-
-    const smMatches = useMediaQuery("(min-width: 600px)")
 
     return (
         <div className='user-tab'>
             <Typography variant='h3'>My Account</Typography>
-
             <Formik
                 enableReinitialize
                 initialValues={accountInfo}
@@ -55,8 +61,12 @@ const UserInfo = (props) => {
                     const errors = {};
 
                     //regex for fullname
-                    if (values.fullname && !/^[a-zA-Z ]+$/.test(values.fullname)) {
-                        errors.fullname = "Full name can only be consisted of lowercase and uppercase letters"
+                    if (values.fullname && !/^[a-zA-Z0-9ỳọáầảấờễàạằệếýộậốũứĩõúữịỗìềểẩớặòùồợãụủíỹắẫựỉỏừỷởóéửỵẳẹèẽổẵẻỡơôưăêâđ' ]+$/.test(values.fullname)) {
+                        errors.fullname = "Invalid name"
+                    }
+
+                    if (values.age && !/^\d+$/.test(values.age)) {
+                        errors.age = "Age can only be contained of numbers"
                     }
 
                     //regex for email
@@ -86,13 +96,10 @@ const UserInfo = (props) => {
                     once it has resolved
                     */
 
-                    const usersRef = doc(db, "users", auth.currentUser.uid)
-
-                    await updateDoc(usersRef, {
+                    const userRef = doc(db, "users", auth.currentUser?.uid)
+                    await updateDoc(userRef, {
                         ...values
                     })
-
-                    alert("done")
                 }}
             >
                 {(props) => (
@@ -102,90 +109,97 @@ const UserInfo = (props) => {
                             marginTop: "15px"
                         }}
                     >
-                        <Stack spacing={3}>
-                            <Field
-                                name="fullname"
-                            >
-                                {({ field, form, meta }) => (
-                                    <>
-                                        <OutlinedInput
-                                            label="Full name"
-                                            type="text"
-                                            {...field}
-                                        />
-                                        {meta.touched &&
-                                            meta.error && <div style={errorStyle}>{meta.error}</div>}
-                                    </>
-                                )}
-                            </Field>
-                            <Field
-                                name="email"
-                            >
-                                {({ field, form, meta }) => (
-                                    <>
-                                        <OutlinedInput
-                                            label="Email"
-                                            type="email"
-                                            disabled={true}
-                                            {...field}
-                                        />
-                                        {meta.touched &&
-                                            meta.error && <div style={errorStyle}>{meta.error}</div>}
-                                    </>
-                                )}
-                            </Field>
-                            <Field
-                                name="address"
-                            >
-                                {({ field, form, meta }) => (
-                                    <>
-                                        <OutlinedInput
-                                            label="Address"
-                                            type="text"
-                                            {...field}
-                                        />
-                                        {meta.touched &&
-                                            meta.error && <div style={{ ...errorStyle }}>{meta.error}</div>}
-                                    </>
-                                )}
-                            </Field>
-                            <Field
-                                name="phonenumber"
-                            >
-                                {({ field, form, meta }) => (
-                                    <>
-                                        <OutlinedInput
-                                            label="Phone Number"
-                                            type="text"
-                                            {...field}
-                                        />
-                                        {meta.touched &&
-                                            meta.error && <div style={{ ...errorStyle }}>{meta.error}</div>}
-                                    </>
-                                )}
-                            </Field>
-
-                        </Stack>
+                        <div style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "25px"
+                        }}>
+                            <AvatarButton data={props.values.avatarId} />
+                            <Stack sx={{ width: "100%" }} spacing={3}>
+                                <div style={{
+                                    display: "flex",
+                                    flexDirection: tabletMatches ? "row" : "column",
+                                    gap: tabletMatches ? "10px" : "25px"
+                                }}>
+                                    <Field name="fullname">
+                                        {({ field, form, meta }) => (
+                                            <div style={{ width: "100%" }}>
+                                                <OutlinedInput
+                                                    label="Full name"
+                                                    type="text"
+                                                    style={{ width: "100%" }}
+                                                    {...field}
+                                                />
+                                                {meta.touched &&
+                                                    meta.error && <div style={errorStyle}>{meta.error}</div>}
+                                            </div>
+                                        )}
+                                    </Field>
+                                    <Field name="age">
+                                        {({ field, form, meta }) => (
+                                            <div>
+                                                <OutlinedInput
+                                                    label="Age"
+                                                    type="text"
+                                                    style={{ width: "100%" }}
+                                                    {...field}
+                                                />
+                                                {meta.touched &&
+                                                    meta.error && <div style={errorStyle}>{meta.error}</div>}
+                                            </div>
+                                        )}
+                                    </Field>
+                                </div>
+                                <Field name="email">
+                                    {({ field, form, meta }) => (
+                                        <>
+                                            <OutlinedInput
+                                                label="Email"
+                                                type="email"
+                                                disabled={true}
+                                                {...field}
+                                            />
+                                            {meta.touched &&
+                                                meta.error && <div style={errorStyle}>{meta.error}</div>}
+                                        </>
+                                    )}
+                                </Field>
+                                <Field name="address">
+                                    {({ field, form, meta }) => (
+                                        <>
+                                            <OutlinedInput
+                                                label="Address"
+                                                type="text"
+                                                {...field}
+                                            />
+                                            {meta.touched &&
+                                                meta.error && <div style={{ ...errorStyle }}>{meta.error}</div>}
+                                        </>
+                                    )}
+                                </Field>
+                                <Field name="phonenumber">
+                                    {({ field, form, meta }) => (
+                                        <>
+                                            <OutlinedInput
+                                                label="Phone Number"
+                                                type="text"
+                                                {...field}
+                                            />
+                                            {meta.touched &&
+                                                meta.error && <div style={{ ...errorStyle }}>{meta.error}</div>}
+                                        </>
+                                    )}
+                                </Field>
+                            </Stack>
+                        </div>
 
                         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                            <Button
+                            <MuiCustomButton
                                 onClick={props.submitForm}
-                                type='submit'
-                                style={{
-                                    flex: 1,
-                                    maxWidth: smMatches ? "150px" : "100%",
-                                    padding: "10px 0",
-                                    marginTop: "10px",
-                                    borderRadius: "3px",
-                                    backgroundColor: ThemeConfig.palette.primary.main,
-                                    color: "#fff",
-                                    fontSize: "14px",
-                                    fontWeight: "500",
-                                    letterSpacing: "1px"
-                                }}
+                                type="submit"
                             >
                                 Save
-                            </Button>
+                            </MuiCustomButton>
                         </div>
                     </Form>
                 )}

@@ -32,7 +32,7 @@ const ProductItem = ({
       <div className='pro-item__container'>
         <div className='pro-item__content'>
           <div className='pro-item__image'>
-            <img src={srcImg} />
+            <img src={srcImg} alt="image of the product"/>
           </div>
           <div className='pro-item__infor'>
             <div className='pro-item__group-text'>

@@ -41,7 +41,7 @@ const ProductList = (props) => {
               lg={3}
               // lg={4}
               sx={{ width: "100%" }}
-              onClick={() => navigate(`/products/detail/${item.id}`)}
+              onClick={() => navigate(`${item.id}`)}
               key={index}
             >
               <img

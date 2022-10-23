@@ -17,7 +17,6 @@ const LayoutAuthentication = (props) => {
 
   return (
     <>
-      <Header authen={true}></Header>
       <div className="layout">
         <div
           className="layout__container"
@@ -76,7 +75,6 @@ const LayoutAuthentication = (props) => {
           </NavLink>
         </div>
       </div>
-      <Footer></Footer>
     </>
   );
 };

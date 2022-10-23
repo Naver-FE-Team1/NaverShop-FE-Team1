@@ -1,15 +1,21 @@
 import PropTypes from "prop-types";
-import { toast } from 'react-toastify';
-import { deleteCmt } from '../../../store/reducers/commentSlice'
-import { useDispatch } from 'react-redux';
+import { toast } from "react-toastify";
+import { deleteCmt } from "../../../store/reducers/commentSlice";
+import { useDispatch } from "react-redux";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import { Avatar, Divider, Grid, Rating, Stack } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 // import '../../../scss/ProductDetail/ProductDetail.scss';
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ProductDetailInput from "./ProductDetailInput";
+import { collection, doc, updateDoc } from "firebase/firestore";
+import { db } from "../../../firebase/firebase-config";
+import { useAuth } from "../../../contexts/auth-context";
+import { useParams } from "react-router-dom";
 
 const ProductReviewDetail = ({ data, ml, showRating }) => {
+  const { userInfo } = useAuth();
+  const productId = useParams();
   const [like, setLike] = useState(false); //Kiểm tra tạng thái user like
   const [dislike, setDislike] = useState(false); //Kiểm tra tạng thái user dislike
   const [edit, setEdit] = useState(false); //Sửa bình luận sẽ không hiện rating
@@ -18,18 +24,9 @@ const ProductReviewDetail = ({ data, ml, showRating }) => {
   const dataCmts = useRef([]); //khởi tạo useRef lưu data comments trên local storage
   const dispatch = useDispatch();
   //Xử lý case like của user
-  const handleLike = () => {
-    setLike(!like);
-    if (!like) {
-      setLiked((data) => data + 1);
-    }
-    if (like) {
-      setLiked((data) => data - 1);
-    }
-    if (!like && dislike) {
-      setDislike(false);
-      setDisliked((data) => data - 1);
-    }
+  const handleLike = async () => {
+    // const colRef = doc(db, "reviews");
+    // await updateDoc(colRef, {});
   };
   //Xử lý case dislike của user
   const handleDisLike = () => {
@@ -52,12 +49,12 @@ const ProductReviewDetail = ({ data, ml, showRating }) => {
   //Ẩn input khi user chỉnh sửa bình luận thành công
   const toggleEditInput = () => {
     setEdit(!edit);
-  }
+  };
   // Xóa bình luận
   const handleDeleteCmt = () => {
-    dispatch(deleteCmt(data.id))
-    toast.success('Xóa bình luận thành công')
-  }
+    dispatch(deleteCmt(data.id));
+    toast.success("Xóa bình luận thành công");
+  };
   useEffect(() => {
     dataCmts.current.map((item) => {
       if (item.id === data.id) {
@@ -87,7 +84,12 @@ const ProductReviewDetail = ({ data, ml, showRating }) => {
           </span>
           <Stack direction="row" spacing={2}>
             {showRating ? (
-              <Rating name="read-only" value={data.rating} readOnly sx={{width: '6.5rem'}} />
+              <Rating
+                name="read-only"
+                value={data.rating}
+                readOnly
+                sx={{ width: "6.5rem" }}
+              />
             ) : (
               ""
             )}
@@ -95,11 +97,13 @@ const ProductReviewDetail = ({ data, ml, showRating }) => {
           </Stack>
         </Stack>
       </Stack>
-      <Grid item xs={10} md={10} >
+      <Grid item xs={10} md={10}>
         <p
           style={{
             textAlign: "justify",
-            padding: ".5rem",maxWidth: '600px', width: '100%'
+            padding: ".5rem",
+            maxWidth: "600px",
+            width: "100%",
           }}
         >
           {data.content}
@@ -113,7 +117,7 @@ const ProductReviewDetail = ({ data, ml, showRating }) => {
           onClick={() => handleLike()}
         >
           <ThumbUpOffAltIcon />
-          <span className='product-detail__react'>{liked}</span>
+          <span className="product-detail__react">{liked?.length}</span>
         </Stack>
         <Stack
           direction="row"
@@ -122,19 +126,21 @@ const ProductReviewDetail = ({ data, ml, showRating }) => {
           onClick={() => handleDisLike()}
         >
           <ThumbDownOffAltIcon />
-          <span className='product-detail__react'>{disliked}</span>
+          <span className="product-detail__react">{disliked?.length}</span>
         </Stack>
-        <p onClick={handleToggleEdit} className='product-detail__ud'>
-          {!edit ? 'edit' : 'cancel'}
+        <p onClick={handleToggleEdit} className="product-detail__ud">
+          {!edit ? "edit" : "cancel"}
         </p>
-        <p onClick={handleDeleteCmt} className='product-detail__ud'>delete</p>
+        <p onClick={handleDeleteCmt} className="product-detail__ud">
+          delete
+        </p>
       </Stack>
       {edit ? (
         <ProductDetailInput
           width="40px"
           height="40px"
           showRating={false}
-          widthInput='35rem'
+          widthInput="35rem"
           dataCmt={data}
           toggleEditInput={toggleEditInput}
         />
@@ -156,30 +162,33 @@ const ProductReviewDetail = ({ data, ml, showRating }) => {
 ProductReviewDetail.propTypes = {
   ml: PropTypes.string,
   showRating: PropTypes.bool,
-  data: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string,
-    liked: PropTypes.number,
-    disliked: PropTypes.number,
-    parentId: PropTypes.string,
-    rating: PropTypes.number,
-    created: PropTypes.string,
-    content: PropTypes.string,
-    author: PropTypes.string,
-  }))
-
-}
-ProductReviewDetail.defaultProps={
-  ml: '',
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      liked: PropTypes.number,
+      disliked: PropTypes.number,
+      parentId: PropTypes.string,
+      rating: PropTypes.number,
+      created: PropTypes.string,
+      content: PropTypes.string,
+      author: PropTypes.string,
+    })
+  ),
+};
+ProductReviewDetail.defaultProps = {
+  ml: "",
   showRating: true,
-  data: [{
-    id: '',
-    liked: 0,
-    disliked: 0,
-    parentId: '',
-    rating: 0,
-    created: '',
-    content: '',
-    author: '',
-  }]
-}
+  data: [
+    {
+      id: "",
+      liked: 0,
+      disliked: 0,
+      parentId: "",
+      rating: 0,
+      created: "",
+      content: "",
+      author: "",
+    },
+  ],
+};
 export default ProductReviewDetail;

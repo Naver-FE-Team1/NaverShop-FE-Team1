@@ -44,7 +44,6 @@ const SignInPage = (props) => {
   function statusUser(email, users) {
     let checkUser = true;
     users.forEach((user) => {
-      console.log(user);
       if (user.email === email && user.status === "passive") {
         checkUser = false;
         return;
@@ -60,8 +59,8 @@ const SignInPage = (props) => {
         console.log("asdd");
         return;
       }
-      // await signInWithEmailAndPassword(auth, values.email, values.password);
-      // navigate("/");
+      await signInWithEmailAndPassword(auth, values.email, values.password);
+      navigate("/");
     } catch (errors) {
       console.log(errors);
       toast.error("Your email or password is incorrect");

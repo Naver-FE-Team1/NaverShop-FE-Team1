@@ -28,7 +28,14 @@ function App() {
         <Route path="products" element={<ShoppingList />} />
         <Route path="products/detail/:id" element={<ProductDetail />} />
         <Route path="shopping-basket" element={<ShoppingBasket />} />
-        <Route path="/user" element={<User />} />
+        <Route
+          path="/user"
+          element={
+            <PrivateRoute>
+              <User />
+            </PrivateRoute>
+          }
+        />
         <Route path="checkout" element={<Checkout />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

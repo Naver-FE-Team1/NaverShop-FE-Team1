@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Grid, Rating, Stack, Slider, Container } from "@mui/material";
 import { dataRating, dataReview } from "./data";
 // import '../../../scss/ProductDetail/ProductDetail.scss';
@@ -8,9 +8,14 @@ import ProductDetailInput from "./ProductDetailInput";
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import { db } from "../../../firebase/firebase-config";
-import { collection } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { getCmts } from "../../../store/reducers/commentSlice";
+import { useParams } from "react-router-dom";
 
 const ProductReview = () => {
+  const dispatch = useDispatch();
+  const [isReview, setIsReview] = useState(false);
+  const productId = useParams();
   // const [disliked, setDisliked] = useState(data.disliked);
   const dataCmts = useSelector((state) => state.comments.allCmts);
   // const localCmts = localStorage.getItem('comments') ? JSON.parse(localStorage.getItem('comments')) : [];
@@ -25,18 +30,48 @@ const ProductReview = () => {
   //     setData(JSON.parse(localStorage.getItem('comments')));
   //   }
   // }, [submitted]);
-  const [reviews, setReviews] = useState([]);
+  //interact with firebase
+  const [reviewsData, setReviewsData] = useState([]);
   useEffect(() => {
-    const colRef = collection(db, "reviews");
+    const colRef = query(
+      collection(db, "reviews"),
+      where("productId", "==", productId.id)
+    );
+
     getDocs(colRef).then((snapshot) => {
       let listReviews = [];
       snapshot.docs.forEach((doc) => {
         listReviews.push({ id: doc.id, ...doc.data() });
       });
-      setReviews(listReviews);
+      setReviewsData(listReviews);
+      dispatch(getCmts(listReviews));
     });
-  }, []);
-  console.log(reviews);
+  }, [isReview]);
+  console.log(reviewsData);
+  const addReivew = () => {
+    setIsReview(!isReview);
+  };
+  const checkLikeUser = (id) => {
+    let check = false;
+    reviewsData.forEach((user) => {
+      if (user.liked.includes(id)) {
+        check = true;
+        return;
+      }
+    });
+    return check;
+  };
+  const checkDislikeUser = (id) => {
+    let check = false;
+    reviewsData.forEach((user) => {
+      if (user.disliked?.includes(id)) {
+        check = true;
+        return;
+      }
+    });
+    return check;
+  };
+
   return (
     <Container sx={{ padding: "4rem 2rem" }}>
       <Grid container spacing={5} direction={{ xs: "column", md: "row" }}>
@@ -54,8 +89,9 @@ const ProductReview = () => {
             showRating={true}
             widthInput="40rem"
             dataCmt=""
+            addReview={addReivew}
           />
-          {dataCmts.map((data, index) => (
+          {reviewsData.map((data, index) => (
             <ProductReviewDetail key={index} data={data} showRating={true} />
           ))}
         </Grid>

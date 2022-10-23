@@ -75,6 +75,15 @@ const HomePage = () => {
           <Header />
           <HeroBlock />
           <FeaturesBlock />
+          <div
+            style={
+              smMatches
+                ? { padding: "28px 80px", width: "100%" }
+                : { padding: "28px 24px", width: "100%" }
+            }
+          >
+            <ProductList />
+          </div>
 
           <Subscibe />
           <Footer />

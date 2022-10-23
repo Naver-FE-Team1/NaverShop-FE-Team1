@@ -1,13 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { dataReview } from '../../components/organisms/ProductDetail/data';
+import { createSlice } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { dataReview } from "../../components/organisms/ProductDetail/data";
 
-const commentLocal = localStorage.getItem('comments')
-  ? JSON.parse(localStorage.getItem('comments'))
+const commentLocal = localStorage.getItem("comments")
+  ? JSON.parse(localStorage.getItem("comments"))
   : [];
 const commentSlice = createSlice({
-  name: 'comments',
+  name: "comments",
   initialState: {
     allCmts: [],
   },
@@ -35,6 +35,6 @@ const commentSlice = createSlice({
 //get reducer and action in redux slice
 const { actions, reducer } = commentSlice;
 
-export const { addCmt, deleteCmt, editCmt } = actions;
+export const { getCmts, addCmt, deleteCmt, editCmt } = actions;
 
 export default reducer;

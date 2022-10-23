@@ -1,3 +1,8 @@
+/**
+ * A HOC AuthContext for project
+ * file: auth-context.jsx
+ */
+
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { createContext, useContext, useEffect, useState } from "react";

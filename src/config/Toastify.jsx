@@ -1,3 +1,8 @@
+/**
+ * A Toast component for the project
+ * file: Toastify.jsx
+ */
+
 import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';

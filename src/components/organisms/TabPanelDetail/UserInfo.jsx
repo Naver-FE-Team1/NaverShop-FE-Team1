@@ -1,13 +1,18 @@
+/**
+ * User Info tab for User Profile
+ * file: UserInfo.jsx
+ */
+
 import { Stack, Typography, useMediaQuery } from '@mui/material'
 import { Formik, Form, Field } from 'formik'
 import React, { useEffect, useState } from 'react'
 import OutlinedInput from '../../molecules/TextField/OutlinedInput'
-import "./Tabs.scss"
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { auth, db } from '../../../firebase/firebase-config'
 import AvatarButton from '../AvatarButton/AvatarButton'
 import MuiCustomButton from '../../atoms/Button/MuiCustomButton'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const errorStyle = {
     marginTop: "5px",
@@ -90,16 +95,18 @@ const UserInfo = (props) => {
                     return errors;
                 }}
                 onSubmit={async (values) => {
-                    /*
-                    If onSubmit is async, 
-                    then Formik will automatically set isSubmitting to false on your behalf 
-                    once it has resolved
-                    */
 
+                    /*
+                     * If onSubmit is async, 
+                     * then Formik will automatically set isSubmitting to false 
+                     * on your behalf once it has resolved
+                     */
                     const userRef = doc(db, "users", auth.currentUser?.uid)
                     await updateDoc(userRef, {
                         ...values
                     })
+
+                    toast.success("Cập nhật thông tin thành công!")
                 }}
             >
                 {(props) => (

@@ -85,7 +85,6 @@ const SignInPage = (props) => {
         })}
         onSubmit={handleSignIn}
       >
-        return (
         <LayoutAuthentication
           title='Sign In'
           text="Don't have an account?"
@@ -134,8 +133,7 @@ const SignInPage = (props) => {
               type='submit'
             ></Button>
           </FormAuthentication>
-        </LayoutAuthentication>
-        );
+        </LayoutAuthentication>     
       </Formik>
     </>
   );

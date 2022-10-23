@@ -16,7 +16,9 @@
     }
     .nav-bar {
       width: 13%;
-
+      .inner-nav {
+        height: fit-content;
+      }
       .cart,
       .user {
         display: none;
@@ -127,14 +129,14 @@
     }
   }
 }
-.css-hvnn7i-MuiBadge-badge{
+.css-hvnn7i-MuiBadge-badge {
   background-color: #4e4d93 !important;
-  }
+}
 
 @include tablet {
-  .css-hvnn7i-MuiBadge-badge{
+  .css-hvnn7i-MuiBadge-badge {
     background-color: #4e4d93 !important;
-    }
+  }
   .landingpage-header {
     .upper-nav {
       .logo {
@@ -166,9 +168,9 @@
   }
   .popover {
   }
-  .css-hvnn7i-MuiBadge-badge{
+  .css-hvnn7i-MuiBadge-badge {
     background-color: #4e4d93 !important;
-    }
+  }
   .landingpage-header {
     position: relative;
     .upper-nav {
@@ -198,9 +200,8 @@
             aspect-ratio: 1/1;
           }
           .user {
-            width: 30px;
+            width: fit-content;
             display: inline-block;
-            aspect-ratio: 1/1;
           }
         }
       }

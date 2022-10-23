@@ -1,5 +1,9 @@
+import { useMediaQuery } from "@mui/material";
+import { collection, getDocs, query } from "firebase/firestore";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { db } from "../../../firebase/firebase-config";
-import { useState } from "react";
+import { addProducts } from "../../../store/reducers/productsSlice.js";
 import { useAuth } from "../../../contexts/auth-context";
 import Footer from "../../molecules/Footer/Footer";
 import Feature2 from "../../organisms/Features2";
@@ -7,12 +11,7 @@ import FeaturesBlock from "../../organisms/FeaturesBlock";
 import Header from "../../organisms/Header";
 import HeroBlock from "../../organisms/HeroBlock";
 import ProductList from "../../organisms/ProductList/ProductList";
-import Subscibe from "../../organisms/Subcribe";
-import { useMediaQuery } from "@mui/material";
-import { addProducts } from "../../../store/reducers/productsSlice.js";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { collection, query, getDocs } from "firebase/firestore";
+import Subscribe from "../../organisms/Subcribe";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -37,7 +36,6 @@ const HomePage = () => {
       {!loading ? (
         <section className="home-page">
           <HeroBlock />
-          <FeaturesBlock />
           <div
             style={
               smMatches
@@ -47,17 +45,28 @@ const HomePage = () => {
           >
             <ProductList />
           </div>
+          <FeaturesBlock />
           <Feature2 />
-          <Subscibe />
+          <Subscribe />
           <Footer />
         </section>
       ) : (
         <section className="home-page">
           <Header />
           <HeroBlock />
+          <div
+            style={
+              smMatches
+                ? { padding: "28px 80px", width: "100%" }
+                : { padding: "28px 24px", width: "100%" }
+            }
+          >
+            <ProductList />
+          </div>
           <FeaturesBlock />
 
-          <Subscibe />
+          <Subscribe />
+          <Footer />
         </section>
       )}
     </>

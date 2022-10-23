@@ -8,7 +8,7 @@ const items = [
   { icon: <Checkmark />, content: "Large discounts" },
 ];
 
-const Subcribe = () => {
+const Subscribe = () => {
   return (
     <section className="subscribe">
       <h3>Join the club and get the benefits</h3>
@@ -29,4 +29,4 @@ const Subcribe = () => {
   );
 };
 
-export default Subcribe;
+export default Subscribe;

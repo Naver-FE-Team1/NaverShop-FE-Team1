@@ -1,5 +1,6 @@
 import React from "react";
-import { Outlet, Route, useNavigate } from "react-router-dom";
+import { Route, useNavigate } from "react-router-dom";
+import Header from "../components/organisms/Header";
 import { useAuth } from "../contexts/auth-context";
 
 const PrivateRoute = ({ children }) => {

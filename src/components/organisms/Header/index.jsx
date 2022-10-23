@@ -6,6 +6,15 @@ import { ReactComponent as MenuLogo } from "../../../assets/Menu.svg";
 import { stack as Menu } from "react-burger-menu";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/auth-context";
+import User from "../../molecules/User/User";
+import { Badge } from "@mui/material";
+import "./header.scss";
+import Search from "../../../assets/Search.svg";
+import { ReactComponent as Cart } from "../../../assets/Shopping--cart.svg";
+import { ReactComponent as MenuLogo } from "../../../assets/Menu.svg";
+import { stack as Menu } from "react-burger-menu";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../contexts/auth-context";
 import { Badge } from "@mui/material";
 import UserAvatar from "../../molecules/UserAvatar/UserAvatar";
 
@@ -47,6 +56,7 @@ const Header = ({ authen }) => {
         <p className="logo" onClick={() => navigate("/")}>
           Yame
         </p>
+
         <nav className="nav-bar d-flex align-items-center justify-content-between">
           <img className="search" src={Search} alt="" />
           <div className="inner-nav">

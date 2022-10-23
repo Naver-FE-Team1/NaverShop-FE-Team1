@@ -20,7 +20,6 @@ import { collection, getDocs } from "firebase/firestore";
 
 const SignInPage = (props) => {
   const navigate = useNavigate();
-
   const [users, setUsers] = useState([]);
   //get users
   useEffect(() => {
@@ -34,7 +33,6 @@ const SignInPage = (props) => {
     });
   }, []);
   // console.log(users);
-
   //Bias redux
   const [togglePassword, setTogglePassword] = useState(false);
   const handleTogglePassword = () => {

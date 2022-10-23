@@ -5,12 +5,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import App from "./App";
 import { AuthProvider } from "./contexts/auth-context";
 import "./scss/index.scss";
 import store from "./store";
 import { ThemeConfig } from "./theme/ThemeConfig";
-import {Toastify} from './config/Toastify';
+import { Toastify } from "./config/Toastify";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -20,7 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <LocalizationProvider dateAdapter={AdapterMoment}>
           <AuthProvider>
             <BrowserRouter>
-            <Toastify />
+              <Toastify />
               <App />
             </BrowserRouter>
           </AuthProvider>
@@ -29,4 +30,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </ThemeProvider>
   </React.StrictMode>
 );
-

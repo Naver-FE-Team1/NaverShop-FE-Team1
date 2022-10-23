@@ -6,24 +6,29 @@ import { auth } from "../../../firebase/firebase-config";
 import userAvatarDefault from "../../../assets/images/userAvatarDefault.jpg";
 import { useNavigate } from "react-router-dom";
 
-const User = ({ props }) => {
+const UserAvatar = ({ props }) => {
   const navigate = useNavigate();
-  const [popOver, setPopOver] = useState(false);
   const { userInfo, loading, setLoading } = useAuth();
-
-  console.log("🚀 ~ file: User.jsx ~ line 14 ~ User ~ userInfo", userInfo);
+  const userFunctions = [
+    {
+      title: "Profile",
+      onClick() {
+        navigate("/user");
+      },
+    },
+    {
+      title: "Sign out",
+      onClick() {
+        handleSignOut();
+      },
+    },
+  ];
   const handleSignOut = () => {
     setLoading(false);
     signOut(auth);
   };
   return (
-    <div
-      className=""
-      style={{ position: "relative" }}
-      onClick={() => {
-        setPopOver(!popOver);
-      }}
-    >
+    <div className="user" style={{ position: "relative" }}>
       {userInfo === null && loading === false && (
         <>
           {
@@ -51,17 +56,19 @@ const User = ({ props }) => {
             }}
             alt=""
           />
-          {popOver && (
-            <div className="popover">
-              <p onClick={handleSignOut}>Sign out</p>
-            </div>
-          )}
+          <div className="user__popover">
+            {userFunctions.map((item, index) => (
+              <p className="user__function" onClick={item.onClick}>
+                {item.title}
+              </p>
+            ))}
+          </div>
         </>
       )}
     </div>
   );
 };
 
-User.propTypes = {};
+UserAvatar.propTypes = {};
 
-export default User;
+export default UserAvatar;

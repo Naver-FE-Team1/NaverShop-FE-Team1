@@ -52,6 +52,7 @@ const HomePage = () => {
   //   </section>
   return (
     <>
+<<<<<<< HEAD
       {!loading ? (
         <section className="home-page">
           <Header />
@@ -80,8 +81,20 @@ const HomePage = () => {
           <Footer />
         </section>
       )}
+=======
+      <section className="home-page">
+        <Header />
+        <HeroBlock />
+        <FeaturesBlock />
+        <div style={{ padding: "28px 80px", width: "100%" }}>
+          <ProductList />
+        </div>
+        <Feature2 />
+        <Subscibe />
+        <Footer />
+      </section>
+>>>>>>> feature/authentication-hung
     </>
   );
 };
-
 export default HomePage;

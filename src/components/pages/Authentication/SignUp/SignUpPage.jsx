@@ -19,7 +19,7 @@ import IconEyeClose from "../../../../assets/icons/IconEyes/IconEyeClose";
 import IconEyeOpen from "../../../../assets/icons/IconEyes/IconEyeOpen";
 import Gmail from "../../../../assets/icons/icons svg/Gmail";
 import userAvatarDefault from "../../../../assets/images/userAvatarDefault.jpg";
-const SignUpForm = (props) => {
+const SignUpPage = (props) => {
   const navigate = useNavigate();
   const [togglePassword, setTogglePassword] = useState(false);
   const handleTogglePassword = () => {
@@ -153,6 +153,6 @@ read and understand the Privacy policy."
   );
 };
 
-SignUpForm.propTypes = {};
+SignUpPage.propTypes = {};
 
-export default SignUpForm;
+export default SignUpPage;

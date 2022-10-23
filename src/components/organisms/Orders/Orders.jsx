@@ -48,10 +48,11 @@ const Orders = (props) => {
         <div>
             <ProductBar />
             {productsList.map((item, index) => {
+                console.log(item);
                 return (
                     <ProductItem
                         key={index}
-                        imgScr={item.image}
+                        srcImg={item.image}
                         name={item.name}
                         description={item.description}
                         color={item.color[0]}

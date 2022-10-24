@@ -35,7 +35,7 @@ const ProductDetail = () => {
   const [colorPicker, setColorPicker] = useState([]);
   const [quant, setQuant] = useState(0);
   const [listImages, setListImages] = useState([]);
-
+  const [productCategories, setProductCategories] = useState([]);
   console.log(
     "🚀 ~ file: ProductDetailContent.jsx ~ line 48 ~ listImages",
     listImages
@@ -61,8 +61,6 @@ const ProductDetail = () => {
     })();
   }, [id]);
 
-  const [productCategories, setProductCategories] = useState([]);
-
   const handleGetListProductWithCategories = async (categories) => {
     const docRef = collection(db, "products");
     const que = query(docRef, where("category", "==", categories));
@@ -85,7 +83,7 @@ const ProductDetail = () => {
         setColorPicker={setColorPicker}
         colorPicker={colorPicker}
       />
-      <ProductDetailList />
+      <ProductDetailList productList={productCategories}/>
       <ProductReview />
       <ProductDetailJoin />
     </>

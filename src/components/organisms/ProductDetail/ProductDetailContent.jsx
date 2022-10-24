@@ -25,6 +25,11 @@ const ProductDetailContent = ({
   setColorPicker,
   colorPicker,
 }) => {
+  //state này để lưu size S,M,L,...
+  //ban đầu ấn add to basket sẽ lưu vô local
+  // const [sizePicker, setSizePicker] = useState(data.sizes[0]);
+  // const [quant, setQuant] = useState(1);
+  //Lấy ra ở đây để dùng trong các trường hợp query 1 sản phẩm theo id
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -50,81 +55,110 @@ const ProductDetailContent = ({
       };
       dispatch(addBasket(productStringify));
     }
-    const [defaultImage, setDefaultImage] = useState(data.image);
-    const handleChangeDefaultImage = (src) => {
-      setDefaultImage(src);
-    };
-    const handleSetColor = (color) => {
-      setColorPicker(color);
-    };
-    return (
-      <div className="container">
-        <Container style={{ padding: 0 }}>
-          <Grid className="grid" container>
-            <Grid item xs={12} lg={6}>
-              <Grid>
-                <img
-                  src={defaultImage ? defaultImage : data.image}
-                  className="productDetail-img"
-                  alt={defaultImage ? defaultImage : data.image}
-                />
-              </Grid>
-              <Grid item>
-                <SliderSlick
-                  showItem={listImages?.length < 3 ? listImages?.length : 3}
-                >
-                  {listImages?.map((item, idx) => (
-                    <SubImage
-                      key={idx}
-                      data={item}
-                      onClick={() => {
-                        handleChangeDefaultImage(item);
-                      }}
-                    />
-                  ))}
-                </SliderSlick>
-              </Grid>
+  };
+  const [defaultImage, setDefaultImage] = useState(data.image);
+  const handleChangeDefaultImage = (src) => {
+    setDefaultImage(src);
+  };
+  const handleSetColor = (color) => {
+    setColorPicker(color);
+  };
+  return (
+    <div className="container">
+      <Container style={{ padding: 0 }}>
+        <Grid className="grid" container>
+          <Grid item xs={12} lg={6}>
+            <Grid>
+              <img
+                src={defaultImage ? defaultImage : data.image}
+                className="productDetail-img"
+                alt={defaultImage ? defaultImage : data.image}
+              />
             </Grid>
-            <Grid item xs={12} lg={6}>
-              <Container maxWidth="sm" style={{ padding: "28px" }}>
-                <div className="productDetail__topContent">
-                  <h3 className="productDetail__topContent-name">
-                    {data.name}
-                  </h3>
-                  <p className="productDetail__topContent-price">
-                    {data?.price?.toLocaleString("vi-VN", {
-                      style: "currency",
-                      currency: "VND",
-                    })}
-                  </p>
-                </div>
-                <div className="productDetail__description">
-                  <h5 className="productDetail__description-title">
-                    Product description
-                  </h5>
-                  <p className="productDetail__description-content">
-                    {parse(data.description || "")}
-                  </p>
-                </div>
-                <div className="productDetail__dimension">
-                  <h5 className="productDetail__dimension-title">Dimensions</h5>
-                  <Grid
-                    container
-                    spacing={1}
-                    sx={{ justifyContent: "space-between" }}
-                  >
-                    {data?.sizes?.map((item, idx) => (
-                      <Grid item key={idx}>
-                        <Size
-                          picked={sizePicker === item}
-                          onClick={() => setSizePicker(item)}
-                          size={item}
-                        />
-                      </Grid>
-                    ))}
+            <Grid item>
+              <SliderSlick
+                showItem={listImages?.length < 3 ? listImages?.length : 3}
+              >
+                {listImages?.map((item, idx) => (
+                  <SubImage
+                    key={idx}
+                    data={item}
+                    onClick={() => {
+                      handleChangeDefaultImage(item);
+                    }}
+                  />
+                ))}
+              </SliderSlick>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <Container maxWidth="sm" style={{ padding: "28px" }}>
+              <div className="productDetail__topContent">
+                <h3 className="productDetail__topContent-name">{data.name}</h3>
+                <p className="productDetail__topContent-price">
+                  {data?.price?.toLocaleString("vi-VN", {
+                    style: "currency",
+                    currency: "VND",
+                  })}
+                </p>
+              </div>
+              <div className="productDetail__description">
+                <h5 className="productDetail__description-title">
+                  Product description
+                </h5>
+                <p className="productDetail__description-content">
+                  {parse(data.description || "")}
+                </p>
+              </div>
+              <div className="productDetail__dimension">
+                <h5 className="productDetail__dimension-title">Dimensions</h5>
+                <Grid
+                  container
+                  spacing={1}
+                  sx={{ justifyContent: "space-between" }}
+                >
+                  {data?.sizes?.map((item, idx) => (
+                    <Grid item key={idx}>
+                      <Size
+                        picked={sizePicker === item}
+                        onClick={() => setSizePicker(item)}
+                        size={item}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+                <div className="productDetail__dimension-colors"></div>
+              </div>
+              <ul className="productDetail__description-colors">
+                {data.color?.map((item, idx) => (
+                  <li
+                    className="productDetail__description-color"
+                    style={{
+                      backgroundColor: item,
+                      border:
+                        colorPicker === item
+                          ? `3px solid ${item}`
+                          : ` 3px #fff solid`,
+                    }}
+                    onClick={() => {
+                      handleSetColor(item);
+                    }}
+                  ></li>
+                ))}
+              </ul>
+              <div className="productDetail__quantity">
+                <h5 className="productDetail__quantity-title">Quantity</h5>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} md={3}>
+                    <Quantity
+                      setQuant={setQuant}
+                      quant={quant}
+                      limit={data.quantities}
+                    />
                   </Grid>
                   <div className="productDetail__dimension-colors"></div>
-                </div>
+                </Grid>
+              </div>  
                 <ul className="productDetail__description-colors">
                   {data.color?.map((item, idx) => (
                     <li
@@ -181,6 +215,6 @@ const ProductDetailContent = ({
       </div>
     );
   };
-};
+
 
 export default ProductDetailContent;

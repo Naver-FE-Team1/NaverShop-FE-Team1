@@ -13,9 +13,8 @@ import Quantity from "../../molecules/Quantity/Quantity";
 import Size from "../../atoms/Size/Size";
 import SubImage from "../../atoms/SubImage/SubImage";
 import SliderSlick from "../../molecules/SliderSlick/SliderSlick";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import parse from "html-react-parser";
-
 const ProductDetailContent = ({
   data,
   sizePicker,
@@ -158,34 +157,65 @@ const ProductDetailContent = ({
                       limit={data.quantities}
                     />
                   </Grid>
+                  <div className="productDetail__dimension-colors"></div>
                 </Grid>
-              </div>
-              <div className="productDetail__action">
-                <Grid container spacing={3}>
-                  <Grid item xs={12} md={4}>
-                    <Button
-                      backgroundColor="#2A254B"
-                      color="#fff"
-                      content="Add to cart"
-                      handleClick={handleAddtoCart}
-                    ></Button>
+              </div>  
+                <ul className="productDetail__description-colors">
+                  {data.color?.map((item, idx) => (
+                    <li
+                      className="productDetail__description-color"
+                      style={{
+                        backgroundColor: item,
+                        border:
+                          colorPicker === item
+                            ? `3px solid ${item}`
+                            : ` 3px #fff solid`,
+                      }}
+                      onClick={() => {
+                        handleSetColor(item);
+                      }}
+                    ></li>
+                  ))}
+                </ul>
+                <div className="productDetail__quantity">
+                  <h5 className="productDetail__quantity-title">Quantity</h5>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} md={3}>
+                      <Quantity
+                        setQuant={setQuant}
+                        quant={quant}
+                        limit={data.quantities}
+                      />
+                    </Grid>
                   </Grid>
-                  <Grid item xs={12} md={4}>
-                    <Button
-                      color="#000"
-                      bgColor="#fff"
-                      content="Buy now"
-                      handleClick={() => navigate("/checkout")}
-                    ></Button>
+                </div>
+                <div className="productDetail__action">
+                  <Grid container spacing={3}>
+                    <Grid item xs={12} md={4}>
+                      <Button
+                        backgroundColor="#2A254B"
+                        color="#fff"
+                        content="Add to cart"
+                        handleClick={handleAddtoCart}
+                      ></Button>
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                      <Button
+                        color="#000"
+                        bgColor="#fff"
+                        content="Buy now"
+                        handleClick={() => navigate("/checkout")}
+                      ></Button>
+                    </Grid>
                   </Grid>
-                </Grid>
-              </div>
-            </Container>
+                </div>
+              </Container>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
-    </div>
-  );
+        </Container>
+      </div>
+    );
+  };
 };
 
 export default ProductDetailContent;

@@ -1,3 +1,8 @@
+/**
+ * Layout of the website
+ * file: Layout.jsx
+ */
+
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../organisms/Header';
 import Footer from '../molecules/Footer/Footer';

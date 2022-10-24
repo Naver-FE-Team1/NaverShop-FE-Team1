@@ -1,13 +1,15 @@
-import { async } from '@firebase/util'
+/**
+ * Order Status (Order Tracking) tab for User Profile
+ * file: OrderStatus.jsx
+ */
+
 import { CloseOutlined } from '@mui/icons-material'
 import { Divider, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, Typography, useMediaQuery } from '@mui/material'
-import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { auth, db } from '../../../firebase/firebase-config'
-import { ThemeConfig } from '../../../theme/ThemeConfig'
 import StatusChip from '../../molecules/StatusChip/StatusChip'
 import Orders from '../Orders/Orders'
-import "./Tabs.scss"
 
 const headersTable = [
     {
@@ -37,9 +39,7 @@ const rowStyle = (fontSize = "16px", fontWeight = "400") => {
         fontSize: fontSize,
         fontWeight: fontWeight,
         color: "#212b36",
-
         borderColor: "#f4f6f8",
-        // paddingRight: "0",
     }
 }
 
@@ -70,6 +70,7 @@ const OrderStatus = () => {
     const [selectedOrder, setSelectedOrder] = useState(null)
 
     useEffect(() => {
+        //To get all orders from listOrdered 
         (async function () {
             const q = query(collection(db, "listOrdered"), where("userId", "==", auth.currentUser.uid))
             const querySnapshot = await getDocs(q)
@@ -93,11 +94,7 @@ const OrderStatus = () => {
                     boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px"
                 }}
             >
-                <TableContainer
-                    sx={{
-                        minWidth: "500px",
-                    }}
-                >
+                <TableContainer>
                     <Table>
                         <TableHead>
                             <TableRow
@@ -146,7 +143,7 @@ const OrderStatus = () => {
                                             overflow: "hidden"
                                         }}
                                     >
-                                        #{item.id}00000000
+                                        #{item.id}
                                     </TableCell>
                                     <TableCell sx={rowStyle("14px")} align='left'>{item.orderDate}</TableCell>
                                     <TableCell sx={rowStyle("14px")} align='left'>${item.Total}</TableCell>
@@ -193,8 +190,6 @@ const OrderStatus = () => {
                                 flexDirection: "column",
                             }}>
                                 <h1 style={fontStyle("19px", "700")}>#{selectedOrder?.id}</h1>
-                                {/* <Divider sx={{ marginY: "10px" }} /> */}
-                                {/* <span style={fontStyle("16px", "#5b5676")}>Subtotal</span> */}
                                 <div>
                                     <span style={{ ...fontStyle("13px", "400", "#696969"), marginRight: "5px" }}>Address:</span>
                                     <span style={fontStyle("16px")}>{selectedOrder?.orderAddress}</span>
@@ -204,7 +199,6 @@ const OrderStatus = () => {
                                     <span style={fontStyle("16px")}>{selectedOrder?.orderDate}</span>
                                 </div>
                                 <div style={{ alignSelf: "flex-end", textAlign: "right" }}>
-                                    {/* <span style={{ ...fontStyle("15px", "500", "#474747"), marginRight: "5px" }}>Total:</span> */}
                                     <h1 style={fontStyle("21px", "500")}>
                                         {selectedOrder?.Total.toLocaleString("vi-vn", {
                                             style: "currency",

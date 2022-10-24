@@ -1,18 +1,21 @@
-import { FormatItalic } from "@mui/icons-material";
+/**
+ * Check out page
+ * file: (Checkout/) index.jsx
+ */
 import { Button, FormHelperText, Grid, OutlinedInput } from "@mui/material";
+
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
-import { Field, Form, Formik, useFormikContext } from "formik";
+import { Field, Form, Formik } from "formik";
 import { TextField } from "formik-mui";
 import moment from "moment";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../contexts/auth-context";
 import { auth, db } from "../../../firebase/firebase-config";
 import ProductItem from "../../molecules/ProductItem/ProductItem";
-import Header from "../../organisms/Header";
 import "./checkout.scss";
 
 moment().format();

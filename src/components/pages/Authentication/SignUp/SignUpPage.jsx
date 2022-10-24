@@ -1,15 +1,18 @@
+/**
+ * Sign up page
+ * file: SignUpPage.jsx
+ */
+
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import LayoutAuthentication from "../../../molecules/LayoutAuthentication/LayoutAuthentication";
 import Button from "../../../atoms/Button/Button";
 import Checkbox from "../../../atoms/Checkbox/Checkbox";
 import FormAuthentication from "../../../organisms/Form/FormAuthentication";
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
 import InputUser from "../../../molecules/Input/InputUser";
 import {
   createUserWithEmailAndPassword,
-  getAuth,
   updateProfile,
 } from "firebase/auth";
 import { auth, db } from "../../../../firebase/firebase-config";
@@ -17,8 +20,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import IconEyeClose from "../../../../assets/icons/IconEyes/IconEyeClose";
 import IconEyeOpen from "../../../../assets/icons/IconEyes/IconEyeOpen";
-import Gmail from "../../../../assets/icons/icons svg/Gmail";
-import userAvatarDefault from "../../../../assets/images/userAvatarDefault.jpg";
+
 const SignUpPage = (props) => {
   const navigate = useNavigate();
   const [togglePassword, setTogglePassword] = useState(false);
@@ -152,7 +154,5 @@ read and understand the Privacy policy."
     </>
   );
 };
-
-SignUpPage.propTypes = {};
 
 export default SignUpPage;

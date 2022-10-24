@@ -1,3 +1,8 @@
+/**
+ * Landing / Home Page
+ * file: HomePage.jsx
+ */
+
 import { useMediaQuery } from "@mui/material";
 import { collection, getDocs, query } from "firebase/firestore";
 import { useEffect } from "react";
@@ -8,7 +13,6 @@ import { useAuth } from "../../../contexts/auth-context";
 import Footer from "../../molecules/Footer/Footer";
 import Feature2 from "../../organisms/Features2";
 import FeaturesBlock from "../../organisms/FeaturesBlock";
-import Header from "../../organisms/Header";
 import HeroBlock from "../../organisms/HeroBlock";
 import ProductList from "../../organisms/ProductList/ProductList";
 import Subscribe from "../../organisms/Subcribe";
@@ -52,7 +56,6 @@ const HomePage = () => {
         </section>
       ) : (
         <section className="home-page">
-          {/* <Header /> */}
           <HeroBlock />
           <div
             style={
@@ -66,7 +69,6 @@ const HomePage = () => {
           <FeaturesBlock />
 
           <Subscribe />
-          {/* <Footer /> */}
         </section>
       )}
     </>

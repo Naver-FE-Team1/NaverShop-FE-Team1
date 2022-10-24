@@ -1,11 +1,16 @@
+/**
+ * Change Password tab for User Profile
+ * file: ChangePassword.jsx
+ */
+
 import { Typography } from '@mui/material'
 import { updatePassword } from 'firebase/auth'
 import { Field, Form, Formik } from 'formik'
 import React from 'react'
+import { toast } from 'react-toastify'
 import { auth } from '../../../firebase/firebase-config'
 import MuiCustomButton from '../../atoms/Button/MuiCustomButton'
 import PasswordInput from '../../molecules/PasswordInput/PasswordInput'
-import "./Tabs.scss"
 
 const errorStyle = {
     marginTop: "0",
@@ -36,7 +41,7 @@ const ChangePassword = () => {
                         errors.newpassword = "Please enter your new password"
                     }
                     else if (!/^(?=.*\d)(?=.*[a-z])[0-9a-zA-Z]{6,}$/.test(values.newpassword)) {
-                        errors.newpassword = "Password must only be contained of at least one digit, one lowercase and one uppercase letter and 6 letter-long"
+                        errors.newpassword = "Password must only be contained of at least one digit, one lowercase or one uppercase letter and 6 letter-long"
                     }
 
                     //regex for reenter password
@@ -53,15 +58,16 @@ const ChangePassword = () => {
                     if (compare(values.newpassword, values.reenter)) {
                         updatePassword(auth.currentUser, values.newpassword)
                             .then(() => {
-                                console.log("updated!");
+                                console.log("Password updated!");
+                                toast.success("Cập nhật mật khẩu thành công!")
                             })
                             .catch((err) => {
-                                console.log(err);
+                                alert(`${err}`);
                             })
-                        console.log("okey")
                     }
                     else {
-                        console.log("no")
+                        toast.error("2 mật khẩu vừa nhập không trùng nhau, vui lòng nhập lại!")
+                        console.log("Error while changing password")
                     }
                 }}
             >

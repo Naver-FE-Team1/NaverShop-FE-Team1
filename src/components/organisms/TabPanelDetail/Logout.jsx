@@ -1,10 +1,14 @@
+/**
+ * Logout tab (for User Profile page)
+ * file Logout.jsx
+ */
+
 import { Modal, Paper } from '@mui/material'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth } from '../../../firebase/firebase-config'
 import { ThemeConfig } from '../../../theme/ThemeConfig'
 import MuiCustomButton from '../../atoms/Button/MuiCustomButton'
-
 
 const Logout = (props) => {
     const navigate = useNavigate()

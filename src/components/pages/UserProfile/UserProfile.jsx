@@ -1,4 +1,9 @@
-import React, { useEffect, useState } from 'react'
+/**
+ * User Profile Page
+ * file: UserProfile.jsx
+ */
+
+import React, { useMemo, useState } from 'react'
 import "./UserProfile.scss"
 import Banner from '../../organisms/Banner/Banner'
 import backgroundImage from "../../../assets/user-banner.jpg"
@@ -7,11 +12,7 @@ import TabPanel from '../../molecules/TabPanel/TabPanel'
 import UserInfo from '../../organisms/TabPanelDetail/UserInfo'
 import OrderStatus from '../../organisms/TabPanelDetail/OrderStatus'
 import ChangePassword from '../../organisms/TabPanelDetail/ChangePassword';
-import Header from "../../organisms/Header";
-import Footer from "../../molecules/Footer/Footer";
-import { auth, db } from '../../../firebase/firebase-config'
-import { doc, getDoc } from 'firebase/firestore'
-import { Navigate, useParams } from 'react-router-dom'
+import Logout from '../../organisms/TabPanelDetail/Logout'
 
 const UserProfile = () => {
     const smMatches = useMediaQuery("(min-width: 600px)")
@@ -21,10 +22,26 @@ const UserProfile = () => {
         setTabValue(newValue)
     }
 
-    // if(!auth.currentUser) return <Navigate to={"/"}/>
+    const tabsArr = useMemo(() => [
+        {
+            component: <UserInfo />,
+            title: "account info",
+        },
+        {
+            component: <OrderStatus />,
+            title: "order status",
+        },
+        {
+            component: <ChangePassword />,
+            title: "change password",
+        },
+        {
+            component: <Logout setTabValue={setTabValue} />,
+            title: "logout"
+        }
+    ], [])
 
     return (
-        <>
         <div id='user-page'>
             <Banner bgImg={backgroundImage}>
                 User
@@ -36,7 +53,8 @@ const UserProfile = () => {
                     display: "flex",
                     flexDirection: smMatches ? "row" : "column",
                     justifyContent: "center",
-                    margin: "15px 0"
+                    gap: "10px",
+                    margin: "35px 0"
                 }}
             >
                 <aside>
@@ -75,33 +93,13 @@ const UserProfile = () => {
                             value={tabValue}
                             index={index}
                         >
-                            { item.component }
+                            {item.component}
                         </TabPanel>
                     ))}
                 </main>
             </section>
         </div>
-        </>
     )
 }
-
-const tabsArr = [
-    {
-        component: <UserInfo />,
-        title: "account info",
-    },
-    {
-        component: <OrderStatus />,
-        title: "order status",
-    },
-    {
-        component: <ChangePassword />,
-        title: "change password",
-    },
-    {
-        component: <div></div>,
-        title: "logout"
-    }
-]
 
 export default UserProfile

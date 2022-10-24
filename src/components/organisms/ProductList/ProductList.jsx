@@ -47,6 +47,7 @@ const ProductList = (props) => {
       {filteredProducts.map(
         (item, index) =>
           item.data?.active && (
+            
             //GOT TO CHANGE THIS WITH LINK (REACT ROUTER)
             <Grid
               item
@@ -55,14 +56,16 @@ const ProductList = (props) => {
               md={4}
               lg={3}
               sx={{ width: "100%", cursor: "pointer" }}
-              onClick={() => navigate(`/products/${item.id}`)}
+              
               key={index}
             >
+              {/* {console.log(item.data)} */}
               <div className="product-card-img d-flex justify-content-center">
                 <img
                   style={responsiveProductStyle}
                   src={item.data.image}
                   alt={item.data.name}
+                  onClick={() => navigate(`/products/${item.id}`)}
                 />
                 <div className="product-card-img-button">
                   <Button
@@ -70,6 +73,7 @@ const ProductList = (props) => {
                     padding="16px 0"
                     txtColor="#fff"
                     bgColor="#2a254b"
+                    // onClick={}
                   >
                     Add to cart
                   </Button>

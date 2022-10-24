@@ -52,7 +52,6 @@ const HomePage = () => {
           <FeaturesBlock />
           <Feature2 />
           <Subscribe />
-          {/* <Footer /> */}
         </section>
       ) : (
         <section className="home-page">

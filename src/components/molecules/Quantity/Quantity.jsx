@@ -1,5 +1,17 @@
-import React, { useState } from "react";
-const Quantity = ({ quant, setQuant }) => {
+import { toast } from 'react-toastify';
+
+const Quantity = ({ quant, setQuant, limit }) => {
+  console.log(limit);
+  const handleIncrement = () => {
+    if(quant >= limit){
+      toast.error(`Product quantity in stock is not enough`);
+    }
+    else{
+      setQuant(++quant);
+
+    }
+    
+  }
   return (
     <div className="productDetail__quantity-number">
       <span onClick={() => quant > 0 && setQuant((quant) => --quant)}>
@@ -20,7 +32,7 @@ const Quantity = ({ quant, setQuant }) => {
         </svg>
       </span>
       <p>{quant}</p>
-      <span onClick={() => setQuant((quant) => ++quant)}>
+      <span onClick={handleIncrement}>
         <svg
           style={{ color: "#4e4d93" }}
           xmlns="http://www.w3.org/2000/svg"

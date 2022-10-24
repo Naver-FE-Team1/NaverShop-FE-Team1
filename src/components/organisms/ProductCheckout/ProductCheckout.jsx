@@ -21,11 +21,13 @@ const ProductCheckout = () => {
             <ProductItem
               key={item.id}
               id={item.id}
-              srcImg={item.srcImg}
-              title={item.title}
-              desc={item.desc}
+              image={item.image}
+              category={item.category}
+              desc={item.description}
               sizes={item.sizes}
+              color={item.color}
               quantity={item.quantity}
+              stock={item.stock}
               price={item.price}
               totalPrice={item.totalPrice}
               productId={item.productId}

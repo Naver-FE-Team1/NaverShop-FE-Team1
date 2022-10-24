@@ -15,13 +15,6 @@ import SubImage from "../../atoms/SubImage/SubImage";
 import SliderSlick from "../../molecules/SliderSlick/SliderSlick";
 import { useNavigate, useParams } from "react-router-dom";
 import parse from "html-react-parser";
-const ProductDetailContent = ({data}) => {
-  //state này để lưu size S,M,L,...
-  //ban đầu ấn add to basket sẽ lưu vô local
-  const [sizePicker, setSizePicker] = useState(data.sizes[0]);
-  const [quant, setQuant] = useState(1);
-  const { id } = useParams(); // id được khai báo ở trang App.jsx
-  //Lấy ra ở đây để dùng trong các trường hợp query 1 sản phẩm theo id
 
 const ProductDetailContent = ({
   data,
@@ -33,6 +26,12 @@ const ProductDetailContent = ({
   setColorPicker,
   colorPicker,
 }) => {
+  //state này để lưu size S,M,L,...
+  //ban đầu ấn add to basket sẽ lưu vô local
+  // const [sizePicker, setSizePicker] = useState(data.sizes[0]);
+  // const [quant, setQuant] = useState(1);
+  const { id } = useParams(); // id được khai báo ở trang App.jsx
+  //Lấy ra ở đây để dùng trong các trường hợp query 1 sản phẩm theo id
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -40,29 +39,25 @@ const ProductDetailContent = ({
   const lgMatches = useMediaQuery("(min-width:1200px)");
 
   const handleAddtoCart = () => {
-
-    if(quant < 1) {
-      toast.error('Please choose quantity')
-    }else{
-      const productStringify = 
-          { 
-            id: nanoid(), 
-            category: data.category,
-            price: data.price,
-            description: data.description,
-            quantity: quant, 
-            sizes: sizePicker,
-            stock: data.quantities,
-            color: data.color[0],
-            image: data.image,
-            totalPrice: data.price * quant,
-            productId: id,
-          }
-        ;
-        dispatch(addBasket(productStringify))
-        
-
+    if (quant < 1) {
+      toast.error("Please choose quantity");
+    } else {
+      const productStringify = {
+        id: nanoid(),
+        category: data.category,
+        price: data.price,
+        description: data.description,
+        quantity: quant,
+        sizes: sizePicker,
+        stock: data.quantities,
+        color: data.color[0],
+        image: data.image,
+        totalPrice: data.price * quant,
+        productId: id,
+      };
+      dispatch(addBasket(productStringify));
     }
+  };
   const [defaultImage, setDefaultImage] = useState(data.image);
   const handleChangeDefaultImage = (src) => {
     setDefaultImage(src);
@@ -101,7 +96,6 @@ const ProductDetailContent = ({
           <Grid item xs={12} lg={6}>
             <Container maxWidth="sm" style={{ padding: "28px" }}>
               <div className="productDetail__topContent">
-
                 <h3 className="productDetail__topContent-name">{data.name}</h3>
                 <p className="productDetail__topContent-price">
                   {data?.price?.toLocaleString("vi-VN", {
@@ -115,7 +109,6 @@ const ProductDetailContent = ({
                   Product description
                 </h5>
                 <p className="productDetail__description-content">
-
                   {parse(data.description || "")}
                 </p>
               </div>
@@ -126,7 +119,6 @@ const ProductDetailContent = ({
                   spacing={1}
                   sx={{ justifyContent: "space-between" }}
                 >
-
                   {data?.sizes?.map((item, idx) => (
                     <Grid item key={idx}>
                       <Size
@@ -160,7 +152,11 @@ const ProductDetailContent = ({
                 <h5 className="productDetail__quantity-title">Quantity</h5>
                 <Grid container spacing={2}>
                   <Grid item xs={12} md={3}>
-                    <Quantity setQuant={setQuant} quant={quant} limit={data.quantities}/>
+                    <Quantity
+                      setQuant={setQuant}
+                      quant={quant}
+                      limit={data.quantities}
+                    />
                   </Grid>
                 </Grid>
               </div>

@@ -25,6 +25,7 @@ function AuthProvider(props) {
             setUserInfo({
               ...user,
               ...doc.data(),
+              id: doc.id,
             });
             setLoading(true);
           });

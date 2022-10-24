@@ -9,6 +9,8 @@ import { ReactComponent as User } from "../../../assets/User--avatar.svg";
 import { useAuth } from "../../../contexts/auth-context";
 import UserAvatar from "../../molecules/UserAvatar/UserAvatar";
 import "./header.scss";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../firebase/firebase-config";
 
 const Header = ({ authen }) => {
   const getQuantities = useSelector((state) => state.basket.totalQuantity);
@@ -40,6 +42,7 @@ const Header = ({ authen }) => {
       icon: <User />,
       title: "User",
       path: "/",
+      subOption: ["Profile", "Sign out"],
     },
     {
       icon: null,
@@ -47,6 +50,11 @@ const Header = ({ authen }) => {
       path: "/sign-in",
     },
   ];
+
+  const handleSignOut = () => {
+    setLoading(false);
+    signOut(auth);
+  };
 
   return (
     <header className="landingpage-header d-flex flex-column justify-content-between align-items-center">
@@ -81,10 +89,22 @@ const Header = ({ authen }) => {
                     return (
                       <li
                         key={idx}
-                        onClick={() => navigate(item.path)}
+                        onClick={() => {
+                          if (item.title !== "User") {
+                            navigate(item.path);
+                          }
+                        }}
                         className="menu-item"
                       >
                         <p>{item.title}</p>
+                        {item.subOption !== undefined && (
+                          <ul>
+                            <li onClick={() => navigate("/user")}>
+                              {item.subOption[0]}
+                            </li>
+                            <li onClick={handleSignOut}>{item.subOption[1]}</li>
+                          </ul>
+                        )}
                       </li>
                     );
                   }

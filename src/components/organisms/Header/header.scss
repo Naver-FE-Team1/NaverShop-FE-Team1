@@ -32,8 +32,18 @@
         height: 16px;
       }
       .menu-item {
-        display: flex !important;
+        display: flex;
         align-items: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.281);
+        &:last-child {
+          border-bottom: none;
+        }
+        ul {
+          li {
+            padding: 20px 0 0 20px;
+            width: fit-content;
+          }
+        }
         svg {
           width: 20px;
           // aspect-ratio: 1/1;

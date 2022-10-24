@@ -52,7 +52,7 @@ const HomePage = () => {
           <FeaturesBlock />
           <Feature2 />
           <Subscribe />
-          <Footer />
+          {/* <Footer /> */}
         </section>
       ) : (
         <section className="home-page">
@@ -69,7 +69,6 @@ const HomePage = () => {
           <FeaturesBlock />
 
           <Subscribe />
-          <Footer />
         </section>
       )}
     </>

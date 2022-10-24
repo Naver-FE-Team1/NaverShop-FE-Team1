@@ -11,10 +11,7 @@ import FormAuthentication from "../../../organisms/Form/FormAuthentication";
 import { Formik } from "formik";
 import * as yup from "yup";
 import InputUser from "../../../molecules/Input/InputUser";
-import {
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../../../../firebase/firebase-config";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
@@ -80,7 +77,14 @@ const SignUpPage = (props) => {
             .matches(/(\d)/, "Must contain one number")
             .required("Password is required"),
           fullname: yup.string().required("Full name is required"),
-          phonenumber: yup.number().required("Number phone is required"),
+          phonenumber: yup
+            .string()
+            .matches(/(\d+)/, "Your input is invalid type")
+            .min(
+              9,
+              "Your phone number must be at least 9 characters or greater"
+            )
+            .required("Number phone is required"),
           age: yup.number().required("How old are you"),
           agreement: yup.boolean().oneOf([true], "You must agree to the terms"),
         })}

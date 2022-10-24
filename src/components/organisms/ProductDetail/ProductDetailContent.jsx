@@ -29,7 +29,6 @@ const ProductDetailContent = ({
   //ban đầu ấn add to basket sẽ lưu vô local
   // const [sizePicker, setSizePicker] = useState(data.sizes[0]);
   // const [quant, setQuant] = useState(1);
-  const { id } = useParams(); // id được khai báo ở trang App.jsx
   //Lấy ra ở đây để dùng trong các trường hợp query 1 sản phẩm theo id
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -216,6 +215,6 @@ const ProductDetailContent = ({
       </div>
     );
   };
-};
+
 
 export default ProductDetailContent;

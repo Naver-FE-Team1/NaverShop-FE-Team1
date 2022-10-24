@@ -41,7 +41,7 @@ const Orders = (props) => {
                 return (
                     <ProductItem
                         key={index}
-                        srcImg={item.image}
+                        image={item.image}
                         name={item.name}
                         description={item.description}
                         color={item.color[0]}

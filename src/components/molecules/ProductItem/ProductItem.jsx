@@ -10,6 +10,8 @@ import Quantity from '../../molecules/Quantity/Quantity';
 import PropTypes from 'prop-types';
 import QuantitiesBar from '../../atoms/QuantitesBar/QuantitiesBar';
 import DeleteIcon from '@mui/icons-material/Delete';
+import parse from 'html-react-parser';
+
 const ProductItem = ({
   id,
   image,
@@ -21,6 +23,7 @@ const ProductItem = ({
   quantity,
   fromBasket,
   stock,
+  color,
 }) => {
   const [quant, setQuant] = useState(quantity);
   const dispatch = useDispatch();
@@ -33,14 +36,30 @@ const ProductItem = ({
       <div className='pro-item__container'>
         <div className='pro-item__content'>
           <div className='pro-item__image'>
-            <img src={image} alt="image of the product"/>
+            <img src={image} alt='image of the product' />
           </div>
           <div className='pro-item__infor'>
             <div className='pro-item__group-text'>
               <span className='pro-item__group-text__name'>{category}</span>
-              <div className='pro-item__group-text__des'>{desc}</div>
+              <div className='pro-item__group-text__des'>
+                {parse(desc || '')}
+              </div>
             </div>
-            <span className='pro-item__price'>{sizes}</span>
+            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '3rem'}}>
+              <div className='pro-item__price'>{sizes}</div>
+              {" , "}
+              <div
+                style={{
+                  backgroundColor: color,
+                  width: '20px',
+                  height: '20px',
+                  borderRadius: '50%',
+                  boxShadow: 'rgba(0, 0, 0, 0.5) 0px 1px 4px'
+                }}
+              >
+              </div>
+
+            </div>
             <span className='pro-item__price'>
               {price.toLocaleString('vi-VN', {
                 style: 'currency',

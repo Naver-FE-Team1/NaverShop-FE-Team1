@@ -1,3 +1,7 @@
+/**
+ * The content of the NotFound Page
+ * file: Content404.jsx
+ */
 
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { Link } from 'react-router-dom'
@@ -7,7 +11,6 @@ import './NotFound.scss'
 function Content404() {
     return (
         <div className="error">
-            {/* <div className="img1"></div> */}
             <div className="content-error">
                 <div className="e404">
                     <span>4</span>
@@ -22,7 +25,6 @@ function Content404() {
                 </Link>
                 <p>Quay lại</p>
             </div>
-            {/* <div className="img2"></div> */}
         </div>
     )
 }

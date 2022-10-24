@@ -118,7 +118,10 @@ const ProductList = (props) => {
                       lineHeight: "150%",
                     }}
                   >
-                    {item.data.price}
+                    {item.data.price.toLocaleString("vi-vn", {
+                      style: "currency",
+                      currency: "VND"
+                    })}
                   </span>
                 }
                 position="below"

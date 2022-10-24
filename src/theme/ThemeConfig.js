@@ -1,3 +1,8 @@
+/**
+ * Configuration for MUI theme
+ * file: ThemeConfig.js
+ */
+
 import { createTheme } from "@mui/material";
 
 export const ThemeConfig = createTheme({

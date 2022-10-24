@@ -1,3 +1,8 @@
+/**
+ * Check out page
+ * file: (Checkout/) index.jsx
+ */
+
 import { Button, Grid, OutlinedInput } from "@mui/material";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import { doc, getDoc } from "firebase/firestore";

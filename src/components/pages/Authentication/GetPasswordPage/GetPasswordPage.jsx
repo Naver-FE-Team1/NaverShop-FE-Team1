@@ -1,5 +1,9 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+/**
+ * Reset Password View 
+ * file: GetPasswordPage.jsx
+ */
+
+import React from "react";
 import LayoutAuthentication from "../../../molecules/LayoutAuthentication/LayoutAuthentication";
 import InputUser from "../../../molecules/Input/InputUser";
 import FormAuthentication from "../../../organisms/Form/FormAuthentication";
@@ -91,7 +95,5 @@ const GetPasswordPage = (props) => {
     </Formik>
   );
 };
-
-GetPasswordPage.propTypes = {};
 
 export default GetPasswordPage;

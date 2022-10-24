@@ -1,3 +1,8 @@
+/**
+ * Contained of filters, sortings and list of products
+ * file: ShoppingList.jsx
+ */
+
 import { Box, Divider, Drawer, MenuItem } from "@mui/material";
 import { CloseOutlined } from "@mui/icons-material";
 import { useState, useEffect } from "react";

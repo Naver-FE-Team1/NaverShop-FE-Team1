@@ -1,8 +1,8 @@
-import {useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 import "../SubImage/subImage.scss";
-const SubImage = ({ data}) => {
+const SubImage = ({ data, onClick = () => {} }) => {
   const [active, setActive] = useState(data.id);
-  
+
   // const handleChangeActive = () => {
   //   const $ = document.querySelector.bind(document);
   //   const $$ = document.querySelectorAll.bind(document);
@@ -12,9 +12,13 @@ const SubImage = ({ data}) => {
   //   subImg[active].classList.add('active');
   //   $('.subImage.active')?.classList.remove('active');
   // }
-  
+
   return (
-    <div className="subImage" style={{ padding: "15px" }}>
+    <div
+      onClick={onClick}
+      className="subImage"
+      style={{ padding: "15px", display: "flex", justifyContent: "center" }}
+    >
       <img
         style={{
           cursor: "pointer",
@@ -23,8 +27,8 @@ const SubImage = ({ data}) => {
           width: "100%",
           objectFit: "cover",
         }}
-        src={data.src}
-        alt={data.alt}
+        src={data}
+        alt={data}
       />
     </div>
   );

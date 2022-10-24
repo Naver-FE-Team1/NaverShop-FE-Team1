@@ -158,63 +158,33 @@ const ProductDetailContent = ({
                   </Grid>
                   <div className="productDetail__dimension-colors"></div>
                 </Grid>
-              </div>  
-                <ul className="productDetail__description-colors">
-                  {data.color?.map((item, idx) => (
-                    <li
-                      className="productDetail__description-color"
-                      style={{
-                        backgroundColor: item,
-                        border:
-                          colorPicker === item
-                            ? `3px solid ${item}`
-                            : ` 3px #fff solid`,
-                      }}
-                      onClick={() => {
-                        handleSetColor(item);
-                      }}
-                    ></li>
-                  ))}
-                </ul>
-                <div className="productDetail__quantity">
-                  <h5 className="productDetail__quantity-title">Quantity</h5>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12} md={3}>
-                      <Quantity
-                        setQuant={setQuant}
-                        quant={quant}
-                        limit={data.quantities}
-                      />
-                    </Grid>
+              </div>
+              <div className="productDetail__action">
+                <Grid container spacing={3}>
+                  <Grid item xs={12} md={4}>
+                    <Button
+                      backgroundColor="#2A254B"
+                      color="#fff"
+                      content="Add to cart"
+                      handleClick={handleAddtoCart}
+                    ></Button>
                   </Grid>
-                </div>
-                <div className="productDetail__action">
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} md={4}>
-                      <Button
-                        backgroundColor="#2A254B"
-                        color="#fff"
-                        content="Add to cart"
-                        handleClick={handleAddtoCart}
-                      ></Button>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                      <Button
-                        color="#000"
-                        bgColor="#fff"
-                        content="Buy now"
-                        handleClick={() => navigate("/checkout")}
-                      ></Button>
-                    </Grid>
+                  <Grid item xs={12} md={4}>
+                    <Button
+                      color="#000"
+                      bgColor="#fff"
+                      content="Buy now"
+                      handleClick={() => navigate("/checkout")}
+                    ></Button>
                   </Grid>
-                </div>
-              </Container>
-            </Grid>
+                </Grid>
+              </div>
+            </Container>
           </Grid>
-        </Container>
-      </div>
-    );
-  };
-
+        </Grid>
+      </Container>
+    </div>
+  );
+};
 
 export default ProductDetailContent;

@@ -51,136 +51,144 @@ const ProductDetailContent = ({
       dispatch(addBasket(productStringify));
     }
     const [defaultImage, setDefaultImage] = useState(data.image);
+
+    console.log(
+      "🚀 ~ file: ProductDetailContent.jsx ~ line 55 ~ handleAddtoCart ~ defaultImage",
+      defaultImage
+    );
     const handleChangeDefaultImage = (src) => {
       setDefaultImage(src);
     };
     const handleSetColor = (color) => {
       setColorPicker(color);
     };
-    return (
-      <div className="container">
-        <Container style={{ padding: 0 }}>
-          <Grid className="grid" container>
-            <Grid item xs={12} lg={6}>
-              <Grid>
-                <img
-                  src={defaultImage ? defaultImage : data.image}
-                  className="productDetail-img"
-                  alt={defaultImage ? defaultImage : data.image}
-                />
-              </Grid>
-              <Grid item>
-                <SliderSlick
-                  showItem={listImages?.length < 3 ? listImages?.length : 3}
-                >
-                  {listImages?.map((item, idx) => (
-                    <SubImage
-                      key={idx}
-                      data={item}
-                      onClick={() => {
-                        handleChangeDefaultImage(item);
-                      }}
-                    />
-                  ))}
-                </SliderSlick>
-              </Grid>
-            </Grid>
-            <Grid item xs={12} lg={6}>
-              <Container maxWidth="sm" style={{ padding: "28px" }}>
-                <div className="productDetail__topContent">
-                  <h3 className="productDetail__topContent-name">
-                    {data.name}
-                  </h3>
-                  <p className="productDetail__topContent-price">
-                    {data?.price?.toLocaleString("vi-VN", {
-                      style: "currency",
-                      currency: "VND",
-                    })}
-                  </p>
-                </div>
-                <div className="productDetail__description">
-                  <h5 className="productDetail__description-title">
-                    Product description
-                  </h5>
-                  <p className="productDetail__description-content">
-                    {parse(data.description || "")}
-                  </p>
-                </div>
-                <div className="productDetail__dimension">
-                  <h5 className="productDetail__dimension-title">Dimensions</h5>
-                  <Grid
-                    container
-                    spacing={1}
-                    sx={{ justifyContent: "space-between" }}
-                  >
-                    {data?.sizes?.map((item, idx) => (
-                      <Grid item key={idx}>
-                        <Size
-                          picked={sizePicker === item}
-                          onClick={() => setSizePicker(item)}
-                          size={item}
-                        />
-                      </Grid>
-                    ))}
-                  </Grid>
-                  <div className="productDetail__dimension-colors"></div>
-                </div>
-                <ul className="productDetail__description-colors">
-                  {data.color?.map((item, idx) => (
-                    <li
-                      className="productDetail__description-color"
-                      style={{
-                        backgroundColor: item,
-                        border:
-                          colorPicker === item
-                            ? `3px solid ${item}`
-                            : ` 3px #fff solid`,
-                      }}
-                      onClick={() => {
-                        handleSetColor(item);
-                      }}
-                    ></li>
-                  ))}
-                </ul>
-                <div className="productDetail__quantity">
-                  <h5 className="productDetail__quantity-title">Quantity</h5>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12} md={3}>
-                      <Quantity
-                        setQuant={setQuant}
-                        quant={quant}
-                        limit={data.quantities}
-                      />
-                    </Grid>
-                  </Grid>
-                </div>
-                <div className="productDetail__action">
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} md={4}>
-                      <Button
-                        backgroundColor="#2A254B"
-                        color="#fff"
-                        content="Add to cart"
-                        handleClick={handleAddtoCart}
-                      ></Button>
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                      <Button
-                        color="#000"
-                        bgColor="#fff"
-                        content="Buy now"
-                        handleClick={() => navigate("/checkout")}
-                      ></Button>
-                    </Grid>
-                  </Grid>
-                </div>
-              </Container>
-            </Grid>
-          </Grid>
-        </Container>
-      </div>
+
+    console.log(
+      "🚀 ~ file: ProductDetailContent.jsx ~ line 62 ~ handleAddtoCart ~ data.image",
+      data.image
     );
   };
+  return (
+    <div className="container">
+      <Container style={{ padding: 0 }}>
+        <Grid className="grid" container>
+          <Grid item xs={12} lg={6}>
+            <Grid>
+              <img
+                src={defaultImage ? defaultImage : data.image}
+                className="productDetail-img"
+                alt={defaultImage ? defaultImage : data.image}
+              />
+            </Grid>
+            <Grid item>
+              <SliderSlick
+                showItem={listImages?.length < 3 ? listImages?.length : 3}
+              >
+                {listImages?.map((item, idx) => (
+                  <SubImage
+                    key={idx}
+                    data={item}
+                    onClick={() => {
+                      handleChangeDefaultImage(item);
+                    }}
+                  />
+                ))}
+              </SliderSlick>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} lg={6}>
+            <Container maxWidth="sm" style={{ padding: "28px" }}>
+              <div className="productDetail__topContent">
+                <h3 className="productDetail__topContent-name">{data.name}</h3>
+                <p className="productDetail__topContent-price">
+                  {data?.price?.toLocaleString("vi-VN", {
+                    style: "currency",
+                    currency: "VND",
+                  })}
+                </p>
+              </div>
+              <div className="productDetail__description">
+                <h5 className="productDetail__description-title">
+                  Product description
+                </h5>
+                <p className="productDetail__description-content">
+                  {parse(data.description || "")}
+                </p>
+              </div>
+              <div className="productDetail__dimension">
+                <h5 className="productDetail__dimension-title">Dimensions</h5>
+                <Grid
+                  container
+                  spacing={1}
+                  sx={{ justifyContent: "space-between" }}
+                >
+                  {data?.sizes?.map((item, idx) => (
+                    <Grid item key={idx}>
+                      <Size
+                        picked={sizePicker === item}
+                        onClick={() => setSizePicker(item)}
+                        size={item}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
+                <div className="productDetail__dimension-colors"></div>
+              </div>
+              <ul className="productDetail__description-colors">
+                {data.color?.map((item, idx) => (
+                  <li
+                    className="productDetail__description-color"
+                    style={{
+                      backgroundColor: item,
+                      border:
+                        colorPicker === item
+                          ? `3px solid ${item}`
+                          : ` 3px #fff solid`,
+                    }}
+                    onClick={() => {
+                      handleSetColor(item);
+                    }}
+                  ></li>
+                ))}
+              </ul>
+              <div className="productDetail__quantity">
+                <h5 className="productDetail__quantity-title">Quantity</h5>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} md={3}>
+                    <Quantity
+                      setQuant={setQuant}
+                      quant={quant}
+                      limit={data.quantities}
+                    />
+                  </Grid>
+                </Grid>
+              </div>
+              <div className="productDetail__action">
+                <Grid container spacing={3}>
+                  <Grid item xs={12} md={4}>
+                    <Button
+                      backgroundColor="#2A254B"
+                      color="#fff"
+                      content="Add to cart"
+                      handleClick={handleAddtoCart}
+                    ></Button>
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <Button
+                      color="#000"
+                      bgColor="#fff"
+                      content="Buy now"
+                      handleClick={() => navigate("/checkout")}
+                    ></Button>
+                  </Grid>
+                </Grid>
+              </div>
+            </Container>
+          </Grid>
+        </Grid>
+      </Container>
+    </div>
+  );
 };
 
 export default ProductDetailContent;

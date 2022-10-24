@@ -2,21 +2,26 @@
  * The bar use to inscrease/ decrease the amount of product
  * file: QuantitiesBar.jsx
  */
-import React from 'react';
+import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { increment, decrement } from '../../../store/reducers/basketSlice';
 import PropTypes from 'prop-types';
 
-const QuantitiesBar = ({ basketId, quantity, setQuantity, fromBasket }) => {
+const QuantitiesBar = ({ basketId, quantity, setQuantity, limit, fromBasket }) => {
   const dispatch = useDispatch();
   const handleIncrementItem = () => {
     if (fromBasket) {
-      setQuantity(++quantity);
-      const newData = {
-        id: basketId,
-        quantity,
-      };
-      dispatch(increment(newData));
+      if( quantity >= limit) {
+        toast.error(`Product quantity in stock is not enough`);
+      }else{
+        setQuantity(++quantity);
+        const newData = {
+          id: basketId,
+          quantity,
+        };
+        dispatch(increment(newData));
+
+      }
     }
   };
   const handleDecrementItem = () => {

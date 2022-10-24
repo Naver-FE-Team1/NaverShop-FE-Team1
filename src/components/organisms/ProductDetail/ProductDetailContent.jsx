@@ -17,8 +17,8 @@ import { useNavigate, useParams } from "react-router-dom";
 const ProductDetailContent = ({data}) => {
   //state này để lưu size S,M,L,...
   //ban đầu ấn add to basket sẽ lưu vô local
-  const [sizePicker, setSizePicker] = useState(data.sizes[0].size);
-  const [quant, setQuant] = useState(data.quantity);
+  const [sizePicker, setSizePicker] = useState(data.sizes[0]);
+  const [quant, setQuant] = useState(1);
   const { id } = useParams(); // id được khai báo ở trang App.jsx
   //Lấy ra ở đây để dùng trong các trường hợp query 1 sản phẩm theo id
 
@@ -29,21 +29,28 @@ const ProductDetailContent = ({data}) => {
   const lgMatches = useMediaQuery("(min-width:1200px)");
   
   const handleAddtoCart = () => {
-    const productStringify = 
-      { 
-        id: nanoid(), 
-        title: data.title,
-        price: data.price,
-        desc: data.desc,
-        quantity: quant, 
-        sizes: sizePicker,
-        srcImg: data.srcImg[0].src,
-        totalPrice: data.price * quant,
-        productId: data.id,
-      }
-    ;
-    dispatch(addBasket(productStringify))
-    toast.success(`Thêm thành công sản phẩm ${data.title} vào giỏ hàng`)
+    if(quant < 1) {
+      toast.error('Please choose quantity')
+    }else{
+      const productStringify = 
+          { 
+            id: nanoid(), 
+            category: data.category,
+            price: data.price,
+            description: data.description,
+            quantity: quant, 
+            sizes: sizePicker,
+            stock: data.quantities,
+            color: data.color[0],
+            image: data.image,
+            totalPrice: data.price * quant,
+            productId: id,
+          }
+        ;
+        dispatch(addBasket(productStringify))
+        
+
+    }
   };
   //Number
   var price = 25000000;
@@ -56,16 +63,16 @@ const ProductDetailContent = ({data}) => {
           <Grid item xs={12} lg={6}>
             <Grid>
               <img
-                src={data.srcImg[0].src}
+                src={data.image}
                 className="productDetail-img"
-                alt={data.srcImg[0].alt}
+                alt={data.image}
               />
             </Grid>
             <Grid item>
-              <SliderSlick showItem={3}>
-                {data.srcImg.map((item) => (
+              <SliderSlick showItem={2}>
+                {data.detailImages.map((item,index) => (
                   <SubImage
-                    key={item.id}
+                    key={index}
                     data={item}
                   />
                 ))}
@@ -77,7 +84,7 @@ const ProductDetailContent = ({data}) => {
             <Container maxWidth="sm" style={{ padding: "28px" }}>
               <div className="productDetail__topContent">
                 <h3 className="productDetail__topContent-name">
-                  {data.title}
+                  {data.category}
                 </h3>
                 <p className="productDetail__topContent-price">
                   {data.price.toLocaleString("vi-VN", {
@@ -91,13 +98,13 @@ const ProductDetailContent = ({data}) => {
                   Product description
                 </h5>
                 <p className="productDetail__description-content">
-                  {data.desc}
+                  {data.description}
                 </p>
-                <ul className="productDetail__description-fabric">
+                {/* <ul className="productDetail__description-fabric">
                   <li>Product description</li>
                   <li>Product description</li>
                   <li>Product description</li>
-                </ul>
+                </ul> */}
                 
               </div>
               <div className="productDetail__dimension">
@@ -108,11 +115,11 @@ const ProductDetailContent = ({data}) => {
                   sx={{ justifyContent: "space-between" }}
                 >
                   {data.sizes.map((item) => (
-                    <Grid item key={item.id}>
+                    <Grid item key={item}>
                       <Size
-                        picked={sizePicker === item.size}
-                        onClick={() => setSizePicker(item.size)}
-                        size={item.size}
+                        picked={sizePicker === item}
+                        onClick={() => setSizePicker(item)}
+                        size={item}
                       />
                     </Grid>
                   ))}
@@ -123,7 +130,7 @@ const ProductDetailContent = ({data}) => {
                 <h5 className="productDetail__quantity-title">Quantity</h5>
                 <Grid container spacing={2}>
                   <Grid item xs={12} md={3}>
-                    <Quantity setQuant={setQuant} quant={quant} />
+                    <Quantity setQuant={setQuant} quant={quant} limit={data.quantities}/>
                   </Grid>
                 </Grid>
               </div>

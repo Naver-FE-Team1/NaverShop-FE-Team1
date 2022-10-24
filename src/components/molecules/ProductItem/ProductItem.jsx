@@ -12,14 +12,15 @@ import QuantitiesBar from '../../atoms/QuantitesBar/QuantitiesBar';
 import DeleteIcon from '@mui/icons-material/Delete';
 const ProductItem = ({
   id,
-  srcImg,
-  title,
+  image,
+  category,
   desc,
   totalPrice,
   sizes,
   price,
   quantity,
   fromBasket,
+  stock,
 }) => {
   const [quant, setQuant] = useState(quantity);
   const dispatch = useDispatch();
@@ -32,11 +33,11 @@ const ProductItem = ({
       <div className='pro-item__container'>
         <div className='pro-item__content'>
           <div className='pro-item__image'>
-            <img src={srcImg} alt="image of the product"/>
+            <img src={image} alt="image of the product"/>
           </div>
           <div className='pro-item__infor'>
             <div className='pro-item__group-text'>
-              <span className='pro-item__group-text__name'>{title}</span>
+              <span className='pro-item__group-text__name'>{category}</span>
               <div className='pro-item__group-text__des'>{desc}</div>
             </div>
             <span className='pro-item__price'>{sizes}</span>
@@ -52,6 +53,8 @@ const ProductItem = ({
                 basketId={id}
                 quantity={quant}
                 setQuantity={setQuant}
+                fromBasket={fromBasket}
+                limit={stock}
               />
             </div>
           </div>
@@ -65,6 +68,7 @@ const ProductItem = ({
             quantity={quant}
             setQuantity={setQuant}
             fromBasket={fromBasket}
+            limit={stock}
           />
         }
       </div>

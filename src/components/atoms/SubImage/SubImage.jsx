@@ -1,7 +1,7 @@
 import {useState,useEffect} from "react";
 import "../SubImage/subImage.scss";
 const SubImage = ({ data}) => {
-  const [active, setActive] = useState(data.id);
+  // const [active, setActive] = useState(data.id);
   
   // const handleChangeActive = () => {
   //   const $ = document.querySelector.bind(document);
@@ -23,8 +23,8 @@ const SubImage = ({ data}) => {
           width: "100%",
           objectFit: "cover",
         }}
-        src={data.src}
-        alt={data.alt}
+        src={data}
+        alt={data}
       />
     </div>
   );

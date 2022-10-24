@@ -86,7 +86,6 @@ const HomePage = () => {
           </div>
 
           <Subscibe />
-          <Footer />
         </section>
       )}
     </>

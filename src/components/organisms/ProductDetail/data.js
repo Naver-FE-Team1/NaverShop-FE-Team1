@@ -72,51 +72,24 @@ export const dataReview = [
   },
 ];
 
-export const sizes = [
-  { id: 1, size: 'S' },
-  { id: 2, size: 'M' },
-  { id: 3, size: 'L' },
-  { id: 4, size: 'XL' },
-  { id: 5, size: 'XXL' },
-];
-
 export const productDetail = [
   {
-    id: '1',
-    title: 'The Dandy Chair',
+    id: 'sk9dVcerR9Wv1RXKBy9f',
+    name: 'Văn Đặng Nhật Hưng',
+    color: ['red'],
+    active: true,
+    category: 'Quần Short Form Trên Gối',
+    sales: 0,
     price: 25000000,
-    desc: `A timeless design, with premium materials features as one of
-    our most popular and iconic pieces. The dandy chair is perfect
-    for any stylish living space with beech legs and lambskin
-    leather upholstery.`,
-    sizes: sizes,
-    quantity: 1,
-    srcImg: [
-      {
-        id: 1,
-        src: 'https://cf.shopee.vn/file/6aba1d32171c02c7e0c3d59a5f75fbb8',
-        alt: 'src1',
-      },
-      {
-        id: 2,
-        src: 'https://images.unsplash.com/photo-1664833027898-540676803f80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        alt: 'src1',
-      },
-      {
-        id: 3,
-        src: 'https://images.unsplash.com/photo-1664833027898-540676803f80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        alt: 'src1',
-      },
-      {
-        id: 4,
-        src: 'https://images.unsplash.com/photo-1664833027898-540676803f80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        alt: 'src1',
-      },
-      {
-        id: 5,
-        src: 'https://images.unsplash.com/photo-1664833027898-540676803f80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        alt: 'src1',
-      },
+    description: `<p><br></p><p>welfwenflefnewfkln</p><p>welfwenflefnewfkln</p><p>welfwenflefnewfkln</p><p>welfwenflefnewfkln</p><p>welfwenflefnewfkln</p><p>welfwenflefnewfkln</p>`,
+    sizes: ['S', 'M', 'L'],
+    quantities: 1,
+    detailImages: [
+      'https://firebasestorage.googleapis.com/v0/b/naver-team1-api.appspot.com/o/product-images%2FFeatureImg2.png?alt=media&token=3cf5b734-64a3-47c3-a6b1-b80f841b631f',
+      'https://firebasestorage.googleapis.com/v0/b/naver-team1-api.appspot.com/o/product-images%2FuserAvatarDefault.jpg?alt=media&token=981e404a-b76a-4c8c-b7be-591da7f6a026',
     ],
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/naver-team1-api.appspot.com/o/product-images%2FFeatureImg.png?alt=media&token=bf4334b1-45ee-4f67-bc90-45a6eedae0ce',
+    sold: 0,
   },
 ];

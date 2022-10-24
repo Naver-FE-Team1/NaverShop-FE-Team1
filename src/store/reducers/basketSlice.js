@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 const cartItem = localStorage.getItem('cartItem')
   ? JSON.parse(localStorage.getItem('cartItem'))
@@ -30,6 +31,9 @@ const basketSlice = createSlice({
     addBasket: (state, action) => {
       const newBasket = action.payload;
       const foundBasket = state.cartItem.find(
+        (item) => item.productId === newBasket.productId
+      );
+      const foundSize = state.cartItem.find(
         (item) =>
           item.productId === newBasket.productId &&
           item.sizes === newBasket.sizes
@@ -37,9 +41,29 @@ const basketSlice = createSlice({
       if (!foundBasket) {
         state.totalQuantity++;
         state.cartItem.push(newBasket);
+        toast.success(`Successfully added ${newBasket.category} to basket`);
       } else {
-        foundBasket.quantity += newBasket.quantity;
-        foundBasket.totalPrice += newBasket.totalPrice;
+        if (!foundSize) {
+          if (
+            (foundBasket.quantity += newBasket.quantity > foundBasket.stock)
+          ) {
+            toast.error(`Product quantity in stock is not enough`);
+          } else {
+            state.totalQuantity++;
+            state.cartItem.push(newBasket);
+            toast.success(`Successfully added ${newBasket.category} to basket`);
+          }
+        } else {
+          if (
+            (foundBasket.quantity += newBasket.quantity > foundBasket.stock)
+          ) {
+            toast.error(`Product quantity in stock is not enough`);
+          } else {
+            foundBasket.quantity += newBasket.quantity;
+            foundBasket.totalPrice += newBasket.totalPrice;
+            toast.success(`Successfully added ${newBasket.category} to basket`);
+          }
+        }
       }
       state.totalAmount = state.cartItem.reduce(
         (total, item) => total + item.totalPrice,

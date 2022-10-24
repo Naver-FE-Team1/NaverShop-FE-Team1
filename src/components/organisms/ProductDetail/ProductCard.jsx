@@ -10,9 +10,9 @@ const ProductCard = ({ data }) => {
   return (
     <Grid id="product-list" item>
       <LazyLoadImage
-        alt={data.title}
+        alt={data.name}
         effect="blur"
-        src={data.img}
+        src={data.image}
         style={
           !mdMatches
             ? {
@@ -27,8 +27,8 @@ const ProductCard = ({ data }) => {
         }
       />
       <div style={{ paddingLeft: "1.5rem" }}>
-        <p>{data.title}</p>
-        <span>{data.author}</span>
+        <p>{data.name}</p>
+        <span>{data.price}</span>
       </div>
     </Grid>
   );

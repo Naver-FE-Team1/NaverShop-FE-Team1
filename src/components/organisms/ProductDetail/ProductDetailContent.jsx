@@ -25,6 +25,11 @@ const ProductDetailContent = ({
   setColorPicker,
   colorPicker,
 }) => {
+  //state này để lưu size S,M,L,...
+  //ban đầu ấn add to basket sẽ lưu vô local
+  // const [sizePicker, setSizePicker] = useState(data.sizes[0]);
+  // const [quant, setQuant] = useState(1);
+  //Lấy ra ở đây để dùng trong các trường hợp query 1 sản phẩm theo id
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -50,23 +55,13 @@ const ProductDetailContent = ({
       };
       dispatch(addBasket(productStringify));
     }
-    const [defaultImage, setDefaultImage] = useState(data.image);
-
-    console.log(
-      "🚀 ~ file: ProductDetailContent.jsx ~ line 55 ~ handleAddtoCart ~ defaultImage",
-      defaultImage
-    );
-    const handleChangeDefaultImage = (src) => {
-      setDefaultImage(src);
-    };
-    const handleSetColor = (color) => {
-      setColorPicker(color);
-    };
-
-    console.log(
-      "🚀 ~ file: ProductDetailContent.jsx ~ line 62 ~ handleAddtoCart ~ data.image",
-      data.image
-    );
+  };
+  const [defaultImage, setDefaultImage] = useState(data.image);
+  const handleChangeDefaultImage = (src) => {
+    setDefaultImage(src);
+  };
+  const handleSetColor = (color) => {
+    setColorPicker(color);
   };
   return (
     <div className="container">
@@ -161,6 +156,7 @@ const ProductDetailContent = ({
                       limit={data.quantities}
                     />
                   </Grid>
+                  <div className="productDetail__dimension-colors"></div>
                 </Grid>
               </div>
               <div className="productDetail__action">

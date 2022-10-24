@@ -48,11 +48,11 @@ const HomePage = () => {
           <FeaturesBlock />
           <Feature2 />
           <Subscribe />
-          <Footer />
+          {/* <Footer /> */}
         </section>
       ) : (
         <section className="home-page">
-          <Header />
+          {/* <Header /> */}
           <HeroBlock />
           <div
             style={
@@ -66,7 +66,7 @@ const HomePage = () => {
           <FeaturesBlock />
 
           <Subscribe />
-          <Footer />
+          {/* <Footer /> */}
         </section>
       )}
     </>

@@ -1,7 +1,7 @@
-import {useDispatch} from 'react-redux';
-import { toast } from 'react-toastify';
-import {nanoid} from '@reduxjs/toolkit'
-import {addBasket} from '../../../store/reducers/basketSlice'
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { nanoid } from "@reduxjs/toolkit";
+import { addBasket } from "../../../store/reducers/basketSlice";
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/system";
 import { useState } from "react";
@@ -14,7 +14,7 @@ import Size from "../../atoms/Size/Size";
 import SubImage from "../../atoms/SubImage/SubImage";
 import SliderSlick from "../../molecules/SliderSlick/SliderSlick";
 import { useNavigate, useParams } from "react-router-dom";
-const ProductDetailContent = ({data}) => {
+const ProductDetailContent = ({ data }) => {
   //state này để lưu size S,M,L,...
   //ban đầu ấn add to basket sẽ lưu vô local
   const [sizePicker, setSizePicker] = useState(data.sizes[0].size);
@@ -27,23 +27,21 @@ const ProductDetailContent = ({data}) => {
 
   const mdMatches = useMediaQuery("(min-width:600px)");
   const lgMatches = useMediaQuery("(min-width:1200px)");
-  
+
   const handleAddtoCart = () => {
-    const productStringify = 
-      { 
-        id: nanoid(), 
-        title: data.title,
-        price: data.price,
-        desc: data.desc,
-        quantity: quant, 
-        sizes: sizePicker,
-        srcImg: data.srcImg[0].src,
-        totalPrice: data.price * quant,
-        productId: data.id,
-      }
-    ;
-    dispatch(addBasket(productStringify))
-    toast.success(`Thêm thành công sản phẩm ${data.title} vào giỏ hàng`)
+    const productStringify = {
+      id: nanoid(),
+      title: data.title,
+      price: data.price,
+      desc: data.desc,
+      quantity: quant,
+      sizes: sizePicker,
+      srcImg: data.srcImg[0].src,
+      totalPrice: data.price * quant,
+      productId: data.id,
+    };
+    dispatch(addBasket(productStringify));
+    toast.success(`Successfully added to cart`);
   };
   //Number
   var price = 25000000;
@@ -64,10 +62,7 @@ const ProductDetailContent = ({data}) => {
             <Grid item>
               <SliderSlick showItem={3}>
                 {data.srcImg.map((item) => (
-                  <SubImage
-                    key={item.id}
-                    data={item}
-                  />
+                  <SubImage key={item.id} data={item} />
                 ))}
               </SliderSlick>
             </Grid>
@@ -76,9 +71,7 @@ const ProductDetailContent = ({data}) => {
           <Grid item xs={12} lg={6}>
             <Container maxWidth="sm" style={{ padding: "28px" }}>
               <div className="productDetail__topContent">
-                <h3 className="productDetail__topContent-name">
-                  {data.title}
-                </h3>
+                <h3 className="productDetail__topContent-name">{data.title}</h3>
                 <p className="productDetail__topContent-price">
                   {data.price.toLocaleString("vi-VN", {
                     style: "currency",
@@ -98,7 +91,6 @@ const ProductDetailContent = ({data}) => {
                   <li>Product description</li>
                   <li>Product description</li>
                 </ul>
-                
               </div>
               <div className="productDetail__dimension">
                 <h5 className="productDetail__dimension-title">Dimensions</h5>

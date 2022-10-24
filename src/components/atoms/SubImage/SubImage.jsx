@@ -1,20 +1,11 @@
-import {useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 import "../SubImage/subImage.scss";
-const SubImage = ({ data}) => {
-  // const [active, setActive] = useState(data.id);
-  
-  // const handleChangeActive = () => {
-  //   const $ = document.querySelector.bind(document);
-  //   const $$ = document.querySelectorAll.bind(document);
-  //   setActive(data.id)
-
-  //   const subImg = $$('.subImage');
-  //   subImg[active].classList.add('active');
-  //   $('.subImage.active')?.classList.remove('active');
-  // }
-  
   return (
-    <div className="subImage" style={{ padding: "15px" }}>
+    <div
+      onClick={onClick}
+      className="subImage"
+      style={{ padding: "15px", display: "flex", justifyContent: "center" }}
+    >
       <img
         style={{
           cursor: "pointer",

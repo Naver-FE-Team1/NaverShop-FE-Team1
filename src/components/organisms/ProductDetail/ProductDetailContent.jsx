@@ -1,10 +1,10 @@
-import {useDispatch} from 'react-redux';
-import { toast } from 'react-toastify';
-import {nanoid} from '@reduxjs/toolkit'
-import {addBasket} from '../../../store/reducers/basketSlice'
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { nanoid } from "@reduxjs/toolkit";
+import { addBasket } from "../../../store/reducers/basketSlice";
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/system";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "@mui/material";
 import React from "react";
 import "../../../scss/ProductDetail/ProductDetailContent.scss";
@@ -14,6 +14,7 @@ import Size from "../../atoms/Size/Size";
 import SubImage from "../../atoms/SubImage/SubImage";
 import SliderSlick from "../../molecules/SliderSlick/SliderSlick";
 import { useNavigate, useParams } from "react-router-dom";
+import parse from "html-react-parser";
 const ProductDetailContent = ({data}) => {
   //state này để lưu size S,M,L,...
   //ban đầu ấn add to basket sẽ lưu vô local
@@ -22,13 +23,24 @@ const ProductDetailContent = ({data}) => {
   const { id } = useParams(); // id được khai báo ở trang App.jsx
   //Lấy ra ở đây để dùng trong các trường hợp query 1 sản phẩm theo id
 
+const ProductDetailContent = ({
+  data,
+  sizePicker,
+  setSizePicker,
+  setQuant,
+  quant,
+  listImages,
+  setColorPicker,
+  colorPicker,
+}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const mdMatches = useMediaQuery("(min-width:600px)");
   const lgMatches = useMediaQuery("(min-width:1200px)");
-  
+
   const handleAddtoCart = () => {
+
     if(quant < 1) {
       toast.error('Please choose quantity')
     }else{
@@ -51,11 +63,13 @@ const ProductDetailContent = ({data}) => {
         
 
     }
+  const [defaultImage, setDefaultImage] = useState(data.image);
+  const handleChangeDefaultImage = (src) => {
+    setDefaultImage(src);
   };
-  //Number
-  var price = 25000000;
-  //subImages
-  const subImages = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
+  const handleSetColor = (color) => {
+    setColorPicker(color);
+  };
   return (
     <div className="container">
       <Container style={{ padding: 0 }}>
@@ -63,31 +77,34 @@ const ProductDetailContent = ({data}) => {
           <Grid item xs={12} lg={6}>
             <Grid>
               <img
-                src={data.image}
+                src={defaultImage ? defaultImage : data.image}
                 className="productDetail-img"
-                alt={data.image}
+                alt={defaultImage ? defaultImage : data.image}
               />
             </Grid>
             <Grid item>
-              <SliderSlick showItem={2}>
-                {data.detailImages.map((item,index) => (
+              <SliderSlick
+                showItem={listImages?.length < 3 ? listImages?.length : 3}
+              >
+                {listImages?.map((item, idx) => (
                   <SubImage
-                    key={index}
+                    key={idx}
                     data={item}
+                    onClick={() => {
+                      handleChangeDefaultImage(item);
+                    }}
                   />
                 ))}
               </SliderSlick>
             </Grid>
           </Grid>
-
           <Grid item xs={12} lg={6}>
             <Container maxWidth="sm" style={{ padding: "28px" }}>
               <div className="productDetail__topContent">
-                <h3 className="productDetail__topContent-name">
-                  {data.category}
-                </h3>
+
+                <h3 className="productDetail__topContent-name">{data.name}</h3>
                 <p className="productDetail__topContent-price">
-                  {data.price.toLocaleString("vi-VN", {
+                  {data?.price?.toLocaleString("vi-VN", {
                     style: "currency",
                     currency: "VND",
                   })}
@@ -98,14 +115,9 @@ const ProductDetailContent = ({data}) => {
                   Product description
                 </h5>
                 <p className="productDetail__description-content">
-                  {data.description}
+
+                  {parse(data.description || "")}
                 </p>
-                {/* <ul className="productDetail__description-fabric">
-                  <li>Product description</li>
-                  <li>Product description</li>
-                  <li>Product description</li>
-                </ul> */}
-                
               </div>
               <div className="productDetail__dimension">
                 <h5 className="productDetail__dimension-title">Dimensions</h5>
@@ -114,8 +126,9 @@ const ProductDetailContent = ({data}) => {
                   spacing={1}
                   sx={{ justifyContent: "space-between" }}
                 >
-                  {data.sizes.map((item) => (
-                    <Grid item key={item}>
+
+                  {data?.sizes?.map((item, idx) => (
+                    <Grid item key={idx}>
                       <Size
                         picked={sizePicker === item}
                         onClick={() => setSizePicker(item)}
@@ -126,6 +139,23 @@ const ProductDetailContent = ({data}) => {
                 </Grid>
                 <div className="productDetail__dimension-colors"></div>
               </div>
+              <ul className="productDetail__description-colors">
+                {data.color?.map((item, idx) => (
+                  <li
+                    className="productDetail__description-color"
+                    style={{
+                      backgroundColor: item,
+                      border:
+                        colorPicker === item
+                          ? `3px solid ${item}`
+                          : ` 3px #fff solid`,
+                    }}
+                    onClick={() => {
+                      handleSetColor(item);
+                    }}
+                  ></li>
+                ))}
+              </ul>
               <div className="productDetail__quantity">
                 <h5 className="productDetail__quantity-title">Quantity</h5>
                 <Grid container spacing={2}>

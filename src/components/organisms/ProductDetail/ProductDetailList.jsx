@@ -9,7 +9,11 @@ import ProductCard from "./ProductCard";
 const ProductDetailList = ({ productList }) => {
   const mdMatches = useMediaQuery("(min-width:600px)");
   const lgMatches = useMediaQuery("(min-width:1200px)");
-  console.log(productList);
+
+  console.log(
+    "🚀 ~ file: ProductDetailList.jsx ~ line 14 ~ ProductDetailList ~ productList",
+    productList
+  );
   //TODO: NEED TO WORK ON CASE WHERE TITLES CAN BE TOO LONG
   return (
     <Container style={{ paddingLeft: "40px", marginTop: "4rem" }}>

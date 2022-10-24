@@ -18,7 +18,14 @@ import {
 
 import { useEffect, useState } from "react";
 import { db } from "../../../firebase/firebase-config";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import UserInfo from "../TabPanelDetail/UserInfo";
 import { useAuth } from "../../../contexts/auth-context";
@@ -48,10 +55,11 @@ const ProductDetailInput = ({
   const handleOnChangeComment = (e) => {
     setComment(e.target.value);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = {
-      author: "Dang",
+      author: userInfo?.displayName,
       content: comment,
       rating: value,
       created: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
@@ -64,7 +72,6 @@ const ProductDetailInput = ({
     const colRef = collection(db, "reviews");
     const cmt = await addDoc(colRef, {
       ...result,
-      author: "Dang",
       content: comment,
       rating: value,
       created: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
@@ -85,20 +92,24 @@ const ProductDetailInput = ({
     setCmtAvailable(e.target.value);
   };
   //Xử lý user thay cập nhật thay đổi
-  const handleEditComment = (e) => {
+  const handleEditComment = async (e) => {
     e.preventDefault();
-    const result = {
-      id: dataCmt.id,
-      content: cmtAvailable,
+    const colRef = doc(db, "reviews", dataCmt.id);
+    const getCmt = await getDoc(colRef);
+    console.log(getCmt);
+    await updateDoc(colRef, {
+      ...getCmt.data(),
       created: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
-      author: dataCmt.author,
-      rating: dataCmt.rating,
-      liked: dataCmt.liked,
-      dislike: dataCmt.disliked,
-    };
-    dispatch(editCmt(result));
+      content: cmtAvailable,
+    });
+    addReview();
     toggleEditInput();
   };
+
+  console.log(
+    "🚀 ~ file: ProductDetailInput.jsx ~ line 107 ~ dataCmt",
+    cmtAvailable
+  );
   //Xử lý user clear comment
   const handleClearCmtAvailable = () => {
     setCmtAvailable("");

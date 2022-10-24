@@ -10,7 +10,7 @@ const StatusChip = (props) => {
                 return "#06d6a0"
             case "cancelled":
                 return "#e63946"
-            case "dispatched":
+            case "dispatch":
                 return "#00b4d8"
             case "completed":
                 return "#f9c74f"

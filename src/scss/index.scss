@@ -1,1 +1,41 @@
+/*
+ * root scss
+ * file: variables.scss
+ */
+@import "./variables.scss";
+@import "./bases.scss";
+@import "./mixins.scss";
 
+//Import your scss files here
+
+// ------------ Import your scss files here ---------------
+
+// Import Atoms Components
+@import "../components/atoms/Checkbox/Checkbox.scss";
+@import "../components/atoms/Button/Button.scss";
+@import "../components/atoms/FeatureCard/FeatureCard.scss";
+@import "../components/atoms/Button/ButtonSignIn.scss";
+@import "../components/atoms/Label/Label.scss";
+// Import Molecules Components
+@import "../components/molecules/Feature/Feature.scss";
+@import "../components/molecules/Footer/Footer.scss";
+@import "../components/molecules/MoreInfo/MoreInfo.scss";
+@import "../components/molecules/PageHeader/PageHeader.scss";
+@import "../components/molecules/AssignFooter/AssignFooter.scss";
+@import "../components/molecules/Quantity/quantityStyles.scss";
+@import "../components/molecules/LayoutAuthentication/LayoutAuthentication.scss";
+@import "../components/molecules/Input/InputUser.scss";
+@import "../components/molecules/UserAvatar/UserAvatar.scss";
+/*Shopping basket*/
+//Shopping basket
+@import "../components/pages/ShoppingBasket/ShoppingBasket.scss";
+//ProductBar
+@import "../components/atoms/ProductBar/ProductBar.scss";
+//HeadTitle
+@import "../components/atoms/HeadTitle/HeadTitle.scss";
+//QuantitiesBar
+@import "../components/atoms/QuantitesBar/Quantities.scss";
+//ProductItem
+@import "../components/molecules/ProductItem/ProductItem.scss";
+//FootBasket
+@import "../components/molecules/FootBasket/FootBasket.scss";

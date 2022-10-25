@@ -1,6 +1,5 @@
 import Feature2TextBlock from "../../molecules/Feature2TextBlock";
 import img from "../../../assets/Image Block.png";
-import "./feature2.scss";
 
 const Feature2 = () => {
   return (

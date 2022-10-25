@@ -1,5 +1,4 @@
 import FeatureList from "../../molecules/FeatureList";
-import "./featuresblock.scss";
 
 const FeaturesBlock = () => {
   return (

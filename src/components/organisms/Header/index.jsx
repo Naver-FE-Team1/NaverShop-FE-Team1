@@ -8,7 +8,6 @@ import { ReactComponent as Cart } from "../../../assets/Shopping--cart.svg";
 import { ReactComponent as User } from "../../../assets/User--avatar.svg";
 import { useAuth } from "../../../contexts/auth-context";
 import UserAvatar from "../../molecules/UserAvatar/UserAvatar";
-import "./header.scss";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase/firebase-config";
 

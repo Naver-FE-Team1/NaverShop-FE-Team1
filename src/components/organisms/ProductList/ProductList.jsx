@@ -7,8 +7,6 @@ import Button from "../../atoms/Button";
 import { nanoid } from "@reduxjs/toolkit";
 import { addBasket } from "../../../store/reducers/basketSlice";
 
-import "./productlist.scss";
-
 const ProductList = (props) => {
   const { filteredProducts } = useSelector((state) => state.products);
   const navigate = useNavigate();

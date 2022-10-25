@@ -1,6 +1,5 @@
 import { ReactComponent as Checkmark } from "../../../assets/Checkmark--filled.svg";
 import SubscribeForm from "../../molecules/SubscribeForm";
-import "./subscribe.scss";
 
 const items = [
   { icon: <Checkmark />, content: "Exclusive offers" },

@@ -1,5 +1,5 @@
 import React from "react";
-import "../NextArrowSlider/NextArrowSliderStyle.scss";
+// import "./NextArrowSliderStyle.scss"
 
 const NextArrowSlider = (props) => {
   const { className, style, onClick, autoplay } = props;

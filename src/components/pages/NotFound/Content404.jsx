@@ -6,7 +6,6 @@
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { Link } from 'react-router-dom'
 import img404 from "../../../assets/le.png";
-import './NotFound.scss'
 
 function Content404() {
     return (

@@ -28,9 +28,18 @@ const Checkout = () => {
   const { cartItem, totalAmount, totalQuantity } = dataBasket;
   const [value, setValue] = useState(moment()); //state này lưu giá trị field ngày tháng
   const navigate = useNavigate();
+  useEffect(() => {
+    if(!userInfo){
+      console.log(userInfo);
+      navigate('sign-in');
+      toast.error('You need sign in');
+    }
+  })
+
   const handleDateChange = (newValue) => {
     setValue(newValue);
   };
+
 
   useEffect(() => {
     const unSub = auth.onAuthStateChanged(async (user) => {

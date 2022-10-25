@@ -1,23 +1,23 @@
-import PropTypes from "prop-types";
-import { toast } from "react-toastify";
-import { deleteCmt } from "../../../store/reducers/commentSlice";
-import { useDispatch } from "react-redux";
-import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
-import { Avatar, Divider, Grid, Rating, Stack } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
+import { deleteCmt } from '../../../store/reducers/commentSlice';
+import { useDispatch } from 'react-redux';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import { Avatar, Divider, Grid, Rating, Stack } from '@mui/material';
+import { useEffect, useRef, useState } from 'react';
 // import '../../../scss/ProductDetail/ProductDetail.scss';
-import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
-import ProductDetailInput from "./ProductDetailInput";
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import ProductDetailInput from './ProductDetailInput';
 import {
   collection,
   deleteDoc,
   doc,
   getDoc,
   updateDoc,
-} from "firebase/firestore";
-import { db } from "../../../firebase/firebase-config";
-import { useAuth } from "../../../contexts/auth-context";
-import { useParams } from "react-router-dom";
+} from 'firebase/firestore';
+import { db } from '../../../firebase/firebase-config';
+import { useAuth } from '../../../contexts/auth-context';
+import { useParams } from 'react-router-dom';
 
 const ProductReviewDetail = ({
   data,
@@ -64,10 +64,10 @@ const ProductReviewDetail = ({
   };
   // Xóa bình luận
   const handleDeleteCmt = async () => {
-    const docRef = doc(db, "reviews", data.id);
+    const docRef = doc(db, 'reviews', data.id);
     await deleteDoc(docRef);
     reRender();
-    toast.success("Xóa bình luận thành công");
+    toast.success('Xóa bình luận thành công');
   };
   useEffect(() => {
     dataCmts.current.map((item) => {
@@ -77,35 +77,35 @@ const ProductReviewDetail = ({
       }
     });
 
-    localStorage.setItem("comments", JSON.stringify(dataCmts.current));
-  }, [liked, disliked, localStorage.getItem("comments")]);
+    localStorage.setItem('comments', JSON.stringify(dataCmts.current));
+  }, [liked, disliked, localStorage.getItem('comments')]);
 
   return (
     <Stack sx={{ marginLeft: ml }}>
-      <Divider sx={{ marginTop: "20px" }} />
+      <Divider sx={{ marginTop: '20px' }} />
       <Stack
-        direction="row"
+        direction='row'
         spacing={2}
         sx={{
-          alignItems: "center",
-          paddingTop: "1rem",
+          alignItems: 'center',
+          paddingTop: '1rem',
         }}
       >
-        <Avatar src="/broken-image.jpg" />
-        <Stack direction="column">
+        <Avatar src='/broken-image.jpg' />
+        <Stack direction='column'>
           <span>
             <strong>{data.author}</strong>
           </span>
-          <Stack direction="row" spacing={2}>
+          <Stack direction='row' spacing={2}>
             {showRating ? (
               <Rating
-                name="read-only"
+                name='read-only'
                 value={data.rating}
                 readOnly
-                sx={{ width: "6.5rem" }}
+                sx={{ width: '6.5rem' }}
               />
             ) : (
-              ""
+              ''
             )}
             <span> {data.created}</span>
           </Stack>
@@ -114,55 +114,57 @@ const ProductReviewDetail = ({
       <Grid item xs={10} md={10}>
         <p
           style={{
-            textAlign: "justify",
-            padding: ".5rem",
-            maxWidth: "600px",
-            width: "100%",
+            textAlign: 'justify',
+            padding: '.5rem',
+            maxWidth: '600px',
+            width: '100%',
           }}
         >
           {data.content}
         </p>
       </Grid>
-      <Stack direction="row" spacing={3}>
+      <Stack direction='row' spacing={3}>
         <Stack
-          direction="row"
+          direction='row'
           spacing={1}
-          className={like ? "product-review active" : "product-review"}
+          className={like ? 'product-review active' : 'product-review'}
           onClick={() => handleLike()}
         >
           <ThumbUpOffAltIcon />
-          <span className="product-detail__react">{liked?.length}</span>
+          <span className='product-detail__react'>{liked?.length}</span>
         </Stack>
         <Stack
-          direction="row"
+          direction='row'
           spacing={1}
-          className={dislike ? "product-review active" : "product-review"}
+          className={dislike ? 'product-review active' : 'product-review'}
           onClick={() => handleDisLike()}
         >
           <ThumbDownOffAltIcon />
-          <span className="product-detail__react">{disliked?.length}</span>
+          <span className='product-detail__react'>{disliked?.length}</span>
         </Stack>
         {authEditCmtUser && (
-          <p onClick={handleToggleEdit} className="product-detail__ud">
-            {!edit ? "edit" : "cancel"}
-          </p>
+          <>
+            <p onClick={handleToggleEdit} className='product-detail__ud'>
+              {!edit ? 'edit' : 'cancel'}
+            </p>
+            <p onClick={handleDeleteCmt} className='product-detail__ud'>
+              delete
+            </p>
+          </>
         )}
-        <p onClick={handleDeleteCmt} className="product-detail__ud">
-          delete
-        </p>
       </Stack>
       {edit ? (
         <ProductDetailInput
-          width="40px"
-          height="40px"
+          width='40px'
+          height='40px'
           showRating={false}
-          widthInput="35rem"
+          widthInput='35rem'
           dataCmt={data}
           toggleEditInput={toggleEditInput}
           addReview={reRender}
         />
       ) : (
-        ""
+        ''
       )}
       {/* {data.subComments &&
         data.subComments.map((item) => (
@@ -193,18 +195,18 @@ ProductReviewDetail.propTypes = {
   ),
 };
 ProductReviewDetail.defaultProps = {
-  ml: "",
+  ml: '',
   showRating: true,
   data: [
     {
-      id: "",
+      id: '',
       liked: 0,
       disliked: 0,
-      parentId: "",
+      parentId: '',
       rating: 0,
-      created: "",
-      content: "",
-      author: "",
+      created: '',
+      content: '',
+      author: '',
     },
   ],
 };

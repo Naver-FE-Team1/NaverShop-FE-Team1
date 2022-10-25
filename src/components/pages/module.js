@@ -32,7 +32,7 @@ const RouterLayout = [
   },
   {
     name: 'signIn',
-    path: 'sign-in',
+    path: '/sign-in',
     public: true,
     subPath: false,
     children: [],

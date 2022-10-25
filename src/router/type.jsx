@@ -9,11 +9,9 @@ export const handelRecursion = (router) => {
     return router.children.map((child, index) => {
       if (!child.public) {
         return (
-          <Route key={index} path='/' element={<PrivateRoute />}>
-            <Route key={index} path={child.path} element={<child.element />}>
-              {handelRecursion(child)}
-            </Route>
-          </Route>
+          <Route key={index} path={child.path} element={<child.element />}>
+          {handelRecursion(child)}
+        </Route>
         );
       } else {
         if (!child.subPath) {

@@ -1,5 +1,7 @@
 import { signOut } from "firebase/auth";
 import React from "react";
+import { useDispatch } from "react-redux";
+import {resetLocal} from '../../../store/reducers/basketSlice';
 import { useNavigate } from "react-router-dom";
 import userAvatarDefault from "../../../assets/images/userAvatarDefault.jpg";
 import { useAuth } from "../../../contexts/auth-context";
@@ -7,6 +9,7 @@ import { auth } from "../../../firebase/firebase-config";
 
 const UserAvatar = ({ props }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { userInfo, loading, setLoading } = useAuth();
   const userFunctions = [
     {
@@ -25,6 +28,15 @@ const UserAvatar = ({ props }) => {
   const handleSignOut = () => {
     setLoading(false);
     signOut(auth);
+    localStorage.removeItem('cartItem');
+    localStorage.removeItem('totalAmount');
+    localStorage.removeItem('totalQuantity');
+    const removeLocal = {
+      cartItem: [],
+      totalAmount: 0,
+      totalQuantity: 0,
+    };
+    dispatch(resetLocal(removeLocal))
   };
   return (
     <div className="user" style={{ position: "relative" }}>

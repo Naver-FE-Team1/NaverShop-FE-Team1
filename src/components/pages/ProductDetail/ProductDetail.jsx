@@ -33,7 +33,7 @@ const ProductDetail = () => {
   //state này để lưu size S,M,L,...
   const [sizePicker, setSizePicker] = useState([]);
   const [colorPicker, setColorPicker] = useState([]);
-  const [quant, setQuant] = useState(0);
+  const [quant, setQuant] = useState(1);
   const [listImages, setListImages] = useState([]);
   const [productCategories, setProductCategories] = useState([]);
   console.log(
@@ -82,6 +82,7 @@ const ProductDetail = () => {
         listImages={listImages}
         setColorPicker={setColorPicker}
         colorPicker={colorPicker}
+        productId={id}
       />
       <ProductDetailList productList={productCategories}/>
       <ProductReview />

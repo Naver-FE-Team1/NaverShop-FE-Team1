@@ -33,19 +33,20 @@ const basketSlice = createSlice({
       const foundBasket = state.cartItem.find(
         (item) => item.productId === newBasket.productId
       );
-      const foundSize = state.cartItem.find(
+      const foundSameProd = state.cartItem.find(
         (item) =>
           item.productId === newBasket.productId &&
-          item.sizes === newBasket.sizes
+          item.sizes === newBasket.sizes &&
+          item.color === newBasket.color
       );
       if (!foundBasket) {
         state.totalQuantity++;
         state.cartItem.push(newBasket);
         toast.success(`Successfully added ${newBasket.category} to basket`);
       } else {
-        if (!foundSize) {
+        if (!foundSameProd) {
           if (
-            (foundBasket.quantity += newBasket.quantity > foundBasket.stock)
+            (foundBasket.quantity += newBasket.quantity) > foundBasket.stock
           ) {
             toast.error(`Product quantity in stock is not enough`);
           } else {
@@ -55,7 +56,7 @@ const basketSlice = createSlice({
           }
         } else {
           if (
-            (foundBasket.quantity += newBasket.quantity > foundBasket.stock)
+            (foundBasket.quantity += newBasket.quantity) > foundBasket.stock
           ) {
             toast.error(`Product quantity in stock is not enough`);
           } else {
@@ -76,7 +77,8 @@ const basketSlice = createSlice({
       const foundBasket = state.cartItem.find(
         (item) =>
           item.productId === deleteItem.productId &&
-          item.sizes === deleteItem.sizes
+          item.sizes === deleteItem.sizes &&
+          item.color === deleteItem.color
       );
       if (!foundBasket) {
         state.totalQuantity--;
@@ -124,11 +126,18 @@ const basketSlice = createSlice({
       );
       setItemToLocal(state.cartItem, state.totalAmount, state.totalQuantity);
     },
+    resetLocal: (state, action) => {
+      const resetData = action.payload;
+      state.cartItem = resetData.cartItem;
+      state.totalAmount = resetData.totalAmount;
+      state.totalQuantity = resetData.totalQuantity;
+    },
   },
 });
 
 const { actions, reducer } = basketSlice;
 
-export const { addBasket, removeItem, increment, decrement } = actions;
+export const { addBasket, removeItem, increment, decrement, resetLocal } =
+  actions;
 
 export default reducer;

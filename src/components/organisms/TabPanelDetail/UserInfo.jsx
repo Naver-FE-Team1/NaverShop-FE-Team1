@@ -5,7 +5,7 @@
 
 import { Stack, Typography, useMediaQuery } from '@mui/material'
 import { Formik, Form, Field } from 'formik'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import OutlinedInput from '../../molecules/TextField/OutlinedInput'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { auth, db } from '../../../firebase/firebase-config'
@@ -33,6 +33,8 @@ const UserInfo = (props) => {
         avatarId: "link"
     })
 
+    const formRef = useRef()
+
     /**
      * To wait for UserInfo render, 
      * then wait for state changing from auth,
@@ -55,11 +57,23 @@ const UserInfo = (props) => {
         })
     }, [])
 
+   
+    const handleSubmit = async () => {
+        const data = formRef.current?.values
+        
+        const userRef = doc(db, "users", auth.currentUser?.uid)
+        await updateDoc(userRef, {
+            ...data
+        })
 
+        toast.success("Cập nhật thông tin thành công!")
+    }
+    
     return (
         <div className='user-tab'>
             <Typography variant='h3'>My Account</Typography>
             <Formik
+                innerRef={formRef}
                 enableReinitialize
                 initialValues={accountInfo}
                 validate={(values) => {
@@ -94,20 +108,19 @@ const UserInfo = (props) => {
 
                     return errors;
                 }}
-                onSubmit={async (values) => {
+                // onSubmit={async (values) => {
+                //     /*
+                //      * If onSubmit is async, 
+                //      * then Formik will automatically set isSubmitting to false 
+                //      * on your behalf once it has resolved
+                //      */
+                //     const userRef = doc(db, "users", auth.currentUser?.uid)
+                //     await updateDoc(userRef, {
+                //         ...values
+                //     })
 
-                    /*
-                     * If onSubmit is async, 
-                     * then Formik will automatically set isSubmitting to false 
-                     * on your behalf once it has resolved
-                     */
-                    const userRef = doc(db, "users", auth.currentUser?.uid)
-                    await updateDoc(userRef, {
-                        ...values
-                    })
-
-                    toast.success("Cập nhật thông tin thành công!")
-                }}
+                //     toast.success("Cập nhật thông tin thành công!")
+                // }}
             >
                 {(props) => (
                     <Form
@@ -202,7 +215,7 @@ const UserInfo = (props) => {
 
                         <div style={{ display: "flex", justifyContent: "flex-end" }}>
                             <MuiCustomButton
-                                onClick={props.submitForm}
+                                onClick={handleSubmit}
                                 type="submit"
                             >
                                 Save

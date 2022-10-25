@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "../SubImage/subImage.scss";
-const SubImage = ({onClick, data}) => {
+
+const SubImage = ({ onClick, data }) => {
   return (
     <div
       onClick={onClick}

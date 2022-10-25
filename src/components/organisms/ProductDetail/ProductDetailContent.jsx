@@ -197,6 +197,7 @@ const ProductDetailContent = ({
                       backgroundColor='#2A254B'
                       color='#fff'
                       content='Add to cart'
+
                       handleClick={handleAddtoCart}
                     ></Button>
                   </Grid>

@@ -43,21 +43,21 @@ const ProductDetail = () => {
 
   useEffect(() => {
     (async () => {
-      // if (!id) return;
-      // else {
-      const docRef = doc(db, "products", id);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        handleGetListProductWithCategories(data.category);
-        setProductDetail(data);
-        setSizePicker(data.sizes[0]);
-        setListImages([data.image, ...data.detailImages]);
-        setColorPicker(data.color[0]);
-      } else {
-        console.log("no data");
+      if (!id) return;
+      else {
+        const docRef = doc(db, "products", id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          handleGetListProductWithCategories(data.category);
+          setProductDetail(data);
+          setSizePicker(data.sizes[0]);
+          setListImages([data.image, ...data.detailImages]);
+          setColorPicker(data.color[0]);
+        } else {
+          console.log("no data");
+        }
       }
-      // }
     })();
   }, [id]);
 

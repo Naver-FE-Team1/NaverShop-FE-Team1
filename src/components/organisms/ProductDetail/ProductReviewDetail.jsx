@@ -8,12 +8,24 @@ import { useEffect, useRef, useState } from "react";
 // import '../../../scss/ProductDetail/ProductDetail.scss';
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ProductDetailInput from "./ProductDetailInput";
-import { collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../../firebase/firebase-config";
 import { useAuth } from "../../../contexts/auth-context";
 import { useParams } from "react-router-dom";
 
-const ProductReviewDetail = ({ data, ml, showRating, reRender }) => {
+const ProductReviewDetail = ({
+  data,
+  ml,
+  showRating,
+  reRender,
+  authEditCmtUser,
+}) => {
   const { userInfo } = useAuth();
   const productId = useParams();
   const [like, setLike] = useState(false); //Kiểm tra tạng thái user like
@@ -43,7 +55,7 @@ const ProductReviewDetail = ({ data, ml, showRating, reRender }) => {
     }
   };
   // Ẩn/Hiện sửa bình luận
-  const handleToggleEdit = () => {
+  const handleToggleEdit = async () => {
     setEdit(!edit);
   };
   //Ẩn input khi user chỉnh sửa bình luận thành công
@@ -130,9 +142,11 @@ const ProductReviewDetail = ({ data, ml, showRating, reRender }) => {
           <ThumbDownOffAltIcon />
           <span className="product-detail__react">{disliked?.length}</span>
         </Stack>
-        <p onClick={handleToggleEdit} className="product-detail__ud">
-          {!edit ? "edit" : "cancel"}
-        </p>
+        {authEditCmtUser && (
+          <p onClick={handleToggleEdit} className="product-detail__ud">
+            {!edit ? "edit" : "cancel"}
+          </p>
+        )}
         <p onClick={handleDeleteCmt} className="product-detail__ud">
           delete
         </p>
@@ -145,6 +159,7 @@ const ProductReviewDetail = ({ data, ml, showRating, reRender }) => {
           widthInput="35rem"
           dataCmt={data}
           toggleEditInput={toggleEditInput}
+          addReview={reRender}
         />
       ) : (
         ""

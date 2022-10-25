@@ -64,6 +64,7 @@ const ProductReview = () => {
   };
   //check authorization to comment
   const haveAuthCmt = getListOrdered();
+  const authEditCmtUser = getListOrdered();
   //get doc reviews from firebase
   useEffect(() => {
     const colRef = query(
@@ -77,10 +78,8 @@ const ProductReview = () => {
         listOrdered.push({ id: doc.id, ...doc.data() });
       });
       setReviewsData(listOrdered);
-      dispatch(getCmts(listOrdered));
     });
   }, [isReview]);
-  console.log(reviewsData);
   const addReivew = () => {
     setIsReview(!isReview);
   };
@@ -124,6 +123,7 @@ const ProductReview = () => {
                 showRating={true}
                 widthInput="40rem"
                 dataCmt=""
+                reviewsData={reviewsData}
                 addReview={addReivew}
               />
             </>
@@ -134,6 +134,7 @@ const ProductReview = () => {
               data={data}
               showRating={true}
               reRender={addReivew}
+              authEditCmtUser={authEditCmtUser}
             />
           ))}
         </Grid>

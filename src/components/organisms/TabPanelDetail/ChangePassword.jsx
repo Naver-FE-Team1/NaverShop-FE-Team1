@@ -62,7 +62,7 @@ const ChangePassword = () => {
                                 toast.success("Cập nhật mật khẩu thành công!")
                             })
                             .catch((err) => {
-                                alert(`${err}`);
+                                toast.error("Đã xảy ra lỗi! Xin vui lòng thử lại!")
                             })
                     }
                     else {

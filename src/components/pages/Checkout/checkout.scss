@@ -1,6 +1,8 @@
 @import "../../../scss/index.scss";
 
 .checkout {
+  padding-top: 90px;
+
   width: 100vw;
   .body {
     width: 90%;
@@ -35,6 +37,7 @@
 
 @include tablet {
   .checkout {
+    padding-top: 130px;
     .body {
       width: 97%;
       display: flex;

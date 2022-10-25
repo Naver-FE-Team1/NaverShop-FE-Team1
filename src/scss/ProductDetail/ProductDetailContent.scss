@@ -39,10 +39,10 @@
       margin-bottom: 28px;
     }
     @include desktop {
-      margin-bottom: 54px;
     }
     &-name {
       color: $main;
+      font-weight: bold;
       @include mobile {
         @include font-size(36px);
       }
@@ -51,6 +51,12 @@
       }
     }
     &-price {
+      display: inline-block;
+      padding: 5px;
+      border-radius: 2px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      margin-top: 5px;
+      font-weight: bold;
     }
   }
   &__description {
@@ -60,6 +66,7 @@
     width: 100%;
 
     &-title {
+      font-weight: bold;
     }
     &-content {
       margin-bottom: 16px;
@@ -79,6 +86,8 @@
     }
   }
   &__dimension {
+    font-weight: bold;
+
     color: $main;
 
     &-title {
@@ -91,6 +100,8 @@
     }
   }
   &__quantity {
+    font-weight: bold;
+
     color: $main;
     margin-top: 10px;
   }

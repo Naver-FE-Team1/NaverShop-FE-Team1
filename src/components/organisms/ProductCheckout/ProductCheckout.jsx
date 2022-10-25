@@ -2,19 +2,21 @@
  * Dislay the product exist in shopping basket
  * file: ProductCheckout.jsx
  */
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import ProductBar from '../../atoms/ProductBar/ProductBar';
-import ProductItem from '../../molecules/ProductItem/ProductItem';
+import ProductBar from "../../atoms/ProductBar/ProductBar";
+import ProductItem from "../../molecules/ProductItem/ProductItem";
 
 const ProductCheckout = () => {
   const dataBasket = useSelector((state) => state.basket);
   const { cartItem, totalAmount, totalQuantity } = dataBasket;
   return (
-    <div>
+    <div className="shopping-basket">
       <ProductBar />
-      <div style={{fontSize: '1rem', paddingBottom: '.5rem'}}>Quantities: {totalQuantity}</div>
+      <div style={{ fontSize: "1rem", paddingBottom: ".5rem" }}>
+        Quantities: {totalQuantity}
+      </div>
       {cartItem.map((item, index) => {
         return (
           <>

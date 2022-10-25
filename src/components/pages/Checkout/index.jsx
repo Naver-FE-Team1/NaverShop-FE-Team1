@@ -160,7 +160,7 @@ const Checkout = () => {
             }
             date += value.format('DD/MM/YYYY').split('/')[2];
             const data = await addDoc(collection(db, 'listOrdered'), {
-              total: totalAmount,
+              Total: totalAmount,
               orderAddress: values.billing,
               orderDate: date,
               orderStatus: 'Pending',

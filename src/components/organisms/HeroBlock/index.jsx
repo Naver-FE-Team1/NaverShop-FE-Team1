@@ -10,7 +10,7 @@ const HeroBlock = () => {
     >
       <SliderSlick showItem={1} autoplay="true" fade="true">
         <img
-          src="  https://cmsv2.yame.vn/uploads/9d3a5313-5569-40d6-ba94-e025ca6b26c6/Banner_sale_HLW.jpg?quality=80&w=0&h=0"
+          src="https://cmsv2.yame.vn/uploads/9d3a5313-5569-40d6-ba94-e025ca6b26c6/Banner_sale_HLW.jpg?quality=80&w=0&h=0"
           alt=""
         />
         <img

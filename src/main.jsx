@@ -12,6 +12,8 @@ import "./scss/index.scss";
 import store from "./store";
 import { ThemeConfig } from "./theme/ThemeConfig";
 import { Toastify } from "./config/Toastify";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

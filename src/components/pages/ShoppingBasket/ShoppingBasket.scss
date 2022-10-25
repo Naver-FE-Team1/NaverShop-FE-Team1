@@ -5,22 +5,19 @@
 @include mobile {
   .shopping-basket {
     width: 100vw;
-    padding: 36px 24px 55px 24px;
-    padding-top: 90px;
+    padding: 90px 24px 55px 24px;
     box-sizing: border-box;
   }
 }
 
 @include tablet {
   .shopping-basket {
-    padding: 64px 158px 48px 158px;
-    padding-top: 90px;
+    padding: 90px 158px 48px 158px;
   }
 }
 
 @include desktop {
   .shopping-basket {
-    padding: 64px 188px 48px 188px;
-    padding-top: 125px;
+    padding: 140px 188px 48px 188px;
   }
 }

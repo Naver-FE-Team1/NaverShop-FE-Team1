@@ -28,10 +28,6 @@ const ProductDetail = () => {
   }, []);
   const [productDetail, setProductDetail] = useState([]);
 
-  console.log(
-    "🚀 ~ file: ProductDetail.jsx ~ line 24 ~ ProductDetail ~ productDetail",
-    productDetail
-  );
   const { id } = useParams(); // id được khai báo ở trang App.jsx
   //state này để lưu size S,M,L,...
   const [sizePicker, setSizePicker] = useState([]);
@@ -39,15 +35,12 @@ const ProductDetail = () => {
   const [quant, setQuant] = useState(1);
   const [listImages, setListImages] = useState([]);
   const [productCategories, setProductCategories] = useState([]);
-  console.log(
-    "🚀 ~ file: ProductDetailContent.jsx ~ line 48 ~ listImages",
-    listImages
-  );
 
   useEffect(() => {
     (async () => {
       if (!id) return;
       else {
+        console.log("Trước khi gọi query");
         const docRef = doc(db, "products", id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
@@ -65,6 +58,7 @@ const ProductDetail = () => {
   }, [id]);
 
   const handleGetListProductWithCategories = async (categories) => {
+    console.log(categories);
     const docRef = collection(db, "products");
     const que = query(docRef, where("category", "==", categories));
     const snapshots = await getDocs(que);

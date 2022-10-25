@@ -106,10 +106,10 @@ const ProductDetailInput = ({
     toggleEditInput();
   };
 
-  console.log(
-    "🚀 ~ file: ProductDetailInput.jsx ~ line 107 ~ dataCmt",
-    cmtAvailable
-  );
+  // console.log(
+  //   "🚀 ~ file: ProductDetailInput.jsx ~ line 107 ~ dataCmt",
+  //   cmtAvailable
+  // );
   //Xử lý user clear comment
   const handleClearCmtAvailable = () => {
     setCmtAvailable("");

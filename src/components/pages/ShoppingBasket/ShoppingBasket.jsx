@@ -26,12 +26,10 @@ const ShoppingBasket = () => {
     }
   };
   return (
-    <div className="">
-      <div className="shopping-basket ">
-        <HeadTitle content={"Your shopping cart"} />
-        <ProductCheckout />
-        <FootBasket handleClick={handleClick} total={dataAmountBasket} />
-      </div>
+    <div className="shopping-basket ">
+      <HeadTitle content={"Your shopping cart"} />
+      <ProductCheckout />
+      <FootBasket handleClick={handleClick} total={dataAmountBasket} />
     </div>
   );
 };

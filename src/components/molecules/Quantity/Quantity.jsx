@@ -1,17 +1,14 @@
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const Quantity = ({ quant, setQuant, limit }) => {
-  console.log(limit);
+  // console.log(limit);
   const handleIncrement = () => {
-    if(quant >= limit){
+    if (quant >= limit) {
       toast.error(`Product quantity in stock is not enough`);
-    }
-    else{
+    } else {
       setQuant(++quant);
-
     }
-    
-  }
+  };
   return (
     <div className="productDetail__quantity-number">
       <span onClick={() => quant > 0 && setQuant((quant) => --quant)}>

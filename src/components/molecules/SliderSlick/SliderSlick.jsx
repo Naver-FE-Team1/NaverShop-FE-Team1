@@ -11,7 +11,7 @@ const SliderSlick = ({
   autoplay = false,
 }) => {
   //Slider setting
-  console.log(autoplay);
+  // console.log(autoplay);
   const settings = {
     infinite: true,
     speed: 500,
@@ -22,11 +22,7 @@ const SliderSlick = ({
     nextArrow: <NextArrowSlider autoplay={autoplay} />,
     prevArrow: <PrevArrowSlider autoplay={autoplay} />,
   };
-  return (
-    <>
-      <Slider {...settings}>{children}</Slider>
-    </>
-  );
+  return <Slider {...settings}>{children}</Slider>;
 };
 
 export default SliderSlick;

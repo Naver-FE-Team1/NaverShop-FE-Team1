@@ -12,7 +12,7 @@ const ProductCheckout = () => {
   const dataBasket = useSelector((state) => state.basket);
   const { cartItem, totalAmount, totalQuantity } = dataBasket;
   return (
-    <div className="shopping-basket">
+    <div className="shopping-basket-items">
       <ProductBar />
       <div style={{ fontSize: "1rem", paddingBottom: ".5rem" }}>
         Quantities: {totalQuantity}

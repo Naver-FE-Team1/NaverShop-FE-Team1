@@ -1,11 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import FeatureImg from "../../../assets/images/FeatureImg.png";
 import FeatureImg2 from "../../../assets/images/FeatureImg2.png";
 import Button from "../../atoms/Button/Button";
 
 const Feature = () => {
   return (
-    <div id="feature" className="feature">
+    <div id="feature" className="feature" data-aos="fade-zoom-in">
       {/* First container item info  */}
       <div className="containerItemFirst">
         {/* container content */}
@@ -24,6 +25,8 @@ const Feature = () => {
             borderColor="transparent"
             backgroundColor="rgba(249, 249, 249, 0.15)"
             className="btnViewCollection"
+            navigate="/products"
+            type="button"
           ></Button>
         </div>
         <img

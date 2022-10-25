@@ -1,9 +1,18 @@
 @import "../../../scss/index.scss";
 
 .subscribe {
-  width: 100%;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 5px;
+  }
   padding: 24px 24px 35px 24px;
-  background: url("../../../assets/Image.png") no-repeat center center/cover;
+  background: url("https://scontent.fsgn13-3.fna.fbcdn.net/v/t31.18172-8/23215854_1518912794857483_5649105660950183098_o.jpg?_nc_cat=108&ccb=1-7&_nc_sid=730e14&_nc_ohc=9L2k71EJPxgAX8at5v-&_nc_ht=scontent.fsgn13-3.fna&oh=00_AT9tZVm9RdkIGN9ifDYNnsbguILPUn_o5XwskSz79h6LyA&oe=637D4ABE")
+    no-repeat center center/cover rgba(0, 0, 0, 0.5);
   h3 {
     font-family: "Clash Display";
     font-style: normal;

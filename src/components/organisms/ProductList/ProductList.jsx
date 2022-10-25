@@ -47,7 +47,6 @@ const ProductList = (props) => {
       {filteredProducts.map(
         (item, index) =>
           item.data?.active && (
-            
             //GOT TO CHANGE THIS WITH LINK (REACT ROUTER)
             <Grid
               item
@@ -56,11 +55,14 @@ const ProductList = (props) => {
               md={4}
               lg={3}
               sx={{ width: "100%", cursor: "pointer" }}
-              
               key={index}
             >
               {/* {console.log(item.data)} */}
-              <div className="product-card-img d-flex justify-content-center">
+              <div
+                className="product-card-img d-flex justify-content-center"
+                data-aos="fade-up"
+                data-aos-anchor-placement="bottom-bottom"
+              >
                 <img
                   style={responsiveProductStyle}
                   src={item.data.image}
@@ -124,7 +126,7 @@ const ProductList = (props) => {
                   >
                     {item.data.price.toLocaleString("vi-vn", {
                       style: "currency",
-                      currency: "VND"
+                      currency: "VND",
                     })}
                   </span>
                 }

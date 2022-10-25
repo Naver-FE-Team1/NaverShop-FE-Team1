@@ -3,7 +3,7 @@
  * file: ShoppingBasket.jsx
  */
 import React from "react";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import HeadTitle from "../../atoms/HeadTitle/HeadTitle";
 import FootBasket from "../../molecules/FootBasket/FootBasket";
@@ -15,8 +15,8 @@ const ShoppingBasket = () => {
     navigate("/checkout");
   };
   return (
-    <div>
-      <div className="shopping-basket">
+    <div className="">
+      <div className="shopping-basket ">
         <HeadTitle content={"Your shopping cart"} />
         <ProductCheckout />
         <FootBasket handleClick={handleClick} total={dataAmountBasket} />

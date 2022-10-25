@@ -3,6 +3,7 @@
  * file: ProductDetail.jsx
  */
 
+import { useMediaQuery } from "@mui/material";
 import {
   collection,
   doc,
@@ -20,6 +21,8 @@ import ProductDetailList from "../../organisms/ProductDetail/ProductDetailList";
 import ProductReview from "../../organisms/ProductDetail/ProductReview";
 
 const ProductDetail = () => {
+  const mdMatches = useMediaQuery("(min-width:600px)");
+  const lgMatches = useMediaQuery("(min-width:1200px)");
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -72,7 +75,7 @@ const ProductDetail = () => {
     setProductCategories(docs);
   };
   return (
-    <>
+    <div style={{ paddingTop: lgMatches ? "130px" : "90px" }}>
       <ProductDetailContent
         setSizePicker={setSizePicker}
         sizePicker={sizePicker}
@@ -83,10 +86,10 @@ const ProductDetail = () => {
         setColorPicker={setColorPicker}
         colorPicker={colorPicker}
       />
-      <ProductDetailList productList={productCategories}/>
+      <ProductDetailList productList={productCategories} />
       <ProductReview />
       <ProductDetailJoin />
-    </>
+    </div>
   );
 };
 

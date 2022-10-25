@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../atoms/Button";
 import "./feature2TextBlock.scss";
 
 const Feature2TextBlock = () => {
+  const navigate = useNavigate();
   return (
     <article className="feature-text-block">
       <div className="inner-feature">
@@ -17,6 +19,8 @@ const Feature2TextBlock = () => {
         padding="16px 0"
         txtColor="#fff"
         bgColor="rgba(249, 249, 249, 0.15)"
+        onClick={() => navigate("/products")}
+        type="button"
       >
         View collection
       </Button>

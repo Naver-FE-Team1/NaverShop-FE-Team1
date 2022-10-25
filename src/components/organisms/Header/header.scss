@@ -3,7 +3,10 @@
 .landingpage-header {
   width: 100%;
   padding: 20px 26px 0px 26px;
-
+  position: fixed;
+  z-index: 99;
+  background-color: #fff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   .upper-nav {
     width: 100%;
     padding-bottom: 30px;
@@ -148,6 +151,11 @@
     background-color: #4e4d93 !important;
   }
   .landingpage-header {
+    position: fixed;
+    z-index: 99;
+    background-color: #fff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
     .upper-nav {
       .logo {
         font-size: 30px;
@@ -182,7 +190,11 @@
     background-color: #4e4d93 !important;
   }
   .landingpage-header {
-    position: relative;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    position: fixed;
+    z-index: 99;
+    background-color: #fff;
     .upper-nav {
       .logo {
         position: absolute;
@@ -208,6 +220,12 @@
             width: 20px;
             display: inline-block;
             aspect-ratio: 1/1;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+              opacity: 0.6;
+              transform: rotate(20deg);
+            }
           }
           .user {
             width: fit-content;

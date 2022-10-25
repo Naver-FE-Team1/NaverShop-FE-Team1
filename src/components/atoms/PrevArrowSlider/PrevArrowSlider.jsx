@@ -1,12 +1,12 @@
 import React from "react";
 import "../PrevArrowSlider/PrevArrowSliderStyle.scss";
 const PrevArrowSlider = (props) => {
-  const { className, style, onClick } = props;
+  const { className, style, onClick, autoplay } = props;
 
   return (
     <div
-      className={`${className}`}
-      style={{ ...style, display: "block" }}
+      className={`${className} ${autoplay ? "remove" : ""}`}
+      style={{ ...style, display: autoplay && "none !important" }}
       onClick={onClick}
     >
       <svg

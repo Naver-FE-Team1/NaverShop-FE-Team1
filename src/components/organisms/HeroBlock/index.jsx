@@ -1,4 +1,3 @@
-import "./heroblock.scss";
 import Button from "../../atoms/Button";
 import img from "../../../assets/HeroBlockImage.png";
 import SliderSlick from "../../molecules/SliderSlick/SliderSlick";

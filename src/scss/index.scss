@@ -2,56 +2,56 @@
  * root scss
  * file: variables.scss
  */
-@import "./variables.scss";
-@import "./bases.scss";
-@import "./mixins.scss";
-
-//Import your scss files here
-
-// ------------ Import your scss files here ---------------
-
-// Import Atoms Components
-@import "../components/atoms/Checkbox/Checkbox.scss";
-@import "../components/atoms/Button/Button.scss";
-@import "../components/atoms/Button/ButtonSignIn.scss";
-@import "../components/atoms/Button/customButton.scss";
-@import "../components/atoms/FeatureCard/FeatureCard.scss";
-@import "../components/atoms/HeadTitle/HeadTitle.scss";
-@import "../components/atoms/Label/Label.scss";
-@import "../components/atoms/NextArrowSlider/nextArrowSliderStyle.scss";
-@import "../components/atoms/PrevArrowSlider/prevArrowSliderStyle.scss";
-@import "../components/atoms/ProductBar/ProductBar.scss";
-@import "../components/atoms/QuantitesBar/Quantities.scss";
-@import "../components/atoms/SubImage/subImage.scss";
-
-// Import Molecules Components
-@import "../components/molecules/Feature/Feature.scss";
-@import "../components/molecules/Footer/Footer.scss";
-@import "../components/molecules/MoreInfo/MoreInfo.scss";
-@import "../components/molecules/PageHeader/PageHeader.scss";
-@import "../components/molecules/AssignFooter/AssignFooter.scss";
-@import "../components/molecules/Quantity/QuantityStyles.scss";
-@import "../components/molecules/LayoutAuthentication/LayoutAuthentication.scss";
-@import "../components/molecules/Input/InputUser.scss";
-@import "../components/molecules/UserAvatar/UserAvatar.scss";
-@import "../components/molecules/Feature2TextBlock/feature2TextBlock.scss";
-@import "../components/molecules/FeatureList/featurelist.scss";
-@import "../components/molecules/FootBasket/FootBasket.scss";
-@import "../components/molecules/ProductItem/ProductItem.scss";
-@import "../components/molecules/SliderSlick/SliderSlick.scss";
-@import "../components/molecules/SubscribeForm/subscribeForm.scss";
-@import "../components/molecules/UserAvatar/User.scss";
-
-// Import Organisms Components
-@import "../components/organisms/Features2/feature2.scss";
-@import "../components/organisms/FeaturesBlock/featuresblock.scss";
-@import "../components/organisms/Header/header.scss";
-@import "../components/organisms/HeroBlock/heroblock.scss";
-@import "../components/organisms/ProductList/productlist.scss";
-@import "../components/organisms/Subcribe/subscribe.scss";
-// Import Pages Components
-@import "../components/pages/Loader/Loader.scss";
-@import "../components/pages/NotFound/NotFound.scss";
-@import "../components/pages/ShoppingBasket/ShoppingBasket.scss";
-@import "../components/pages/ShoppingList/shoppingList.scss";
-@import "../components/pages/UserProfile/UserProfile.scss";
+ @import "./variables.scss";
+ @import "./bases.scss";
+ @import "./mixins.scss";
+ 
+ //Import your scss files here
+ 
+ // ------------ Import your scss files here ---------------
+ 
+ // Import Atoms Components
+ @import "../components/atoms/Checkbox/Checkbox.scss";
+ @import "../components/atoms/Button/Button.scss";
+ @import "../components/atoms/Button/ButtonSignIn.scss";
+ @import "../components/atoms/Button/customButton.scss";
+ @import "../components/atoms/FeatureCard/FeatureCard.scss";
+ @import "../components/atoms/HeadTitle/HeadTitle.scss";
+ @import "../components/atoms/Label/Label.scss";
+ @import "../components/atoms/NextArrowSlider/nextArrowSliderStyle.scss";
+ @import "../components/atoms/PrevArrowSlider/prevArrowSliderStyle.scss";
+ @import "../components/atoms/ProductBar/ProductBar.scss";
+ @import "../components/atoms/QuantitesBar/Quantities.scss";
+ @import "../components/atoms/SubImage/subImage.scss";
+ 
+ // Import Molecules Components
+ @import "../components/molecules/Feature/Feature.scss";
+ @import "../components/molecules/Footer/Footer.scss";
+ @import "../components/molecules/MoreInfo/MoreInfo.scss";
+ @import "../components/molecules/PageHeader/PageHeader.scss";
+ @import "../components/molecules/AssignFooter/AssignFooter.scss";
+ @import "../components/molecules/Quantity/QuantityStyles.scss";
+ @import "../components/molecules/LayoutAuthentication/LayoutAuthentication.scss";
+ @import "../components/molecules/Input/InputUser.scss";
+ @import "../components/molecules/UserAvatar/UserAvatar.scss";
+ @import "../components/molecules/Feature2TextBlock/feature2TextBlock.scss";
+ @import "../components/molecules/FeatureList/featurelist.scss";
+ @import "../components/molecules/FootBasket/FootBasket.scss";
+ @import "../components/molecules/ProductItem/ProductItem.scss";
+ @import "../components/molecules/SliderSlick/SliderSlick.scss";
+ @import "../components/molecules/SubscribeForm/subscribeForm.scss";
+ @import "../components/molecules/UserAvatar/User.scss";
+ 
+ // Import Organisms Components
+ @import "../components/organisms/Features2/feature2.scss";
+ @import "../components/organisms/FeaturesBlock/featuresblock.scss";
+ @import "../components/organisms/Header/header.scss";
+ @import "../components/organisms/HeroBlock/heroblock.scss";
+ @import "../components/organisms/ProductList/productlist.scss";
+ @import "../components/organisms/Subcribe/subscribe.scss";
+ // Import Pages Components
+ @import "../components/pages/Loader/Loader.scss";
+ @import "../components/pages/NotFound/NotFound.scss";
+ @import "../components/pages/ShoppingBasket/ShoppingBasket.scss";
+ @import "../components/pages/ShoppingList/shoppingList.scss";
+ @import "../components/pages/UserProfile/UserProfile.scss";

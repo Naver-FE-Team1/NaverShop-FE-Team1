@@ -3,7 +3,6 @@ import { ReactComponent as Sprout } from "../../../assets/Sprout.svg";
 import { ReactComponent as Checkmark } from "../../../assets/Checkmark--outline.svg";
 import { ReactComponent as Purchase } from "../../../assets/Purchase.svg";
 import FeatureCard from "../../atoms/FeatureCard";
-import "./featurelist.scss";
 
 const data = [
   {

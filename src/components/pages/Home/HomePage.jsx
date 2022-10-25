@@ -45,13 +45,15 @@ const HomePage = () => {
             padding: "5px 10px",
             fontSize: "20px",
             fontWeight: "600",
-            display: "inline-block",
-            border: "1px solid #ccc",
+            borderBottom: "1px solid #ccc",
             borderRadius: "10px",
-            color: "white",
-            backgroundColor: "#2a254b",
+            color: "#363636",
             marginLeft: "10px",
+            marginRight: "10px",
+            backgroundColor: "#f8f9fa",
             marginTop: "10px",
+            textAlign: "center",
+            boxShadow: "0 10px 10px rgba(0,0,0,0.1)",
           }}
           data-aos={`${lgMatches ? "fade-right" : ""}`}
         >

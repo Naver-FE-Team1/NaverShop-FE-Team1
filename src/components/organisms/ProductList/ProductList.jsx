@@ -144,7 +144,7 @@ const ProductList = (props) => {
                       color: "#2a254b",
                       fontFamily: ["Clash Display", "sans-serif"],
                       display: "block",
-                      fontWeight: "400",
+                      fontWeight: "500",
                       lineHeight: "140%",
                       fontSize: "20px",
                       marginTop: "5px",

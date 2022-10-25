@@ -21,6 +21,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
   const smMatches = useMediaQuery("(min-width:600px)");
+  const lgMatches = useMediaQuery("(min-width:1200px)");
   const { userInfo, loading } = useAuth();
 
   useEffect(() => {
@@ -37,39 +38,38 @@ const HomePage = () => {
 
   return (
     <>
-      {!loading ? (
-        <section className="home-page">
-          <HeroBlock />
-          <div
-            style={
-              smMatches
-                ? { padding: "28px 80px", width: "100%" }
-                : { padding: "28px 24px", width: "100%" }
-            }
-          >
-            <ProductList />
-          </div>
-          <FeaturesBlock />
-          <Feature2 />
-          <Subscribe />
-        </section>
-      ) : (
-        <section className="home-page">
-          <HeroBlock />
-          <div
-            style={
-              smMatches
-                ? { padding: "28px 80px", width: "100%" }
-                : { padding: "28px 24px", width: "100%" }
-            }
-          >
-            <ProductList />
-          </div>
-          <FeaturesBlock />
-
-          <Subscribe />
-        </section>
-      )}
+      <section className="home-page">
+        <HeroBlock />
+        <h3
+          style={{
+            padding: "5px 10px",
+            fontSize: "20px",
+            fontWeight: "600",
+            display: "inline-block",
+            border: "1px solid #ccc",
+            borderRadius: "10px",
+            color: "white",
+            backgroundColor: "#2a254b",
+            marginLeft: "10px",
+            marginTop: "10px",
+          }}
+          data-aos={`${lgMatches ? "fade-right" : ""}`}
+        >
+          Tất cả sản phẩm
+        </h3>
+        <div
+          style={
+            smMatches
+              ? { padding: "28px 80px", width: "100%" }
+              : { padding: "28px 24px", width: "100%" }
+          }
+        >
+          <ProductList />
+        </div>
+        <FeaturesBlock />
+        <Feature2 />
+        <Subscribe />
+      </section>
     </>
   );
 };

@@ -2,12 +2,12 @@ import React from "react";
 import "../NextArrowSlider/NextArrowSliderStyle.scss";
 
 const NextArrowSlider = (props) => {
-  const { className, style, onClick } = props;
+  const { className, style, onClick, autoplay } = props;
 
   return (
     <div
-      className={`${className}`}
-      style={{ ...style, display: "block" }}
+      className={`${className} ${autoplay ? "remove" : ""}`}
+      style={{ ...style }}
       onClick={onClick}
     >
       <svg

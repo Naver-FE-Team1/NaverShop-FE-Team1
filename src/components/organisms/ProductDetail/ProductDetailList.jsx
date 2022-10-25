@@ -16,7 +16,10 @@ const ProductDetailList = ({ productList }) => {
   );
   //TODO: NEED TO WORK ON CASE WHERE TITLES CAN BE TOO LONG
   return (
-    <Container style={{ paddingLeft: "40px", marginTop: "4rem" }}>
+    <Container
+      style={{ paddingLeft: "40px", marginTop: "4rem" }}
+      data-aos="zoom-in-down"
+    >
       <Grid container spacing={4} xs={{}}>
         <SliderSlick showItem={lgMatches ? 3 : 2}>
           {productList

@@ -13,7 +13,11 @@
   &::before {
     content: "" !important;
   }
+  &.remove {
+    display: none !important;
+  }
 }
+
 .icon__slider {
   color: #fff;
   width: 30px;

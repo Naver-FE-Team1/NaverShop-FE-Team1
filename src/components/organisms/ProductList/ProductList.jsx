@@ -62,7 +62,7 @@ const ProductList = (props) => {
       productId: data.id,
     };
     dispatch(addBasket(productStringify));
-  }
+  };
 
   const handleGoToCheckout = (data) => {
     const productStringify = {
@@ -79,8 +79,8 @@ const ProductList = (props) => {
       productId: data.id,
     };
     dispatch(addBasket(productStringify));
-    navigate('/checkout')
-  }
+    navigate("/checkout");
+  };
   //TODO: NEED TO WORK ON CASE WHERE TITLES CAN BE TOO LONG
   return (
     <Grid container spacing={{ lg: 4, xs: 4 }}>
@@ -95,10 +95,14 @@ const ProductList = (props) => {
               md={4}
               lg={3}
               sx={{ width: "100%", cursor: "pointer" }}
-              
               key={index}
             >
-              <div className="product-card-img d-flex justify-content-center">
+              {/* {console.log(item.data)} */}
+              <div
+                className="product-card-img d-flex justify-content-center"
+                data-aos="fade-up"
+                data-aos-anchor-placement="bottom-bottom"
+              >
                 <img
                   style={responsiveProductStyle}
                   src={item.data.image}
@@ -163,7 +167,7 @@ const ProductList = (props) => {
                   >
                     {item.data.price.toLocaleString("vi-vn", {
                       style: "currency",
-                      currency: "VND"
+                      currency: "VND",
                     })}
                   </span>
                 }

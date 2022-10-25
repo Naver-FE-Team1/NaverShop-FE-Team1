@@ -15,15 +15,15 @@ const Footer = () => {
           {/* container Company Info */}
           <div className="containerFooterInfo">
             <h3>Yame</h3>
-            <p>21 New York Street</p>
-            <p>New York City</p>
-            <p>United States of America</p>
-            <p>432 34</p>
+            <p>336 Võ Văn Ngân</p>
+            <p>TP.HCM</p>
+            <p>Việt Nam</p>
+            <p>Góp ý:(028) 7307 1441</p>
           </div>
 
           {/* container Social links */}
           <div className="containerSocialLinks">
-            <h5>Social links</h5>
+            <h5>Liên hệ chúng tôi qua mạng xã hội</h5>
             <div>
               <div className="containerIconSocialLinks1">
                 <img
@@ -88,12 +88,12 @@ const Footer = () => {
           {/* container Categories */}
           <div className="containerFooterCategories">
             <h5>Categories</h5>
-            <p>Crockery</p>
-            <p>Furniture</p>
-            <p>Homeware</p>
-            <p>Plant pots</p>
-            <p>Chairs</p>
-            <p>Crockery</p>
+            <p>Shirt</p>
+            <p>Balo</p>
+            <p>Shoes</p>
+            <p>Pants</p>
+            <p>Hoodies</p>
+            <p>Glasses</p>
           </div>
         </div>
       </div>
@@ -101,7 +101,8 @@ const Footer = () => {
       {/*----- container with Line devide -----*/}
       <div className="containerLineDevide">
         <div></div>
-        <p>Copyright 2022 Avion LTD</p>
+        <p>© 2022 - CÔNG TY TNHH YAME VN</p>
+        <p>Giấy CNĐKDN: 0310874914 – Ngày cấp: 25/11/2011 - Cơ quan cấp: Phòng Đăng Ký Kinh Doanh – Sở Kế Hoạch và Đầu Tư TP.HCM</p>
       </div>
     </div>
   );

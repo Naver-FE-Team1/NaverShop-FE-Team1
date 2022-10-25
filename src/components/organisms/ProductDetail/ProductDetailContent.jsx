@@ -161,35 +161,7 @@ const ProductDetailContent = ({
                   <div className='productDetail__dimension-colors'></div>
                 </Grid>
               </div>
-              <ul className='productDetail__description-colors'>
-                {data.color?.map((item, idx) => (
-                  <li
-                    className='productDetail__description-color'
-                    style={{
-                      backgroundColor: item,
-                      border:
-                        colorPicker === item
-                          ? `3px solid ${item}`
-                          : ` 3px #fff solid`,
-                    }}
-                    onClick={() => {
-                      handleSetColor(item);
-                    }}
-                  ></li>
-                ))}
-              </ul>
-              <div className='productDetail__quantity'>
-                <h5 className='productDetail__quantity-title'>Quantity</h5>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} md={3}>
-                    <Quantity
-                      setQuant={setQuant}
-                      quant={quant}
-                      limit={data.quantities}
-                    />
-                  </Grid>
-                </Grid>
-              </div>
+            
               <div className='productDetail__action'>
                 <Grid container spacing={3}>
                   <Grid item xs={12} md={4}>
